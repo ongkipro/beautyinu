@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import {Star, CheckCircle2, ShieldCheck, ThumbsUp, Sparkles, MessageSquare} from 'lucide-react';
-import {getShopeeProductData, type ReviewItem} from '~/data/shopeeData';
+import {Star, CheckCircle2, ShieldCheck, ThumbsUp, Sparkles, MessageSquare, ChevronDown, ChevronUp} from 'lucide-react';
+import {getShopeeProductData} from '~/data/shopeeData';
 
 interface ProductReviewsProps {
   productTitle: string;
@@ -10,6 +10,7 @@ interface ProductReviewsProps {
 export function ProductReviews({productTitle, productHandle}: ProductReviewsProps) {
   const data = getShopeeProductData(productHandle);
   const [activeFilter, setActiveFilter] = useState<'all' | 'media' | '5' | '4'>('all');
+  const [showAll, setShowAll] = useState(false);
   const [helpfulLikes, setHelpfulLikes] = useState<Record<string, number>>({});
   const [hasLiked, setHasLiked] = useState<Record<string, boolean>>({});
 
@@ -29,6 +30,8 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
     return true;
   });
 
+  const visibleReviews = showAll ? filteredReviews : filteredReviews.slice(0, 5);
+
   return (
     <section id="reviews-section" className="mt-16 sm:mt-24 border-t border-black/[0.06] pt-12 sm:pt-16 min-w-0 max-w-full">
       {/* Section Header */}
@@ -46,8 +49,8 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
         </div>
       </div>
 
-      {/* 1. Rating Summary Overview Card (Shopee & Luxury Skincare Hybrid) */}
-      <div className="bg-[#FAF9FB] border border-black/[0.05] rounded-3xl p-6 sm:p-8 lg:p-10 mb-8 shadow-2xs">
+      {/* 1. Rating Summary Overview Card (Architectural Clean Luxury) */}
+      <div className="bg-[#FAF9FB] border border-black/[0.06] rounded-xl p-6 sm:p-8 mb-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left: Rating Big Score */}
           <div className="lg:col-span-4 flex flex-col items-center lg:items-start text-center lg:text-left">
@@ -73,7 +76,7 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
               Berdasarkan {data.reviewsCountNum.toLocaleString('id-ID')} ulasan pembeli
             </p>
 
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-800 text-[11px] font-medium">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50/80 border border-emerald-200/60 text-emerald-800 text-[11px] font-medium">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
               <span>{data.satisfactionRate} Pembeli Merekomendasikan</span>
             </div>
@@ -83,9 +86,9 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
           <div className="lg:col-span-4 flex flex-col justify-center gap-2 border-y lg:border-y-0 lg:border-x border-black/[0.06] py-5 lg:py-0 lg:px-6">
             <div className="flex items-center gap-2 text-xs">
               <span className="w-14 text-text-secondary font-medium">5 Bintang</span>
-              <div className="flex-1 h-2 bg-black/[0.06] rounded-full overflow-hidden">
+              <div className="flex-1 h-1.5 bg-black/[0.06] rounded-sm overflow-hidden">
                 <div
-                  className="h-full bg-amber-400 rounded-full"
+                  className="h-full bg-amber-400 rounded-sm"
                   style={{width: `${data.fiveStarPercent}%`}}
                 />
               </div>
@@ -96,9 +99,9 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
 
             <div className="flex items-center gap-2 text-xs">
               <span className="w-14 text-text-secondary font-medium">4 Bintang</span>
-              <div className="flex-1 h-2 bg-black/[0.06] rounded-full overflow-hidden">
+              <div className="flex-1 h-1.5 bg-black/[0.06] rounded-sm overflow-hidden">
                 <div
-                  className="h-full bg-amber-400/80 rounded-full"
+                  className="h-full bg-amber-400/80 rounded-sm"
                   style={{width: `${data.fourStarPercent}%`}}
                 />
               </div>
@@ -109,9 +112,9 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
 
             <div className="flex items-center gap-2 text-xs">
               <span className="w-14 text-text-secondary font-medium">3 Bintang</span>
-              <div className="flex-1 h-2 bg-black/[0.06] rounded-full overflow-hidden">
+              <div className="flex-1 h-1.5 bg-black/[0.06] rounded-sm overflow-hidden">
                 <div
-                  className="h-full bg-amber-400/60 rounded-full"
+                  className="h-full bg-amber-400/60 rounded-sm"
                   style={{width: `${data.threeStarPercent}%`}}
                 />
               </div>
@@ -122,7 +125,7 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
 
             <div className="flex items-center gap-2 text-xs text-text-secondary/50">
               <span className="w-14 font-medium">2 Bintang</span>
-              <div className="flex-1 h-2 bg-black/[0.04] rounded-full overflow-hidden">
+              <div className="flex-1 h-1.5 bg-black/[0.04] rounded-sm overflow-hidden">
                 <div className="h-full bg-black/20" style={{width: '0%'}} />
               </div>
               <span className="w-8 text-right font-mono text-[11px]">0%</span>
@@ -130,14 +133,14 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
 
             <div className="flex items-center gap-2 text-xs text-text-secondary/50">
               <span className="w-14 font-medium">1 Bintang</span>
-              <div className="flex-1 h-2 bg-black/[0.04] rounded-full overflow-hidden">
+              <div className="flex-1 h-1.5 bg-black/[0.04] rounded-sm overflow-hidden">
                 <div className="h-full bg-black/20" style={{width: '0%'}} />
               </div>
               <span className="w-8 text-right font-mono text-[11px]">0%</span>
             </div>
           </div>
 
-          {/* Right: Interactive Filter Buttons (Shopee Style) */}
+          {/* Right: Interactive Filter Buttons */}
           <div className="lg:col-span-4 flex flex-col justify-center gap-2">
             <span className="text-xs font-semibold text-text mb-1">
               Filter Penilaian:
@@ -146,10 +149,10 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
               <button
                 type="button"
                 onClick={() => setActiveFilter('all')}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer border ${
                   activeFilter === 'all'
-                    ? 'bg-[#111111] text-white shadow-xs'
-                    : 'bg-white text-text-secondary hover:text-text border border-black/[0.08]'
+                    ? 'bg-[#111111] text-white border-[#111111]'
+                    : 'bg-white text-text-secondary hover:text-text border-black/[0.08]'
                 }`}
               >
                 Semua ({data.reviews})
@@ -158,10 +161,10 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
               <button
                 type="button"
                 onClick={() => setActiveFilter('media')}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer border ${
                   activeFilter === 'media'
-                    ? 'bg-[#111111] text-white shadow-xs'
-                    : 'bg-white text-text-secondary hover:text-text border border-black/[0.08]'
+                    ? 'bg-[#111111] text-white border-[#111111]'
+                    : 'bg-white text-text-secondary hover:text-text border-black/[0.08]'
                 }`}
               >
                 Dengan Foto / Video ({data.mediaCount})
@@ -170,10 +173,10 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
               <button
                 type="button"
                 onClick={() => setActiveFilter('5')}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer border ${
                   activeFilter === '5'
-                    ? 'bg-[#111111] text-white shadow-xs'
-                    : 'bg-white text-text-secondary hover:text-text border border-black/[0.08]'
+                    ? 'bg-[#111111] text-white border-[#111111]'
+                    : 'bg-white text-text-secondary hover:text-text border-black/[0.08]'
                 }`}
               >
                 5 Bintang ({data.fiveStarCount})
@@ -182,44 +185,41 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
               <button
                 type="button"
                 onClick={() => setActiveFilter('4')}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer border ${
                   activeFilter === '4'
-                    ? 'bg-[#111111] text-white shadow-xs'
-                    : 'bg-white text-text-secondary hover:text-text border border-black/[0.08]'
+                    ? 'bg-[#111111] text-white border-[#111111]'
+                    : 'bg-white text-text-secondary hover:text-text border-black/[0.08]'
                 }`}
               >
                 4 Bintang ({data.fourStarCount})
               </button>
             </div>
-            <p className="text-[11px] text-text-secondary/70 mt-2 font-mono">
-              &bull; Diperbarui real-time dari Shopee Official Store
-            </p>
           </div>
         </div>
       </div>
 
-      {/* 2. Review List */}
-      <div className="space-y-4">
-        {filteredReviews.length > 0 ? (
-          filteredReviews.map((rev) => {
+      {/* 2. Review List (Unified Architectural Container) */}
+      <div className="bg-white border border-black/[0.06] rounded-xl divide-y divide-black/[0.06] overflow-hidden">
+        {visibleReviews.length > 0 ? (
+          visibleReviews.map((rev) => {
             const currentLikes = helpfulLikes[rev.id] ?? rev.helpfulCount;
             const isLiked = hasLiked[rev.id];
 
             return (
               <div
                 key={rev.id}
-                className="bg-white border border-black/[0.06] rounded-2xl p-5 sm:p-6 transition-all hover:border-black/[0.12] shadow-2xs"
+                className="p-5 sm:p-6 transition-colors hover:bg-[#FAF9FB]/40"
               >
                 {/* Header: User Avatar + Name + Rating Stars + Date */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-primary/10 text-primary font-mono text-xs font-bold flex items-center justify-center flex-shrink-0">
+                    <div className="w-9 h-9 rounded-lg bg-[#FAF9FB] border border-black/[0.06] text-text font-mono text-xs font-semibold flex items-center justify-center flex-shrink-0">
                       {rev.avatar}
                     </div>
                     <div>
                       <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                         <span className="font-semibold text-xs text-text">{rev.name}</span>
-                        <span className="inline-flex items-center gap-1 text-[10px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200/50 px-1.5 sm:px-2 py-0.5 rounded-md flex-shrink-0">
+                        <span className="inline-flex items-center gap-1 text-[10px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200/50 px-1.5 py-0.5 rounded flex-shrink-0">
                           <CheckCircle2 className="w-2.5 h-2.5 text-emerald-600" />
                           <span>Terverifikasi</span>
                         </span>
@@ -242,20 +242,20 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
 
                   {/* Variant Tag */}
                   <div className="self-start sm:self-auto">
-                    <span className="text-[11px] font-mono text-text-secondary bg-[#FAF9FB] border border-black/[0.04] px-2.5 py-1 rounded-md">
+                    <span className="text-[11px] font-mono text-text-secondary bg-[#FAF9FB] border border-black/[0.04] px-2 py-0.5 rounded">
                       Varian: {rev.variant}
                     </span>
                   </div>
                 </div>
 
                 {/* Review Body Content */}
-                <p className="text-xs sm:text-sm text-text/85 leading-relaxed mb-3">
+                <p className="text-xs sm:text-sm text-text/85 leading-relaxed my-3 font-normal">
                   {rev.content}
                 </p>
 
                 {/* Seller Reply Bubble if available */}
                 {rev.sellerReply && (
-                  <div className="mt-3 p-3.5 rounded-xl bg-[#FAF9FB] border border-black/[0.04] text-xs text-text-secondary leading-relaxed">
+                  <div className="my-3 p-3 rounded-lg bg-[#FAF9FB] border border-black/[0.04] text-xs text-text-secondary leading-relaxed">
                     <div className="flex items-center gap-1.5 font-semibold text-text mb-1">
                       <MessageSquare className="w-3 h-3 text-primary" />
                       <span>Respon Beautyinu Official:</span>
@@ -265,17 +265,17 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
                 )}
 
                 {/* Footer: Helpful Reaction Button */}
-                <div className="mt-3.5 pt-3 border-t border-black/[0.04] flex items-center justify-between text-xs text-text-secondary">
+                <div className="mt-3 pt-3 border-t border-black/[0.04] flex items-center justify-between text-xs text-text-secondary">
                   <span className="text-[11px] font-mono text-text-secondary/60">
-                    Shopee Official Store Verified
+                    Ulasan Pembeli Terverifikasi
                   </span>
                   <button
                     type="button"
                     onClick={() => handleHelpfulClick(rev.id, rev.helpfulCount)}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-colors cursor-pointer ${
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium transition-colors cursor-pointer border ${
                       isLiked
-                        ? 'text-primary bg-primary/10 border border-primary/20 font-semibold'
-                        : 'text-text-secondary hover:text-text bg-[#FAF9FB] hover:bg-[#F3EEFA]/70 border border-black/[0.05]'
+                        ? 'text-primary bg-primary/10 border-primary/20 font-medium'
+                        : 'text-text-secondary hover:text-text bg-[#FAF9FB] hover:bg-[#F3EEFA]/70 border-black/[0.05]'
                     }`}
                   >
                     <ThumbsUp className="w-3 h-3" />
@@ -286,7 +286,7 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
             );
           })
         ) : (
-          <div className="py-12 text-center rounded-2xl bg-[#FAF9FB] border border-black/[0.05] p-6">
+          <div className="py-12 text-center p-6">
             <Sparkles className="w-6 h-6 text-primary mx-auto mb-2" strokeWidth={1.5} />
             <h4 className="text-sm font-semibold text-text mb-1">Semua ulasan puas</h4>
             <p className="text-xs text-text-secondary">
@@ -296,17 +296,47 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
         )}
       </div>
 
-      {/* Trust Reassurance Footnote */}
+      {/* 3. Pagination / Toggle & Transparency Disclosure */}
+      {filteredReviews.length > 5 && (
+        <div className="mt-4 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setShowAll((prev) => !prev)}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-black/[0.12] bg-white hover:bg-[#FAF9FB] text-xs font-medium text-text transition-colors cursor-pointer"
+          >
+            {showAll ? (
+              <>
+                <span>Tampilkan Lebih Sedikit</span>
+                <ChevronUp className="w-3.5 h-3.5 text-text-secondary" />
+              </>
+            ) : (
+              <>
+                <span>Tampilkan {filteredReviews.length - 5} Ulasan Lainnya (Total {filteredReviews.length})</span>
+                <ChevronDown className="w-3.5 h-3.5 text-text-secondary" />
+              </>
+            )}
+          </button>
+        </div>
+      )}
+
+      {/* Footnote: Transparency Statement */}
+      <div className="mt-4 p-4 rounded-xl bg-[#FAF9FB] border border-black/[0.05] text-center">
+        <p className="text-xs text-text-secondary leading-relaxed max-w-2xl mx-auto">
+          Menampilkan {visibleReviews.length} ulasan pilihan terverifikasi dari pembeli riil. Lebih dari {data.reviewsCountNum.toLocaleString('id-ID')} ulasan transaksi lengkap lainnya dapat ditinjau langsung di Shopee Official Store.
+        </p>
+      </div>
+
+      {/* 4. Trust Reassurance Footnote Cards */}
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
-        <div className="p-4 rounded-2xl bg-[#FAF9FB] border border-black/[0.04] flex items-center justify-center gap-2">
+        <div className="p-4 rounded-xl bg-[#FAF9FB] border border-black/[0.05] flex items-center justify-center gap-2.5">
           <ShieldCheck className="w-4 h-4 text-emerald-600 flex-shrink-0" strokeWidth={1.5} />
           <span className="text-xs font-semibold text-text">100% Original &amp; BPOM Resmi</span>
         </div>
-        <div className="p-4 rounded-2xl bg-[#FAF9FB] border border-black/[0.04] flex items-center justify-center gap-2">
+        <div className="p-4 rounded-xl bg-[#FAF9FB] border border-black/[0.05] flex items-center justify-center gap-2.5">
           <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={1.5} />
           <span className="text-xs font-semibold text-text">Packing Bubble Wrap Tebal</span>
         </div>
-        <div className="p-4 rounded-2xl bg-[#FAF9FB] border border-black/[0.04] flex items-center justify-center gap-2">
+        <div className="p-4 rounded-xl bg-[#FAF9FB] border border-black/[0.05] flex items-center justify-center gap-2.5">
           <Sparkles className="w-4 h-4 text-amber-500 flex-shrink-0" strokeWidth={1.5} />
           <span className="text-xs font-semibold text-text">Pengiriman Kilat dari Surabaya</span>
         </div>

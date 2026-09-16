@@ -31,6 +31,14 @@ const COLLECTION_301_REDIRECTS: Record<string, string> = {
   'semua-produk': 'all',
 };
 
+const DEFAULT_EDITORIAL = {
+  subtitle: 'Official Beautyinu Collection',
+  kicker: 'Beautyinu · Official Collection',
+  description:
+    'Rangkaian perawatan tubuh dermatologis dengan bahan aktif presisi berizin resmi BPOM RI untuk kulit cerah, lembap, dan glowing harian.',
+  highlights: ['100% Resmi BPOM', 'Active UV Filters', 'Formula Klinis', 'Pengiriman Cepat'],
+};
+
 const COLLECTION_EDITORIAL_CONFIG: Record<
   string,
   {
@@ -189,13 +197,13 @@ export default function Collection() {
   };
 
   const productCount = collection.products.nodes.length;
-  const editorial = COLLECTION_EDITORIAL_CONFIG[collection.handle];
+  const editorial = COLLECTION_EDITORIAL_CONFIG[collection.handle] || DEFAULT_EDITORIAL;
 
   return (
     <div className="w-full bg-white">
-      {/* 1. Breadcrumbs Wayfinding */}
-      <div className="border-b border-black/[0.04] bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      {/* 1. Breadcrumbs Wayfinding with Standardized Height */}
+      <div className="border-b border-black/[0.04] bg-white h-11 flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-text-secondary">
             <Link to="/" className="hover:text-primary transition-colors flex items-center gap-1">
               <span>Beranda</span>
@@ -212,8 +220,8 @@ export default function Collection() {
         </div>
       </div>
 
-      {/* 2. Full-Width Editorial Hero with Right-Aligned Model Background */}
-      <div className="relative w-full overflow-hidden bg-[#FBF9FC] border-b border-black/[0.04]">
+      {/* 2. Full-Width Editorial Hero with Mathematically Locked Precision Height */}
+      <div className="relative w-full overflow-hidden bg-[#FBF9FC] border-b border-black/[0.04] h-[380px] sm:h-[420px] lg:h-[460px] flex items-center">
         {/* Full-width Model Background Image */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <picture>
@@ -228,51 +236,44 @@ export default function Collection() {
           {/* Smooth Directional Scrim: Opaque on the left for maximum text contrast, fading out to reveal glowing model on the right */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#FBF9FC] via-[#FBF9FC]/95 via-45% to-transparent sm:via-[#FBF9FC]/90 sm:via-55% lg:via-[#FBF9FC]/80 lg:via-60%" />
           {/* Subtle bottom edge blend */}
-          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#FBF9FC] to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#FBF9FC] to-transparent" />
         </div>
 
-        {/* Hero Content (Positioned on Left) */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
-          <div className="max-w-xl lg:max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/85 backdrop-blur-md text-accent text-[11px] font-mono font-semibold uppercase tracking-wider mb-3.5 border border-accent/20 shadow-2xs">
+        {/* Hero Content (Vertically centered on Left) */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-xl lg:max-w-2xl flex flex-col justify-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/85 backdrop-blur-md text-accent text-[11px] font-mono font-semibold uppercase tracking-wider mb-2.5 border border-accent/20 shadow-2xs self-start">
               <ShieldCheck className="w-3.5 h-3.5 text-accent" />
-              <span>{editorial?.kicker || 'Beautyinu · Official Collection'}</span>
+              <span>{editorial.kicker}</span>
             </div>
 
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-text font-normal tracking-tight mb-2.5">
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-text font-normal tracking-tight mb-2 line-clamp-1 sm:line-clamp-2">
               {collection.title}
             </h1>
 
-            {editorial?.subtitle && (
-              <p className="text-xs sm:text-sm font-mono font-medium text-primary uppercase tracking-wide mb-3">
-                {editorial.subtitle}
-              </p>
-            )}
+            <p className="text-xs sm:text-sm font-mono font-medium text-primary uppercase tracking-wide mb-2.5">
+              {editorial.subtitle}
+            </p>
 
-            <div className="text-xs sm:text-sm md:text-base text-text-secondary leading-relaxed font-normal mb-5 max-w-lg">
+            <div className="text-xs sm:text-sm md:text-[15px] text-text-secondary leading-relaxed font-normal mb-4 max-w-lg line-clamp-2 sm:line-clamp-3">
               {collection.descriptionHtml ? (
                 <div dangerouslySetInnerHTML={{__html: collection.descriptionHtml}} />
               ) : (
-                <p>
-                  {editorial?.description ||
-                    'Rangkaian perawatan tubuh dengan bahan aktif presisi berizin resmi BPOM RI untuk kulit cerah dan glowing harian.'}
-                </p>
+                <p>{editorial.description}</p>
               )}
             </div>
 
             {/* Editorial Highlight Tags */}
-            {editorial?.highlights && (
-              <div className="flex items-center gap-2 flex-wrap">
-                {editorial.highlights.map((highlight) => (
-                  <span
-                    key={highlight}
-                    className="text-[11px] font-medium text-text bg-white/90 backdrop-blur-md px-3 py-1 rounded-md border border-black/[0.08] shadow-2xs"
-                  >
-                    ✓ {highlight}
-                  </span>
-                ))}
-              </div>
-            )}
+            <div className="flex items-center gap-2 flex-wrap">
+              {editorial.highlights.map((highlight) => (
+                <span
+                  key={highlight}
+                  className="text-[11px] font-medium text-text bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-md border border-black/[0.08] shadow-2xs"
+                >
+                  ✓ {highlight}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

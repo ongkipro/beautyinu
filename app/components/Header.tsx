@@ -53,23 +53,35 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
   const isBlogActive = pathname.startsWith('/blogs');
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentY = window.scrollY;
+          setIsScrolled((prev) => {
+            // Hysteresis buffer to prevent oscillation/jitter:
+            // Switch to scrolled state when past 40px, only reset when near top (< 12px)
+            if (!prev && currentY > 40) return true;
+            if (prev && currentY < 12) return false;
+            return prev;
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
+
     handleScroll();
     window.addEventListener('scroll', handleScroll, {passive: true});
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 w-full transition-colors duration-300">
-      {/* 1. Top Announcement Bar (Editorial Micro-Ticker) — Smoothly collapses on scroll */}
+    <>
+      {/* 1. Top Announcement Bar (Editorial Micro-Ticker) — Natural page scroll flow, zero jitter */}
       {showAnnouncement && (
-        <div
-          className={`relative w-full bg-[#1A1A1A] text-white transition-all duration-300 ease-in-out overflow-hidden ${
-            isScrolled ? 'max-h-0 py-0 opacity-0' : 'max-h-12 py-2 px-4 opacity-100'
-          }`}
-        >
+        <div className="relative w-full bg-[#1A1A1A] text-white overflow-hidden py-2 px-4 transition-opacity duration-300">
           <div className="mx-auto max-w-7xl flex items-center justify-center gap-2.5 sm:gap-6 text-xs font-medium tracking-wide">
             <div className="flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-primary flex-shrink-0" strokeWidth={1.5} />
@@ -98,13 +110,14 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
       )}
 
       {/* 2. Main Navbar — Mid Center Logo with Apple/Luxury Frosted Glass on Scroll */}
-      <div
-        className={`w-full transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/75 backdrop-blur-xl backdrop-saturate-180 shadow-[0_8px_32px_rgba(0,0,0,0.04)] border-b border-black/[0.04]'
-            : 'bg-transparent border-b border-transparent'
-        }`}
-      >
+      <header className="sticky top-0 z-40 w-full transition-colors duration-300">
+        <div
+          className={`w-full transition-all duration-300 ${
+            isScrolled
+              ? 'bg-white/85 backdrop-blur-xl backdrop-saturate-180 shadow-[0_8px_32px_rgba(0,0,0,0.04)] border-b border-black/[0.04]'
+              : 'bg-transparent border-b border-transparent'
+          }`}
+        >
         <div
           className={`mx-auto max-w-7xl flex items-center justify-between px-4 sm:px-6 lg:px-8 relative transition-all duration-300 ${
             isScrolled ? 'h-14 sm:h-16' : 'h-16 sm:h-20'
@@ -397,6 +410,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
         </div>
       </div>
     </header>
+    </>
   );
 }
 

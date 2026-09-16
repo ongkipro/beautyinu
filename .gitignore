@@ -11,4 +11,5 @@ tsconfig.tsbuildinfo
 *.log
 dev-server.log
 drive-assets
+scratch
 .DS_Store

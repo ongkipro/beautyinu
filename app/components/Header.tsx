@@ -218,7 +218,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                           </span>
                         </Link>
                         <Link
-                          to="/#skin-matcher"
+                          to="/collections/body-care"
                           className="group/item flex flex-col py-1.5 px-2 rounded-xl hover:bg-accent-light/50 transition-colors"
                         >
                           <span className="text-xs font-semibold text-text group-hover/item:text-primary transition-colors">
@@ -229,7 +229,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                           </span>
                         </Link>
                         <Link
-                          to="/#skin-matcher"
+                          to="/products/bright-glow-body-lotion-uv-filter-750ml"
                           className="group/item flex flex-col py-1.5 px-2 rounded-xl hover:bg-accent-light/50 transition-colors"
                         >
                           <span className="text-xs font-semibold text-text group-hover/item:text-primary transition-colors">
@@ -639,17 +639,17 @@ export function MobileMenu() {
           </Link>
         </nav>
 
-        {/* 3. Skin Concern Matcher Shortcut */}
+        {/* 3. Daily Routine Shortcut */}
         <div className="mt-4 pt-3 border-t border-black/[0.04]">
           <a
-            href="/#skin-matcher"
+            href="/#routine-system"
             onClick={close}
             className="flex items-center justify-between p-3 rounded-xl bg-surface hover:bg-accent-light/60 transition-colors border border-border group"
           >
             <div className="flex items-center gap-2.5">
               <Sparkles className="w-4 h-4 text-primary" strokeWidth={1.5} />
               <span className="text-xs font-semibold text-text group-hover:text-primary transition-colors">
-                Pilih Kebutuhan Kulitmu (Skin Matcher)
+                Lihat 3-Step Daily Routine
               </span>
             </div>
             <ArrowRight className="w-3.5 h-3.5 text-text-secondary group-hover:text-primary transition-colors" strokeWidth={1.5} />

@@ -21,7 +21,7 @@ Beautyinu embraces a modern, high-end Gen-Z & Millennial aesthetic (Rhode, Gloss
 
 | Token | Class | Pixel Value | Permitted Use Cases | Forbidden Uses |
 |---|---|---|---|---|
-| **Frame / Feature Container** | `rounded-2xl` | `16px` | Section feature boards (`SkinConcernMatcher`, `CategorySplit` master cards, Hero canvas) | Never use `rounded-3xl` (24px) |
+| **Frame / Feature Container** | `rounded-2xl` | `16px` | Section feature boards (`CategorySplit` master cards, Hero canvas) | Never use `rounded-3xl` (24px) |
 | **Card / Milestone / Review** | `rounded-xl` / `rounded-2xl` | `12px` / `16px` | Product cards, Clinical actives cards, Timeline cards, Review testimonial cards | Never use bloated pill borders |
 | **Interactive Buttons (CTA)** | `rounded-xl` | `12px` | Primary action buttons (`Lihat Produk`, `Beli Sekarang`, `Add to Cart`, `Follow @beautyinu.id`, Hero dual CTAs) | Avoid `rounded-full` capsules for text buttons |
 | **Media / Image Viewports** | `rounded-xl` / `rounded-lg` | `12px` / `8px` | Product image thumbnails, feed photo viewports, gallery tiles | Never `rounded-3xl` |

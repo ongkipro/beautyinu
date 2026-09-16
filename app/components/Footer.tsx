@@ -4,12 +4,12 @@ import logoUrl from '~/assets/logo-beauty-inu.webp';
 export function Footer() {
   return (
     <footer className="relative bg-gradient-to-b from-[#FFF5F8] via-[#FAF7FD] to-[#F3EEFA] text-text mt-auto overflow-hidden">
-      {/* 1. Ambient Background Architectural Watermark — Top Center Distinct, Prominent & Elegant */}
-      <div className="absolute top-0 inset-x-0 flex flex-col items-center justify-start pt-1 sm:pt-2 pointer-events-none select-none overflow-hidden z-0">
-        <span className="font-serif font-black tracking-tight uppercase leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#AF8FD1]/50 via-[#AF8FD1]/35 to-[#AF8FD1]/15 text-[16vw] sm:text-[18vw] whitespace-nowrap drop-shadow-[0_4px_24px_rgba(175,143,209,0.25)]">
+      {/* 1. Ambient Background Architectural Watermark — Smooth, Subtle & Elegant */}
+      <div className="absolute top-0 inset-x-0 flex flex-col items-center justify-start pt-2 sm:pt-4 pointer-events-none select-none overflow-hidden z-0">
+        <span className="font-serif font-black tracking-tight uppercase leading-none text-transparent bg-clip-text bg-gradient-to-b from-[#AF8FD1]/12 via-[#AF8FD1]/06 to-transparent text-[16vw] sm:text-[18vw] whitespace-nowrap">
           BEAUTYINU
         </span>
-        <span className="font-sans font-black tracking-[0.65em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#F97F9E]/45 via-[#AF8FD1]/50 to-[#F97F9E]/45 text-[3.5vw] sm:text-[4vw] -mt-[2.5vw] whitespace-nowrap drop-shadow-[0_2px_12px_rgba(249,127,158,0.2)]">
+        <span className="font-sans font-bold tracking-[0.65em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#AF8FD1]/08 via-[#F97F9E]/10 to-[#AF8FD1]/08 text-[3.5vw] sm:text-[4vw] -mt-[2.5vw] whitespace-nowrap">
           SKINCARE
         </span>
       </div>

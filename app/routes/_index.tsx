@@ -11,12 +11,6 @@ import heroModelMobile from '~/assets/beautyinu-hero-model-mobile.webp';
 import heroRoutineImage from '~/assets/beautyinu-hero-routine.webp';
 import heroRoutineMobile from '~/assets/beautyinu-hero-routine-mobile.webp';
 import heroBannerDesktop from '~/assets/hero-banner-desktop.webp';
-import editorial1 from '~/assets/editorial-1.webp';
-import editorial2 from '~/assets/editorial-2.webp';
-import editorial3 from '~/assets/editorial-3.webp';
-import editorial4 from '~/assets/editorial-4.webp';
-import editorial5 from '~/assets/editorial-5.webp';
-import editorial6 from '~/assets/editorial-6.webp';
 import {
   ShieldCheck,
   Users,
@@ -27,7 +21,6 @@ import {
   CheckCircle2,
   Check,
   Star,
-  MessageCircle,
   ChevronLeft,
   ChevronRight,
   Flame,
@@ -102,9 +95,6 @@ export default function Homepage() {
 
       {/* 9. Skincare Journal (Blog Preview) */}
       <BlogPreview blogArticlesPromise={data.blogArticles} />
-
-      {/* 10. The Glow Gallery — Full-Width Instagram Feed Gallery (Tepat di Atas Footer) */}
-      <TheGlowGallery />
     </main>
   );
 }
@@ -266,14 +256,14 @@ function Hero() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 mb-6 sm:mb-8">
             <a
               href={currentSlide.primaryHref}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary hover:bg-primary-hover px-7 sm:px-8 py-3.5 sm:py-4 text-sm font-semibold text-white shadow-sm transition-all hover:translate-y-[-1px]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary hover:bg-primary-hover px-7 sm:px-8 py-3.5 sm:py-4 text-sm font-semibold text-white shadow-sm transition-all hover:translate-y-[-1px]"
             >
               <span>{currentSlide.primaryCta}</span>
               <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
             </a>
             <Link
               to="/collections/bundles"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white/90 backdrop-blur-md hover:bg-white border border-black/[0.08] px-6 sm:px-7 py-3.5 sm:py-4 text-sm font-semibold text-text shadow-2xs transition-all hover:translate-y-[-1px]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white/90 backdrop-blur-md hover:bg-white border border-black/[0.08] px-6 sm:px-7 py-3.5 sm:py-4 text-sm font-semibold text-text shadow-2xs transition-all hover:translate-y-[-1px]"
             >
               <span>Lihat Paket Hemat</span>
             </Link>
@@ -461,26 +451,13 @@ function RoutineSteps() {
                 </span>
               </div>
 
-              {/* Product Image Canvas — Styled as an Editorial Portrait Photo Stuck to the Wall */}
+              {/* Product Image Canvas — Clean Architectural Card */}
               <div className="relative mx-auto mb-6 w-full max-w-[220px] sm:max-w-[240px]">
-                {/* Washi Tape Accent — Taped to Wall */}
-                <div
-                  className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-12 sm:w-14 h-4 bg-white/75 backdrop-blur-xs border border-black/[0.08] rotate-[-2deg] shadow-2xs z-10 pointer-events-none rounded-[1px]"
-                  aria-hidden="true"
-                />
-
-                {/* Photo Print Card */}
                 <Link
                   to={item.to}
-                  className={`block bg-white p-2.5 sm:p-3 pb-6 sm:pb-7 rounded-sm shadow-[0_12px_28px_-6px_rgba(0,0,0,0.1),0_4px_10px_-3px_rgba(0,0,0,0.05)] border border-black/[0.03] transition-all duration-300 ease-out group-hover:scale-[1.03] group-hover:rotate-0 group-hover:shadow-[0_20px_35px_-8px_rgba(0,0,0,0.14)] ${
-                    i === 0
-                      ? 'rotate-[-1.5deg]'
-                      : i === 1
-                      ? 'rotate-[1.5deg]'
-                      : 'rotate-[-0.75deg]'
-                  }`}
+                  className="block bg-white p-3 rounded-xl shadow-xs border border-black/[0.06] transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:shadow-md group-hover:border-accent/30"
                 >
-                  <div className="aspect-square overflow-hidden bg-[#ECE8FF] rounded-[2px]">
+                  <div className="aspect-square overflow-hidden bg-[#ECE8FF] rounded-lg">
                     <img
                       src={item.image}
                       alt=""
@@ -547,7 +524,7 @@ function RoutineSteps() {
             </div>
             <Link
               to="/products/glowing-set-3-in-1"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-xs"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-xs"
             >
               <span>Beli Paket Hemat (Diskon 39%)</span>
               <ArrowRight className="w-4 h-4" />
@@ -606,22 +583,6 @@ const CONCERN_MATCHES: ConcernItem[] = [
         image:
           'https://cdn.shopify.com/s/files/1/0826/3372/0029/files/Website_Beautyinu_-_7.png?v=1781661857',
         to: '/products/kefir-collagen-soap-60gr',
-      },
-      {
-        title: 'Brightening Booster Gold Powder',
-        role: 'Langkah 02 · Konsentrat Pencerah Aktif',
-        price: 'Rp 39.724',
-        image:
-          'https://cdn.shopify.com/s/files/1/0826/3372/0029/files/Website_Beautyinu_-_6.png?v=1781661891',
-        to: '/products/brightening-booster-gold-powder-25gr',
-      },
-      {
-        title: 'Bright Glow Body Lotion UV Filter',
-        role: 'Langkah 03 · Kunci Lembap & Proteksi UV',
-        price: 'Rp 100.737',
-        image:
-          'https://cdn.shopify.com/s/files/1/0826/3372/0029/files/Website_Beautyinu_-_9.png?v=1781661846',
-        to: '/products/bright-glow-body-lotion-uv-filter-750ml',
       },
     ],
     bundleTitle: 'Glowing Set (3-in-1 Routine)',
@@ -756,7 +717,7 @@ function SkinConcernMatcher() {
               key={item.id}
               type="button"
               onClick={() => setSelectedIdx(idx)}
-              className={`flex items-center gap-2.5 px-5 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
+              className={`flex items-center gap-2.5 px-5 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                 isSelected
                   ? 'bg-[#1A1A1A] text-white shadow-md scale-[1.02] ring-2 ring-primary/20'
                   : 'bg-white text-text-secondary hover:text-text border border-black/[0.08] hover:border-accent/40 shadow-2xs'
@@ -770,12 +731,12 @@ function SkinConcernMatcher() {
       </div>
 
       {/* Unified Diagnostic & Routine Recommendation Board */}
-      <div className="bg-[#FAF8FC] rounded-3xl p-6 sm:p-10 lg:p-12 border border-black/[0.05] shadow-xs">
+      <div className="bg-[#FAF8FC] rounded-2xl p-6 sm:p-10 lg:p-12 border border-black/[0.05] shadow-xs">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
           {/* Left Column: Clinical Diagnosis & Formula Synergy */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-accent text-xs font-bold uppercase tracking-wider mb-4 border border-accent/20 shadow-2xs">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white text-accent text-xs font-bold uppercase tracking-wider mb-4 border border-accent/20 shadow-2xs">
                 <FlaskConical className="w-3.5 h-3.5 text-primary" />
                 <span>Analisa Masalah &amp; Mekanisme</span>
               </div>
@@ -787,7 +748,7 @@ function SkinConcernMatcher() {
               </p>
 
               {/* Mechanism Box */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-white border border-black/[0.05] mb-6 shadow-2xs">
+              <div className="p-4 sm:p-5 rounded-xl bg-white border border-black/[0.05] mb-6 shadow-2xs">
                 <span className="text-xs font-bold text-text block mb-1.5">
                   Mekanisme Kerja Bahan Aktif:
                 </span>
@@ -803,7 +764,7 @@ function SkinConcernMatcher() {
                   {current.actives.map((act, i) => (
                     <span
                       key={i}
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-accent-light/80 text-accent font-semibold text-[11px] border border-accent/25"
+                      className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-accent-light/80 text-accent font-semibold text-[11px] border border-accent/25"
                     >
                       <Check className="w-3 h-3 text-primary" />
                       <span>{act}</span>
@@ -814,13 +775,13 @@ function SkinConcernMatcher() {
             </div>
 
             {/* Recommended Bundle Synergy Card */}
-            <div className="p-5 rounded-2xl bg-white border-2 border-primary/30 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-2">
+            <div className="p-5 rounded-xl bg-white border-2 border-primary/30 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-2">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2.5 py-0.5 rounded-full">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded-md">
                     Paket Solusi Direkomendasikan
                   </span>
-                  <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                  <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">
                     {current.bundleSavings}
                   </span>
                 </div>
@@ -834,7 +795,7 @@ function SkinConcernMatcher() {
 
               <Link
                 to={current.bundleHref}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-primary hover:bg-primary-hover text-white px-5 py-2.5 text-xs font-bold transition-all shadow-xs flex-shrink-0"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-primary hover:bg-primary-hover text-white px-5 py-2.5 text-xs font-bold transition-all shadow-xs flex-shrink-0"
               >
                 <span>Lihat Paket Solusi</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -973,12 +934,12 @@ function IngredientsHighlight() {
         {ingredients.map((ing, i) => (
           <div
             key={i}
-            className="group relative bg-white rounded-3xl p-5 sm:p-6 flex flex-col justify-between border border-black/[0.06] shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_-6px_rgba(175,143,209,0.18)] hover:border-accent/30 transition-all duration-300 hover:-translate-y-1 h-full"
+            className="group relative bg-white rounded-2xl p-5 sm:p-6 flex flex-col justify-between border border-black/[0.06] shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_-6px_rgba(175,143,209,0.18)] hover:border-accent/30 transition-all duration-300 hover:-translate-y-1 h-full"
           >
             <div>
               {/* Card Header: Formula Index & Quality Standard Row */}
               <div className="flex items-center justify-between gap-2 pb-2.5 mb-3 border-b border-black/[0.04]">
-                <span className="text-[11px] font-mono font-bold text-accent bg-accent-light/80 px-2.5 py-0.5 rounded-full border border-accent/20 tracking-wider uppercase">
+                <span className="text-[11px] font-mono font-bold text-accent bg-accent-light/80 px-2.5 py-0.5 rounded-md border border-accent/20 tracking-wider uppercase">
                   Formula 0{i + 1}
                 </span>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-text-secondary/70">
@@ -986,9 +947,9 @@ function IngredientsHighlight() {
                 </span>
               </div>
 
-              {/* Verified Quality Badge Pill */}
+              {/* Verified Quality Badge */}
               <div className="mb-4">
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-xl bg-[#FAF8FC] text-text border border-black/[0.06] shadow-2xs">
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-lg bg-[#FAF8FC] text-text border border-black/[0.06] shadow-2xs">
                   <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
                   <span>{ing.badge}</span>
                 </span>
@@ -1018,7 +979,7 @@ function IngredientsHighlight() {
             <div className="pt-3.5 border-t border-black/[0.04] mt-5">
               <div className="flex items-center justify-between text-xs gap-2">
                 <span className="text-text-secondary font-medium text-[11px] whitespace-nowrap">Target Kerja:</span>
-                <span className="font-bold text-accent bg-accent-light/60 px-2.5 py-0.5 rounded-full border border-accent/20 text-[11px] truncate">
+                <span className="font-bold text-accent bg-accent-light/60 px-2.5 py-0.5 rounded-md border border-accent/20 text-[11px] truncate">
                   {ing.action}
                 </span>
               </div>
@@ -1223,10 +1184,10 @@ function BestSellerCard({product, index, isDragging}: BestSellerCardProps) {
         onClick={(e) => {
           if (isDragging) e.preventDefault();
         }}
-        className="group relative flex flex-col bg-white rounded-3xl p-3.5 sm:p-4 border border-black/[0.06] shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_-6px_rgba(175,143,209,0.18)] hover:border-accent/30 transition-all duration-300 h-full cursor-pointer"
+        className="group relative flex flex-col bg-white rounded-2xl p-3.5 sm:p-4 border border-black/[0.06] shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_-6px_rgba(175,143,209,0.18)] hover:border-accent/30 transition-all duration-300 h-full cursor-pointer"
       >
         {/* 1. Image Canvas with Subtle Luxury Gradient Backdrop */}
-        <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-gradient-to-b from-[#FAF8FC] to-[#F3EEFA]/40 mb-3.5">
+        <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-gradient-to-b from-[#FAF8FC] to-[#F3EEFA]/40 mb-3.5">
           {featuredImage ? (
             <img
               src={featuredImage.url}
@@ -1238,12 +1199,12 @@ function BestSellerCard({product, index, isDragging}: BestSellerCardProps) {
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-accent">
-              <Sparkles className="w-6 h-6" />
+              <span className="text-xs font-serif font-medium">Beautyinu</span>
             </div>
           )}
 
           {/* Top Left: Prestige Ranking Badge */}
-          <div className="absolute top-2.5 left-2.5 flex items-center gap-1 bg-[#1A1A1A]/85 backdrop-blur-md text-white px-2.5 py-1 rounded-full shadow-2xs">
+          <div className="absolute top-2.5 left-2.5 flex items-center gap-1 bg-[#1A1A1A]/85 backdrop-blur-md text-white px-2 py-0.5 rounded-md shadow-2xs">
             <span className="text-primary font-black text-[10px]">#</span>
             <span className="text-[10px] font-bold tracking-wider uppercase font-sans">
               {rankNum}
@@ -1252,14 +1213,14 @@ function BestSellerCard({product, index, isDragging}: BestSellerCardProps) {
 
           {/* Top Right: Discount Pill Badge */}
           {isDiscounted && (
-            <span className="absolute top-2.5 right-2.5 bg-gradient-to-r from-primary to-[#FF6B8B] text-white text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full shadow-2xs">
+            <span className="absolute top-2.5 right-2.5 bg-gradient-to-r from-primary to-[#FF6B8B] text-white text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-md shadow-2xs">
               Hemat {savePercentage}%
             </span>
           )}
 
-          {/* Hover Overlay Action Pill (Desktop) */}
+          {/* Hover Overlay Action Button (Desktop) */}
           <div className="absolute inset-x-3 bottom-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 hidden sm:flex">
-            <span className="w-full py-2.5 px-3 rounded-full bg-white/95 backdrop-blur-md text-text text-xs font-bold text-center shadow-md border border-black/[0.05] hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-1.5">
+            <span className="w-full py-2.5 px-3 rounded-xl bg-white/95 backdrop-blur-md text-text text-xs font-bold text-center shadow-md border border-black/[0.05] hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-1.5">
               <span>Lihat Detail</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </span>
@@ -1328,13 +1289,13 @@ function BestSellersSkeleton() {
   return (
     <section className="relative w-full py-16 md:py-24 px-4 lg:px-8 bg-white border-b border-black/[0.04] overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="h-6 w-40 bg-black/[0.06] rounded-full mb-3 animate-pulse" />
-        <div className="h-10 w-64 bg-black/[0.06] rounded-2xl mb-8 animate-pulse" />
+        <div className="h-6 w-40 bg-black/[0.06] rounded-md mb-3 animate-pulse" />
+        <div className="h-10 w-64 bg-black/[0.06] rounded-xl mb-8 animate-pulse" />
         <div className="flex gap-4 sm:gap-5 overflow-hidden">
           {[...Array(4)].map((_, i) => (
             <div
               key={i}
-              className="w-[285px] h-[380px] bg-[#FAF8FC] rounded-3xl animate-pulse flex-shrink-0"
+              className="w-[285px] h-[380px] bg-[#FAF8FC] rounded-2xl animate-pulse flex-shrink-0"
             />
           ))}
         </div>
@@ -1456,7 +1417,7 @@ function BestSellersSlider({products}: {products: any[]}) {
         {/* Header & Section Title with Luxury Brand Badge */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-8 sm:mb-10">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF0F4] text-primary text-xs font-bold uppercase tracking-wider mb-2.5 border border-primary/15 shadow-2xs">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#FAF0F4] text-primary text-xs font-bold uppercase tracking-wider mb-2.5 border border-primary/15 shadow-2xs">
               <Flame className="w-3.5 h-3.5 fill-primary text-primary" />
               <span>Trending Now · Favorit Pelanggan</span>
             </div>
@@ -1471,7 +1432,7 @@ function BestSellersSlider({products}: {products: any[]}) {
           <div className="flex items-center gap-3 self-start sm:self-end">
             <Link
               to="/collections/best-sellers"
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#FAF7FD] hover:bg-primary text-text hover:text-white text-xs font-bold transition-all border border-black/[0.04] shadow-2xs"
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#FAF7FD] hover:bg-primary text-text hover:text-white text-xs font-bold transition-all border border-black/[0.04] shadow-2xs"
             >
               <span>Lihat Semua Produk</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -1570,7 +1531,7 @@ function BestSellersSlider({products}: {products: any[]}) {
               onClick={() => scroll('left')}
               disabled={!canScrollLeft}
               aria-label="Geser produk sebelumnya"
-              className="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-full border border-black/10 bg-white hover:bg-accent-light hover:text-primary transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer shadow-2xs active:scale-95"
+              className="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-xl border border-black/10 bg-white hover:bg-accent-light hover:text-primary transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer shadow-2xs active:scale-95"
             >
               <ChevronLeft className="w-4 h-4" />
               <span>Back</span>
@@ -1603,7 +1564,7 @@ function BestSellersSlider({products}: {products: any[]}) {
               onClick={() => scroll('right')}
               disabled={!canScrollRight}
               aria-label="Geser produk berikutnya"
-              className="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-full border border-black/10 bg-white hover:bg-accent-light hover:text-primary transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer shadow-2xs active:scale-95"
+              className="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-xl border border-black/10 bg-white hover:bg-accent-light hover:text-primary transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer shadow-2xs active:scale-95"
             >
               <span>Next</span>
               <ChevronRight className="w-4 h-4" />
@@ -1625,40 +1586,40 @@ function BestSellersSlider({products}: {products: any[]}) {
 // ==========================================
 function CategorySplit() {
   return (
-    <section className="w-full px-4 lg:px-8 py-8 md:py-14 max-w-7xl mx-auto">
+    <section className="w-full px-4 lg:px-8 py-10 md:py-16 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
         {/* Card 1: Body Care Essentials */}
         <Link
           to="/collections/body-care"
-          className="group relative rounded-3xl overflow-hidden min-h-[380px] sm:min-h-[440px] flex flex-col justify-end p-7 sm:p-10 shadow-sm transition-transform duration-300 hover:scale-[1.01]"
+          className="group relative rounded-2xl overflow-hidden min-h-[400px] sm:min-h-[460px] flex flex-col justify-end p-7 sm:p-10 border border-black/[0.06] shadow-xs transition-all duration-300 hover:shadow-md hover:border-accent/30"
         >
           {/* Full-Bleed Background Image */}
           <img
             src="https://cdn.shopify.com/s/files/1/0826/3372/0029/files/Website_Beautyinu_-_9.png?v=1781661846"
             alt="Beautyinu Body Care Essentials"
-            className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+            className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-104 transition-transform duration-700 ease-out"
             loading="lazy"
             width={1080}
             height={1080}
           />
 
           {/* Cinematic Gradient Overlay for Maximum Readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10 group-hover:from-black/90 transition-colors duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/15 group-hover:from-black/95 transition-colors duration-300" />
 
           {/* Foreground Content */}
           <div className="relative z-10 max-w-md">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#AF8FD1] block mb-2">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#AF8FD1] block mb-2.5">
               Perawatan Harian
             </span>
-            <h3 className="font-serif text-3xl sm:text-4xl text-white font-bold mb-2">
+            <h3 className="font-serif text-3xl sm:text-4xl text-white font-bold mb-2.5 leading-tight">
               Body Care Essentials
             </h3>
-            <p className="text-xs sm:text-sm text-white/80 mb-6 leading-relaxed max-w-sm">
+            <p className="text-xs sm:text-sm text-white/85 mb-6 leading-relaxed max-w-sm">
               Lotion jumbo 750ml, body wash, body cream &amp; booster powder mulai Rp 37.125.
             </p>
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-primary text-text hover:text-white text-xs font-bold transition-all shadow-sm group-hover:gap-3">
+            <span className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-primary text-text hover:text-white text-xs sm:text-sm font-bold transition-all shadow-xs group-hover:gap-3">
               <span>Lihat Produk Satuan</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-4 h-4" />
             </span>
           </div>
         </Link>
@@ -1666,35 +1627,35 @@ function CategorySplit() {
         {/* Card 2: Value Bundles */}
         <Link
           to="/collections/bundles"
-          className="group relative rounded-3xl overflow-hidden min-h-[380px] sm:min-h-[440px] flex flex-col justify-end p-7 sm:p-10 shadow-sm transition-transform duration-300 hover:scale-[1.01]"
+          className="group relative rounded-2xl overflow-hidden min-h-[400px] sm:min-h-[460px] flex flex-col justify-end p-7 sm:p-10 border border-black/[0.06] shadow-xs transition-all duration-300 hover:shadow-md hover:border-primary/40"
         >
           {/* Full-Bleed Background Image */}
           <img
             src="https://cdn.shopify.com/s/files/1/0826/3372/0029/files/WebsiteBeautyinu-3.png?v=1784278179"
             alt="Beautyinu Sets and Bundles"
-            className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+            className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-104 transition-transform duration-700 ease-out"
             loading="lazy"
             width={1080}
             height={1080}
           />
 
           {/* Cinematic Gradient Overlay for Maximum Readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10 group-hover:from-black/90 transition-colors duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/15 group-hover:from-black/95 transition-colors duration-300" />
 
           {/* Foreground Content */}
           <div className="relative z-10 max-w-md">
-            <span className="text-xs font-bold uppercase tracking-widest text-primary block mb-2">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-primary block mb-2.5">
               Paket Hemat &amp; Bundling
             </span>
-            <h3 className="font-serif text-3xl sm:text-4xl text-white font-bold mb-2">
+            <h3 className="font-serif text-3xl sm:text-4xl text-white font-bold mb-2.5 leading-tight">
               Sets &amp; Bundles
             </h3>
-            <p className="text-xs sm:text-sm text-white/80 mb-6 leading-relaxed max-w-sm">
+            <p className="text-xs sm:text-sm text-white/85 mb-6 leading-relaxed max-w-sm">
               Rangkaian lengkap 3-in-1 hingga 5-in-1. Hemat hingga 47%, mulai Rp 121.143.
             </p>
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-sm group-hover:gap-3">
+            <span className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs sm:text-sm font-bold transition-all shadow-xs group-hover:gap-3">
               <span>Lihat Semua Paket</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-4 h-4" />
             </span>
           </div>
         </Link>
@@ -1726,7 +1687,7 @@ function SocialProof() {
 
         {/* Verified Customer Quotes */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
-          <div className="bg-white rounded-3xl p-8 sm:p-10 flex flex-col justify-between border border-black/[0.04] shadow-xs">
+          <div className="bg-white rounded-2xl p-8 sm:p-10 flex flex-col justify-between border border-black/[0.04] shadow-xs">
             <div>
               <div className="flex items-center gap-1 text-[#F59E0B] mb-5">
                 {[...Array(5)].map((_, i) => (
@@ -1739,13 +1700,13 @@ function SocialProof() {
             </div>
             <div className="flex items-center justify-between text-xs text-text-secondary">
               <span className="font-semibold text-text">Ba*******an</span>
-              <span className="bg-accent-light px-3 py-1 rounded-full text-accent font-semibold border border-accent/20">
+              <span className="bg-accent-light px-2.5 py-0.5 rounded-md text-accent font-semibold border border-accent/20 text-[11px]">
                 Verified Buyer
               </span>
             </div>
           </div>
 
-          <div className="bg-white rounded-3xl p-8 sm:p-10 flex flex-col justify-between border border-black/[0.04] shadow-xs">
+          <div className="bg-white rounded-2xl p-8 sm:p-10 flex flex-col justify-between border border-black/[0.04] shadow-xs">
             <div>
               <div className="flex items-center gap-1 text-[#F59E0B] mb-5">
                 {[...Array(5)].map((_, i) => (
@@ -1758,7 +1719,7 @@ function SocialProof() {
             </div>
             <div className="flex items-center justify-between text-xs text-text-secondary">
               <span className="font-semibold text-text">vik******el</span>
-              <span className="bg-accent-light px-3 py-1 rounded-full text-accent font-semibold border border-accent/20">
+              <span className="bg-accent-light px-2.5 py-0.5 rounded-md text-accent font-semibold border border-accent/20 text-[11px]">
                 Verified Buyer
               </span>
             </div>
@@ -1815,284 +1776,6 @@ function BlogPreview({blogArticlesPromise}: {blogArticlesPromise: any}) {
             }}
           </Await>
         </Suspense>
-      </div>
-    </section>
-  );
-}
-
-// ==========================================
-// SVG Social Icons for Community Feeds
-// ==========================================
-function InstagramIcon({className = 'w-4 h-4'}: {className?: string}) {
-  return (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-    </svg>
-  );
-}
-
-function TikTokIcon({className = 'w-4 h-4'}: {className?: string}) {
-  return (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
-    </svg>
-  );
-}
-
-// ==========================================
-// Section 10: The Glow Gallery — Full Width Instagram Feed Gallery (Tepat di Atas Footer)
-// ==========================================
-const INSTAGRAM_FEEDS = [
-  {
-    id: 'post-1',
-    src: editorial2,
-    alt: 'Beautyinu Brightening Booster Gold Powder Racikan',
-    product: 'Booster Gold Powder',
-    tag: '#BoosterRacikan',
-    handle: '@beautyinu.id',
-    likes: '4,820',
-    comments: '342',
-    caption: 'Rahasia racikan bodycare viral! Campur 1 scoop Gold Powder ke lotion favoritmu untuk boost cerah maksimal.',
-    link: 'https://www.instagram.com/beautyinu.id/',
-  },
-  {
-    id: 'post-2',
-    src: editorial6,
-    alt: 'Beautyinu Bright Glow Body Lotion UV Filter Jumbo 750ml',
-    product: 'Body Lotion UV 750ml',
-    tag: '#LotionJumbo750ml',
-    handle: '@beautyinu.id',
-    likes: '5,310',
-    comments: '418',
-    caption: 'Gak takut panas-panasan lagi! Perlindungan UV Filter + Niacinamide ukuran jumbo 750ml super hemat.',
-    link: 'https://www.instagram.com/beautyinu.id/',
-  },
-  {
-    id: 'post-3',
-    src: editorial4,
-    alt: 'Beautyinu Kefir Collagen Soap Bar Alami',
-    product: 'Kefir Collagen Soap',
-    tag: '#SabunKefirViral',
-    handle: '@beautyinu.id',
-    likes: '3,950',
-    comments: '276',
-    caption: 'Kandungan kefir fermentasi + marine collagen bantu angkat daki membandel dan ratakan belang seketika.',
-    link: 'https://www.instagram.com/beautyinu.id/',
-  },
-  {
-    id: 'post-4',
-    src: editorial1,
-    alt: 'Beautyinu Brightening Body Cream Grape Series',
-    product: 'Body Cream Grape',
-    tag: '#GrapeSeries',
-    handle: '@beautyinu.id',
-    likes: '2,640',
-    comments: '185',
-    caption: 'Nutrisi malam hari dengan 5 zat aktif pencerah dan wangi anggur segar yang bikin rileks sebelum tidur.',
-    link: 'https://www.instagram.com/beautyinu.id/',
-  },
-  {
-    id: 'post-5',
-    src: editorial3,
-    alt: 'Beautyinu Bright Glow Body Wash Fresh Shower',
-    product: 'Bright Glow Body Wash',
-    tag: '#BodyWashRoutine',
-    handle: '@beautyinu.id',
-    likes: '2,180',
-    comments: '134',
-    caption: 'Mandi busa melimpah dengan aroma relaksasi mewah. Bersihkan pori kulit tanpa rasa kering atau ketarik.',
-    link: 'https://www.instagram.com/beautyinu.id/',
-  },
-  {
-    id: 'post-6',
-    src: editorial5,
-    alt: 'Beautyinu 14 Days Glowing Transformation Testimonial',
-    product: '14-Day Transformation',
-    tag: '#BeautyinuBestie',
-    handle: '@beautyinu.id',
-    likes: '6,490',
-    comments: '582',
-    caption: '"Pengen putih? Gak pake mahal." Hasil rutin 14 hari pemakaian 3-Step Routine dari salah satu Bestie kita!',
-    link: 'https://www.instagram.com/beautyinu.id/',
-  },
-];
-
-function TheGlowGallery() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scrollLeft = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -300, behavior: 'smooth' });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <section className="w-full bg-white pt-16 sm:pt-20 pb-12 sm:pb-16 overflow-hidden border-t border-black/[0.04]">
-      {/* Header Area */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 mb-8 sm:mb-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent-light/70 text-accent text-xs font-bold uppercase tracking-wider mb-3.5 border border-accent/20">
-              <InstagramIcon className="w-3.5 h-3.5 text-primary" />
-              <span>Instagram @beautyinu.id · 89K Followers</span>
-            </div>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-text leading-tight tracking-tight">
-              The Glow Gallery
-            </h2>
-            <p className="text-sm sm:text-base text-text-secondary mt-2.5 leading-relaxed">
-              Bagikan momen daily routine kulitmu dengan tag{' '}
-              <span className="font-semibold text-text">@beautyinu.id</span> di Instagram &amp; TikTok. &ldquo;Pengen putih? Gak pake mahal.&rdquo;
-            </p>
-          </div>
-
-          <div className="flex-shrink-0 flex items-center gap-3">
-            <div className="flex lg:hidden items-center gap-2">
-              <button
-                type="button"
-                onClick={scrollLeft}
-                aria-label="Geser feed ke kiri"
-                className="w-10 h-10 rounded-full border border-black/10 bg-white hover:bg-[#F3EEFA] text-text hover:text-accent flex items-center justify-center transition-colors shadow-xs active:scale-95 cursor-pointer"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                type="button"
-                onClick={scrollRight}
-                aria-label="Geser feed ke kanan"
-                className="w-10 h-10 rounded-full border border-black/10 bg-white hover:bg-[#F3EEFA] text-text hover:text-accent flex items-center justify-center transition-colors shadow-xs active:scale-95 cursor-pointer"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            <a
-              href="https://www.instagram.com/beautyinu.id/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-[#1A1A1A] hover:bg-black text-white px-6 py-3 text-xs sm:text-sm font-semibold transition-all duration-200 shadow-xs hover:shadow-md hover:-translate-y-0.5"
-            >
-              <InstagramIcon className="w-4 h-4 text-primary" />
-              <span>Follow @beautyinu.id</span>
-              <ArrowRight className="w-3.5 h-3.5 opacity-80" />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Full Width Gallery Grid / Swipeable Carousel */}
-      <div className="w-full px-3 sm:px-6 lg:px-8 max-w-[1920px] mx-auto">
-        <div
-          ref={scrollRef}
-          className="flex lg:grid lg:grid-cols-6 gap-3 sm:gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-4 pt-1 cursor-grab"
-          style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}
-        >
-          {INSTAGRAM_FEEDS.map((feed) => (
-            <a
-              key={feed.id}
-              href={feed.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative aspect-[4/5] w-[74vw] sm:w-[280px] lg:w-auto flex-shrink-0 snap-start rounded-2xl sm:rounded-3xl overflow-hidden bg-[#FAF8FC] border border-black/[0.05] shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(175,143,209,0.22)] hover:border-accent/40 transition-all duration-500 select-none block"
-            >
-              {/* Product / Feed Image */}
-              <img
-                src={feed.src}
-                alt={feed.alt}
-                className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700 ease-out"
-                loading="lazy"
-                width={1080}
-                height={1350}
-              />
-
-              {/* Ambient Top Right Instagram Glyph (Static Badge) */}
-              <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white opacity-90 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
-                <InstagramIcon className="w-4 h-4" />
-              </div>
-
-              {/* Interactive Hover / Tap Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/25 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-between p-4 sm:p-5 text-white backdrop-blur-[1px]">
-                {/* Overlay Top Bar */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5">
-                    <InstagramIcon className="w-3.5 h-3.5 text-primary" />
-                    <span className="text-xs font-semibold tracking-wide">{feed.handle}</span>
-                  </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider bg-white/20 backdrop-blur-xs px-2 py-0.5 rounded-full text-white">
-                    Feed
-                  </span>
-                </div>
-
-                {/* Overlay Center: Heart & Comment Stats */}
-                <div className="my-auto text-center py-2">
-                  <div className="flex items-center justify-center gap-4 text-xs">
-                    <span className="flex items-center gap-1">
-                      <Heart className="w-3.5 h-3.5 text-primary fill-primary" />
-                      <span className="font-semibold">{feed.likes}</span>
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <MessageCircle className="w-3.5 h-3.5 text-white/90" />
-                      <span className="font-semibold">{feed.comments}</span>
-                    </span>
-                  </div>
-                </div>
-
-                {/* Overlay Bottom Bar: Caption & CTA */}
-                <div>
-                  <span className="inline-block text-[11px] font-bold tracking-wider uppercase text-primary mb-1">
-                    {feed.tag}
-                  </span>
-                  <p className="text-xs text-white/90 leading-snug line-clamp-2 mb-2.5">
-                    {feed.caption}
-                  </p>
-                  <div className="inline-flex items-center gap-1 text-[11px] font-semibold text-white/90 group-hover:text-white transition-colors">
-                    <span>Lihat di Instagram</span>
-                    <ArrowRight className="w-3 h-3 text-primary" />
-                  </div>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-
-      {/* Community Engagement Sub-Bar (Right Above Footer) */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 mt-6 sm:mt-8 pt-5 border-t border-black/[0.04]">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-text-secondary">
-          <div className="flex items-center gap-2 text-center sm:text-left">
-            <Heart className="w-4 h-4 text-primary fill-primary flex-shrink-0" />
-            <span>
-              Tag foto atau video daily routine kamu dengan <strong className="text-text font-semibold">#BeautyinuBestie</strong> di Instagram &amp; TikTok.
-            </span>
-          </div>
-
-          <div className="flex items-center gap-4 text-xs font-semibold">
-            <a
-              href="https://www.instagram.com/beautyinu.id/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-text hover:text-primary transition-colors flex items-center gap-1.5"
-            >
-              <InstagramIcon className="w-3.5 h-3.5 text-accent" />
-              <span>@beautyinu.id</span>
-            </a>
-            <span className="text-black/20">|</span>
-            <a
-              href="https://tiktok.com/@beautyinu.official"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-text hover:text-primary transition-colors flex items-center gap-1.5"
-            >
-              <TikTokIcon className="w-3.5 h-3.5 text-accent" />
-              <span>@beautyinu.official</span>
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );

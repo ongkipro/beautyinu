@@ -48,7 +48,7 @@ export function ArticleCard({
       to={`/blogs/${actualBlogHandle}/${article.handle}`}
       className="group block"
     >
-      <div className="aspect-[3/2] overflow-hidden rounded-2xl bg-[#F0EAF8] mb-4">
+      <div className="aspect-[3/2] overflow-hidden rounded-xl bg-[#F0EAF8] mb-4">
         {article.image ? (
           <Image
             data={article.image as any}

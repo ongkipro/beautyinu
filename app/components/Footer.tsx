@@ -125,13 +125,13 @@ export function Footer() {
             <h4 className="text-xs font-bold uppercase tracking-widest text-text mb-5">
               Layanan Pelanggan
             </h4>
-            <div className="rounded-3xl bg-white/50 backdrop-blur-xl border border-white/80 shadow-[0_8px_32px_rgba(175,143,209,0.08),inset_0_1px_2px_rgba(255,255,255,0.9)] p-6 hover:bg-white/65 hover:border-white hover:shadow-[0_14px_40px_rgba(175,143,209,0.14)] transition-all duration-300 space-y-4">
+            <div className="rounded-2xl bg-white/50 backdrop-blur-xl border border-white/80 shadow-[0_8px_32px_rgba(175,143,209,0.08),inset_0_1px_2px_rgba(255,255,255,0.9)] p-6 hover:bg-white/65 hover:border-white hover:shadow-[0_14px_40px_rgba(175,143,209,0.14)] transition-all duration-300 space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold text-text flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse ring-4 ring-[#25D366]/20" />
                   Live Chat Konsultasi
                 </span>
-                <span className="text-[10px] uppercase font-bold tracking-wider bg-white/70 backdrop-blur-xs text-accent border border-accent/20 px-2.5 py-0.5 rounded-full shadow-2xs">
+                <span className="text-[10px] uppercase font-bold tracking-wider bg-white/70 backdrop-blur-xs text-accent border border-accent/20 px-2.5 py-0.5 rounded-md shadow-2xs">
                   Fast Response
                 </span>
               </div>
@@ -142,7 +142,7 @@ export function Footer() {
                 href="https://wa.me/6287777118186?text=Halo%20Beautyinu%2C%20saya%20ingin%20konsultasi%20produk"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 w-full py-3 px-5 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold transition-all shadow-[0_4px_16px_rgba(37,211,102,0.3)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.4)] hover:scale-[1.01] group cursor-pointer"
+                className="inline-flex items-center justify-center gap-2.5 w-full py-3 px-5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold transition-all shadow-[0_4px_16px_rgba(37,211,102,0.3)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.4)] hover:scale-[1.01] group cursor-pointer"
               >
                 {/* Authentic WhatsApp SVG vector icon */}
                 <svg className="w-4 h-4 fill-current text-white flex-shrink-0 transition-transform duration-200 group-hover:scale-110" viewBox="0 0 24 24">

@@ -75,7 +75,7 @@ export function ProductCard({product, loading}: ProductCardProps) {
 
         {/* Floating Discount Pill Badge — Top Left */}
         {isDiscounted && (
-          <span className="absolute top-2.5 left-2.5 bg-primary text-white text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full shadow-2xs">
+          <span className="absolute top-2.5 left-2.5 bg-primary text-white text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-md shadow-2xs">
             Hemat {savePercentage}%
           </span>
         )}

@@ -141,7 +141,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
 
                 {/* Dropdown Floating Mega Menu Card */}
                 <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-50">
-                  <div className="w-[680px] xl:w-[720px] rounded-3xl bg-white/98 backdrop-blur-xl shadow-2xl border border-black/[0.06] p-6 grid grid-cols-12 gap-6 text-left">
+                  <div className="w-[680px] xl:w-[720px] rounded-2xl bg-white/98 backdrop-blur-xl shadow-2xl border border-black/[0.06] p-6 grid grid-cols-12 gap-6 text-left">
                     {/* Col 1: Katalog Utama */}
                     <div className="col-span-4 flex flex-col gap-3">
                       <p className="text-[10px] font-bold uppercase tracking-wider text-text-secondary/70">

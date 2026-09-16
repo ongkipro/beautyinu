@@ -86,7 +86,7 @@ function CollectionItem({
 }) {
   return (
     <Link
-      className="group block rounded-3xl bg-[#FAF8FC] hover:bg-[#F3EEFA] transition-all overflow-hidden"
+      className="group block rounded-2xl bg-[#FAF8FC] hover:bg-[#F3EEFA] border border-black/[0.06] shadow-xs hover:shadow-md hover:border-accent/30 transition-all overflow-hidden"
       key={collection.id}
       to={`/collections/${collection.handle}`}
       prefetch="intent"

@@ -1,7 +1,6 @@
 import {Link} from 'react-router';
 import {Image, Money} from '@shopify/hydrogen';
 import type {CurrencyCode} from '@shopify/hydrogen/storefront-api-types';
-import {Star} from 'lucide-react';
 
 /**
  * Reusable unified product card for all grids across the storefront.
@@ -55,10 +54,10 @@ export function ProductCard({product, loading}: ProductCardProps) {
     <Link
       to={`/products/${handle}`}
       prefetch="intent"
-      className="group flex flex-col items-center text-center w-full"
+      className="group flex flex-col w-full text-left"
     >
-      {/* 1. Image Canvas — Thin Rounded (rounded-lg / 8px), Borderless & Clean */}
-      <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-[#FAF8FC] mb-3">
+      {/* 1. Image Canvas — Minimalist Rounded 2XL, Clean Neutral Canvas */}
+      <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-[#F8F7FA] mb-3">
         {featuredImage ? (
           <Image
             data={featuredImage as any}
@@ -73,38 +72,28 @@ export function ProductCard({product, loading}: ProductCardProps) {
           </div>
         )}
 
-        {/* Floating Discount Pill Badge — Top Left */}
+        {/* Minimal Monochrome Discount Pill */}
         {isDiscounted && (
-          <span className="absolute top-2.5 left-2.5 bg-primary text-white text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-md shadow-2xs">
-            Hemat {savePercentage}%
+          <span className="absolute top-2.5 left-2.5 bg-black/85 backdrop-blur-md text-white text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-2xs">
+            -{savePercentage}%
           </span>
         )}
       </div>
 
-      {/* 2. Rating Row — Centered */}
-      <div className="flex items-center justify-center gap-1 mb-1.5">
-        <div className="flex items-center text-[#F59E0B]">
-          {[...Array(5)].map((_, i) => (
-            <Star key={i} className="w-3 h-3 fill-[#F59E0B] text-[#F59E0B]" />
-          ))}
-        </div>
-        <span className="text-[11px] text-text-secondary font-medium">4.9</span>
-      </div>
-
-      {/* 3. Product Title — Centered */}
-      <h3 className="text-xs sm:text-sm font-semibold text-text leading-snug line-clamp-2 px-1 group-hover:text-primary transition-colors text-center">
+      {/* 2. Product Title */}
+      <h3 className="text-xs sm:text-sm font-medium text-text leading-snug line-clamp-2 group-hover:text-primary transition-colors">
         {title}
       </h3>
 
-      {/* 4. Price & Strikethrough — Centered */}
-      <div className="mt-1.5 flex items-center justify-center gap-2 flex-wrap">
+      {/* 3. Price & Strikethrough */}
+      <div className="mt-1 flex items-baseline gap-2 flex-wrap">
         {price && (
-          <span className="text-xs sm:text-sm font-bold text-text">
+          <span className="text-xs sm:text-sm font-semibold text-text">
             <Money data={price as any} withoutTrailingZeros />
           </span>
         )}
         {isDiscounted && compareAtPrice && (
-          <span className="text-[11px] sm:text-xs text-text-secondary/70 line-through">
+          <span className="text-[11px] sm:text-xs text-text-secondary/60 line-through">
             <Money data={compareAtPrice as any} withoutTrailingZeros />
           </span>
         )}

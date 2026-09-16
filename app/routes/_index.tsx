@@ -12,14 +12,8 @@ import heroRoutineImage from '~/assets/beautyinu-hero-routine.webp';
 import heroRoutineMobile from '~/assets/beautyinu-hero-routine-mobile.webp';
 import heroBannerDesktop from '~/assets/hero-banner-desktop.webp';
 import {
-  ShieldCheck,
-  Users,
-  Heart,
   ArrowRight,
-  Sparkles,
-  Truck,
   CheckCircle2,
-  Star,
   ChevronLeft,
   ChevronRight,
   Flame,
@@ -60,7 +54,7 @@ export default function Homepage() {
   const data = useLoaderData<typeof loader>();
 
   return (
-    <main className="w-full bg-white">
+    <div className="w-full bg-white">
       {/* 1. Hero Section (Proven Skincare Style: Dynamic Headline + Concern Selector) */}
       <Hero />
 
@@ -88,7 +82,7 @@ export default function Homepage() {
 
       {/* 9. Skincare Journal (Blog Preview) */}
       <BlogPreview blogArticlesPromise={data.blogArticles} />
-    </main>
+    </div>
   );
 }
 
@@ -133,7 +127,7 @@ const HERO_SLIDES: HeroSlide[] = [
       </>
     ),
     subheading:
-      'Tekstur velvety cepat meresap tanpa rasa lengket. 98% merasakan kulit lebih lembap dan cerah alami dalam 14 hari.',
+      'Tekstur velvety cepat meresap tanpa rasa lengket. Menjaga kelembapan optimal dan merawat kulit agar tampak cerah alami.',
     imageDesktop: heroModelImage,
     imageMobile: heroModelMobile,
     alt: 'Beautyinu Dewy Glowing Skin Campaign',
@@ -230,48 +224,46 @@ function Hero() {
       {/* 3. Foreground Editorial Content Area */}
       <div className="max-w-7xl mx-auto px-4 lg:px-8 w-full relative z-10">
         <div className="max-w-2xl lg:max-w-3xl">
-          {/* Subtle Clean Label (No AI slop or artificial badges) */}
-          <p className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-3 sm:mb-4">
-            Beautyinu Daily Bodycare
+          {/* Clean Micro-Label */}
+          <p className="text-[10px] sm:text-[11px] font-mono font-medium tracking-[0.25em] uppercase text-black/50 mb-3 sm:mb-4">
+            Beautyinu · Daily Essentials
           </p>
 
           {/* Headline with Editorial Serif + Italic Accent */}
-          <h1 className="font-serif text-3xl sm:text-5xl lg:text-[56px] text-text leading-[1.14] tracking-tight mb-3 sm:mb-4 transition-all duration-500">
+          <h1 className="font-serif text-3xl sm:text-5xl lg:text-[56px] text-text leading-[1.12] tracking-tight mb-3 sm:mb-4 transition-all duration-500">
             {currentSlide.headline}
           </h1>
 
           {/* Subheading */}
-          <p className="text-sm sm:text-base lg:text-lg text-text-secondary leading-relaxed mb-6 sm:mb-8 max-w-xl transition-all duration-500">
+          <p className="text-sm sm:text-base text-text-secondary leading-relaxed mb-6 sm:mb-8 max-w-xl transition-all duration-500">
             {currentSlide.subheading}
           </p>
 
-          {/* Dual CTAs */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 mb-6 sm:mb-8">
+          {/* Dual Clean Pill CTAs */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-6 sm:mb-8">
             <a
               href={currentSlide.primaryHref}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary hover:bg-primary-hover px-7 sm:px-8 py-3.5 sm:py-4 text-sm font-semibold text-white shadow-sm transition-all hover:translate-y-[-1px]"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#111111] hover:bg-black px-8 py-3.5 sm:py-4 text-xs font-semibold uppercase tracking-wider text-white transition-all hover:scale-[1.02]"
             >
               <span>{currentSlide.primaryCta}</span>
-              <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
+              <ArrowRight className="w-3.5 h-3.5" />
             </a>
             <Link
               to="/collections/bundles"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white/90 backdrop-blur-md hover:bg-white border border-black/[0.08] px-6 sm:px-7 py-3.5 sm:py-4 text-sm font-semibold text-text shadow-2xs transition-all hover:translate-y-[-1px]"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-white/90 backdrop-blur-md hover:bg-white border border-black/10 px-7 py-3.5 sm:py-4 text-xs font-semibold uppercase tracking-wider text-text transition-all hover:scale-[1.02]"
             >
               <span>Lihat Paket Hemat</span>
             </Link>
           </div>
 
-          {/* Verified Customer Social Proof Endorsement */}
-          <div className="flex items-center gap-2.5 pt-4 sm:pt-5 text-xs text-text-secondary flex-wrap">
-            <div className="flex text-[#F59E0B]">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-3.5 h-3.5 fill-[#F59E0B]" strokeWidth={1.5} />
-              ))}
-            </div>
-            <span className="font-bold text-text">4.9 / 5.0</span>
+          {/* Verified Milestone Endorsement */}
+          <div className="flex items-center gap-2 text-xs text-text-secondary flex-wrap">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/85 backdrop-blur-xs border border-black/[0.08] text-[11px] font-mono text-black/60">
+              <CheckCircle2 className="w-3 h-3 text-primary" />
+              <span>1 Juta++ pcs Terjual</span>
+            </span>
             <span className="text-black/20">•</span>
-            <span>Berdasarkan 12.000+ ulasan pelanggan terverifikasi</span>
+            <span className="text-xs text-text-secondary">Dipercaya Beauty Enthusiasts Se-Indonesia</span>
           </div>
         </div>
       </div>
@@ -283,86 +275,33 @@ function Hero() {
 // Section 2: Authority & Trust Pillars Bar
 // ==========================================
 function TrustBar() {
-  const pillars = [
-    {
-      icon: ShieldCheck,
-      title: '100% Resmi BPOM',
-      desc: 'Izin Edar Resmi RI',
-    },
-    {
-      icon: Sparkles,
-      title: 'Clinical Actives',
-      desc: '5.22% Niacinamide + Arbutin',
-    },
-    {
-      icon: Truck,
-      title: 'Bebas Ongkir',
-      desc: 'Min. Belanja Rp 150.000',
-    },
-    {
-      icon: Heart,
-      title: 'Halal & Cruelty-Free',
-      desc: 'Lembut & Non-Irritant',
-    },
-    {
-      icon: Users,
-      title: '1 Juta+ Terjual',
-      desc: 'Rating 4.9/5 Ribuan Ulasan',
-    },
+  const items = [
+    'BPOM RI Resmi',
+    '5.22% Niacinamide + Arbutin',
+    'Bebas Ongkir min. Rp 150.000',
+    'Halal & Cruelty-Free',
+    '1 Juta++ Pcs Terjual',
   ];
 
   return (
-    <section className="w-full bg-[#FAF8FC] border-y border-black/[0.04] py-6 sm:py-7">
+    <section className="w-full bg-white py-3 sm:py-3.5 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 mb-3.5">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
+      </div>
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
-        {/* Desktop: 5-Pillar Laboratory Grid with subtle dividers */}
-        <div className="hidden lg:grid grid-cols-5 divide-x divide-black/[0.05]">
-          {pillars.map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={i}
-                className="group flex items-center gap-3.5 px-4 first:pl-0 last:pr-0 transition-all"
-              >
-                <div className="w-10 h-10 rounded-full bg-white border border-accent/20 flex items-center justify-center flex-shrink-0 text-accent group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300 shadow-2xs">
-                  <Icon className="w-4 h-4" strokeWidth={1.75} />
-                </div>
-                <div className="min-w-0">
-                  <h4 className="text-xs font-bold text-text tracking-tight group-hover:text-primary transition-colors truncate">
-                    {item.title}
-                  </h4>
-                  <p className="text-[11px] text-text-secondary leading-tight mt-0.5 truncate">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+        <div className="flex items-center justify-between gap-6 overflow-x-auto no-scrollbar text-[11px] sm:text-xs font-mono tracking-[0.2em] uppercase text-text/75 whitespace-nowrap">
+          {items.map((text, i) => (
+            <div key={i} className="flex items-center gap-6 flex-shrink-0">
+              <span>{text}</span>
+              {i < items.length - 1 && (
+                <span className="text-black/20 text-[10px]">•</span>
+              )}
+            </div>
+          ))}
         </div>
-
-        {/* Mobile & Tablet: Horizontal Glide / Clean Responsive Touch Cards */}
-        <div className="lg:hidden flex items-center overflow-x-auto no-scrollbar gap-3 py-1 -mx-4 px-4 snap-x snap-mandatory">
-          {pillars.map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={i}
-                className="flex items-center gap-3 bg-white/90 backdrop-blur-xs border border-black/[0.04] rounded-2xl px-4 py-3 flex-shrink-0 snap-start shadow-2xs min-w-[210px]"
-              >
-                <div className="w-9 h-9 rounded-full bg-accent-light text-accent flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-4 h-4" strokeWidth={1.75} />
-                </div>
-                <div className="min-w-0">
-                  <h4 className="text-xs font-bold text-text tracking-tight">
-                    {item.title}
-                  </h4>
-                  <p className="text-[11px] text-text-secondary leading-tight mt-0.5 whitespace-nowrap">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 mt-3.5">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
       </div>
     </section>
   );
@@ -374,153 +313,182 @@ function TrustBar() {
 function RoutineSteps() {
   const steps = [
     {
+      stepNumber: '1',
       step: '01',
       action: 'Cleanse',
+      stepLabel: 'Step 01 · Persiapan',
+      stepSub: 'Bersihkan Sel Kulit Mati',
       title: 'Kefir Collagen Soap',
       spec: 'Fermentasi Kefir + Collagen Peptides',
-      benefit: 'Membersihkan sel kulit mati dan minyak berlebih secara lembut tanpa membuat kulit kering atau kesat.',
+      benefit:
+        'Membersihkan sel kulit mati dan minyak berlebih secara lembut tanpa membuat kulit kering.',
       price: 'Rp 37.125',
+      compareAtPrice: 'Rp 45.000',
       image:
         'https://cdn.shopify.com/s/files/1/0826/3372/0029/files/Website_Beautyinu_-_7.png?v=1781661857',
       to: '/products/kefir-collagen-soap-60gr',
+      accentColor: 'bg-primary',
     },
     {
+      stepNumber: '2',
       step: '02',
       action: 'Boost',
+      stepLabel: 'Step 02 · Nutrisi Aktif',
+      stepSub: 'Booster Niacinamide 5%',
       title: 'Brightening Booster Gold Powder',
       spec: 'Niacinamide 5.22% + Alpha Arbutin 2.30%',
-      benefit: 'Serbuk konsentrat aktif murni yang dicampur ke lotion untuk mempercepat regenerasi kulit dan memudarkan belang.',
+      benefit:
+        'Serbuk konsentrat aktif murni dicampur ke lotion untuk mempercepat regenerasi kulit dan memudarkan belang.',
       price: 'Rp 39.724',
+      compareAtPrice: 'Rp 55.950',
       image:
         'https://cdn.shopify.com/s/files/1/0826/3372/0029/files/Website_Beautyinu_-_6.png?v=1781661891',
       to: '/products/brightening-booster-gold-powder-25gr',
+      accentColor: 'bg-accent',
     },
     {
+      stepNumber: '3',
       step: '03',
       action: 'Protect & Lock',
+      stepLabel: 'Step 03 · Perlindungan',
+      stepSub: 'Kunci Hidrasi & UV Shield',
       title: 'Bright Glow Body Lotion UV Filter',
       spec: 'Broad Spectrum UV Shield + Shea Butter',
-      benefit: 'Mengunci kelembapan 24 jam sekaligus memberikan perlindungan dari paparan radiasi matahari UVA/UVB.',
+      benefit:
+        'Mengunci kelembapan 24 jam sekaligus memberikan perlindungan dari radiasi sinar UVA/UVB.',
       price: 'Rp 100.737',
+      compareAtPrice: 'Rp 159.900',
       image:
         'https://cdn.shopify.com/s/files/1/0826/3372/0029/files/Website_Beautyinu_-_9.png?v=1781661846',
       to: '/products/bright-glow-body-lotion-uv-filter-750ml',
+      accentColor: 'bg-[#111111]',
     },
   ];
 
   return (
-    <section id="routine-system" className="w-full bg-[#FAF8FC] py-20 md:py-28 px-4 lg:px-8">
-      <div className="max-w-6xl mx-auto">
+    <section id="routine-system" className="w-full bg-white py-12 md:py-16 px-4 lg:px-8">
+      <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            Rangkaian Harian
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-text mt-2 mb-3">
-            3 Langkah Sederhana untuk Kulit Cerah Sehat
+        <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+          <p className="text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-black/50 mb-2">
+            The 3-Step Ritual
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-text font-normal tracking-tight mb-3">
+            Simple Steps. Maximum Glow.
           </h2>
-          <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
-            Formula yang saling melengkapi: bersihkan kotoran pori, aktifkan konsentrat pencerah, dan kunci kelembapan dengan proteksi UV harian.
+          <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
+            Rangkaian harian yang dirancang sinergis untuk membersihkan, menutrisi, dan melindungi kulit sepanjang hari.
           </p>
         </div>
 
-        {/* 3 Sequential Steps — Frameless, Clean, Uncluttered Visual Flow */}
-        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 lg:gap-12 mb-16 sm:mb-20">
-          {/* Subtle connecting progression line on desktop */}
-          <div className="hidden md:block absolute top-4 inset-x-16 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent pointer-events-none" />
-
+        {/* 3 Clean Connected Steps */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-10">
           {steps.map((item, i) => (
-            <div
+            <Link
               key={i}
-              className="relative flex flex-col items-center text-center group"
+              to={item.to}
+              className="group relative overflow-hidden flex flex-col justify-between bg-[#FAF9FB] hover:bg-[#F5F3F8] rounded-3xl p-6 sm:p-7 border border-black/[0.05] hover:border-black/[0.12] transition-all duration-300"
             >
-              {/* Step Sequence Marker */}
-              <div className="flex items-center gap-2 mb-5">
-                <span className="w-8 h-8 rounded-full bg-white border border-accent/30 text-accent font-serif font-bold text-xs flex items-center justify-center shadow-2xs">
-                  {item.step}
-                </span>
-                <span className="text-xs font-bold uppercase tracking-wider text-text">
-                  {item.action}
-                </span>
-              </div>
+              {/* Subtle Ghost Watermark Number */}
+              <span className="absolute top-3 right-5 text-7xl font-mono font-black text-black/[0.03] select-none pointer-events-none group-hover:text-black/[0.06] group-hover:scale-105 transition-all duration-300">
+                {item.step}
+              </span>
 
-              {/* Product Image Canvas — Clean Architectural Card */}
-              <div className="relative mx-auto mb-6 w-full max-w-[220px] sm:max-w-[240px]">
-                <Link
-                  to={item.to}
-                  className="block bg-white p-3 rounded-xl shadow-xs border border-black/[0.06] transition-all duration-300 ease-out group-hover:scale-[1.02] group-hover:shadow-md group-hover:border-accent/30"
-                >
-                  <div className="aspect-square overflow-hidden bg-[#ECE8FF] rounded-lg">
-                    <img
-                      src={item.image}
-                      alt=""
-                      aria-hidden="true"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                      loading="lazy"
-                      width={400}
-                      height={400}
-                    />
+              <div className="relative z-1">
+                {/* Card Step Header: Pill Number + Step Info */}
+                <div className="flex items-center gap-3 mb-4">
+                  <span className={`w-6 h-6 rounded-full ${item.accentColor} text-white text-[11px] font-mono font-bold flex items-center justify-center flex-shrink-0 shadow-2xs`}>
+                    {item.stepNumber}
+                  </span>
+                  <div className="min-w-0">
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-black/45 font-semibold leading-none mb-1">
+                      {item.stepLabel}
+                    </div>
+                    <div className="text-xs font-bold text-text truncate">
+                      {item.stepSub}
+                    </div>
                   </div>
-                </Link>
+                </div>
+
+                <div className="aspect-square w-full rounded-2xl overflow-hidden bg-white mb-5 border border-black/[0.04]">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    loading="lazy"
+                    width={400}
+                    height={400}
+                  />
+                </div>
+
+                <h3 className="font-sans text-base sm:text-lg font-bold text-text group-hover:text-primary transition-colors mb-1.5">
+                  {item.title}
+                </h3>
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-white/80 border border-black/[0.05] text-[11px] font-mono text-accent font-medium mb-2.5">
+                  <span>{item.spec}</span>
+                </div>
+                <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">
+                  {item.benefit}
+                </p>
               </div>
 
-              {/* Product Info */}
-              <h3 className="font-serif text-xl sm:text-2xl text-text mb-1 group-hover:text-primary transition-colors">
-                <Link to={item.to}>{item.title}</Link>
-              </h3>
-              <p className="text-xs font-semibold text-accent mb-2">
-                {item.spec}
-              </p>
-              <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-4 max-w-xs">
-                {item.benefit}
-              </p>
-
-              {/* Price & Direct Editorial Link */}
-              <p className="text-base font-bold text-text mb-2">
-                {item.price}
-              </p>
-              <Link
-                to={item.to}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary-hover transition-all group-hover:translate-x-0.5"
-              >
-                <span>Lihat Produk</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
+              <div className="pt-4 mt-5 border-t border-black/[0.05] flex items-center justify-between relative z-1">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-sm sm:text-base font-bold font-mono text-text group-hover:text-primary transition-colors">
+                    {item.price}
+                  </span>
+                  <span className="text-xs font-mono text-black/40 line-through">
+                    {item.compareAtPrice}
+                  </span>
+                </div>
+                <span className="w-8 h-8 rounded-full bg-white border border-black/[0.06] flex items-center justify-center text-text group-hover:bg-[#111111] group-hover:text-white group-hover:border-[#111111] transition-all flex-shrink-0">
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </div>
+            </Link>
           ))}
         </div>
 
-        {/* Flagship Routine Synergy Callout — Clean, Unified, No Boxy Clutter */}
-        <div className="pt-10 border-t border-black/[0.06] flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start gap-2 mb-1.5">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-accent">
-                Routine Synergy
+        {/* Minimalist Routine Synergy Bundle Box (Luminous Glass Effect) */}
+        <div id="bundle-banner" className="relative rounded-3xl bg-gradient-to-r from-white/90 via-white/80 to-[#FFF3F6]/85 backdrop-blur-xl border border-white/90 shadow-[0_10px_35px_rgba(249,127,158,0.07)] p-6 sm:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 overflow-hidden">
+          {/* Top Hairline Glass Sheen */}
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none" />
+
+          {/* Ambient Ambient Glow Blurs */}
+          <div className="absolute -right-16 -top-16 w-60 h-60 rounded-full bg-primary/[0.08] blur-3xl pointer-events-none" />
+          <div className="absolute -left-16 -bottom-16 w-60 h-60 rounded-full bg-accent/[0.08] blur-3xl pointer-events-none" />
+
+          <div className="relative z-1 max-w-xl">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-mono font-bold uppercase tracking-widest text-primary">
+                Sinergi Maksimal
               </span>
-              <span className="text-black/20">•</span>
-              <span className="text-xs font-semibold text-text">
-                3 Langkah dalam 1 Paket Lengkap
+              <span className="text-[10px] font-mono uppercase tracking-widest text-text-secondary/70 font-medium">
+                1 Paket · 3 Langkah
               </span>
             </div>
-            <h3 className="font-serif text-2xl sm:text-3xl text-text">
-              Dapatkan Glowing Set (3-in-1 Routine)
+            <h3 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-text mb-1.5">
+              The Glowing Set (3-in-1 Complete Ritual)
             </h3>
-            <p className="text-xs sm:text-sm text-text-secondary mt-1">
-              Sabun Kefir + Booster Gold Powder + Body Lotion UV 750ml • Lebih hemat Rp 99.158
+            <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
+              Dapatkan Sabun Kefir + Booster Gold Powder + Body Lotion UV 750ml dalam satu paket hemat. Formulasi saling melengkapi untuk hasil glowing 3x lebih cepat.
             </p>
           </div>
 
-          <div className="flex items-center gap-4 flex-shrink-0">
-            <div className="text-right hidden sm:block">
-              <div className="text-xs text-text-secondary line-through">Rp 254.250</div>
-              <div className="text-xl font-bold text-primary">Rp 155.092</div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 flex-shrink-0 w-full lg:w-auto justify-between lg:justify-end relative z-1 pt-4 lg:pt-0 border-t border-black/[0.06] lg:border-t-0">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-text-secondary/50 line-through font-mono">Rp 254.250</span>
+                <span className="px-1.5 py-0.5 rounded bg-primary/15 text-primary text-[10px] font-mono font-bold">Hemat 39%</span>
+              </div>
+              <div className="text-2xl sm:text-3xl font-bold font-mono tracking-tight text-text">Rp 155.092</div>
             </div>
             <Link
               to="/products/glowing-set-3-in-1"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-xs"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary hover:bg-primary-hover text-white px-7 py-3.5 text-xs font-semibold uppercase tracking-wider transition-all hover:scale-[1.02] shadow-sm hover:shadow-md hover:shadow-primary/25 w-full sm:w-auto cursor-pointer"
             >
-              <span>Beli Paket Hemat (Diskon 39%)</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Beli Paket Lengkap</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>
@@ -530,117 +498,76 @@ function RoutineSteps() {
 }
 
 // ==========================================
-// Section 6: Clinical Actives & 14-Day Glowing Journey (Pinned Bulletin Board)
+// Section 6: Clinical Actives & Science (Skintellectual Transparency)
 // ==========================================
 function IngredientsHighlight() {
   const ingredients = [
     {
       name: 'Niacinamide',
       val: '5.22%',
-      category: 'Vitamin B3 Kompleks',
-      badge: 'Resmi BPOM RI',
-      action: 'Inhibisi Melanin',
-      desc: 'Konsentrasi presisi 5.22% untuk memudarkan hiperpigmentasi, meratakan tone belang, dan memperkuat skin barrier.',
-      color: 'border-accent/25 text-accent',
+      role: 'Brightening & Barrier',
+      desc: 'Konsentrasi presisi 5.22% untuk memudarkan hiperpigmentasi, meratakan warna belang, dan memperkuat skin barrier.',
     },
     {
       name: 'Alpha Arbutin',
       val: '2.30%',
-      category: 'Target Bintik Hitam',
-      badge: 'High Purity Grade',
-      action: 'Blok Enzim Tirosinase',
-      desc: 'Bahan aktif dengan kemurnian tinggi yang menargetkan produksi enzim tirosinase untuk menghentikan bintik gelap.',
-      color: 'border-primary/25 text-primary',
+      role: 'Dark Spot Targeting',
+      desc: 'Bahan aktif berstandar kemurnian tinggi yang menargetkan produksi enzim tirosinase untuk memudarkan bintik gelap.',
     },
     {
       name: 'Glutathione',
       val: '99% Pure',
-      category: 'Master Antioksidan',
-      badge: 'Antioksidan Aktif',
-      action: 'Netralisir Radikal',
-      desc: 'Antioksidan murni yang menetralisir stres oksidatif akibat paparan polusi dan merangsang pigmen kulit cerah.',
-      color: 'border-[#E5A93C]/25 text-[#E5A93C]',
+      role: 'Master Antioxidant',
+      desc: 'Antioksidan poten yang menetralisir stres oksidatif akibat paparan polusi dan merangsang kilau cerah alami.',
     },
     {
       name: 'UV Filter Shield',
       val: 'UVA + UVB',
-      category: 'Fotoproteksi Tropis',
-      badge: 'Proteksi UVA & UVB',
-      action: 'Filter Radiasi Surya',
-      desc: 'Lapisan filter surya spektrum luas yang melindungi sel kulit dari sengatan sinar matahari penyebab kusam dan penuaan.',
-      color: 'border-[#4B96E6]/25 text-[#4B96E6]',
+      role: 'Broad Spectrum',
+      desc: 'Lapisan pelindung sinar UV untuk menjaga kulit dari paparan radiasi matahari penyebab kulit kusam dan penuaan dini.',
     },
   ];
 
   return (
-    <section className="w-full py-20 md:py-28 px-4 lg:px-8 max-w-7xl mx-auto">
+    <section id="actives-section" className="w-full py-12 md:py-16 px-4 lg:px-8 max-w-7xl mx-auto">
+      {/* Subtle Gradient Divider */}
+      <div className="w-full mb-8 sm:mb-10">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
+      </div>
+
       {/* Header */}
-      <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
-        <span className="text-xs font-bold uppercase tracking-widest text-accent block mb-2">
-          Sains &amp; Keamanan Bahan Aktif
-        </span>
-        <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-text mt-1 mb-3">
-          Diformulasikan dengan Bahan Aktif Berstandar BPOM RI
+      <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+        <p className="text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-black/50 mb-2">
+          What's Inside
+        </p>
+        <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-text font-normal tracking-tight mb-3">
+          Active Ingredients. Real Science.
         </h2>
-        <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
-          Bukan sekadar wewangian. Setiap produk diformulasikan dengan konsentrasi presisi bahan aktif teruji laboratorium untuk hasil nyata yang aman jangka panjang.
+        <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
+          Transparansi formula bahan aktif berstandar resmi BPOM RI untuk hasil optimal dan aman jangka panjang.
         </p>
       </div>
 
-      {/* 4 Clinical Actives Cards (Apothecary Lab Style with Precise Alignment) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+      {/* 4 Clean Minimalist Actives */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {ingredients.map((ing, i) => (
           <div
             key={i}
-            className="group relative bg-white rounded-2xl p-5 sm:p-6 flex flex-col justify-between border border-black/[0.06] shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_-6px_rgba(175,143,209,0.18)] hover:border-accent/30 transition-all duration-300 hover:-translate-y-1 h-full"
+            className="group bg-[#FAF9FB] hover:bg-[#F5F3F8] rounded-3xl p-7 flex flex-col justify-between transition-colors duration-300"
           >
             <div>
-              {/* Card Header: Formula Index & Quality Standard Row */}
-              <div className="flex items-center justify-between gap-2 pb-2.5 mb-3 border-b border-black/[0.04]">
-                <span className="text-[11px] font-mono font-bold text-accent bg-accent-light/80 px-2.5 py-0.5 rounded-md border border-accent/20 tracking-wider uppercase">
-                  Formula 0{i + 1}
-                </span>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-text-secondary/70">
-                  Standar BPOM
-                </span>
-              </div>
-
-              {/* Verified Quality Badge */}
-              <div className="mb-4">
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-lg bg-[#FAF8FC] text-text border border-black/[0.06] shadow-2xs">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-                  <span>{ing.badge}</span>
-                </span>
-              </div>
-
-              {/* Metric & Title */}
-              <div className="mb-4">
-                <p className="font-sans font-black text-3xl sm:text-4xl tracking-tight text-text leading-none">
-                  {ing.val}
-                </p>
-                <h3 className="font-serif text-xl sm:text-2xl text-text font-bold mt-2.5 leading-tight">
-                  {ing.name}
-                </h3>
-                <span className="text-xs font-semibold text-accent block mt-1">
-                  {ing.category}
-                </span>
-              </div>
-
-              <div className="w-10 h-0.5 bg-accent/30 mb-4 group-hover:w-16 group-hover:bg-primary transition-all duration-300" />
-
-              <p className="text-xs sm:text-sm text-text-secondary leading-relaxed min-h-[56px] sm:min-h-[64px]">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-black/40 block mb-4">
+                0{i + 1} // {ing.role}
+              </span>
+              <p className="font-sans font-bold text-3xl sm:text-4xl text-text tracking-tight mb-2">
+                {ing.val}
+              </p>
+              <h3 className="font-serif text-xl text-text font-normal mb-3">
+                {ing.name}
+              </h3>
+              <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
                 {ing.desc}
               </p>
-            </div>
-
-            {/* Target Spec Sheet Row */}
-            <div className="pt-3.5 border-t border-black/[0.04] mt-5">
-              <div className="flex items-center justify-between text-xs gap-2">
-                <span className="text-text-secondary font-medium text-[11px] whitespace-nowrap">Target Kerja:</span>
-                <span className="font-bold text-accent bg-accent-light/60 px-2.5 py-0.5 rounded-md border border-accent/20 text-[11px] truncate">
-                  {ing.action}
-                </span>
-              </div>
             </div>
           </div>
         ))}
@@ -656,76 +583,66 @@ function FourteenDayJourney() {
   const milestones = [
     {
       step: '01',
-      day: 'Hari 1–3',
-      phase: 'Fase Hidrasi Awal',
-      title: 'Hidrasi Mendalam 24 Jam',
-      desc: 'Kulit terasa langsung lembap seketika, sensasi kering dan bersisik mereda, serta skin barrier mulai terhidrasi dengan baik.',
-      result: 'Kulit kenyal dan lembap terhidrasi',
+      day: 'Day 01–03',
+      phase: 'Deep Hydration',
+      title: 'Hidrasi Mendalam',
+      desc: 'Kulit terasa langsung lembap seketika, sensasi kering mereda, dan skin barrier mulai terhidrasi optimal.',
     },
     {
       step: '02',
-      day: 'Hari 4–7',
-      phase: 'Fase Regenerasi Tekstur',
-      title: 'Eksfoliasi & Permukaan Halus',
-      desc: 'Enzim pembersih dan fermentasi kefir mengangkat daki serta tumpukan sel kulit mati secara lembut tanpa rasa perih.',
-      result: 'Tekstur kulit halus dan belang mulai pudar',
+      day: 'Day 04–07',
+      phase: 'Smooth Texture',
+      title: 'Tekstur Halus & Kenyal',
+      desc: 'Enzim fermentasi kefir membersihkan pori secara lembut, mengangkat sel kulit mati, dan menghaluskan permukaan kulit.',
     },
     {
       step: '03',
-      day: 'Hari 8–14',
-      phase: 'Fase Pencerahan Merata',
-      title: 'Cerah Merata & Terlindungi UV',
-      desc: 'Penghambatan melanin oleh Alpha Arbutin dan Niacinamide bekerja optimal, warna kulit lebih rata dan bercahaya alami.',
-      result: 'Tone cerah merata & terlindungi sinar UV',
+      day: 'Day 08–14',
+      phase: 'Radiant Glow',
+      title: 'Cerah Merata & Terlindungi',
+      desc: 'Sinergi pencerah Niacinamide dan Arbutin bekerja optimal membuat warna kulit tampak rata, cerah, dan terlindungi sinar UV.',
     },
   ];
 
   return (
-    <section className="w-full bg-[#FAF8FC] py-20 md:py-28 border-y border-black/[0.04] overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 lg:px-8">
-        {/* Board Header — Middle Center */}
-        <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
-          <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-accent block mb-2">
-            Linimasa Perawatan
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-text leading-tight mb-3">
+    <section id="journey-section" className="w-full bg-[#FAF9FB] py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8">
+        {/* Header */}
+        <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+          <p className="text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-black/50 mb-2">
+            The Timeline
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-text font-normal tracking-tight mb-3">
             Perjalanan 14 Hari Glowing
           </h2>
-          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl mx-auto">
-            Tahapan regenerasi kulit tubuh harian dengan pemakaian teratur rangkaian 3-Step System Beautyinu.
+          <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
+            Tahapan regenerasi kulit tubuh harian dengan pemakaian teratur rangkaian 3-Step Beautyinu.
           </p>
         </div>
 
-        {/* Milestone Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 relative z-10 items-stretch">
+        {/* 3 Airy Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {milestones.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl p-6 sm:p-7 border border-black/[0.06] shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:border-accent/30 transition-all duration-200 flex flex-col justify-between h-full"
+              className="bg-white rounded-3xl p-7 sm:p-8 flex flex-col justify-between border border-black/[0.05] hover:border-black/15 transition-colors duration-300"
             >
               <div>
-                {/* Header: Step Index & Phase */}
-                <div className="flex items-center justify-between pb-3 mb-4 border-b border-black/[0.04]">
-                  <span className="font-mono text-xs font-bold text-accent tracking-wider">
-                    {item.step} // {item.day}
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-mono text-xs font-bold text-black/40 tracking-wider">
+                    {item.step} // {item.day.toUpperCase()}
                   </span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-text-secondary/70">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-primary font-medium">
                     {item.phase}
                   </span>
                 </div>
 
-                <h3 className="font-serif text-xl sm:text-2xl text-text font-bold mb-2.5 leading-snug">
+                <h3 className="font-serif text-xl text-text font-normal mb-2.5">
                   {item.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
                   {item.desc}
                 </p>
-              </div>
-
-              {/* Verified Result Milestone */}
-              <div className="pt-4 border-t border-black/[0.04] mt-auto flex items-center gap-2 text-xs font-semibold text-text">
-                <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
-                <span>{item.result}</span>
               </div>
             </div>
           ))}
@@ -842,10 +759,10 @@ function BestSellerCard({product, index, isDragging}: BestSellerCardProps) {
         onClick={(e) => {
           if (isDragging) e.preventDefault();
         }}
-        className="group relative flex flex-col bg-white rounded-2xl p-3.5 sm:p-4 border border-black/[0.06] shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_-6px_rgba(175,143,209,0.18)] hover:border-accent/30 transition-all duration-300 h-full cursor-pointer"
+        className="group relative flex flex-col bg-[#FAF9FB] hover:bg-[#F5F3F8] rounded-3xl p-4 sm:p-5 transition-all duration-300 h-full cursor-pointer"
       >
-        {/* 1. Image Canvas with Subtle Luxury Gradient Backdrop */}
-        <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-gradient-to-b from-[#FAF8FC] to-[#F3EEFA]/40 mb-3.5">
+        {/* 1. Image Canvas — Minimalist Rounded 2XL */}
+        <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-white mb-4">
           {featuredImage ? (
             <img
               src={featuredImage.url}
@@ -861,68 +778,45 @@ function BestSellerCard({product, index, isDragging}: BestSellerCardProps) {
             </div>
           )}
 
-          {/* Top Left: Prestige Ranking Badge */}
-          <div className="absolute top-2.5 left-2.5 flex items-center gap-1 bg-[#1A1A1A]/85 backdrop-blur-md text-white px-2 py-0.5 rounded-md shadow-2xs">
-            <span className="text-primary font-black text-[10px]">#</span>
-            <span className="text-[10px] font-bold tracking-wider uppercase font-sans">
-              {rankNum}
-            </span>
-          </div>
-
-          {/* Top Right: Discount Pill Badge */}
+          {/* Minimal Monochrome Discount Pill */}
           {isDiscounted && (
-            <span className="absolute top-2.5 right-2.5 bg-gradient-to-r from-primary to-[#FF6B8B] text-white text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-md shadow-2xs">
-              Hemat {savePercentage}%
+            <span className="absolute top-3 left-3 bg-black/85 backdrop-blur-md text-white text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-2xs">
+              -{savePercentage}%
             </span>
           )}
-
-          {/* Hover Overlay Action Button (Desktop) */}
-          <div className="absolute inset-x-3 bottom-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 hidden sm:flex">
-            <span className="w-full py-2.5 px-3 rounded-xl bg-white/95 backdrop-blur-md text-text text-xs font-bold text-center shadow-md border border-black/[0.05] hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-1.5">
-              <span>Lihat Detail</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </span>
-          </div>
         </div>
 
-        {/* 2. Category & Rating Bar */}
-        <div className="flex items-center justify-between gap-2 mb-1.5">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-accent truncate">
-            {meta.category}
-          </span>
-          <div className="flex items-center gap-1 flex-shrink-0">
-            <Star className="w-3 h-3 fill-[#F59E0B] text-[#F59E0B]" />
-            <span className="text-[11px] font-bold text-text">4.9</span>
-            <span className="text-[10px] text-text-secondary/70">(1k+)</span>
-          </div>
-        </div>
+        {/* 2. Micro Category */}
+        <span className="text-[10px] font-mono uppercase tracking-widest text-black/40 block mb-1">
+          {meta.category}
+        </span>
 
         {/* 3. Product Title */}
-        <h3 className="font-serif text-base text-text font-bold leading-snug line-clamp-1 group-hover:text-primary transition-colors mb-1">
+        <h3 className="font-sans text-sm sm:text-base text-text font-semibold leading-snug line-clamp-1 group-hover:text-primary transition-colors">
           {title}
         </h3>
 
-        {/* 4. Active Ingredient / Clinical Benefit Subtitle */}
-        <p className="text-[11px] text-text-secondary leading-normal line-clamp-1 mb-4">
+        {/* 4. Active Ingredient Subtitle */}
+        <p className="text-xs text-text-secondary leading-normal line-clamp-1 mt-0.5 mb-4">
           {meta.subtitle}
         </p>
 
-        {/* 5. Price & Action Bottom Row */}
-        <div className="mt-auto pt-3 border-t border-black/[0.04] flex items-center justify-between">
-          <div>
-            <div className="text-sm sm:text-base font-bold text-text">
+        {/* 5. Price & Action Link Row */}
+        <div className="mt-auto pt-3 border-t border-black/[0.05] flex items-center justify-between">
+          <div className="flex items-baseline gap-2">
+            <span className="text-sm sm:text-base font-bold text-text">
               {price && <Money data={price} withoutTrailingZeros />}
-            </div>
+            </span>
             {isDiscounted && compareAtPrice && (
-              <div className="text-[11px] text-text-secondary/70 line-through -mt-0.5">
+              <span className="text-xs text-text-secondary/60 line-through">
                 <Money data={compareAtPrice} withoutTrailingZeros />
-              </div>
+              </span>
             )}
           </div>
 
-          <div className="w-8 h-8 rounded-full bg-accent-light text-accent group-hover:bg-primary group-hover:text-white flex items-center justify-center transition-all shadow-2xs flex-shrink-0 group-hover:scale-105">
-            <ArrowRight className="w-4 h-4" />
-          </div>
+          <span className="text-xs font-semibold text-text group-hover:text-primary flex items-center gap-1 transition-colors">
+            Shop <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+          </span>
         </div>
       </Link>
     </div>
@@ -945,7 +839,10 @@ function BestSellers({bestSellersPromise}: {bestSellersPromise: any}) {
 
 function BestSellersSkeleton() {
   return (
-    <section className="relative w-full py-16 md:py-24 px-4 lg:px-8 bg-white border-b border-black/[0.04] overflow-hidden">
+    <section className="relative w-full py-12 md:py-16 px-4 lg:px-8 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto mb-8 sm:mb-10">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
+      </div>
       <div className="max-w-7xl mx-auto">
         <div className="h-6 w-40 bg-black/[0.06] rounded-md mb-3 animate-pulse" />
         <div className="h-10 w-64 bg-black/[0.06] rounded-xl mb-8 animate-pulse" />
@@ -1070,16 +967,20 @@ function BestSellersSlider({products}: {products: any[]}) {
       : 1;
 
   return (
-    <section className="relative w-full py-16 md:py-24 px-4 lg:px-8 bg-white border-b border-black/[0.04] overflow-hidden">
+    <section className="relative w-full py-12 md:py-16 px-4 lg:px-8 bg-white overflow-hidden">
+      {/* Subtle Gradient Divider */}
+      <div className="max-w-7xl mx-auto mb-8 sm:mb-10">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
+      </div>
+
       <div className="max-w-7xl mx-auto relative">
-        {/* Header & Section Title with Luxury Brand Badge */}
+        {/* Header & Section Title with Minimalist Micro-Label */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-8 sm:mb-10">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#FAF0F4] text-primary text-xs font-bold uppercase tracking-wider mb-2.5 border border-primary/15 shadow-2xs">
-              <Flame className="w-3.5 h-3.5 fill-primary text-primary" />
-              <span>Trending Now · Favorit Pelanggan</span>
-            </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-text tracking-tight">
+            <p className="text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-black/50 mb-2">
+              Curated Essentials
+            </p>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-text font-normal tracking-tight">
               Best Sellers
             </h2>
             <p className="text-xs sm:text-sm text-text-secondary mt-1.5 max-w-lg leading-relaxed">
@@ -1090,20 +991,20 @@ function BestSellersSlider({products}: {products: any[]}) {
           <div className="flex items-center gap-3 self-start sm:self-end">
             <Link
               to="/collections/best-sellers"
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#FAF7FD] hover:bg-primary text-text hover:text-white text-xs font-bold transition-all border border-black/[0.04] shadow-2xs"
+              className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-text hover:text-primary transition-colors py-2"
             >
-              <span>Lihat Semua Produk</span>
+              <span>View All</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
 
-            {/* Header Arrow Controls (Compact) */}
+            {/* Header Arrow Controls */}
             <div className="flex items-center gap-1.5">
               <button
                 type="button"
                 onClick={() => scroll('left')}
                 disabled={!canScrollLeft}
                 aria-label="Geser produk ke kiri"
-                className="w-9 h-9 rounded-full border border-black/10 flex items-center justify-center text-text transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed hover:enabled:bg-accent-light hover:enabled:text-primary hover:enabled:border-primary/40 shadow-2xs active:scale-95"
+                className="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center text-text transition-all cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed hover:enabled:bg-black hover:enabled:text-white hover:enabled:border-black active:scale-95"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
@@ -1112,7 +1013,7 @@ function BestSellersSlider({products}: {products: any[]}) {
                 onClick={() => scroll('right')}
                 disabled={!canScrollRight}
                 aria-label="Geser produk ke kanan"
-                className="w-9 h-9 rounded-full border border-black/10 flex items-center justify-center text-text transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed hover:enabled:bg-accent-light hover:enabled:text-primary hover:enabled:border-primary/40 shadow-2xs active:scale-95"
+                className="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center text-text transition-all cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed hover:enabled:bg-black hover:enabled:text-white hover:enabled:border-black active:scale-95"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -1120,7 +1021,7 @@ function BestSellersSlider({products}: {products: any[]}) {
           </div>
         </div>
 
-        {/* Carousel Container Wrapper with Floating Side Nav Buttons */}
+        {/* Carousel Container Wrapper with Minimal Side Nav Buttons */}
         <div className="relative group/carousel">
           {/* Floating Left Arrow (Desktop) */}
           <button
@@ -1128,9 +1029,9 @@ function BestSellersSlider({products}: {products: any[]}) {
             onClick={() => scroll('left')}
             disabled={!canScrollLeft}
             aria-label="Geser produk ke kiri"
-            className="hidden lg:flex absolute -left-5 top-[45%] -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.12)] border border-black/5 items-center justify-center text-text hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 cursor-pointer disabled:opacity-0 disabled:pointer-events-none hover:scale-105 active:scale-95"
+            className="hidden lg:flex absolute -left-5 top-[45%] -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-black/10 items-center justify-center text-text hover:bg-black hover:text-white hover:border-black transition-all duration-200 cursor-pointer disabled:opacity-0 disabled:pointer-events-none active:scale-95 shadow-xs"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-4 h-4" />
           </button>
 
           {/* Floating Right Arrow (Desktop) */}
@@ -1139,9 +1040,9 @@ function BestSellersSlider({products}: {products: any[]}) {
             onClick={() => scroll('right')}
             disabled={!canScrollRight}
             aria-label="Geser produk ke kanan"
-            className="hidden lg:flex absolute -right-5 top-[45%] -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.12)] border border-black/5 items-center justify-center text-text hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 cursor-pointer disabled:opacity-0 disabled:pointer-events-none hover:scale-105 active:scale-95"
+            className="hidden lg:flex absolute -right-5 top-[45%] -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-black/10 items-center justify-center text-text hover:bg-black hover:text-white hover:border-black transition-all duration-200 cursor-pointer disabled:opacity-0 disabled:pointer-events-none active:scale-95 shadow-xs"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4" />
           </button>
 
           {/* Horizontal Carousel Slider with Touch-Swipe & Mouse Drag Support */}
@@ -1171,31 +1072,30 @@ function BestSellersSlider({products}: {products: any[]}) {
           </div>
         </div>
 
-        {/* Carousel Bottom Control Bar: Back/Next + Interactive Gradient Scrubber */}
+        {/* Carousel Bottom Control Bar: Minimalist Scrubber & Index */}
         <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-between gap-5 border-t border-black/[0.05] pt-6">
-          <div className="flex items-center gap-2.5 text-xs text-text font-semibold">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span>
-              Produk {String(currentProductIndex).padStart(2, '0')} dari{' '}
-              {String(products.length).padStart(2, '0')} Terlaris
+          <div className="flex items-center gap-2 text-xs font-mono text-black/50">
+            <span className="font-semibold text-text">
+              {String(currentProductIndex).padStart(2, '0')} // {String(products.length).padStart(2, '0')}
+            </span>
+            <span className="uppercase tracking-widest text-[10px]">
+              Produk Terlaris
             </span>
           </div>
 
-          {/* Interactive Gradient Progress Bar & Navigation Controls */}
+          {/* Minimalist Monochrome Progress Bar */}
           <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto justify-center">
-            {/* Bottom Back Button */}
             <button
               type="button"
               onClick={() => scroll('left')}
               disabled={!canScrollLeft}
               aria-label="Geser produk sebelumnya"
-              className="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-xl border border-black/10 bg-white hover:bg-accent-light hover:text-primary transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer shadow-2xs active:scale-95"
+              className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-3 py-1.5 rounded-full border border-black/10 bg-white hover:bg-black hover:text-white hover:border-black transition-all disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer active:scale-95"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-3.5 h-3.5" />
               <span>Back</span>
             </button>
 
-            {/* Clickable / Draggable Interactive Scrubber Track */}
             <div
               onClick={handleProgressClick}
               role="slider"
@@ -1203,35 +1103,27 @@ function BestSellersSlider({products}: {products: any[]}) {
               aria-valuemin={0}
               aria-valuemax={100}
               tabIndex={0}
-              title="Klik pada garis untuk berpindah produk"
-              className="relative w-36 sm:w-56 h-3 bg-black/[0.06] hover:bg-black/[0.1] rounded-full cursor-pointer transition-colors p-0.5 group/track"
+              title="Navigasi produk"
+              className="relative w-36 sm:w-52 h-1 bg-black/[0.08] hover:bg-black/[0.15] rounded-full cursor-pointer transition-colors"
             >
               <div
-                className="h-full bg-gradient-to-r from-primary via-[#FF6B8B] to-accent rounded-full transition-all duration-150 ease-out relative"
+                className="h-full bg-[#111111] rounded-full transition-all duration-150 ease-out"
                 style={{
-                  width: `${Math.max(12, scrollProgress)}%`,
+                  width: `${Math.max(15, scrollProgress)}%`,
                 }}
-              >
-                <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-white rounded-full shadow-sm border border-primary/50" />
-              </div>
+              />
             </div>
 
-            {/* Bottom Next Button */}
             <button
               type="button"
               onClick={() => scroll('right')}
               disabled={!canScrollRight}
               aria-label="Geser produk berikutnya"
-              className="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-xl border border-black/10 bg-white hover:bg-accent-light hover:text-primary transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer shadow-2xs active:scale-95"
+              className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-3 py-1.5 rounded-full border border-black/10 bg-white hover:bg-black hover:text-white hover:border-black transition-all disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer active:scale-95"
             >
               <span>Next</span>
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-3.5 h-3.5" />
             </button>
-          </div>
-
-          <div className="hidden lg:flex items-center gap-1.5 text-xs text-text-secondary">
-            <span>Bisa klik / drag geser kursor</span>
-            <ArrowRight className="w-3.5 h-3.5" />
           </div>
         </div>
       </div>
@@ -1240,80 +1132,94 @@ function BestSellersSlider({products}: {products: any[]}) {
 }
 
 // ==========================================
-// Section 7: Category Split (Essentials vs Bundles)
+// Section 8: Category Split (Essentials vs Bundles)
 // ==========================================
 function CategorySplit() {
   return (
-    <section className="w-full px-4 lg:px-8 py-10 md:py-16 max-w-7xl mx-auto">
+    <section id="category-section" className="w-full px-4 lg:px-8 py-12 md:py-16 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
         {/* Card 1: Body Care Essentials */}
         <Link
           to="/collections/body-care"
-          className="group relative rounded-2xl overflow-hidden min-h-[400px] sm:min-h-[460px] flex flex-col justify-end p-7 sm:p-10 border border-black/[0.06] shadow-xs transition-all duration-300 hover:shadow-md hover:border-accent/30"
+          className="group relative rounded-3xl overflow-hidden aspect-[4/3] sm:aspect-[3/2] w-full flex flex-col justify-between p-7 sm:p-9 border border-black/[0.06] transition-all duration-500"
         >
-          {/* Full-Bleed Background Image */}
+          {/* 3:2 Background Image */}
           <img
             src="https://cdn.shopify.com/s/files/1/0826/3372/0029/files/Website_Beautyinu_-_9.png?v=1781661846"
             alt="Beautyinu Body Care Essentials"
-            className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-104 transition-transform duration-700 ease-out"
+            className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
             loading="lazy"
             width={1080}
-            height={1080}
+            height={720}
           />
 
-          {/* Cinematic Gradient Overlay for Maximum Readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/15 group-hover:from-black/95 transition-colors duration-300" />
+          {/* Soft Bottom-Only Scrim */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 via-35% to-transparent pointer-events-none" />
 
-          {/* Foreground Content */}
-          <div className="relative z-10 max-w-md">
-            <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#AF8FD1] block mb-2.5">
-              Perawatan Harian
+          {/* Top Badges Row */}
+          <div className="relative z-10 flex items-center justify-between gap-2">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-white bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
+              Daily Essentials
             </span>
-            <h3 className="font-serif text-3xl sm:text-4xl text-white font-bold mb-2.5 leading-tight">
-              Body Care Essentials
+            <span className="text-[10px] font-mono text-white/90 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
+              Mulai Rp 37.125
+            </span>
+          </div>
+
+          {/* Bottom Content */}
+          <div className="relative z-10 max-w-md">
+            <h3 className="font-sans text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight tracking-tight">
+              Single Essentials
             </h3>
-            <p className="text-xs sm:text-sm text-white/85 mb-6 leading-relaxed max-w-sm">
-              Lotion jumbo 750ml, body wash, body cream &amp; booster powder mulai Rp 37.125.
+            <p className="text-xs sm:text-sm text-white/80 mb-5 leading-relaxed max-w-sm line-clamp-2">
+              Lotion jumbo 750ml, body wash, body cream &amp; booster powder untuk ritual harian.
             </p>
-            <span className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-primary text-text hover:text-white text-xs sm:text-sm font-bold transition-all shadow-xs group-hover:gap-3">
-              <span>Lihat Produk Satuan</span>
-              <ArrowRight className="w-4 h-4" />
+            <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-white/90 text-black text-xs font-semibold uppercase tracking-wider transition-all hover:scale-[1.02]">
+              <span>Shop Essentials</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </span>
           </div>
         </Link>
 
-        {/* Card 2: Value Bundles */}
+        {/* Card 2: Sets & Bundles */}
         <Link
           to="/collections/bundles"
-          className="group relative rounded-2xl overflow-hidden min-h-[400px] sm:min-h-[460px] flex flex-col justify-end p-7 sm:p-10 border border-black/[0.06] shadow-xs transition-all duration-300 hover:shadow-md hover:border-primary/40"
+          className="group relative rounded-3xl overflow-hidden aspect-[4/3] sm:aspect-[3/2] w-full flex flex-col justify-between p-7 sm:p-9 border border-black/[0.06] transition-all duration-500"
         >
-          {/* Full-Bleed Background Image */}
+          {/* 3:2 Background Image */}
           <img
             src="https://cdn.shopify.com/s/files/1/0826/3372/0029/files/WebsiteBeautyinu-3.png?v=1784278179"
             alt="Beautyinu Sets and Bundles"
-            className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-104 transition-transform duration-700 ease-out"
+            className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
             loading="lazy"
             width={1080}
-            height={1080}
+            height={720}
           />
 
-          {/* Cinematic Gradient Overlay for Maximum Readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/15 group-hover:from-black/95 transition-colors duration-300" />
+          {/* Soft Bottom-Only Scrim */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 via-35% to-transparent pointer-events-none" />
 
-          {/* Foreground Content */}
-          <div className="relative z-10 max-w-md">
-            <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-primary block mb-2.5">
-              Paket Hemat &amp; Bundling
+          {/* Top Badges Row */}
+          <div className="relative z-10 flex items-center justify-between gap-2">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-white bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
+              Bundles &amp; Sets
             </span>
-            <h3 className="font-serif text-3xl sm:text-4xl text-white font-bold mb-2.5 leading-tight">
-              Sets &amp; Bundles
+            <span className="text-[10px] font-mono font-semibold text-amber-300 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-amber-300/30">
+              Hemat s/d 47%
+            </span>
+          </div>
+
+          {/* Bottom Content */}
+          <div className="relative z-10 max-w-md">
+            <h3 className="font-sans text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight tracking-tight">
+              Curated Bundles
             </h3>
-            <p className="text-xs sm:text-sm text-white/85 mb-6 leading-relaxed max-w-sm">
-              Rangkaian lengkap 3-in-1 hingga 5-in-1. Hemat hingga 47%, mulai Rp 121.143.
+            <p className="text-xs sm:text-sm text-white/80 mb-5 leading-relaxed max-w-sm line-clamp-2">
+              Rangkaian sinergi 3-in-1 hingga 5-in-1 dengan penawaran hemat maksimal, mulai Rp 121.143.
             </p>
-            <span className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs sm:text-sm font-bold transition-all shadow-xs group-hover:gap-3">
-              <span>Lihat Semua Paket</span>
-              <ArrowRight className="w-4 h-4" />
+            <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-white/90 text-black text-xs font-semibold uppercase tracking-wider transition-all hover:scale-[1.02]">
+              <span>Shop All Bundles</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </span>
           </div>
         </Link>
@@ -1322,66 +1228,74 @@ function CategorySplit() {
   );
 }
 
-
-
 // ==========================================
-// Section 10: Social Proof & Customer Reviews
+// Section 9: Community Love (Social Proof)
 // ==========================================
+interface ReviewItem {
+  id: string;
+  name: string;
+  quote: string;
+}
+
+const CUSTOMER_REVIEWS: ReviewItem[] = [
+  {
+    id: 'rev-1',
+    name: 'Ba*******an',
+    quote:
+      'Menurutku sih ini worth it banget, cuma harus rutin dipake setiap hari, udah kelihatan bedanya. Apalagi gak mahal, gak ribet, aman, dan yang paling penting, emang sengaruh itu woiii.',
+  },
+  {
+    id: 'rev-2',
+    name: 'vik******el',
+    quote:
+      'Jujur ini produknya bagus bangetttt, gak nyesel beli produk Beautyinu. Awalnya kulitku kusam dan belang. Sejak kenal Beautyinu, aku jadi glow up banget, kecintaanku banget deh!',
+  },
+];
+
 function SocialProof() {
   return (
-    <section className="w-full py-20 md:py-28 px-4 lg:px-8 bg-[#FAF8FC]">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-accent block mb-2">
-            Real Results · Real Reviews
-          </span>
-          <p className="font-serif text-4xl sm:text-5xl lg:text-6xl text-primary font-bold mb-3">
-            1 Juta++ pcs
+    <section id="social-proof-section" className="w-full py-12 md:py-16 px-4 lg:px-8 bg-white">
+      <div className="max-w-7xl mx-auto">
+        {/* Subtle Gradient Divider */}
+        <div className="w-full mb-8 sm:mb-10">
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
+        </div>
+
+        {/* Header Section */}
+        <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+          <p className="text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-black/50 mb-2">
+            Community Love
           </p>
-          <p className="text-base sm:text-lg text-text-secondary font-medium">
-            Produk terjual setiap bulan di seluruh Indonesia. Terbukti dipercaya ribuan beauty enthusiasts.
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-text font-normal tracking-tight mb-3">
+            Loved by Over 1 Million.
+          </h2>
+          <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
+            1 Juta++ pcs produk terjual setiap bulan di seluruh Indonesia. Terbukti dipercaya ribuan beauty enthusiasts.
           </p>
         </div>
 
-        {/* Verified Customer Quotes */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl p-8 sm:p-10 flex flex-col justify-between border border-black/[0.04] shadow-xs">
-            <div>
-              <div className="flex items-center gap-1 text-[#F59E0B] mb-5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#F59E0B]" />
-                ))}
-              </div>
-              <p className="text-sm sm:text-base text-text leading-relaxed italic mb-8">
-                “Menurutku sih ini worth it banget, cuma harus rutin dipake setiap hari, udah kelihatan bedanya. Apalagi gak mahal, gak ribet, aman, dan yang paling penting, emang sengaruh itu woiii.”
-              </p>
-            </div>
-            <div className="flex items-center justify-between text-xs text-text-secondary">
-              <span className="font-semibold text-text">Ba*******an</span>
-              <span className="bg-accent-light px-2.5 py-0.5 rounded-md text-accent font-semibold border border-accent/20 text-[11px]">
-                Verified Buyer
-              </span>
-            </div>
-          </div>
+        {/* 2 Clean Editorial Quote Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          {CUSTOMER_REVIEWS.map((rev) => (
+            <div
+              key={rev.id}
+              className="bg-[#FAF9FB] hover:bg-[#F5F3F8] rounded-3xl p-8 sm:p-12 flex flex-col justify-between transition-colors duration-300"
+            >
+              <blockquote className="text-base sm:text-lg lg:text-xl font-normal text-text leading-relaxed tracking-tight mb-8">
+                “{rev.quote}”
+              </blockquote>
 
-          <div className="bg-white rounded-2xl p-8 sm:p-10 flex flex-col justify-between border border-black/[0.04] shadow-xs">
-            <div>
-              <div className="flex items-center gap-1 text-[#F59E0B] mb-5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#F59E0B]" />
-                ))}
+              <div className="pt-6 border-t border-black/[0.05] flex items-center justify-between">
+                <span className="font-mono text-xs font-semibold text-text">
+                  {rev.name}
+                </span>
+
+                <span className="text-[10px] font-mono uppercase tracking-widest text-black/50 border border-black/10 px-3 py-1 rounded-full">
+                  Verified Buyer
+                </span>
               </div>
-              <p className="text-sm sm:text-base text-text leading-relaxed italic mb-8">
-                “Jujur ini produknya bagus bangetttt, gak nyesel beli produk Beautyinu. Awalnya kulitku kusam dan belang. Sejak kenal Beautyinu, aku jadi glow up banget, kecintaanku banget deh!”
-              </p>
             </div>
-            <div className="flex items-center justify-between text-xs text-text-secondary">
-              <span className="font-semibold text-text">vik******el</span>
-              <span className="bg-accent-light px-2.5 py-0.5 rounded-md text-accent font-semibold border border-accent/20 text-[11px]">
-                Verified Buyer
-              </span>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
@@ -1389,33 +1303,33 @@ function SocialProof() {
 }
 
 // ==========================================
-// Section 11: Skincare Journal (Blog Preview)
+// Section 10: Skincare Journal (Blog Preview)
 // ==========================================
 function BlogPreview({blogArticlesPromise}: {blogArticlesPromise: any}) {
   return (
-    <section className="w-full py-20 md:py-28 px-4 lg:px-8 bg-white">
+    <section id="blog-section" className="w-full py-12 md:py-16 px-4 lg:px-8 bg-[#FAF9FB]">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-end mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
           <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-accent">
-              Jurnal &amp; Edukasi Kulit
-            </span>
-            <h2 className="font-serif text-3xl md:text-4xl text-text mt-1.5">
-              Artikel Terbaru Beautyinu
+            <p className="text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-black/50 mb-2">
+              The Journal
+            </p>
+            <h2 className="font-serif text-3xl sm:text-4xl text-text font-normal tracking-tight">
+              Skincare Notes &amp; Education
             </h2>
           </div>
           <Link
             to="/blogs/news"
-            className="text-sm font-semibold text-primary hover:text-primary-hover flex items-center gap-1 transition-colors"
+            className="text-xs font-mono font-semibold uppercase tracking-wider text-text hover:text-primary flex items-center gap-1.5 transition-colors"
           >
-            <span>Lihat Semua Artikel</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>Read All Articles</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
         <Suspense
           fallback={
-            <div className="h-48 flex items-center justify-center text-text-secondary">
+            <div className="h-48 flex items-center justify-center text-xs font-mono text-text-secondary">
               Memuat artikel...
             </div>
           }

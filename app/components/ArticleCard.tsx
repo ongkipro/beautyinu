@@ -48,7 +48,7 @@ export function ArticleCard({
       to={`/blogs/${actualBlogHandle}/${article.handle}`}
       className="group block"
     >
-      <div className="aspect-[3/2] overflow-hidden rounded-xl bg-[#F0EAF8] mb-4">
+      <div className="aspect-[3/2] overflow-hidden rounded-2xl bg-[#F8F7FA] mb-4">
         {article.image ? (
           <Image
             data={article.image as any}
@@ -59,20 +59,20 @@ export function ArticleCard({
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-text-secondary/40 text-xs font-serif">
+          <div className="w-full h-full flex items-center justify-center text-text-secondary/40 text-xs font-mono">
             Beautyinu Journal
           </div>
         )}
       </div>
-      <p className="text-xs font-semibold uppercase tracking-wider text-text-secondary mb-1.5">
+      <p className="text-[11px] font-mono uppercase tracking-widest text-text-secondary mb-1.5">
         {publishedDate}
       </p>
-      <h3 className="font-serif text-xl text-text leading-snug line-clamp-2 group-hover:text-primary transition-colors mb-2">
+      <h3 className="font-sans font-semibold text-base sm:text-lg text-text leading-snug line-clamp-2 group-hover:text-primary transition-colors mb-2">
         {article.title}
       </h3>
-      <span className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-primary">
-        <span>Baca Selengkapnya</span>
-        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+      <span className="inline-flex items-center gap-1.5 text-xs font-mono font-medium uppercase tracking-wider text-text group-hover:text-primary transition-colors">
+        <span>Read More</span>
+        <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
       </span>
     </Link>
   );

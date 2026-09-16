@@ -23,22 +23,20 @@ export function ProductPrice({
   }
 
   return (
-    <div aria-label="Price" className="mt-4 flex flex-col gap-1" role="group">
-      <div className="flex items-center gap-2">
-        {price && (
-          <span className="text-xl font-bold text-text">
-            <Money data={price} withoutTrailingZeros />
-          </span>
-        )}
-        {isDiscounted && compareAtPrice && (
-          <span className="text-base text-text-secondary line-through">
-            <Money data={compareAtPrice} withoutTrailingZeros />
-          </span>
-        )}
-      </div>
+    <div aria-label="Price" className="mt-4 flex items-baseline gap-3 flex-wrap" role="group">
+      {price && (
+        <span className="text-2xl sm:text-3xl font-bold text-text tracking-tight">
+          <Money data={price} withoutTrailingZeros />
+        </span>
+      )}
+      {isDiscounted && compareAtPrice && (
+        <span className="text-base sm:text-lg text-text-secondary/50 line-through">
+          <Money data={compareAtPrice} withoutTrailingZeros />
+        </span>
+      )}
       {isDiscounted && (
-        <span className="inline-block rounded-full bg-primary/10 px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-primary w-max">
-          Save {savePercentage}%
+        <span className="inline-flex items-center rounded-full bg-[#111111] px-2.5 py-0.5 text-[11px] font-mono font-medium uppercase tracking-wider text-white">
+          -{savePercentage}%
         </span>
       )}
     </div>

@@ -48,12 +48,15 @@ export default function Collections() {
   return (
     <div className="w-full">
       {/* Hero */}
-      <div className="bg-[#F3EEFA] py-12 md:py-20">
+      <div className="bg-[#FAF9FB] border-b border-black/[0.04] py-14 md:py-20">
         <div className="max-w-7xl mx-auto px-4 lg:px-8 text-center flex flex-col items-center">
-          <h1 className="font-serif text-4xl md:text-5xl text-[#1A1A1A] mb-4">
+          <p className="text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-black/50 mb-2">
+            Directory
+          </p>
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-text font-normal tracking-tight mb-3">
             Shop by Collection
           </h1>
-          <p className="max-w-2xl text-[#6B7280]">
+          <p className="max-w-xl text-xs sm:text-sm text-text-secondary leading-relaxed">
             Temukan rangkaian produk perawatan tubuh terbaik dari Beautyinu, diformulasikan untuk kulit glowing dan sehat setiap hari.
           </p>
         </div>
@@ -86,7 +89,7 @@ function CollectionItem({
 }) {
   return (
     <Link
-      className="group block rounded-2xl bg-[#FAF8FC] hover:bg-[#F3EEFA] border border-black/[0.06] shadow-xs hover:shadow-md hover:border-accent/30 transition-all overflow-hidden"
+      className="group block rounded-3xl bg-[#FAF9FB] hover:bg-[#F5F3F8] border border-black/[0.05] transition-all duration-300 overflow-hidden"
       key={collection.id}
       to={`/collections/${collection.handle}`}
       prefetch="intent"

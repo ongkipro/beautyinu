@@ -141,19 +141,19 @@ export default function Product() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
-      {/* Breadcrumb */}
-      <nav className="mb-6 text-sm text-text-secondary flex items-center gap-1.5">
+      {/* Minimalist Micro Breadcrumb */}
+      <nav className="mb-6 text-xs font-mono uppercase tracking-wider text-black/40 flex items-center gap-2">
         <Link to="/" className="hover:text-primary transition-colors">Home</Link>
-        <ChevronRight className="w-3.5 h-3.5 flex-shrink-0" />
+        <span>/</span>
         {collection ? (
           <>
             <Link to={`/collections/${collection.handle}`} className="hover:text-primary transition-colors">
               {collection.title}
             </Link>
-            <ChevronRight className="w-3.5 h-3.5 flex-shrink-0" />
+            <span>/</span>
           </>
         ) : null}
-        <span className="text-text font-medium">{title}</span>
+        <span className="text-black/80 font-medium truncate max-w-xs">{title}</span>
       </nav>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-12">
@@ -164,7 +164,7 @@ export default function Product() {
 
         {/* Right: Product Info (45%) */}
         <div className="md:col-span-5 lg:col-span-6 xl:col-span-5">
-          <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl">{title}</h1>
+          <h1 className="font-serif text-3xl sm:text-4xl text-text font-normal tracking-tight">{title}</h1>
           
           <ProductPrice
             price={selectedVariant?.price}
@@ -178,26 +178,22 @@ export default function Product() {
             />
           </div>
 
-          {/* Trust Badges */}
-          <div className="mt-8 grid grid-cols-3 gap-4 pt-2">
-            <div className="flex flex-col items-center text-center">
-              <div className="w-10 h-10 rounded-full bg-accent-light flex items-center justify-center text-accent mb-2">
-                <ShieldCheck className="w-5 h-5" />
-              </div>
-              <span className="text-xs text-text-secondary font-medium">BPOM Certified</span>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="w-10 h-10 rounded-full bg-accent-light flex items-center justify-center text-accent mb-2">
-                <Heart className="w-5 h-5" />
-              </div>
-              <span className="text-xs text-text-secondary font-medium">Cruelty-Free</span>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="w-10 h-10 rounded-full bg-accent-light flex items-center justify-center text-accent mb-2">
-                <Package className="w-5 h-5" />
-              </div>
-              <span className="text-xs text-text-secondary font-medium">Ships from Indonesia</span>
-            </div>
+          {/* Trust Highlights — Minimalist Clean Strip */}
+          <div className="mt-8 border-y border-black/[0.06] py-3.5 flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-black/60">
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-black/40" />
+              BPOM Resmi
+            </span>
+            <span className="text-black/20">•</span>
+            <span className="flex items-center gap-1.5">
+              <Heart className="w-3.5 h-3.5 text-black/40" />
+              Cruelty-Free
+            </span>
+            <span className="text-black/20">•</span>
+            <span className="flex items-center gap-1.5">
+              <Package className="w-3.5 h-3.5 text-black/40" />
+              Surabaya, ID
+            </span>
           </div>
 
           <Accordion items={accordionItems} />

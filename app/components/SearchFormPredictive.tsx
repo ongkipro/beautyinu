@@ -13,6 +13,7 @@ type SearchFormPredictiveChildren = (args: {
   goToSearch: () => void;
   inputRef: React.MutableRefObject<HTMLInputElement | null>;
   fetcher: Fetcher<PredictiveSearchReturn>;
+  submitTerm: (term: string) => void;
 }) => React.ReactNode;
 
 type SearchFormPredictiveProps = Omit<FormProps, 'children'> & {
@@ -58,6 +59,18 @@ export function SearchFormPredictive({
     );
   }
 
+  /** Submit a predefined term directly */
+  function submitTerm(term: string) {
+    if (inputRef?.current) {
+      inputRef.current.value = term;
+      inputRef.current.focus();
+    }
+    void fetcher.submit(
+      {q: term, limit: 5, predictive: true},
+      {method: 'GET', action: SEARCH_ENDPOINT},
+    );
+  }
+
   // ensure the passed input has a type of search, because SearchResults
   // will select the element based on the input
   useEffect(() => {
@@ -70,7 +83,7 @@ export function SearchFormPredictive({
 
   return (
     <fetcher.Form {...props} className={className} onSubmit={resetInput}>
-      {children({inputRef, fetcher, fetchResults, goToSearch})}
+      {children({inputRef, fetcher, fetchResults, goToSearch, submitTerm})}
     </fetcher.Form>
   );
 }

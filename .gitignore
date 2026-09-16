@@ -13,3 +13,4 @@ dev-server.log
 drive-assets
 scratch
 .DS_Store
+public/videos/*-720p.*

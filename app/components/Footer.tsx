@@ -21,7 +21,7 @@ export function Footer() {
       </div>
 
       {/* Foreground Content */}
-      <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8 pt-16 lg:pt-20 pb-12">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 lg:pt-20 pb-12">
         {/* Main 4-Column Balanced Layout */}
         <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row lg:justify-between items-start gap-10 md:gap-8 lg:gap-0">
           {/* Col 1: Brand & Identity */}
@@ -35,7 +35,7 @@ export function Footer() {
                 height={44}
               />
             </NavLink>
-            <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed w-full mb-4">
+            <p className="text-[13px] sm:text-sm text-text-secondary leading-relaxed w-full mb-4">
               Your bodycare bestie untuk kulit bersih, lembap, dan cerah merata. Diformulasikan lembut berizin BPOM RI untuk daily glow ritual perempuan Indonesia.
             </p>
             <div className="pt-3 text-xs text-text-secondary/75 space-y-2 border-t border-black/[0.04] w-full">
@@ -59,62 +59,65 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Col 2: Koleksi Produk */}
-          <div className="w-full md:w-auto lg:w-[145px] xl:w-[155px] shrink-0">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-text mb-4">
-              Koleksi Produk
-            </h4>
-            <ul className="space-y-2.5">
-              {SHOP_LINKS.map((link) => (
-                <li key={link.to}>
-                  <NavLink
-                    to={link.to}
-                    prefetch="intent"
-                    className="group/link flex items-center justify-between text-xs sm:text-[13px] text-text-secondary hover:text-primary transition-all font-medium py-0.5"
-                  >
-                    <span>{link.label}</span>
-                    <svg
-                      className="w-3 h-3 text-primary opacity-0 -translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all duration-200"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
+          {/* Navigation Links: 2-Column Grid on Mobile, 4-Column on Desktop */}
+          <div className="grid grid-cols-2 gap-6 sm:gap-8 w-full md:contents">
+            {/* Col 2: Koleksi Produk */}
+            <div className="w-full md:w-auto lg:w-[145px] xl:w-[155px] shrink-0">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-text mb-3 sm:mb-4">
+                Koleksi Produk
+              </h4>
+              <ul className="space-y-2 sm:space-y-2.5">
+                {SHOP_LINKS.map((link) => (
+                  <li key={link.to}>
+                    <NavLink
+                      to={link.to}
+                      prefetch="intent"
+                      className="group/link flex items-center justify-between text-[13px] sm:text-sm text-text-secondary hover:text-primary transition-all font-medium py-1 sm:py-0.5"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </div>
+                      <span className="truncate">{link.label}</span>
+                      <svg
+                        className="w-3 h-3 text-primary opacity-0 -translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all duration-200 hidden sm:inline-block"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Col 3: Bantuan & Informasi */}
-          <div className="w-full md:w-auto lg:w-[160px] xl:w-[170px] shrink-0">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-text mb-4">
-              Bantuan &amp; Info
-            </h4>
-            <ul className="space-y-2.5">
-              {HELP_LINKS.map((link) => (
-                <li key={link.to}>
-                  <NavLink
-                    to={link.to}
-                    prefetch="intent"
-                    className="group/link flex items-center justify-between text-xs sm:text-[13px] text-text-secondary hover:text-primary transition-all font-medium py-0.5"
-                  >
-                    <span>{link.label}</span>
-                    <svg
-                      className="w-3 h-3 text-primary opacity-0 -translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all duration-200"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
+            {/* Col 3: Bantuan & Informasi */}
+            <div className="w-full md:w-auto lg:w-[160px] xl:w-[170px] shrink-0">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-text mb-3 sm:mb-4">
+                Bantuan &amp; Info
+              </h4>
+              <ul className="space-y-2 sm:space-y-2.5">
+                {HELP_LINKS.map((link) => (
+                  <li key={link.to}>
+                    <NavLink
+                      to={link.to}
+                      prefetch="intent"
+                      className="group/link flex items-center justify-between text-[13px] sm:text-sm text-text-secondary hover:text-primary transition-all font-medium py-1 sm:py-0.5"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
+                      <span className="truncate">{link.label}</span>
+                      <svg
+                        className="w-3 h-3 text-primary opacity-0 -translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all duration-200 hidden sm:inline-block"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Col 4: WhatsApp Consultation Card */}
@@ -129,7 +132,7 @@ export function Footer() {
                   Fast Response
                 </span>
               </div>
-              <p className="text-xs text-text-secondary leading-relaxed">
+              <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">
                 Butuh saran pemilihan produk atau info pesanan? Hubungi beauty advisor resmi kami.
               </p>
               <a
@@ -157,33 +160,80 @@ export function Footer() {
         </div>
 
         {/* Gradient Fading Divider for Legal / Copyright */}
-        <div className="mt-14 mb-6 h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
+        <div className="mt-12 sm:mt-14 mb-6 sm:mb-8 h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
 
-        {/* 5. Bottom Copyright, Socials & Legal Links — Minimalist & Clean */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-text-secondary/70">
-          <p>© {new Date().getFullYear()} Beautyinu Skincare. CV. Dinare Anugrah Kosmetika. All rights reserved.</p>
-
-          <div className="flex items-center gap-4 sm:gap-5">
-            {SOCIAL_LINKS.map((social) => (
+        {/* 5. Bottom Copyright, Socials & Legal Links — Minimalist, Ergonomic & Clean */}
+        <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-5 sm:gap-6 text-xs text-text-secondary/70">
+          {/* Copyright & Legal Entity */}
+          <div className="text-center sm:text-left space-y-1 w-full sm:w-auto px-2 sm:px-0">
+            <p className="text-[11px] sm:text-xs text-text-secondary/80 font-medium">
+              © {new Date().getFullYear()} Beautyinu Skincare. All rights reserved.
+            </p>
+            <p className="text-[10px] sm:text-[11px] text-text-secondary/60 font-normal leading-relaxed">
+              Designed by{' '}
               <a
-                key={social.label}
-                href={social.href}
+                href="https://ongki.pro"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="text-text-secondary/60 hover:text-primary transition-colors"
-                aria-label={social.label}
+                rel="nofollow noopener noreferrer"
+                className="font-medium text-text-secondary/80 hover:text-primary transition-colors underline decoration-black/15 underline-offset-2 hover:decoration-primary"
               >
-                {social.icon}
+                ongki.pro
               </a>
-            ))}
-            <span className="text-black/15">|</span>
-            <NavLink to="/pages/privacy-policy" className="hover:text-primary transition-colors">
-              Kebijakan Privasi
-            </NavLink>
-            <span className="text-black/15">·</span>
-            <NavLink to="/pages/terms-of-service" className="hover:text-primary transition-colors">
-              Syarat &amp; Ketentuan
-            </NavLink>
+              <span className="mx-1.5 text-black/20 select-none">·</span>
+              Developed by{' '}
+              <a
+                href="https://jasawebsite.co"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                className="font-medium text-text-secondary/80 hover:text-primary transition-colors underline decoration-black/15 underline-offset-2 hover:decoration-primary"
+              >
+                jasawebsite.co
+              </a>
+            </p>
+          </div>
+
+          {/* Socials & Legal Navigation */}
+          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 w-full sm:w-auto">
+            {/* Social Channels with Ergonomic Touch Targets */}
+            <div className="flex items-center gap-2.5">
+              {SOCIAL_LINKS.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8.5 h-8.5 sm:w-8 sm:h-8 rounded-full bg-black/[0.04] hover:bg-black/[0.08] hover:text-primary text-text/80 flex items-center justify-center transition-all active:scale-95 focus:outline-none"
+                  aria-label={social.label}
+                  title={social.label}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+
+            {/* Desktop Divider */}
+            <span className="hidden sm:inline-block text-black/15 font-light select-none" aria-hidden="true">
+              |
+            </span>
+
+            {/* Legal Policy Links */}
+            <div className="flex items-center gap-1 sm:gap-2 text-[11px] sm:text-xs text-text-secondary/80">
+              <NavLink
+                to="/pages/privacy-policy"
+                prefetch="intent"
+                className="hover:text-primary transition-colors py-1.5 px-2 focus:outline-none font-medium"
+              >
+                Kebijakan Privasi
+              </NavLink>
+              <span className="text-black/20 select-none" aria-hidden="true">·</span>
+              <NavLink
+                to="/pages/terms-of-service"
+                prefetch="intent"
+                className="hover:text-primary transition-colors py-1.5 px-2 focus:outline-none font-medium"
+              >
+                Syarat &amp; Ketentuan
+              </NavLink>
+            </div>
           </div>
         </div>
       </div>

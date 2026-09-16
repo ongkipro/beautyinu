@@ -86,47 +86,70 @@ export default function AccountProfile() {
   const customer = action?.customer ?? account?.customer;
 
   return (
-    <div className="account-profile">
-      <h2>My profile</h2>
-      <br />
-      <Form method="PUT">
-        <legend>Personal information</legend>
-        <fieldset>
-          <label htmlFor="firstName">First name</label>
+    <div className="max-w-xl rounded-3xl bg-[#FAF9FB] border border-black/[0.05] p-6 sm:p-8">
+      <h2 className="font-serif text-2xl text-text font-normal tracking-tight mb-1">
+        Profil Pengguna
+      </h2>
+      <p className="text-xs text-text-secondary mb-6 leading-relaxed">
+        Perbarui nama dan informasi profil akun Beautyinu kamu.
+      </p>
+
+      <Form method="PUT" className="space-y-4">
+        <div>
+          <label
+            htmlFor="firstName"
+            className="text-xs font-mono font-medium uppercase tracking-wider text-black/60 block mb-1.5"
+          >
+            Nama Depan
+          </label>
           <input
             id="firstName"
             name="firstName"
             type="text"
             autoComplete="given-name"
-            placeholder="First name"
-            aria-label="First name"
+            placeholder="Nama Depan"
+            aria-label="Nama Depan"
             defaultValue={customer.firstName ?? ''}
             minLength={2}
+            className="w-full px-4 py-3 bg-white border border-black/10 rounded-xl text-xs sm:text-sm text-text focus:outline-none focus:border-black transition-colors"
           />
-          <label htmlFor="lastName">Last name</label>
+        </div>
+
+        <div>
+          <label
+            htmlFor="lastName"
+            className="text-xs font-mono font-medium uppercase tracking-wider text-black/60 block mb-1.5"
+          >
+            Nama Belakang
+          </label>
           <input
             id="lastName"
             name="lastName"
             type="text"
             autoComplete="family-name"
-            placeholder="Last name"
-            aria-label="Last name"
+            placeholder="Nama Belakang"
+            aria-label="Nama Belakang"
             defaultValue={customer.lastName ?? ''}
             minLength={2}
+            className="w-full px-4 py-3 bg-white border border-black/10 rounded-xl text-xs sm:text-sm text-text focus:outline-none focus:border-black transition-colors"
           />
-        </fieldset>
-        {action?.error ? (
-          <p>
-            <mark>
-              <small>{action.error}</small>
-            </mark>
-          </p>
-        ) : (
-          <br />
+        </div>
+
+        {action?.error && (
+          <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-600">
+            {action.error}
+          </div>
         )}
-        <button type="submit" disabled={state !== 'idle'}>
-          {state !== 'idle' ? 'Updating' : 'Update'}
-        </button>
+
+        <div className="pt-2">
+          <button
+            type="submit"
+            disabled={state !== 'idle'}
+            className="px-6 py-3 rounded-xl bg-[#111111] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-xs disabled:opacity-50"
+          >
+            {state !== 'idle' ? 'Menyimpan...' : 'Simpan Perubahan'}
+          </button>
+        </div>
       </Form>
     </div>
   );

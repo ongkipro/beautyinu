@@ -1,4 +1,4 @@
-import {Link, useLoaderData} from 'react-router';
+import {Link, redirect, useLoaderData} from 'react-router';
 import type {Route} from './+types/blogs.$blogHandle._index';
 import {Image, getPaginationVariables} from '@shopify/hydrogen';
 import type {ArticleItemFragment} from 'storefrontapi.generated';
@@ -13,14 +13,10 @@ import {
 
 export const meta: Route.MetaFunction = ({data}) => {
   const blogTitle = data?.blog?.title || 'Journal';
-  const title = `Skincare Journal & Panduan Edukasi — Beautyinu`;
-  const description =
-    data?.blog?.seo?.description ||
-    'Tips perawatan tubuh, panduan skincare tropis harian, sains formulasi BPOM, dan informasi resmi dari Beautyinu.';
-
   return getSeoMeta({
-    title,
-    description,
+    title: `${blogTitle} — Beautyinu Official Store`,
+    description:
+      'Edukasi seputar skin brightening, panduan ingredients, dan tips merawat skin barrier harian.',
     url: data?.canonicalUrl,
     type: 'website',
   });
@@ -37,6 +33,10 @@ async function loadCriticalData({context, request, params}: Route.LoaderArgs) {
 
   if (!params.blogHandle) {
     throw new Response('blog not found', {status: 404});
+  }
+
+  if (params.blogHandle === 'berita' || params.blogHandle === 'journal' || params.blogHandle === 'articles') {
+    throw redirect('/blogs/news', 301);
   }
 
   const [{blog}] = await Promise.all([
@@ -69,32 +69,32 @@ export default function Blog() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
         {/* 1. Standard Editorial Header */}
         <header className="max-w-3xl mb-10 sm:mb-12">
-          <span className="text-xs font-bold uppercase tracking-widest text-accent block mb-3">
-            Jurnal &amp; Edukasi Kulit
-          </span>
+          <p className="text-[10px] sm:text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-black/50 mb-2">
+            Beautyinu · Skincare Journal
+          </p>
           <h1 className="font-serif text-3xl sm:text-5xl lg:text-[54px] text-text font-normal leading-[1.15] tracking-tight mb-4">
             Sains Formulasi &amp; Panduan Kulit Cerah Tropis.
           </h1>
-          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-2xl font-normal">
+          <p className="text-xs sm:text-sm md:text-base text-text-secondary leading-relaxed max-w-2xl font-normal">
             Edukasi perawatan tubuh tropis, sains di balik formulasi aktif berizin BPOM RI (Niacinamide 5.22% + Alpha Arbutin 2.30%), serta ritual harian untuk kulit sehat bercahaya.
           </p>
         </header>
 
         {/* 2. Unified Category Filter Bar */}
-        <div className="flex flex-wrap items-center gap-6 mb-12 sm:mb-14 text-xs font-semibold uppercase tracking-wider text-text-secondary">
-          <span className="text-primary font-bold cursor-pointer">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 mb-10 sm:mb-14">
+          <span className="px-4 py-1.5 rounded-full text-xs font-semibold bg-[#111111] text-white shadow-2xs cursor-pointer">
             Semua Artikel
           </span>
-          <span className="hover:text-primary transition-colors cursor-pointer">
+          <span className="px-4 py-1.5 rounded-full text-xs font-semibold bg-[#FAF9FB] hover:bg-white text-text-secondary hover:text-text border border-black/[0.06] transition-colors cursor-pointer">
             Skin Science
           </span>
-          <span className="hover:text-primary transition-colors cursor-pointer">
+          <span className="px-4 py-1.5 rounded-full text-xs font-semibold bg-[#FAF9FB] hover:bg-white text-text-secondary hover:text-text border border-black/[0.06] transition-colors cursor-pointer">
             Skinification
           </span>
-          <span className="hover:text-primary transition-colors cursor-pointer">
+          <span className="px-4 py-1.5 rounded-full text-xs font-semibold bg-[#FAF9FB] hover:bg-white text-text-secondary hover:text-text border border-black/[0.06] transition-colors cursor-pointer">
             Daily Routine
           </span>
-          <span className="hover:text-primary transition-colors cursor-pointer">
+          <span className="px-4 py-1.5 rounded-full text-xs font-semibold bg-[#FAF9FB] hover:bg-white text-text-secondary hover:text-text border border-black/[0.06] transition-colors cursor-pointer">
             Komunitas
           </span>
         </div>
@@ -124,34 +124,36 @@ export default function Blog() {
           }
         </PaginatedResourceSection>
 
-        {/* 4. Routine CTA Banner */}
-        <div className="mt-20 sm:mt-24 rounded-2xl bg-[#FAF8FC] p-8 sm:p-12 text-center max-w-4xl mx-auto">
-          <span className="text-xs font-bold uppercase tracking-widest text-accent block mb-2">
-            Rangkaian Harian
-          </span>
-          <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-text font-normal mb-3">
-            Siap Memulai Rutinitas Kulit Glowing?
-          </h3>
-          <p className="text-sm sm:text-base text-text-secondary max-w-xl mx-auto mb-8 leading-relaxed font-normal">
-            Temukan kombinasi tepat untuk jenis kulitmu dengan Glowing Set 3-in-1 berizin BPOM RI atau konsultasi gratis bersama Beauty Bestie.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link
-              to="/collections/bundles"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-semibold px-8 py-3.5 shadow-xs transition-all cursor-pointer text-center"
-            >
-              <span>Lihat Paket Glowing Set (Diskon 47%)</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <a
-              href="https://wa.me/6287777118186?text=Halo%20Beautyinu%2C%20saya%20ingin%20konsultasi%20skincare"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-surface text-text border border-black/[0.08] text-sm font-semibold px-7 py-3.5 shadow-2xs transition-all cursor-pointer text-center"
-            >
-              <MessageCircle className="w-4 h-4 text-primary" />
-              <span>Chat WhatsApp Konsultasi</span>
-            </a>
+        {/* 4. Routine CTA Banner (Luminous Glass) */}
+        <div className="mt-20 sm:mt-24 relative rounded-3xl bg-gradient-to-r from-white/90 via-white/80 to-[#FFF3F6]/85 backdrop-blur-xl border border-white/90 shadow-[0_10px_35px_rgba(249,127,158,0.07)] p-8 sm:p-12 text-center max-w-4xl mx-auto overflow-hidden">
+          <div className="relative z-1">
+            <span className="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-mono font-bold uppercase tracking-widest text-primary inline-block mb-3">
+              Rangkaian Harian
+            </span>
+            <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-text font-normal tracking-tight mb-3">
+              Siap Memulai Rutinitas Kulit Glowing?
+            </h3>
+            <p className="text-xs sm:text-sm md:text-base text-text-secondary max-w-xl mx-auto mb-8 leading-relaxed font-normal">
+              Temukan kombinasi tepat untuk jenis kulitmu dengan Glowing Set 3-in-1 berizin BPOM RI atau konsultasi gratis bersama Beauty Bestie.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                to="/collections/bundles"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-primary hover:bg-primary-hover text-white text-xs sm:text-sm font-semibold px-8 py-3.5 shadow-xs transition-all cursor-pointer text-center hover:scale-[1.02]"
+              >
+                <span>Lihat Paket Glowing Set (Diskon 47%)</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <a
+                href="https://wa.me/6287777118186?text=Halo%20Beautyinu%2C%20saya%20ingin%20konsultasi%20skincare"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-surface text-text border border-black/[0.08] text-xs sm:text-sm font-semibold px-7 py-3.5 shadow-2xs transition-all cursor-pointer text-center hover:scale-[1.02]"
+              >
+                <MessageCircle className="w-4 h-4 text-primary" />
+                <span>Chat WhatsApp Konsultasi</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

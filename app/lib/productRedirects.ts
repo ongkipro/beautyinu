@@ -28,6 +28,24 @@ export const PRODUCT_301_REDIRECTS: Record<string, string> = {
     'bright-glow-body-lotion-uv-filter-750ml-classic',
   'beautyinu-brightening-booster-gold-powder-serbuk-pemutih-badan-wajah-25-gram':
     'brightening-booster-gold-powder-25gr-classic',
+
+  // Shorthand aliases to official Shopify product handles
+  'bright-glow-body-lotion': 'bright-glow-body-lotion-uv-filter-750ml',
+  'bright-glow-body-lotion-750ml': 'bright-glow-body-lotion-uv-filter-750ml',
+  'body-lotion-uv-750ml': 'bright-glow-body-lotion-uv-filter-750ml',
+  'kefir-collagen-soap-bar': 'kefir-collagen-soap-60gr',
+  'kefir-collagen-soap-bar-60g': 'kefir-collagen-soap-60gr',
+  'kefir-collagen-soap': 'kefir-collagen-soap-60gr',
+  'brightening-booster-gold-powder': 'brightening-booster-gold-powder-25gr',
+  'brightening-booster-gold-powder-25g': 'brightening-booster-gold-powder-25gr',
+  'bright-glow-body-wash': 'bright-glow-body-wash-250ml',
+  'english-pear-body-toner': 'english-pear-body-toner-100ml',
+  'the-glowing-set': 'glowing-set-3-in-1',
+  'lotion-booster-set-2-in-1': 'body-lotion-booster-set',
+  'cream-booster-set-2-in-1': 'body-cream-booster-set',
+  'brightening-body-cream-peach-200g': 'brightening-body-cream-grape-200g',
+  'brightening-body-cream-peach': 'brightening-body-cream-grape',
+  'brightening-body-cream-grape-scent': 'brightening-body-cream-grape',
 };
 
 /**

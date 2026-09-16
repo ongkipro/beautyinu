@@ -7,12 +7,14 @@ export function AddToCartButton({
   disabled,
   lines,
   onClick,
+  className,
 }: {
   analytics?: unknown;
   children: React.ReactNode;
   disabled?: boolean;
   lines: Array<OptimisticCartLineInput>;
   onClick?: () => void;
+  className?: string;
 }) {
   return (
     <CartForm route="/cart" inputs={{lines}} action={CartForm.ACTIONS.LinesAdd}>
@@ -27,9 +29,12 @@ export function AddToCartButton({
             type="submit"
             onClick={onClick}
             disabled={disabled ?? fetcher.state !== 'idle'}
-            className="w-full h-12 flex items-center justify-center bg-[#F97F9E] text-white rounded-full font-semibold transition hover:bg-[#F06B8D] disabled:opacity-50 disabled:cursor-not-allowed md:static md:w-full fixed bottom-4 left-4 right-4 z-50 w-[calc(100%-2rem)]"
+            className={
+              className ||
+              'w-full h-12 flex items-center justify-center bg-[#F97F9E] hover:bg-[#F06B8D] active:scale-[0.99] text-white rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-xs disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'
+            }
           >
-            {children}
+            {fetcher.state !== 'idle' ? 'Menambahkan...' : children}
           </button>
         </>
       )}

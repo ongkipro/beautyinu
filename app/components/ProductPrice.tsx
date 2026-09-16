@@ -23,22 +23,24 @@ export function ProductPrice({
   }
 
   return (
-    <div aria-label="Price" className="mt-4 flex items-baseline gap-3 flex-wrap" role="group">
-      {price && (
-        <span className="text-2xl sm:text-3xl font-bold text-text tracking-tight">
-          <Money data={price} withoutTrailingZeros />
-        </span>
-      )}
-      {isDiscounted && compareAtPrice && (
-        <span className="text-base sm:text-lg text-text-secondary/50 line-through">
-          <Money data={compareAtPrice} withoutTrailingZeros />
-        </span>
-      )}
-      {isDiscounted && (
-        <span className="inline-flex items-center rounded-full bg-[#111111] px-2.5 py-0.5 text-[11px] font-mono font-medium uppercase tracking-wider text-white">
-          -{savePercentage}%
-        </span>
-      )}
+    <div className="mt-3">
+      <div aria-label="Harga Produk" className="flex items-baseline gap-2.5 flex-wrap" role="group">
+        {price && (
+          <span className="text-2xl sm:text-3xl font-bold font-mono text-text tracking-tight">
+            <Money data={price} withoutTrailingZeros />
+          </span>
+        )}
+        {isDiscounted && compareAtPrice && (
+          <span className="text-sm sm:text-base text-text-secondary/50 font-mono line-through">
+            <Money data={compareAtPrice} withoutTrailingZeros />
+          </span>
+        )}
+        {isDiscounted && (
+          <span className="inline-flex items-center rounded-full bg-primary/10 text-primary border border-primary/20 px-2.5 py-0.5 text-[11px] font-mono font-bold uppercase tracking-wider">
+            Hemat {savePercentage}%
+          </span>
+        )}
+      </div>
     </div>
   );
 }

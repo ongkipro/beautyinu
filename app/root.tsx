@@ -81,13 +81,16 @@ export function Layout({children}: {children?: React.ReactNode}) {
     <html lang="id">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        />
         <link rel="stylesheet" href={appStyles}></link>
         <link rel="stylesheet" href={tailwindCss}></link>
         <Meta />
         <Links />
       </head>
-      <body className="bg-bg text-text font-sans">
+      <body className="bg-bg text-text font-sans overflow-x-clip min-h-screen">
         {children}
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
@@ -118,28 +121,58 @@ export default function App() {
 
 export function ErrorBoundary() {
   const error = useRouteError();
-  let errorMessage = 'Unknown error';
+  let errorMessage = 'Terjadi kendala teknis saat memuat halaman.';
   let errorStatus = 500;
 
   if (isRouteErrorResponse(error)) {
-    errorMessage = error?.data?.message ?? error.data;
+    errorMessage =
+      error?.data?.message ??
+      (typeof error.data === 'string'
+        ? error.data
+        : 'Halaman yang kamu cari tidak ditemukan.');
     errorStatus = error.status;
   } else if (error instanceof Error) {
     errorMessage = error.message;
   }
 
+  const is404 = errorStatus === 404;
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] p-8 text-center">
-      <h1 className="font-serif text-4xl mb-2">
-        {errorStatus === 404 ? 'Page not found' : 'Something went wrong'}
-      </h1>
-      <p className="text-text-secondary mb-6 max-w-md">{errorMessage}</p>
-      <NavLink
-        to="/"
-        className="bg-primary text-white px-6 py-2.5 rounded-full font-medium hover:bg-primary-hover transition-colors"
-      >
-        Back to Home
-      </NavLink>
+    <div className="min-h-screen bg-[#FAF9FB] flex flex-col items-center justify-center p-6 text-center">
+      <div className="max-w-md w-full bg-white rounded-3xl p-8 sm:p-10 border border-black/[0.06] shadow-sm">
+        <NavLink to="/" className="inline-block mb-6">
+          <span className="font-serif text-3xl text-primary font-bold tracking-tight">
+            Beautyinu
+          </span>
+        </NavLink>
+        <span className="inline-block text-[10px] sm:text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-black/50 mb-2">
+          {is404
+            ? 'Kode 404 · Halaman Tidak Ditemukan'
+            : `Kode ${errorStatus} · Terjadi Gangguan`}
+        </span>
+        <h1 className="font-serif text-2xl sm:text-3xl text-text font-normal tracking-tight mb-3">
+          {is404 ? 'Halaman Belum Tersedia' : 'Terjadi Kendala Teknis'}
+        </h1>
+        <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-8">
+          {is404
+            ? 'Halaman atau produk yang kamu tuju mungkin sudah berpindah, belum dirilis, atau alamat URL telah diperbarui.'
+            : errorMessage}
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <NavLink
+            to="/"
+            className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#111111] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
+          >
+            Ke Beranda
+          </NavLink>
+          <NavLink
+            to="/collections/all"
+            className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#FFF3F6] hover:bg-primary/15 text-primary border border-primary/20 text-xs font-bold uppercase tracking-wider transition-all"
+          >
+            Lihat Semua Produk
+          </NavLink>
+        </div>
+      </div>
     </div>
   );
 }

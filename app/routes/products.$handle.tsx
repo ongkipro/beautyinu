@@ -1,4 +1,4 @@
-import {Suspense} from 'react';
+import {Suspense, useEffect} from 'react';
 import {redirect, useLoaderData, Await, Link} from 'react-router';
 import type {Route} from './+types/products.$handle';
 import {
@@ -7,16 +7,21 @@ import {
   useOptimisticVariant,
   getProductOptions,
   getAdjacentAndFirstAvailableVariants,
-  useSelectedOptionInUrlParam,
+  Money,
 } from '@shopify/hydrogen';
 import {ProductPrice} from '~/components/ProductPrice';
 import {ProductImage} from '~/components/ProductImage';
 import {ProductForm} from '~/components/ProductForm';
-import {Accordion} from '~/components/Accordion';
 import {ProductCard} from '~/components/ProductCard';
+import {ProductReviews} from '~/components/ProductReviews';
+import {getShopeeProductData} from '~/data/shopeeData';
+import {Accordion} from '~/components/Accordion';
+import {MetafieldContent, hasMetafieldContent} from '~/components/MetafieldContent';
+import {AddToCartButton} from '~/components/AddToCartButton';
+import {useAside} from '~/components/Aside';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 import {checkLegacyProductRedirect} from '~/lib/productRedirects';
-import {ShieldCheck, Heart, Package, ChevronRight} from 'lucide-react';
+import {Star, CheckCircle2, Truck} from 'lucide-react';
 import {getSeoMeta, buildProductJsonLd} from '~/lib/seo';
 
 export const meta: Route.MetaFunction = ({data}) => {
@@ -58,7 +63,26 @@ async function loadCriticalData({context, params, request}: Route.LoaderArgs) {
     throw new Error('Expected product handle to be defined');
   }
 
+  // 1. Permanent redirect for legacy handles
   checkLegacyProductRedirect(request, handle);
+
+  // 2. Clean dirty URL query params (strip ?Title=Default+Title or any Default Title slop)
+  const url = new URL(request.url);
+  let dirtyQuery = false;
+  for (const [key, val] of Array.from(url.searchParams.entries())) {
+    if (
+      key.toLowerCase() === 'title' ||
+      val.toLowerCase() === 'default title' ||
+      val.includes('Default Title')
+    ) {
+      url.searchParams.delete(key);
+      dirtyQuery = true;
+    }
+  }
+  if (dirtyQuery) {
+    const cleanSearch = url.searchParams.toString();
+    throw redirect(`${url.pathname}${cleanSearch ? `?${cleanSearch}` : ''}`, 301);
+  }
 
   const [{product}] = await Promise.all([
     storefront.query(PRODUCT_QUERY, {
@@ -88,132 +112,305 @@ function loadDeferredData({context}: Route.LoaderArgs, productId: string) {
   };
 }
 
+/**
+ * Custom Hook: Ensures URLs remain clean and pristine:
+ * - Completely purges ?Title=Default+Title or similar Shopify internal placeholder params
+ * - Only syncs search parameters if the product has multiple selectable option values (e.g. Ukuran)
+ * - Single-variant products retain a clean /products/[handle] URL with NO query string
+ */
+function useCleanProductUrl(
+  selectedVariant: any,
+  productOptions: any[],
+) {
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const currentUrl = new URL(window.location.href);
+    let urlChanged = false;
+
+    // 1. Purge all default title / AI slop params immediately
+    for (const [key, val] of Array.from(currentUrl.searchParams.entries())) {
+      if (
+        key.toLowerCase() === 'title' ||
+        val.toLowerCase() === 'default title' ||
+        val.includes('Default Title')
+      ) {
+        currentUrl.searchParams.delete(key);
+        urlChanged = true;
+      }
+    }
+
+    // 2. Only sync variant options if the product genuinely has multiple selectable options
+    const hasMultipleVariants = productOptions.some(
+      (opt: any) => opt.optionValues && opt.optionValues.length > 1,
+    );
+
+    if (hasMultipleVariants && selectedVariant?.selectedOptions) {
+      for (const opt of selectedVariant.selectedOptions) {
+        if (
+          opt.name.toLowerCase() !== 'title' &&
+          opt.value.toLowerCase() !== 'default title'
+        ) {
+          if (currentUrl.searchParams.get(opt.name) !== opt.value) {
+            currentUrl.searchParams.set(opt.name, opt.value);
+            urlChanged = true;
+          }
+        }
+      }
+    } else if (!hasMultipleVariants) {
+      // Single variant product: ensure no variant option query params linger in URL
+      for (const opt of selectedVariant?.selectedOptions || []) {
+        if (currentUrl.searchParams.has(opt.name)) {
+          currentUrl.searchParams.delete(opt.name);
+          urlChanged = true;
+        }
+      }
+    }
+
+    if (urlChanged) {
+      const searchStr = currentUrl.searchParams.toString();
+      const cleanPath = `${currentUrl.pathname}${searchStr ? `?${searchStr}` : ''}`;
+      window.history.replaceState({}, '', cleanPath);
+    }
+  }, [selectedVariant, productOptions]);
+}
+
 export default function Product() {
   const {product, recommendedProducts} = useLoaderData<typeof loader>();
+  const {open} = useAside();
 
   const selectedVariant = useOptimisticVariant(
     product.selectedOrFirstAvailableVariant,
     getAdjacentAndFirstAvailableVariants(product),
   );
 
-  useSelectedOptionInUrlParam(selectedVariant.selectedOptions);
-
   const productOptions = getProductOptions({
     ...product,
     selectedOrFirstAvailableVariant: selectedVariant,
   });
 
-  const {title, descriptionHtml, collections, images} = product;
+  useCleanProductUrl(selectedVariant, productOptions);
+
+  const {title, descriptionHtml, collections, images, handle} = product;
   const collection = collections?.nodes?.[0];
+  const socialProof = getShopeeProductData(handle);
 
-  const accordionItems: {title: string; content: React.ReactNode; defaultOpen?: boolean}[] = [
-    {
-      title: 'Description',
-      content: <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />,
+  const accordionItems: {title: string; content: React.ReactNode; defaultOpen?: boolean}[] = [];
+
+  // 1. Deskripsi Produk (Only if non-empty)
+  if (descriptionHtml && descriptionHtml.replace(/<[^>]+>/g, '').trim().length > 0) {
+    accordionItems.push({
+      title: 'Deskripsi Produk',
+      content: (
+        <div
+          className="prose prose-sm max-w-none text-text-secondary/90 leading-relaxed space-y-2 [&_p]:mb-2 [&_p:last-child]:mb-0 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_strong]:font-semibold [&_strong]:text-text"
+          dangerouslySetInnerHTML={{__html: descriptionHtml}}
+        />
+      ),
       defaultOpen: true,
-    },
-  ];
-
-  if (product.caraPakai?.value) {
-    accordionItems.push({
-      title: 'How to Use',
-      content: <div dangerouslySetInnerHTML={{__html: product.caraPakai.value}} />,
     });
   }
 
-  if (product.ingredients?.value) {
+  // 2. custom.manfaat (Dynamic: only if filled)
+  if (hasMetafieldContent(product.manfaat)) {
     accordionItems.push({
-      title: 'Ingredients',
-      content: <div dangerouslySetInnerHTML={{__html: product.ingredients.value}} />,
+      title: 'Manfaat Formula',
+      content: <MetafieldContent value={product.manfaat?.value} />,
     });
   }
 
+  // 3. custom.cara_pakai (Dynamic: only if filled)
+  if (hasMetafieldContent(product.caraPakai)) {
+    accordionItems.push({
+      title: 'Cara Penggunaan',
+      content: <MetafieldContent value={product.caraPakai?.value} />,
+    });
+  }
+
+  // 4. custom.ingredients (Dynamic: only if filled)
+  if (hasMetafieldContent(product.ingredients)) {
+    accordionItems.push({
+      title: 'Kandungan Aktif (Ingredients)',
+      content: <MetafieldContent value={product.ingredients?.value} />,
+    });
+  }
+
+  // 5. Garansi & Pengiriman
   accordionItems.push({
-    title: 'Shipping',
+    title: 'Garansi & Pengiriman',
     content: (
-      <p>
-        Ships within 1-2 business days from Surabaya.<br />
-        Indonesia: 2-5 days.<br />
-        Malaysia/Singapore: 5-10 days.
-      </p>
+      <div className="space-y-2 text-xs sm:text-sm text-text-secondary/85 leading-relaxed">
+        <p className="flex items-center gap-2">
+          <Truck className="w-4 h-4 text-primary flex-shrink-0" />
+          <span>Dikirim langsung dari Surabaya (estimasi proses 1-2 hari kerja).</span>
+        </p>
+        <p>• Pengiriman Pulau Jawa: 2-3 hari kerja.</p>
+        <p>• Luar Pulau Jawa: 3-5 hari kerja.</p>
+        <p>• Jaminan 100% Produk Original BPOM & packing aman bubble wrap tebal.</p>
+      </div>
     ),
   });
 
+  if (accordionItems.length > 0 && !accordionItems.some((item) => item.defaultOpen)) {
+    accordionItems[0].defaultOpen = true;
+  }
+
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-10 pb-28 md:pb-16 min-w-0 w-full overflow-x-clip">
       {/* Minimalist Micro Breadcrumb */}
-      <nav className="mb-6 text-xs font-mono uppercase tracking-wider text-black/40 flex items-center gap-2">
-        <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+      <nav className="mb-6 text-[11px] font-mono uppercase tracking-wider text-black/40 flex items-center gap-2 overflow-x-auto scrollbar-none min-w-0 max-w-full">
+        <Link to="/" className="hover:text-primary transition-colors flex-shrink-0">Home</Link>
         <span>/</span>
         {collection ? (
           <>
-            <Link to={`/collections/${collection.handle}`} className="hover:text-primary transition-colors">
+            <Link to={`/collections/${collection.handle}`} className="hover:text-primary transition-colors flex-shrink-0">
               {collection.title}
             </Link>
             <span>/</span>
           </>
-        ) : null}
+        ) : (
+          <>
+            <Link to="/collections/all" className="hover:text-primary transition-colors flex-shrink-0">
+              Koleksi
+            </Link>
+            <span>/</span>
+          </>
+        )}
         <span className="text-black/80 font-medium truncate max-w-xs">{title}</span>
       </nav>
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-12">
-        {/* Left: Image Gallery (55%) */}
-        <div className="md:col-span-7 lg:col-span-6 xl:col-span-7">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10 xl:gap-14 min-w-0 max-w-full lg:items-start">
+        {/* Left: Image Gallery (Sticky on desktop) */}
+        <div className="lg:col-span-7 min-w-0 max-w-full lg:sticky lg:top-24 self-start">
           <ProductImage images={images?.nodes || []} />
         </div>
 
-        {/* Right: Product Info (45%) */}
-        <div className="md:col-span-5 lg:col-span-6 xl:col-span-5">
-          <h1 className="font-serif text-3xl sm:text-4xl text-text font-normal tracking-tight">{title}</h1>
+        {/* Right: Product Info (Natural scroll since description & accordions are long) */}
+        <div className="lg:col-span-5 flex flex-col min-w-0 max-w-full">
+          {/* Social Proof & Reassurance */}
+          <div className="flex items-center gap-2 sm:gap-2.5 mb-3 text-xs text-text-secondary flex-wrap">
+            <a
+              href="#reviews-section"
+              className="inline-flex items-center gap-1.5 hover:text-primary transition-colors group/rating"
+            >
+              <div className="flex items-center gap-0.5 text-amber-400">
+                <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400 flex-shrink-0" />
+                <span className="font-semibold text-text group-hover/rating:text-primary">
+                  {socialProof.rating}
+                </span>
+              </div>
+              <span className="text-text-secondary underline decoration-black/20 underline-offset-2 group-hover/rating:decoration-primary">
+                ({socialProof.reviews} Penilaian)
+              </span>
+            </a>
+
+            <span className="text-black/20">•</span>
+
+            <span className="text-text-secondary">
+              <strong className="text-text font-semibold">{socialProof.sold}</strong> Terjual
+            </span>
+
+            <span className="text-black/20">•</span>
+
+            <span className="inline-flex items-center gap-1 text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-2 py-0.5 rounded-md font-medium text-[11px]">
+              <CheckCircle2 className="w-3 h-3 text-emerald-600 flex-shrink-0" />
+              <span>{socialProof.bpomNumber}</span>
+            </span>
+          </div>
+
+          <h1 className="font-serif text-2xl sm:text-3xl text-text font-normal tracking-tight leading-[1.2] mb-3">
+            {title}
+          </h1>
           
           <ProductPrice
             price={selectedVariant?.price}
             compareAtPrice={selectedVariant?.compareAtPrice}
           />
 
-          <div className="mt-8">
+          <div className="mt-6">
             <ProductForm
               productOptions={productOptions}
               selectedVariant={selectedVariant}
             />
           </div>
 
-          {/* Trust Highlights — Minimalist Clean Strip */}
-          <div className="mt-8 border-y border-black/[0.06] py-3.5 flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-black/60">
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-black/40" />
-              BPOM Resmi
-            </span>
-            <span className="text-black/20">•</span>
-            <span className="flex items-center gap-1.5">
-              <Heart className="w-3.5 h-3.5 text-black/40" />
-              Cruelty-Free
-            </span>
-            <span className="text-black/20">•</span>
-            <span className="flex items-center gap-1.5">
-              <Package className="w-3.5 h-3.5 text-black/40" />
-              Surabaya, ID
-            </span>
+          <div className="mt-8">
+            <Accordion items={accordionItems} />
           </div>
-
-          <Accordion items={accordionItems} />
         </div>
       </div>
 
-      {/* Related Products */}
-      <div className="mt-24">
-        <h2 className="mb-8 font-serif text-2xl text-center md:text-left">Complete Your Routine</h2>
-        <Suspense fallback={<div className="h-64 animate-pulse rounded-2xl bg-accent-light" />}>
+      {/* 2. Customer Reviews & Ratings Section (Shopee UI & UX) */}
+      <ProductReviews productTitle={title} productHandle={handle} />
+
+      {/* Related Products / Routine — Exactly 4 Items */}
+      <div className="mt-16 sm:mt-24 border-t border-black/[0.06] pt-12 sm:pt-16 min-w-0 max-w-full">
+        <div className="mb-8 text-center md:text-left">
+          <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.25em] text-black/50 block mb-1.5">
+            Perawatan Maksimal
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl text-text font-normal tracking-tight">
+            Lengkapi Routine Glowing Kamu
+          </h2>
+        </div>
+        <Suspense fallback={<div className="h-64 animate-pulse rounded-3xl bg-[#FAF9FB]" />}>
           <Await resolve={recommendedProducts}>
-            {(data) => (
-              <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-                {data?.productRecommendations?.map((rec: any) => (
-                  <ProductCard key={rec.id} product={rec} />
-                ))}
-              </div>
-            )}
+            {(data) => {
+              const items = (data?.productRecommendations || []).slice(0, 4);
+              if (!items.length) return null;
+              return (
+                <div className="grid grid-cols-2 gap-3.5 sm:gap-4 md:grid-cols-4 md:gap-6 min-w-0">
+                  {items.map((rec: any) => (
+                    <ProductCard key={rec.id} product={rec} />
+                  ))}
+                </div>
+              );
+            }}
           </Await>
         </Suspense>
+      </div>
+
+      {/* Mobile Fixed Sticky Add-to-Cart Dock */}
+      <div className="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-black/[0.08] px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] sm:hidden shadow-[0_-8px_25px_rgba(0,0,0,0.06)] flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2.5 min-w-0 flex-1">
+          {selectedVariant?.image?.url || images?.nodes?.[0]?.url ? (
+            <div className="w-11 h-11 rounded-xl overflow-hidden bg-[#F8F7FA] flex-shrink-0 flex items-center justify-center">
+              <img
+                src={selectedVariant?.image?.url || images?.nodes?.[0]?.url}
+                alt={title}
+                className="w-full h-full object-contain p-0.5"
+              />
+            </div>
+          ) : null}
+          <div className="flex flex-col min-w-0">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-black/40 truncate">{title}</span>
+            <span className="font-bold text-sm text-text leading-tight">
+              {selectedVariant?.price && (
+                <Money data={selectedVariant.price} withoutTrailingZeros />
+              )}
+            </span>
+          </div>
+        </div>
+        <div className="w-36 flex-shrink-0">
+          <AddToCartButton
+            disabled={!selectedVariant || !selectedVariant.availableForSale}
+            onClick={() => open('cart')}
+            lines={
+              selectedVariant
+                ? [
+                    {
+                      merchandiseId: selectedVariant.id,
+                      quantity: 1,
+                      selectedVariant,
+                    },
+                  ]
+                : []
+            }
+            className="w-full h-11 flex items-center justify-center bg-[#111111] hover:bg-black active:scale-[0.99] text-white rounded-full font-medium text-xs tracking-wide transition-all shadow-xs disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          >
+            {selectedVariant?.availableForSale ? '+ Keranjang' : 'Habis'}
+          </AddToCartButton>
+        </div>
       </div>
 
       <Analytics.ProductView

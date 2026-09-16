@@ -7,11 +7,13 @@ import {
 } from '@shopify/hydrogen';
 import type {CartApiQueryFragment} from 'storefrontapi.generated';
 import {useAside} from '~/components/Aside';
+import {SearchPopover} from '~/components/SearchPopover';
 import logoUrl from '~/assets/logo-beauty-inu.webp';
 import {
   Menu,
   Search,
   ShoppingBag,
+  User,
   Sparkles,
   Truck,
   ShieldCheck,
@@ -34,10 +36,10 @@ interface HeaderProps {
 }
 
 export const SECONDARY_LINKS = [
+  {label: 'Akun Saya', to: '/account'},
   {label: 'Lacak Pesanan', to: '/pages/track-order'},
   {label: 'Distributor Resmi', to: '/pages/distributor'},
   {label: 'FAQ', to: '/pages/faq'},
-  {label: 'Pengiriman & Retur', to: '/pages/shipping-returns'},
 ];
 
 export function Header({isLoggedIn, cart}: HeaderProps) {
@@ -46,11 +48,22 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
   const location = useLocation();
   const pathname = location.pathname;
 
+  const isHomepage = pathname === '/';
+
   const isShopActive =
     (pathname.startsWith('/collections') && pathname !== '/collections/bundles') ||
     pathname.startsWith('/products');
   const isBundlesActive = pathname === '/collections/bundles';
   const isBlogActive = pathname.startsWith('/blogs');
+
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.style.setProperty(
+        '--announcement-height',
+        showAnnouncement ? '36px' : '0px'
+      );
+    }
+  }, [showAnnouncement]);
 
   useEffect(() => {
     let ticking = false;
@@ -61,9 +74,9 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
           const currentY = window.scrollY;
           setIsScrolled((prev) => {
             // Hysteresis buffer to prevent oscillation/jitter:
-            // Switch to scrolled state when past 40px, only reset when near top (< 12px)
-            if (!prev && currentY > 40) return true;
-            if (prev && currentY < 12) return false;
+            // Switch to scrolled state when past 20px, only reset when near top (< 8px)
+            if (!prev && currentY > 20) return true;
+            if (prev && currentY < 8) return false;
             return prev;
           });
           ticking = false;
@@ -109,13 +122,15 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
         </div>
       )}
 
-      {/* 2. Main Navbar — Mid Center Logo with Apple/Luxury Frosted Glass on Scroll */}
+      {/* 2. Main Navbar — Seamless blend with Hero on Homepage, Frosted Glass on Scroll */}
       <header className="sticky top-0 z-40 w-full transition-colors duration-300">
         <div
-          className={`w-full transition-all duration-300 ${
+          className={`w-full transition-all duration-300 relative z-50 ${
             isScrolled
               ? 'bg-white/85 backdrop-blur-xl backdrop-saturate-180 shadow-[0_8px_32px_rgba(0,0,0,0.04)] border-b border-black/[0.04]'
-              : 'bg-transparent border-b border-transparent'
+              : isHomepage
+              ? 'bg-transparent border-b border-transparent'
+              : 'bg-white/95 backdrop-blur-md border-b border-black/[0.04]'
           }`}
         >
         <div
@@ -137,7 +152,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                 <Link
                   to="/collections/frontpage"
                   prefetch="intent"
-                  className={`px-3.5 py-1.5 rounded-full text-[13px] tracking-tight transition-all duration-200 flex items-center gap-1 cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-full text-[13px] xl:text-sm tracking-tight transition-all duration-200 flex items-center gap-1 cursor-pointer ${
                     isShopActive
                       ? 'bg-primary/10 text-primary font-bold shadow-2xs'
                       : 'text-text/75 font-semibold hover:text-primary hover:bg-accent-light/50'
@@ -301,7 +316,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                 <Link
                   to="/collections/bundles"
                   prefetch="intent"
-                  className={`px-3.5 py-1.5 rounded-full text-[13px] tracking-tight transition-all duration-200 flex items-center cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-full text-[13px] xl:text-sm tracking-tight transition-all duration-200 flex items-center cursor-pointer ${
                     isBundlesActive
                       ? 'bg-primary/10 text-primary font-bold shadow-2xs'
                       : 'text-text/75 font-semibold hover:text-primary hover:bg-accent-light/50'
@@ -346,7 +361,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
               {/* Item 3: Panduan Kulit (Skin Routine & Matcher Guide) */}
               <a
                 href="/#routine-system"
-                className="px-3.5 py-1.5 rounded-full text-[13px] font-semibold tracking-tight transition-all duration-200 text-text/75 hover:text-primary hover:bg-accent-light/50 cursor-pointer"
+                className="px-3.5 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold tracking-tight transition-all duration-200 text-text/75 hover:text-primary hover:bg-accent-light/50 cursor-pointer"
               >
                 Panduan Kulit
               </a>
@@ -355,7 +370,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
               <Link
                 to="/blogs/news"
                 prefetch="intent"
-                className={`px-3.5 py-1.5 rounded-full text-[13px] tracking-tight transition-all duration-200 flex items-center gap-1.5 cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-full text-[13px] xl:text-sm tracking-tight transition-all duration-200 flex items-center gap-1.5 cursor-pointer ${
                   isBlogActive
                     ? 'bg-primary/10 text-primary font-bold shadow-2xs'
                     : 'text-text/75 font-semibold hover:text-primary hover:bg-accent-light/50'
@@ -379,7 +394,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                 src={logoUrl}
                 alt="Beautyinu — Your Bodycare Bestie"
                 className={`w-auto object-contain transition-all duration-300 group-hover:scale-[1.02] ${
-                  isScrolled ? 'h-6 sm:h-7 md:h-8' : 'h-7 sm:h-8 md:h-10'
+                  isScrolled ? 'h-[27px] sm:h-8 md:h-8.5' : 'h-[34px] sm:h-9 md:h-10'
                 }`}
                 width={160}
                 height={40}
@@ -387,78 +402,123 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
             </NavLink>
           </div>
 
-          {/* Right Wing: Quick WA Pill + Search + Cart */}
-          <div className="flex items-center justify-end gap-2 sm:gap-3 flex-1">
-            {/* Desktop WA Consultation Quick Pill */}
-            <a
-              href="https://wa.me/6287777118186?text=Halo%20Beautyinu%2C%20saya%20ingin%20konsultasi%20skincare"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden xl:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-accent-light hover:bg-primary text-text hover:text-white transition-all shadow-2xs group"
-              aria-label="Konsultasi langsung via WhatsApp"
-            >
-              <MessageCircle className="w-3.5 h-3.5 text-primary group-hover:text-white transition-colors" strokeWidth={1.5} />
-              <span>Tanya CS</span>
-            </a>
-
+          {/* Right Wing: Search + Account + Cart */}
+          <div className="flex items-center justify-end gap-1 sm:gap-2 flex-1">
             {/* Search Toggle */}
             <SearchToggle />
+
+            {/* Account Toggle */}
+            <AccountToggle isLoggedIn={isLoggedIn} />
 
             {/* Cart Toggle */}
             <CartToggle cart={cart} />
           </div>
         </div>
       </div>
+      {/* Floating Header Search Popover (Tooltip / Dropdown Modal) */}
+      <SearchPopover />
     </header>
     </>
   );
 }
 
 function MobileMenuToggle() {
-  const {open} = useAside();
+  const {type, open, close} = useAside();
+  const isOpen = type === 'mobile';
+
   return (
     <button
-      className="w-10 h-10 rounded-full -ml-2 flex items-center justify-center text-text hover:text-primary hover:bg-accent-light/50 transition-colors focus:outline-none cursor-pointer"
-      onClick={() => open('mobile')}
-      aria-label="Buka navigasi menu"
+      type="button"
+      className={`group relative w-10 h-10 rounded-full -ml-1.5 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer active:scale-95 ${
+        isOpen
+          ? 'bg-[#111111] text-white shadow-xs'
+          : 'text-text hover:text-primary hover:bg-black/[0.04]'
+      }`}
+      onClick={() => (isOpen ? close() : open('mobile'))}
+      aria-label={isOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
+      aria-expanded={isOpen}
     >
-      <Menu className="w-5 h-5" strokeWidth={1.5} />
+      <div className="relative w-[19px] h-[13px] flex flex-col justify-between items-center">
+        {/* Top Bar */}
+        <span
+          className={`h-[1.75px] rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isOpen
+              ? 'w-[19px] bg-white translate-y-[5.6px] rotate-45'
+              : 'w-[19px] bg-current'
+          }`}
+        />
+        {/* Middle Bar (Architectural shorter bar - modern flat design signature) */}
+        <span
+          className={`h-[1.75px] rounded-full transition-all duration-200 ease-out origin-left ${
+            isOpen
+              ? 'w-0 opacity-0'
+              : 'w-[13px] self-start bg-current group-hover:w-[19px]'
+          }`}
+        />
+        {/* Bottom Bar */}
+        <span
+          className={`h-[1.75px] rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isOpen
+              ? 'w-[19px] bg-white -translate-y-[5.6px] -rotate-45'
+              : 'w-[19px] bg-current'
+          }`}
+        />
+      </div>
     </button>
   );
 }
 
 function SearchToggle() {
-  const {open} = useAside();
+  const {type, open, close} = useAside();
+  const isOpen = type === 'search';
   return (
     <button
-      className="w-10 h-10 rounded-full flex items-center justify-center text-text hover:text-primary hover:bg-accent-light/50 transition-colors focus:outline-none cursor-pointer"
-      onClick={() => open('search')}
-      aria-label="Cari produk kecantikan"
+      className={`w-10 h-10 rounded-full flex items-center justify-center transition-all focus:outline-none cursor-pointer ${
+        isOpen
+          ? 'bg-[#1A1A1A] text-white shadow-xs'
+          : 'text-text hover:text-primary hover:bg-accent-light/50'
+      }`}
+      onClick={() => (isOpen ? close() : open('search'))}
+      aria-label={isOpen ? 'Tutup pencarian' : 'Cari produk kecantikan'}
+      aria-expanded={isOpen}
     >
-      <Search className="w-5 h-5" strokeWidth={1.5} />
+      {isOpen ? (
+        <X className="w-4 h-4" strokeWidth={1.5} />
+      ) : (
+        <Search className="w-5 h-5" strokeWidth={1.5} />
+      )}
     </button>
   );
 }
 
 function CartBadge({count}: {count: number}) {
-  const {open} = useAside();
+  const {type, open, close} = useAside();
+  const isOpen = type === 'cart';
   const {publish, shop, cart, prevCart} = useAnalytics();
 
   return (
-    <a
-      href="/cart"
-      className="relative w-10 h-10 rounded-full flex items-center justify-center text-text hover:text-primary hover:bg-accent-light/50 transition-colors focus:outline-none cursor-pointer"
-      onClick={(e) => {
-        e.preventDefault();
-        open('cart');
-        publish('cart_viewed', {
-          cart,
-          prevCart,
-          shop,
-          url: window.location.href || '',
-        } as CartViewPayload);
+    <button
+      type="button"
+      className={`relative w-10 h-10 rounded-full flex items-center justify-center transition-all focus:outline-none cursor-pointer ${
+        isOpen
+          ? 'bg-[#1A1A1A] text-white shadow-xs'
+          : 'text-text hover:text-primary hover:bg-accent-light/50'
+      }`}
+      onClick={() => {
+        if (isOpen) {
+          close();
+        } else {
+          open('cart');
+          publish('cart_viewed', {
+            cart,
+            prevCart,
+            shop,
+            url: window.location.href || '',
+          } as CartViewPayload);
+        }
       }}
       aria-label={`Keranjang Belanja ${count} item`}
+      aria-expanded={isOpen}
     >
       <ShoppingBag className="w-5 h-5" strokeWidth={1.5} />
       {count > 0 && (
@@ -466,7 +526,7 @@ function CartBadge({count}: {count: number}) {
           {count}
         </span>
       )}
-    </a>
+    </button>
   );
 }
 
@@ -486,6 +546,33 @@ function CartBanner() {
   return <CartBadge count={cart?.totalQuantity ?? 0} />;
 }
 
+function AccountToggle({isLoggedIn}: Pick<HeaderProps, 'isLoggedIn'>) {
+  return (
+    <Suspense fallback={<AccountBadge isLoggedIn={false} />}>
+      <Await resolve={isLoggedIn}>
+        {(loggedIn) => <AccountBadge isLoggedIn={Boolean(loggedIn)} />}
+      </Await>
+    </Suspense>
+  );
+}
+
+function AccountBadge({isLoggedIn}: {isLoggedIn: boolean}) {
+  return (
+    <NavLink
+      to="/account"
+      prefetch="intent"
+      className="hidden sm:flex relative w-10 h-10 rounded-full items-center justify-center text-text hover:text-primary hover:bg-accent-light/50 transition-colors focus:outline-none cursor-pointer"
+      aria-label={isLoggedIn ? 'Akun Saya' : 'Masuk ke Akun'}
+      title={isLoggedIn ? 'Akun Saya' : 'Masuk ke Akun'}
+    >
+      <User className="w-5 h-5" strokeWidth={1.5} />
+      {isLoggedIn && (
+        <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary ring-2 ring-white" />
+      )}
+    </NavLink>
+  );
+}
+
 export function MobileMenu() {
   const {close} = useAside();
   const location = useLocation();
@@ -496,49 +583,26 @@ export function MobileMenu() {
     pathname.startsWith('/products');
   const isBundlesActive = pathname === '/collections/bundles';
   const isBlogActive = pathname.startsWith('/blogs');
+  const isAccountActive = pathname.startsWith('/account');
 
   const [isShopExpanded, setIsShopExpanded] = useState(isShopActive);
 
   return (
-    <div className="flex flex-col min-h-full justify-between pb-6 bg-white text-text">
+    <div className="flex flex-col min-h-full justify-between p-5 pb-8 bg-white text-text overflow-y-auto overscroll-contain">
       <div>
-        {/* 1. Featured Promo Card Highlight */}
-        <div className="rounded-2xl bg-gradient-to-br from-surface via-white to-accent-light/50 border border-border p-4 mb-5 shadow-2xs">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary px-2 py-0.5 rounded-full">
-              Best Deal
-            </span>
-            <span className="text-[11px] font-bold text-accent">Diskon s/d 47%</span>
-          </div>
-          <h4 className="font-serif text-base font-bold text-text mb-1">
-            Glowing Set (3-in-1) Routine
-          </h4>
-          <p className="text-xs text-text-secondary mb-3 leading-relaxed">
-            Sinergi Cleanse, Boost &amp; Protect untuk kulit tampak cerah alami dan lembap terawat.
-          </p>
-          <Link
-            to="/collections/bundles"
-            onClick={close}
-            className="flex items-center justify-center gap-1.5 w-full py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer"
-          >
-            <span>Lihat Paket Hemat</span>
-            <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />
-          </Link>
-        </div>
-
-        {/* 2. Primary 4 Nav Items (Shop with Accordion, Paket Hemat with Badge, Panduan Kulit, Blog) */}
+        {/* Primary Nav List (Shop Accordion, Paket Hemat, Panduan Kulit, Blog, Akun Saya) */}
         <nav className="flex flex-col divide-y divide-black/[0.04]">
           {/* Shop Accordion Item */}
-          <div className="py-2">
+          <div className="py-1">
             <button
               type="button"
               onClick={() => setIsShopExpanded(!isShopExpanded)}
-              className={`flex items-center justify-between w-full py-2 text-left cursor-pointer group ${
+              className={`flex items-center justify-between w-full py-3.5 text-left cursor-pointer group ${
                 isShopActive ? 'text-primary' : 'text-text'
               }`}
               aria-expanded={isShopExpanded}
             >
-              <span className={`font-serif text-xl sm:text-2xl tracking-tight transition-colors ${
+              <span className={`font-serif text-2xl tracking-tight transition-colors ${
                 isShopActive ? 'text-primary font-bold' : 'group-hover:text-primary'
               }`}>
                 Shop
@@ -552,51 +616,51 @@ export function MobileMenu() {
             </button>
 
             {isShopExpanded && (
-              <div className="pl-3 pr-1 pt-2 pb-1 space-y-2 animate-in fade-in slide-in-from-top-1 duration-200">
+              <div className="pl-3 pr-1 pt-1 pb-2 space-y-1 animate-in fade-in slide-in-from-top-1 duration-200">
                 <Link
                   to="/collections/frontpage"
                   onClick={close}
-                  className="flex items-center justify-between py-1.5 text-sm text-text/80 hover:text-primary transition-colors"
+                  className="flex items-center justify-between py-2 text-sm text-text/80 hover:text-primary transition-colors"
                 >
                   <span>Semua Produk</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-text-secondary/50" />
+                  <ChevronRight className="w-3.5 h-3.5 text-text-secondary/40" />
                 </Link>
                 <Link
                   to="/collections/body-care"
                   onClick={close}
-                  className="flex items-center justify-between py-1.5 text-sm text-text/80 hover:text-primary transition-colors"
+                  className="flex items-center justify-between py-2 text-sm text-text/80 hover:text-primary transition-colors"
                 >
                   <span>Body Care Series</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-text-secondary/50" />
+                  <ChevronRight className="w-3.5 h-3.5 text-text-secondary/40" />
                 </Link>
                 <Link
                   to="/collections/best-sellers"
                   onClick={close}
-                  className="flex items-center justify-between py-1.5 text-sm text-text/80 hover:text-primary transition-colors"
+                  className="flex items-center justify-between py-2 text-sm text-text/80 hover:text-primary transition-colors"
                 >
                   <div className="flex items-center gap-1.5">
                     <span>Best Sellers</span>
-                    <span className="text-[9px] font-bold uppercase bg-accent-light text-accent px-1.5 py-0.2 rounded-full">
+                    <span className="text-[9px] font-bold uppercase bg-accent-light text-accent px-1.5 py-0.5 rounded-full">
                       Favorit
                     </span>
                   </div>
-                  <ChevronRight className="w-3.5 h-3.5 text-text-secondary/50" />
+                  <ChevronRight className="w-3.5 h-3.5 text-text-secondary/40" />
                 </Link>
                 <Link
                   to="/products/kefir-collagen-soap-60gr"
                   onClick={close}
-                  className="flex items-center justify-between py-1.5 text-sm text-text/80 hover:text-primary transition-colors"
+                  className="flex items-center justify-between py-2 text-sm text-text/80 hover:text-primary transition-colors"
                 >
                   <span>Sabun Kefir Collagen</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-text-secondary/50" />
+                  <ChevronRight className="w-3.5 h-3.5 text-text-secondary/40" />
                 </Link>
                 <a
                   href="/#routine-system"
                   onClick={close}
-                  className="flex items-center justify-between py-1.5 text-sm text-text/80 hover:text-primary transition-colors"
+                  className="flex items-center justify-between py-2 text-sm text-text/80 hover:text-primary transition-colors"
                 >
                   <span>3-Step Daily Routine</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-text-secondary/50" />
+                  <ChevronRight className="w-3.5 h-3.5 text-text-secondary/40" />
                 </a>
               </div>
             )}
@@ -607,12 +671,12 @@ export function MobileMenu() {
             to="/collections/bundles"
             onClick={close}
             prefetch="intent"
-            className={`flex items-center justify-between py-3.5 transition-colors group ${
+            className={`flex items-center justify-between py-4 transition-colors group ${
               isBundlesActive ? 'text-primary font-semibold' : 'text-text hover:text-primary'
             }`}
           >
             <div className="flex items-center gap-2">
-              <span className="font-serif text-xl sm:text-2xl tracking-tight">Paket Hemat</span>
+              <span className="font-serif text-2xl tracking-tight">Paket Hemat</span>
               <span className="text-[10px] font-sans font-bold bg-primary/10 text-primary px-2 py-0.5 rounded-full uppercase tracking-wider">
                 Hemat 47%
               </span>
@@ -627,9 +691,9 @@ export function MobileMenu() {
           <a
             href="/#routine-system"
             onClick={close}
-            className="flex items-center justify-between py-3.5 text-text hover:text-primary transition-colors group"
+            className="flex items-center justify-between py-4 text-text hover:text-primary transition-colors group"
           >
-            <span className="font-serif text-xl sm:text-2xl tracking-tight">Panduan Kulit</span>
+            <span className="font-serif text-2xl tracking-tight">Panduan Kulit</span>
             <ChevronRight
               className="w-4 h-4 text-text-secondary/60 group-hover:text-primary group-hover:translate-x-0.5 transition-all"
               strokeWidth={1.5}
@@ -641,87 +705,92 @@ export function MobileMenu() {
             to="/blogs/news"
             onClick={close}
             prefetch="intent"
-            className={`flex items-center justify-between py-3.5 transition-colors group ${
+            className={`flex items-center justify-between py-4 transition-colors group ${
               isBlogActive ? 'text-primary font-semibold' : 'text-text hover:text-primary'
             }`}
           >
-            <span className="font-serif text-xl sm:text-2xl tracking-tight">Blog</span>
+            <span className="font-serif text-2xl tracking-tight">Blog</span>
             <ChevronRight
               className="w-4 h-4 text-text-secondary/60 group-hover:text-primary group-hover:translate-x-0.5 transition-all"
               strokeWidth={1.5}
             />
           </Link>
-        </nav>
 
-        {/* 3. Daily Routine Shortcut */}
-        <div className="mt-4 pt-3 border-t border-black/[0.04]">
-          <a
-            href="/#routine-system"
+          {/* Akun Saya (Featured prominently in mobile menu) */}
+          <NavLink
+            to="/account"
             onClick={close}
-            className="flex items-center justify-between p-3 rounded-xl bg-surface hover:bg-accent-light/60 transition-colors border border-border group"
+            prefetch="intent"
+            className={`flex items-center justify-between py-4 transition-colors group ${
+              isAccountActive ? 'text-primary font-semibold' : 'text-text hover:text-primary'
+            }`}
           >
             <div className="flex items-center gap-2.5">
-              <Sparkles className="w-4 h-4 text-primary" strokeWidth={1.5} />
-              <span className="text-xs font-semibold text-text group-hover:text-primary transition-colors">
-                Lihat 3-Step Daily Routine
-              </span>
+              <span className="font-serif text-2xl tracking-tight">Akun Saya</span>
             </div>
-            <ArrowRight className="w-3.5 h-3.5 text-text-secondary group-hover:text-primary transition-colors" strokeWidth={1.5} />
-          </a>
-        </div>
+            <ChevronRight
+              className="w-4 h-4 text-text-secondary/60 group-hover:text-primary group-hover:translate-x-0.5 transition-all"
+              strokeWidth={1.5}
+            />
+          </NavLink>
+        </nav>
 
-        {/* 4. Secondary Utility Links */}
-        <div className="mt-5 pt-4 border-t border-black/[0.04]">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-text-secondary mb-2.5">
+        {/* Secondary Utility Links */}
+        <div className="mt-8 pt-5 border-t border-black/[0.04]">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-text-secondary/70 mb-3">
             Bantuan &amp; Kemitraan
           </p>
-          <div className="grid grid-cols-2 gap-2">
-            {SECONDARY_LINKS.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                onClick={close}
-                prefetch="intent"
-                className="text-xs text-text-secondary hover:text-primary transition-colors py-1 truncate"
-              >
-                {link.label}
-              </NavLink>
-            ))}
+          <div className="grid grid-cols-2 gap-2.5">
+            <NavLink
+              to="/pages/track-order"
+              onClick={close}
+              prefetch="intent"
+              className="text-xs text-text-secondary hover:text-primary transition-colors py-1 truncate"
+            >
+              Lacak Pesanan
+            </NavLink>
+            <NavLink
+              to="/pages/distributor"
+              onClick={close}
+              prefetch="intent"
+              className="text-xs text-text-secondary hover:text-primary transition-colors py-1 truncate"
+            >
+              Distributor Resmi
+            </NavLink>
+            <NavLink
+              to="/pages/faq"
+              onClick={close}
+              prefetch="intent"
+              className="text-xs text-text-secondary hover:text-primary transition-colors py-1 truncate"
+            >
+              FAQ
+            </NavLink>
           </div>
         </div>
       </div>
 
-      {/* 5. Bottom WhatsApp Direct Advisor & Brand Trust Badge */}
-      <div className="mt-6 pt-2 flex flex-col gap-4">
-        {/* Direct WhatsApp Advisor */}
+      {/* Bottom WhatsApp Direct Advisor & Brand Trust Badge */}
+      <div className="mt-8 pt-4 border-t border-black/[0.04] flex flex-col gap-3.5">
         <a
           href="https://wa.me/6287777118186?text=Halo%20Beautyinu%2C%20saya%20ingin%20konsultasi%20skincare"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-between p-3.5 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/20 hover:bg-[#25D366]/20 transition-all text-text group cursor-pointer"
+          className="flex items-center justify-between py-2 text-text hover:text-[#25D366] transition-colors group cursor-pointer"
         >
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-[#25D366] text-white flex items-center justify-center flex-shrink-0 shadow-2xs">
-              <MessageCircle className="w-4 h-4" strokeWidth={1.5} />
-            </div>
-            <div className="text-left">
-              <div className="flex items-center gap-1.5">
-                <span className="text-xs font-bold text-text">Konsultasi Kulit Gratis</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
-              </div>
-              <p className="text-[11px] text-text-secondary">Chat WhatsApp Beauty Bestie</p>
-            </div>
+          <div className="flex items-center gap-2.5">
+            <MessageCircle className="w-4 h-4 text-[#25D366]" strokeWidth={1.5} />
+            <span className="text-xs font-semibold">Konsultasi Kulit via WhatsApp</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
           </div>
-          <ChevronRight className="w-4 h-4 text-text-secondary group-hover:text-[#25D366] group-hover:translate-x-0.5 transition-all" strokeWidth={1.5} />
+          <ChevronRight className="w-3.5 h-3.5 text-text-secondary/40 group-hover:text-[#25D366] group-hover:translate-x-0.5 transition-all" />
         </a>
 
-        {/* BPOM and Origin Trust Footnote */}
-        <div className="pt-3 border-t border-black/[0.04] flex items-center justify-between text-[11px] text-text-secondary font-medium">
+        <div className="flex items-center justify-between text-[11px] text-text-secondary/60 font-mono tracking-wider pt-2 border-t border-black/[0.03] px-0.5">
           <span className="flex items-center gap-1">
             <ShieldCheck className="w-3.5 h-3.5 text-primary" strokeWidth={1.5} />
-            100% BPOM Certified
+            100% BPOM CERTIFIED
           </span>
-          <span>Surabaya, Indonesia</span>
+          <span>SURABAYA, ID</span>
         </div>
       </div>
     </div>

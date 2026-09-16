@@ -47,50 +47,74 @@ export default function AccountLayout() {
 
   const heading = customer
     ? customer.firstName
-      ? `Welcome, ${customer.firstName}`
-      : `Welcome to your account.`
-    : 'Account Details';
+      ? `Selamat Datang, ${customer.firstName}`
+      : `Akun Saya`
+    : 'Rincian Akun';
 
   return (
-    <div className="account">
-      <h1>{heading}</h1>
-      <br />
-      <AccountMenu />
-      <br />
-      <br />
-      <Outlet context={{customer}} />
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:py-12 md:px-8">
+      {/* Header Account */}
+      <div className="mb-8 border-b border-black/[0.06] pb-6">
+        <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.25em] text-black/50 block mb-2">
+          Akun Pengguna · Beautyinu
+        </span>
+        <h1 className="font-serif text-3xl sm:text-4xl text-text font-normal tracking-tight">
+          {heading}
+        </h1>
+        <div className="mt-6">
+          <AccountMenu />
+        </div>
+      </div>
+
+      <div className="pt-2">
+        <Outlet context={{customer}} />
+      </div>
     </div>
   );
 }
 
 function AccountMenu() {
-  function isActiveStyle({
-    isActive,
-    isPending,
-  }: {
-    isActive: boolean;
-    isPending: boolean;
-  }) {
-    return {
-      fontWeight: isActive ? 'bold' : undefined,
-      color: isPending ? 'grey' : 'black',
-    };
-  }
+  const baseTabClasses =
+    'px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all cursor-pointer inline-flex items-center gap-1.5';
 
   return (
-    <nav role="navigation">
-      <NavLink to="/account/orders" style={isActiveStyle}>
-        Orders &nbsp;
+    <nav role="navigation" className="flex items-center gap-2 flex-wrap">
+      <NavLink
+        to="/account/orders"
+        className={({isActive}) =>
+          `${baseTabClasses} ${
+            isActive
+              ? 'bg-[#111111] text-white shadow-2xs font-semibold'
+              : 'bg-[#FAF9FB] hover:bg-[#F3EEFA] text-black/70 hover:text-primary border border-black/[0.05]'
+          }`
+        }
+      >
+        Pesanan Saya
       </NavLink>
-      &nbsp;|&nbsp;
-      <NavLink to="/account/profile" style={isActiveStyle}>
-        &nbsp; Profile &nbsp;
+      <NavLink
+        to="/account/profile"
+        className={({isActive}) =>
+          `${baseTabClasses} ${
+            isActive
+              ? 'bg-[#111111] text-white shadow-2xs font-semibold'
+              : 'bg-[#FAF9FB] hover:bg-[#F3EEFA] text-black/70 hover:text-primary border border-black/[0.05]'
+          }`
+        }
+      >
+        Profil
       </NavLink>
-      &nbsp;|&nbsp;
-      <NavLink to="/account/addresses" style={isActiveStyle}>
-        &nbsp; Addresses &nbsp;
+      <NavLink
+        to="/account/addresses"
+        className={({isActive}) =>
+          `${baseTabClasses} ${
+            isActive
+              ? 'bg-[#111111] text-white shadow-2xs font-semibold'
+              : 'bg-[#FAF9FB] hover:bg-[#F3EEFA] text-black/70 hover:text-primary border border-black/[0.05]'
+          }`
+        }
+      >
+        Buku Alamat
       </NavLink>
-      &nbsp;|&nbsp;
       <Logout />
     </nav>
   );
@@ -98,8 +122,13 @@ function AccountMenu() {
 
 function Logout() {
   return (
-    <Form className="account-logout" method="POST" action="/account/logout">
-      &nbsp;<button type="submit">Sign out</button>
+    <Form className="inline-block ml-auto sm:ml-2" method="POST" action="/account/logout">
+      <button
+        type="submit"
+        className="px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-black/50 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
+      >
+        Keluar
+      </button>
     </Form>
   );
 }

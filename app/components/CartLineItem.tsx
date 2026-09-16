@@ -8,7 +8,7 @@ import type {
   CartApiQueryFragment,
   CartLineFragment,
 } from 'storefrontapi.generated';
-import {Minus, Plus} from 'lucide-react';
+import {Minus, Plus, Trash2} from 'lucide-react';
 
 export type CartLine = OptimisticCartLine<CartApiQueryFragment>;
 
@@ -34,10 +34,14 @@ export function CartLineItem({
   const lineItemChildren = childrenMap[id];
   const childrenLabelId = `cart-line-children-${id}`;
 
+  const nonDefaultOptions = selectedOptions.filter(
+    (opt) => opt.value && opt.value !== 'Default Title',
+  );
+
   return (
-    <li key={id} className="flex flex-col gap-4">
-      <div className="flex gap-4">
-        {image && (
+    <li key={id} className="flex flex-col gap-3 py-3.5 first:pt-0 last:pb-0">
+      <div className="flex gap-3 sm:gap-4 items-start">
+        {image ? (
           <Image
             alt={title}
             aspectRatio="1/1"
@@ -45,13 +49,15 @@ export function CartLineItem({
             height={80}
             loading="lazy"
             width={80}
-            className="rounded-2xl object-contain w-20 h-20 bg-[#F6F5F8] p-1.5"
+            className="rounded-2xl object-contain w-18 h-18 sm:w-20 sm:h-20 bg-[#F7F6F9] p-1.5 flex-shrink-0"
           />
+        ) : (
+          <div className="rounded-2xl w-18 h-18 sm:w-20 sm:h-20 bg-[#F7F6F9] flex-shrink-0" />
         )}
 
-        <div className="flex-1 flex flex-col justify-between">
+        <div className="flex-1 min-w-0 flex flex-col justify-between self-stretch">
           <div className="flex justify-between items-start gap-2">
-            <div>
+            <div className="min-w-0 flex-1">
               <Link
                 prefetch="intent"
                 to={lineItemUrl}
@@ -60,26 +66,39 @@ export function CartLineItem({
                     close();
                   }
                 }}
-                className="hover:text-primary text-text font-semibold text-sm transition-colors"
+                className="hover:text-primary text-text font-semibold text-xs sm:text-sm line-clamp-2 transition-colors leading-snug"
               >
                 {product.title}
               </Link>
-              <ul className="text-xs text-text-secondary mt-1 space-y-0.5">
-                {selectedOptions.map((option) => (
-                  <li key={option.name}>
-                    {option.name}: {option.value}
-                  </li>
-                ))}
-              </ul>
+              {nonDefaultOptions.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mt-1">
+                  {nonDefaultOptions.map((option) => (
+                    <span
+                      key={option.name}
+                      className="text-[11px] text-text-secondary/80 font-normal"
+                    >
+                      {option.name}: {option.value}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
-            {line?.cost?.totalAmount && (
-              <span className="font-semibold text-text text-sm">
-                <Money data={line.cost.totalAmount} />
+            {line?.cost?.totalAmount ? (
+              <span className="font-bold text-text text-xs sm:text-sm flex-shrink-0">
+                <Money data={line.cost.totalAmount} withoutTrailingZeros />
               </span>
-            )}
+            ) : line?.merchandise?.price ? (
+              <span className="font-bold text-text text-xs sm:text-sm flex-shrink-0">
+                <Money data={line.merchandise.price} withoutTrailingZeros />
+              </span>
+            ) : (line as any)?.selectedVariant?.price ? (
+              <span className="font-bold text-text text-xs sm:text-sm flex-shrink-0">
+                <Money data={(line as any).selectedVariant.price} withoutTrailingZeros />
+              </span>
+            ) : null}
           </div>
-          
-          <div className="flex items-center gap-4 mt-2">
+
+          <div className="flex items-center justify-between gap-3 mt-2.5 pt-2 border-t border-black/[0.04]">
             <CartLineQuantity line={line} />
             <CartLineRemoveButton lineIds={[id]} disabled={!!line.isOptimistic} />
           </div>
@@ -87,11 +106,11 @@ export function CartLineItem({
       </div>
 
       {lineItemChildren ? (
-        <div className="ml-24">
+        <div className="ml-20 sm:ml-24">
           <p id={childrenLabelId} className="sr-only">
             Line items with {product.title}
           </p>
-          <ul aria-labelledby={childrenLabelId} className="space-y-4">
+          <ul aria-labelledby={childrenLabelId} className="space-y-3">
             {lineItemChildren.map((childLine) => (
               <CartLineItem
                 childrenMap={childrenMap}
@@ -119,26 +138,28 @@ function CartLineQuantity({line}: {line: CartLine}) {
   const nextQuantity = Number((quantity + 1).toFixed(0));
 
   return (
-    <div className="inline-flex items-center rounded-full bg-[#FAF8FC] overflow-hidden">
+    <div className="inline-flex items-center rounded-full bg-[#F7F6F9] p-0.5">
       <CartLineUpdateButton lines={[{id: lineId, quantity: prevQuantity}]}>
         <button
-          aria-label="Decrease quantity"
+          aria-label="Kurangi jumlah"
           disabled={quantity <= 1 || !!isOptimistic}
           name="decrease-quantity"
           value={prevQuantity}
-          className="w-7 h-7 flex items-center justify-center text-text hover:bg-neutral-200/50 transition-colors disabled:opacity-30"
+          className="w-6 h-6 flex items-center justify-center rounded-full text-text hover:bg-white hover:shadow-xs transition-all disabled:opacity-30 cursor-pointer"
         >
           <Minus className="w-3 h-3" />
         </button>
       </CartLineUpdateButton>
-      <span className="w-7 text-center text-xs font-semibold text-text">{quantity}</span>
+      <span className="w-7 text-center text-xs font-mono font-bold text-text select-none">
+        {quantity}
+      </span>
       <CartLineUpdateButton lines={[{id: lineId, quantity: nextQuantity}]}>
         <button
-          aria-label="Increase quantity"
+          aria-label="Tambah jumlah"
           name="increase-quantity"
           value={nextQuantity}
           disabled={!!isOptimistic}
-          className="w-7 h-7 flex items-center justify-center text-text hover:bg-neutral-200/50 transition-colors disabled:opacity-30"
+          className="w-6 h-6 flex items-center justify-center rounded-full text-text hover:bg-white hover:shadow-xs transition-all disabled:opacity-30 cursor-pointer"
         >
           <Plus className="w-3 h-3" />
         </button>
@@ -169,9 +190,11 @@ function CartLineRemoveButton({
       <button 
         disabled={disabled} 
         type="submit"
-        className="text-xs text-text-secondary hover:text-error transition-colors disabled:opacity-50"
+        aria-label="Hapus produk dari keranjang"
+        className="inline-flex items-center gap-1 text-[11px] font-medium text-text-secondary/50 hover:text-red-500 transition-colors disabled:opacity-30 p-1 rounded-full hover:bg-red-50 cursor-pointer"
       >
-        Remove
+        <Trash2 className="w-3.5 h-3.5" strokeWidth={1.5} />
+        <span>Hapus</span>
       </button>
     </CartForm>
   );

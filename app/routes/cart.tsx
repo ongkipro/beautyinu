@@ -1,4 +1,4 @@
-import {useLoaderData, data, type HeadersFunction} from 'react-router';
+import {useLoaderData, data, Link, type HeadersFunction} from 'react-router';
 import type {Route} from './+types/cart';
 import type {CartQueryDataReturn} from '@shopify/hydrogen';
 import {CartForm} from '@shopify/hydrogen';
@@ -7,8 +7,8 @@ import {getSeoMeta} from '~/lib/seo';
 
 export const meta: Route.MetaFunction = () => {
   return getSeoMeta({
-    title: 'Your Shopping Cart — Beautyinu',
-    description: 'Rincian keranjang belanja Anda di Beautyinu Official Store.',
+    title: 'Keranjang Belanja — Beautyinu',
+    description: 'Rincian keranjang belanja ritual kulit cerah Anda di Beautyinu Official Store.',
     noIndex: true,
   });
 };
@@ -108,8 +108,25 @@ export default function Cart() {
   const cart = useLoaderData<typeof loader>();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 lg:px-8 py-12">
-      <h1 className="font-serif text-3xl mb-8">Your Cart</h1>
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      {/* Breadcrumb */}
+      <nav aria-label="Breadcrumb" className="mb-4">
+        <ol className="flex items-center gap-2 text-xs text-text-secondary">
+          <li>
+            <Link to="/" className="hover:text-primary transition-colors">Beranda</Link>
+          </li>
+          <li>/</li>
+          <li className="text-text font-medium" aria-current="page">Keranjang Belanja</li>
+        </ol>
+      </nav>
+
+      <div className="mb-8 sm:mb-10">
+        <h1 className="font-serif text-3xl sm:text-4xl text-text">Keranjang Belanja</h1>
+        <p className="text-xs sm:text-sm text-text-secondary mt-1.5">
+          Periksa formula ritual kulit pilihanmu sebelum melanjutkan ke pembayaran.
+        </p>
+      </div>
+
       <CartMain layout="page" cart={cart} />
     </div>
   );

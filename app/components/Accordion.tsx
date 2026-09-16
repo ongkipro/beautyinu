@@ -6,15 +6,23 @@ export function Accordion({
 }: {
   items: {title: string; content: React.ReactNode; defaultOpen?: boolean}[];
 }) {
+  if (!items || items.length === 0) return null;
+
   return (
-    <div className="space-y-3 mt-8">
+    <div className="border-t border-black/[0.06]">
       {items.map((item, i) => (
-        <details key={i} className="group rounded-2xl bg-[#FAF8FC] p-4 sm:p-5" open={item.defaultOpen}>
-          <summary className="flex w-full cursor-pointer list-none items-center justify-between text-left font-serif text-base sm:text-lg text-text select-none">
-            <span>{item.title}</span>
-            <ChevronDown className="w-4 h-4 text-text-secondary transition-transform duration-200 group-open:rotate-180 flex-shrink-0" />
+        <details
+          key={item.title || i}
+          className="group border-b border-black/[0.06] py-3.5 sm:py-4 transition-colors"
+          open={item.defaultOpen}
+        >
+          <summary className="flex w-full cursor-pointer list-none [&::-webkit-details-marker]:hidden items-center justify-between text-left select-none">
+            <span className="font-sans text-[13px] sm:text-sm font-medium tracking-tight text-text/90 group-hover:text-primary transition-colors">
+              {item.title}
+            </span>
+            <ChevronDown className="w-4 h-4 text-black/35 group-hover:text-text/70 transition-transform duration-300 ease-out group-open:rotate-180 flex-shrink-0" />
           </summary>
-          <div className="mt-3 text-text-secondary text-sm leading-relaxed [&_p]:mb-3 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1">
+          <div className="pt-3 pb-1 text-xs sm:text-sm text-text-secondary/85 leading-relaxed">
             {item.content}
           </div>
         </details>

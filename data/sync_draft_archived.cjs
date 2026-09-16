@@ -109,9 +109,9 @@ const productsToActivate = [
         key: 'cara_pakai',
         type: 'rich_text_field',
         value: makeRichText([
-          'Cara Pemakaian:',
-          '1. Mode Daily Night Moisturizer (Tanpa Bilas): Oleskan tipis dan merata pada area tubuh (terutama siku, lutut, tumit) setelah mandi malam atau sebelum tidur. Pijat perlahan hingga meresap.',
-          '2. Mode Intensive Body Mask (Bilas): Oleskan tebal ke area tubuh yang kusam (dapat dipadukan dengan Brightening Booster Gold Powder rasio 1:1). Diamkan 10–15 menit, lalu bilas hingga bersih.'
+          '1. Mode Daily Night Moisturizer (Tanpa Bilas): Gunakan setelah mandi atau sebelum tidur. Ambil body cream secukupnya, oleskan tipis dan merata pada area tubuh (terutama siku, lutut, tumit), lalu pijat perlahan hingga meresap.',
+          '2. Mode Intensive Body Mask (Bilas): Oleskan body cream dengan tebal ke area tubuh (dapat dicampurkan dengan Brightening Booster Gold Powder rasio 1:1). Diamkan selama 10–15 menit, kemudian bilas hingga bersih.',
+          'Gunakan rutin setiap hari untuk hasil optimal.'
         ])
       },
       {
@@ -119,11 +119,11 @@ const productsToActivate = [
         key: 'ingredients',
         type: 'rich_text_field',
         value: makeRichText([
-          'Hero Ingredients & Fungsinya:',
-          '• Glutathione: Antioksidan utama untuk membantu kulit tampak cerah bercahaya dan terlindungi dari radikal bebas.',
-          '• Niacinamide: Mencerahkan noda hitam, meratakan warna kulit, dan memperkuat skin barrier.',
-          '• Licorice & Mulberry Extract: Ekstrak botani alami untuk menyamarkan hiperpigmentasi dan meremajakan sel kulit.',
-          '• Concentrated Glycerin: Menutrisi dan melembutkan kulit yang sangat kering, bersisik, atau kasar.'
+          '• Glycerin: Menjaga kelembapan kulit secara intensif, merawat kulit kering, dan memperkuat lapisan pelindung kulit (skin barrier).',
+          '• Glutathione: Antioksidan kuat untuk membantu kulit tampak lebih cerah, segar, dan terlindungi dari radikal bebas.',
+          '• Niacinamide: Mencerahkan kulit, mengurangi tampilan kusam, dan membantu warna kulit terlihat lebih merata.',
+          '• Licorice Extract: Bahan pencerah alami yang membantu menyamarkan tampilan noda hitam dan merawat kesehatan kulit.',
+          '• Mulberry Extract: Kaya antioksidan untuk meremajakan dan menyegarkan kulit tubuh.'
         ])
       },
       {
@@ -131,12 +131,11 @@ const productsToActivate = [
         key: 'manfaat',
         type: 'rich_text_field',
         value: makeRichText([
-          'Manfaat Utama:',
-          '• Melembapkan dan melembutkan area kulit yang kasar dan tebal.',
-          '• Membantu meratakan warna kulit tubuh yang belang secara teratur.',
-          '• Menutrisi kulit saat malam hari untuk mendukung regenerasi alami sel kulit.',
-          '• Formula lembut beraroma anggur segar yang menenangkan.',
-          '• Terdaftar resmi BPOM NA18230100799.'
+          '• Melembapkan dan melembutkan area kulit yang kasar serta sangat kering.',
+          '• Membantu mencerahkan dan meratakan warna kulit secara bertahap.',
+          '• Menutrisi kulit tubuh pada malam hari saat proses regenerasi sel berlangsung.',
+          '• Formula nyaman, tidak lengket, dan beraroma anggur segar menenangkan.',
+          '• Aman digunakan pria dan wanita mulai usia 12 tahun ke atas (BPOM NA18230100799).'
         ])
       }
     ]
@@ -171,9 +170,9 @@ const productsToActivate = [
         key: 'cara_pakai',
         type: 'rich_text_field',
         value: makeRichText([
-          'Cara Pemakaian:',
-          '1. Mode Daily Night Moisturizer (Tanpa Bilas): Oleskan tipis dan merata pada tubuh setelah mandi atau sebelum tidur. Pijat perlahan hingga meresap.',
-          '2. Mode Intensive Body Mask (Bilas): Oleskan tebal ke kulit tubuh, diamkan selama 10–15 menit, lalu bilas dengan air hingga bersih.'
+          '1. Mode Daily Night Moisturizer (Tanpa Bilas): Gunakan setelah mandi atau sebelum tidur. Ambil body cream secukupnya, oleskan tipis dan merata pada area tubuh (terutama siku, lutut, tumit), lalu pijat perlahan hingga meresap.',
+          '2. Mode Intensive Body Mask (Bilas): Oleskan body cream dengan tebal ke area tubuh (dapat dicampurkan dengan Brightening Booster Gold Powder rasio 1:1). Diamkan selama 10–15 menit, kemudian bilas hingga bersih.',
+          'Gunakan rutin setiap hari untuk hasil optimal.'
         ])
       },
       {
@@ -181,11 +180,11 @@ const productsToActivate = [
         key: 'ingredients',
         type: 'rich_text_field',
         value: makeRichText([
-          'Hero Ingredients & Fungsinya:',
-          '• Glutathione: Antioksidan kuat untuk membantu kulit tampak cerah dan bersinar alami.',
-          '• Niacinamide: Mengurangi kusam dan membantu warna kulit terlihat lebih merata.',
-          '• Licorice Extract: Bahan pencerah alami yang membantu menyamarkan noda hitam.',
-          '• Glycerin: Mengunci hidrasi dan menjaga kehalusan kulit sepanjang hari.'
+          '• Glycerin: Menjaga kelembapan kulit secara intensif, merawat kulit kering, dan memperkuat lapisan pelindung kulit (skin barrier).',
+          '• Glutathione: Antioksidan kuat untuk membantu kulit tampak lebih cerah, segar, dan terlindungi dari radikal bebas.',
+          '• Niacinamide: Mencerahkan kulit, mengurangi tampilan kusam, dan membantu warna kulit terlihat lebih merata.',
+          '• Licorice Extract: Bahan pencerah alami yang membantu menyamarkan tampilan noda hitam dan merawat kesehatan kulit.',
+          '• Mulberry Extract: Kaya antioksidan untuk meremajakan dan menyegarkan kulit tubuh.'
         ])
       },
       {
@@ -193,12 +192,11 @@ const productsToActivate = [
         key: 'manfaat',
         type: 'rich_text_field',
         value: makeRichText([
-          'Manfaat Utama:',
-          '• Menghidrasi area kulit tubuh yang kering dan kasar.',
-          '• Membantu kulit tampak lebih cerah dan bersih terawat.',
-          '• Menenangkan kulit dengan keharuman anggur segar.',
-          '• Kemasan 100gr yang praktis dan hemat.',
-          '• Terdaftar resmi BPOM NA18230100799.'
+          '• Melembapkan dan melembutkan area kulit yang kasar serta sangat kering.',
+          '• Membantu mencerahkan dan meratakan warna kulit secara bertahap.',
+          '• Menutrisi kulit tubuh pada malam hari saat proses regenerasi sel berlangsung.',
+          '• Formula nyaman, tidak lengket, dan beraroma anggur segar menenangkan.',
+          '• Aman digunakan pria dan wanita mulai usia 12 tahun ke atas (BPOM NA18230100799).'
         ])
       }
     ]

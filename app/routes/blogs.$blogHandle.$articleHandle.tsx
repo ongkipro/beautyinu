@@ -1,5 +1,5 @@
 import {useState, useEffect, useMemo} from 'react';
-import {Link, useLoaderData} from 'react-router';
+import {Link, redirect, useLoaderData} from 'react-router';
 import type {Route} from './+types/blogs.$blogHandle.$articleHandle';
 import {Image} from '@shopify/hydrogen';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
@@ -51,6 +51,10 @@ async function loadCriticalData({context, request, params}: Route.LoaderArgs) {
 
   if (!articleHandle || !blogHandle) {
     throw new Response('Not found', {status: 404});
+  }
+
+  if (blogHandle === 'berita' || blogHandle === 'journal' || blogHandle === 'articles') {
+    throw redirect(`/blogs/news/${articleHandle}`, 301);
   }
 
   const [{blog}, {products}] = await Promise.all([
@@ -152,16 +156,16 @@ export default function Article() {
 
         {/* 3. Editorial Header */}
         <header className="max-w-3xl mx-auto mb-8 sm:mb-12">
-          <span className="text-xs font-bold uppercase tracking-widest text-accent block mb-3">
-            Jurnal &amp; Edukasi Kulit
-          </span>
+          <p className="text-[10px] sm:text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-black/50 mb-2">
+            Beautyinu · Skincare Journal
+          </p>
 
           <h1 className="font-serif text-3xl sm:text-5xl lg:text-[52px] text-text font-normal leading-[1.15] tracking-tight mb-6">
             {title}
           </h1>
 
           {/* Clean Flat Byline Row */}
-          <div className="flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm text-text-secondary">
+          <div className="flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm text-text-secondary pb-6 border-b border-black/[0.06]">
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-text font-semibold">{authorName}</span>
               <span className="text-black/20">·</span>
@@ -176,7 +180,7 @@ export default function Article() {
 
         {/* 4. Hero Photography — Matching Standard aspect-[3/2] rounded-2xl */}
         {image && (
-          <div className="w-full max-w-4xl mx-auto mb-12 sm:mb-16 aspect-[3/2] overflow-hidden rounded-2xl bg-[#F0EAF8]">
+          <div className="w-full max-w-4xl mx-auto mb-12 sm:mb-16 aspect-[3/2] overflow-hidden rounded-3xl bg-[#F0EAF8] border border-black/[0.05]">
             <Image
               data={image}
               aspectRatio="3/2"
@@ -191,11 +195,11 @@ export default function Article() {
         <div className="max-w-3xl mx-auto">
           {/* Table of Contents (Clean, Consistent Font Pattern) */}
           {headings.length > 1 && (
-            <div className="mb-10 sm:mb-12 p-6 rounded-2xl bg-[#FAF8FC]">
-              <span className="text-xs font-bold uppercase tracking-widest text-accent block mb-3">
+            <div className="mb-10 sm:mb-12 p-6 sm:p-7 rounded-3xl bg-[#FAF9FB] border border-black/[0.05]">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-primary block mb-3">
                 Daftar Isi Artikel
               </span>
-              <ol className="space-y-2 text-sm text-text-secondary">
+              <ol className="space-y-2.5 text-xs sm:text-sm text-text-secondary">
                 {headings.map((heading, i) => (
                   <li key={heading.id} className="flex items-baseline gap-2.5">
                     <span className="font-semibold text-xs text-primary/80 select-none">
@@ -219,32 +223,32 @@ export default function Article() {
             className="prose prose-lg max-w-none
               [&_h2]:font-serif [&_h2]:text-2xl sm:[&_h2]:text-3xl [&_h2]:text-text [&_h2]:font-normal [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:tracking-tight [&_h2]:scroll-mt-20
               [&_h3]:font-serif [&_h3]:text-xl sm:[&_h3]:text-2xl [&_h3]:text-text [&_h3]:font-normal [&_h3]:mt-10 [&_h3]:mb-3 [&_h3]:scroll-mt-20
-              [&_p]:leading-relaxed [&_p]:mb-5 [&_p]:text-text [&_p]:text-base sm:[&_p]:text-lg
+              [&_p]:leading-[1.75] [&_p]:mb-5 [&_p]:text-text/90 [&_p]:text-base sm:[&_p]:text-[17px]
               [&_a]:text-primary [&_a]:underline hover:[&_a]:text-primary-hover [&_a]:font-medium
-              [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:space-y-2 [&_ul]:text-text
-              [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:space-y-2 [&_ol]:text-text
+              [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:space-y-2 [&_ul]:text-text/90
+              [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:space-y-2 [&_ol]:text-text/90
               [&_li]:leading-relaxed
               [&_hr]:hidden
-              [&_img]:w-full [&_img]:h-auto [&_img]:rounded-2xl [&_img]:my-8
-              [&_blockquote]:border-l-4 [&_blockquote]:border-accent [&_blockquote]:pl-5 [&_blockquote]:italic [&_blockquote]:text-text-secondary [&_blockquote]:my-8 [&_blockquote]:text-lg
+              [&_img]:w-full [&_img]:h-auto [&_img]:rounded-3xl [&_img]:my-8 [&_img]:border [&_img]:border-black/[0.05]
+              [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:pl-5 [&_blockquote]:italic [&_blockquote]:text-text-secondary [&_blockquote]:my-8 [&_blockquote]:text-lg
             "
           />
 
-          {/* 6. Routine Bridge Box */}
-          <div className="mt-14 sm:mt-18 p-6 sm:p-8 rounded-2xl bg-[#FAF8FC] text-left">
-            <span className="text-xs font-bold uppercase tracking-widest text-accent block mb-2">
+          {/* 6. Routine Bridge Box (Luminous Glass) */}
+          <div className="mt-14 sm:mt-18 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-white/90 via-white/80 to-[#FFF3F6]/85 backdrop-blur-xl border border-white/90 shadow-[0_10px_35px_rgba(249,127,158,0.07)] text-left relative overflow-hidden">
+            <span className="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-mono font-bold uppercase tracking-widest text-primary inline-block mb-3">
               Rekomendasi Rutinitas
             </span>
-            <h3 className="font-serif text-2xl sm:text-3xl text-text font-normal mb-2.5">
+            <h3 className="font-serif text-2xl sm:text-3xl text-text font-normal tracking-tight mb-2.5">
               Siap Rawat Kulit Tubuh Lebih Sehat &amp; Glowing?
             </h3>
-            <p className="text-sm text-text-secondary leading-relaxed mb-6 max-w-xl">
+            <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-6 max-w-xl font-normal">
               Terapkan panduan artikel ini dengan rangkaian harian Cleanse, Boost, dan Lock dari Beautyinu. Diformulasikan dengan Niacinamide 5.22% + Alpha Arbutin resmi BPOM RI untuk iklim tropis Indonesia.
             </p>
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <Link
                 to="/collections/bundles"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-semibold px-7 py-3.5 shadow-xs transition-all cursor-pointer text-center"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary hover:bg-primary-hover text-white text-xs sm:text-sm font-semibold px-7 py-3.5 shadow-xs transition-all cursor-pointer text-center hover:scale-[1.02]"
               >
                 <span>Lihat Paket Glowing Set (Hemat 47%)</span>
                 <ArrowRight className="w-4 h-4" />
@@ -253,7 +257,7 @@ export default function Article() {
                 href="https://wa.me/6287777118186?text=Halo%20Beautyinu%2C%20saya%20membaca%20artikel%20dan%20ingin%20konsultasi%20skincare"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-surface text-text border border-black/[0.08] text-sm font-semibold px-6 py-3.5 shadow-2xs transition-all cursor-pointer text-center"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-surface text-text border border-black/[0.08] text-xs sm:text-sm font-semibold px-6 py-3.5 shadow-2xs transition-all cursor-pointer text-center hover:scale-[1.02]"
               >
                 <MessageCircle className="w-4 h-4 text-primary" />
                 <span>Konsultasi WhatsApp</span>

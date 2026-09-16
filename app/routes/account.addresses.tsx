@@ -261,23 +261,41 @@ export default function Addresses() {
   const {defaultAddress, addresses} = customer;
 
   return (
-    <div className="account-addresses">
-      <h2>Addresses</h2>
-      <br />
-      <div>
-        <div>
-          <legend>Create address</legend>
+    <div className="max-w-4xl">
+      <div className="mb-8">
+        <h2 className="font-serif text-2xl text-text font-normal tracking-tight mb-1">
+          Buku Alamat Pengiriman
+        </h2>
+        <p className="text-xs text-text-secondary leading-relaxed">
+          Kelola alamat pengiriman untuk kemudahan proses checkout pesananmu.
+        </p>
+      </div>
+
+      <div className="space-y-8">
+        {/* Create Address Form */}
+        <div className="rounded-3xl bg-[#FAF9FB] border border-black/[0.05] p-6 sm:p-8">
+          <h3 className="font-serif text-lg text-text font-normal mb-4">
+            Tambah Alamat Baru
+          </h3>
           <NewAddressForm key={addresses.nodes.length} />
         </div>
-        <div className="my-8" />
-        {!addresses.nodes.length ? (
-          <p>You have no addresses saved.</p>
-        ) : (
-          <ExistingAddresses
-            addresses={addresses}
-            defaultAddress={defaultAddress}
-          />
-        )}
+
+        {/* Existing Addresses */}
+        <div>
+          <h3 className="font-serif text-lg text-text font-normal mb-4">
+            Daftar Alamat Tersimpan
+          </h3>
+          {!addresses.nodes.length ? (
+            <div className="rounded-2xl bg-[#FAF9FB] border border-black/[0.04] p-8 text-center text-xs text-text-secondary">
+              Belum ada alamat yang tersimpan.
+            </div>
+          ) : (
+            <ExistingAddresses
+              addresses={addresses}
+              defaultAddress={defaultAddress}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
@@ -289,7 +307,7 @@ function NewAddressForm() {
     address2: '',
     city: '',
     company: '',
-    territoryCode: '',
+    territoryCode: 'ID',
     firstName: '',
     id: 'new',
     lastName: '',
@@ -305,13 +323,14 @@ function NewAddressForm() {
       defaultAddress={null}
     >
       {({stateForMethod}) => (
-        <div>
+        <div className="pt-2">
           <button
             disabled={stateForMethod('POST') !== 'idle'}
             formMethod="POST"
             type="submit"
+            className="px-6 py-3 rounded-xl bg-[#111111] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-xs disabled:opacity-50"
           >
-            {stateForMethod('POST') !== 'idle' ? 'Creating' : 'Create'}
+            {stateForMethod('POST') !== 'idle' ? 'Menyimpan...' : 'Simpan Alamat Baru'}
           </button>
         </div>
       )}
@@ -324,34 +343,39 @@ function ExistingAddresses({
   defaultAddress,
 }: Pick<CustomerFragment, 'addresses' | 'defaultAddress'>) {
   return (
-    <div>
-      <legend>Existing addresses</legend>
+    <div className="space-y-6">
       {addresses.nodes.map((address) => (
-        <AddressForm
+        <div
           key={address.id}
-          addressId={address.id}
-          address={address}
-          defaultAddress={defaultAddress}
+          className="rounded-3xl bg-[#FAF9FB] border border-black/[0.05] p-6 sm:p-8"
         >
-          {({stateForMethod}) => (
-            <div>
-              <button
-                disabled={stateForMethod('PUT') !== 'idle'}
-                formMethod="PUT"
-                type="submit"
-              >
-                {stateForMethod('PUT') !== 'idle' ? 'Saving' : 'Save'}
-              </button>
-              <button
-                disabled={stateForMethod('DELETE') !== 'idle'}
-                formMethod="DELETE"
-                type="submit"
-              >
-                {stateForMethod('DELETE') !== 'idle' ? 'Deleting' : 'Delete'}
-              </button>
-            </div>
-          )}
-        </AddressForm>
+          <AddressForm
+            addressId={address.id}
+            address={address}
+            defaultAddress={defaultAddress}
+          >
+            {({stateForMethod}) => (
+              <div className="pt-2 flex items-center gap-3">
+                <button
+                  disabled={stateForMethod('PUT') !== 'idle'}
+                  formMethod="PUT"
+                  type="submit"
+                  className="px-5 py-2.5 rounded-xl bg-[#111111] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-xs disabled:opacity-50"
+                >
+                  {stateForMethod('PUT') !== 'idle' ? 'Menyimpan...' : 'Simpan Perubahan'}
+                </button>
+                <button
+                  disabled={stateForMethod('DELETE') !== 'idle'}
+                  formMethod="DELETE"
+                  type="submit"
+                  className="px-4 py-2.5 rounded-xl bg-white hover:bg-red-50 text-black/60 hover:text-red-600 border border-black/10 text-xs font-semibold transition-colors cursor-pointer disabled:opacity-50"
+                >
+                  {stateForMethod('DELETE') !== 'idle' ? 'Menghapus...' : 'Hapus'}
+                </button>
+              </div>
+            )}
+          </AddressForm>
+        </div>
       ))}
     </div>
   );
@@ -374,141 +398,190 @@ export function AddressForm({
   const action = useActionData<ActionResponse>();
   const error = action?.error?.[addressId];
   const isDefaultAddress = defaultAddress?.id === addressId;
+
+  const labelClass =
+    'text-xs font-mono font-medium uppercase tracking-wider text-black/60 block mb-1.5';
+  const inputClass =
+    'w-full px-4 py-2.5 bg-white border border-black/10 rounded-xl text-xs sm:text-sm text-text focus:outline-none focus:border-black transition-colors';
+
   return (
-    <Form id={addressId}>
-      <fieldset>
-        <input type="hidden" name="addressId" defaultValue={addressId} />
-        <label htmlFor="firstName">First name*</label>
+    <Form id={addressId} className="space-y-4">
+      <input type="hidden" name="addressId" defaultValue={addressId} />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor={`firstName-${addressId}`} className={labelClass}>
+            Nama Depan*
+          </label>
+          <input
+            id={`firstName-${addressId}`}
+            name="firstName"
+            type="text"
+            autoComplete="given-name"
+            defaultValue={address?.firstName ?? ''}
+            placeholder="Nama Depan"
+            required
+            className={inputClass}
+          />
+        </div>
+        <div>
+          <label htmlFor={`lastName-${addressId}`} className={labelClass}>
+            Nama Belakang*
+          </label>
+          <input
+            id={`lastName-${addressId}`}
+            name="lastName"
+            type="text"
+            autoComplete="family-name"
+            defaultValue={address?.lastName ?? ''}
+            placeholder="Nama Belakang"
+            required
+            className={inputClass}
+          />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor={`phoneNumber-${addressId}`} className={labelClass}>
+            Nomor Telepon
+          </label>
+          <input
+            id={`phoneNumber-${addressId}`}
+            name="phoneNumber"
+            type="tel"
+            autoComplete="tel"
+            defaultValue={address?.phoneNumber ?? ''}
+            placeholder="081234567890"
+            className={inputClass}
+          />
+        </div>
+        <div>
+          <label htmlFor={`company-${addressId}`} className={labelClass}>
+            Perusahaan (Opsional)
+          </label>
+          <input
+            id={`company-${addressId}`}
+            name="company"
+            type="text"
+            autoComplete="organization"
+            defaultValue={address?.company ?? ''}
+            placeholder="Nama Kantor/Perusahaan"
+            className={inputClass}
+          />
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor={`address1-${addressId}`} className={labelClass}>
+          Alamat Lengkap (Jalan, RT/RW, No. Rumah)*
+        </label>
         <input
-          aria-label="First name"
-          autoComplete="given-name"
-          defaultValue={address?.firstName ?? ''}
-          id="firstName"
-          name="firstName"
-          placeholder="First name"
-          required
+          id={`address1-${addressId}`}
+          name="address1"
           type="text"
-        />
-        <label htmlFor="lastName">Last name*</label>
-        <input
-          aria-label="Last name"
-          autoComplete="family-name"
-          defaultValue={address?.lastName ?? ''}
-          id="lastName"
-          name="lastName"
-          placeholder="Last name"
-          required
-          type="text"
-        />
-        <label htmlFor="company">Company</label>
-        <input
-          aria-label="Company"
-          autoComplete="organization"
-          defaultValue={address?.company ?? ''}
-          id="company"
-          name="company"
-          placeholder="Company"
-          type="text"
-        />
-        <label htmlFor="address1">Address line*</label>
-        <input
-          aria-label="Address line 1"
           autoComplete="address-line1"
           defaultValue={address?.address1 ?? ''}
-          id="address1"
-          name="address1"
-          placeholder="Address line 1*"
+          placeholder="Jl. Raya No. 123"
           required
-          type="text"
+          className={inputClass}
         />
-        <label htmlFor="address2">Address line 2</label>
+      </div>
+
+      <div>
+        <label htmlFor={`address2-${addressId}`} className={labelClass}>
+          Detail Tambahan (Gedung, Lantai, Patokan)
+        </label>
         <input
-          aria-label="Address line 2"
+          id={`address2-${addressId}`}
+          name="address2"
+          type="text"
           autoComplete="address-line2"
           defaultValue={address?.address2 ?? ''}
-          id="address2"
-          name="address2"
-          placeholder="Address line 2"
-          type="text"
+          placeholder="Blok / Unit / Patokan"
+          className={inputClass}
         />
-        <label htmlFor="city">City*</label>
-        <input
-          aria-label="City"
-          autoComplete="address-level2"
-          defaultValue={address?.city ?? ''}
-          id="city"
-          name="city"
-          placeholder="City"
-          required
-          type="text"
-        />
-        <label htmlFor="zoneCode">State / Province*</label>
-        <input
-          aria-label="State/Province"
-          autoComplete="address-level1"
-          defaultValue={address?.zoneCode ?? ''}
-          id="zoneCode"
-          name="zoneCode"
-          placeholder="State / Province"
-          required
-          type="text"
-        />
-        <label htmlFor="zip">Zip / Postal Code*</label>
-        <input
-          aria-label="Zip"
-          autoComplete="postal-code"
-          defaultValue={address?.zip ?? ''}
-          id="zip"
-          name="zip"
-          placeholder="Zip / Postal Code"
-          required
-          type="text"
-        />
-        <label htmlFor="territoryCode">Country Code*</label>
-        <input
-          aria-label="Country code"
-          autoComplete="country"
-          defaultValue={address?.territoryCode ?? ''}
-          id="territoryCode"
-          name="territoryCode"
-          placeholder="Country"
-          required
-          type="text"
-          maxLength={2}
-        />
-        <label htmlFor="phoneNumber">Phone</label>
-        <input
-          aria-label="Phone Number"
-          autoComplete="tel"
-          defaultValue={address?.phoneNumber ?? ''}
-          id="phoneNumber"
-          name="phoneNumber"
-          placeholder="081234567890"
-          pattern="^\+?[1-9]\d{3,14}$"
-          type="tel"
-        />
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div>
+          <label htmlFor={`city-${addressId}`} className={labelClass}>
+            Kota / Kabupaten*
+          </label>
           <input
-            defaultChecked={isDefaultAddress}
-            id="defaultAddress"
-            name="defaultAddress"
-            type="checkbox"
+            id={`city-${addressId}`}
+            name="city"
+            type="text"
+            autoComplete="address-level2"
+            defaultValue={address?.city ?? ''}
+            placeholder="Surabaya"
+            required
+            className={inputClass}
           />
-          <label htmlFor="defaultAddress">Set as default address</label>
         </div>
-        {error ? (
-          <p>
-            <mark>
-              <small>{error}</small>
-            </mark>
-          </p>
-        ) : (
-          <br />
-        )}
-        {children({
-          stateForMethod: (method) => (formMethod === method ? state : 'idle'),
-        })}
-      </fieldset>
+        <div>
+          <label htmlFor={`zoneCode-${addressId}`} className={labelClass}>
+            Provinsi*
+          </label>
+          <input
+            id={`zoneCode-${addressId}`}
+            name="zoneCode"
+            type="text"
+            autoComplete="address-level1"
+            defaultValue={address?.zoneCode ?? ''}
+            placeholder="Jawa Timur"
+            required
+            className={inputClass}
+          />
+        </div>
+        <div>
+          <label htmlFor={`zip-${addressId}`} className={labelClass}>
+            Kode Pos*
+          </label>
+          <input
+            id={`zip-${addressId}`}
+            name="zip"
+            type="text"
+            autoComplete="postal-code"
+            defaultValue={address?.zip ?? ''}
+            placeholder="60111"
+            required
+            className={inputClass}
+          />
+        </div>
+      </div>
+
+      <input
+        type="hidden"
+        name="territoryCode"
+        defaultValue={address?.territoryCode || 'ID'}
+      />
+
+      <div className="flex items-center gap-2 pt-1">
+        <input
+          id={`defaultAddress-${addressId}`}
+          name="defaultAddress"
+          type="checkbox"
+          defaultChecked={isDefaultAddress}
+          className="rounded border-black/20 text-black focus:ring-black w-4 h-4 cursor-pointer"
+        />
+        <label
+          htmlFor={`defaultAddress-${addressId}`}
+          className="text-xs text-text cursor-pointer select-none"
+        >
+          Jadikan alamat utama
+        </label>
+      </div>
+
+      {error && (
+        <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-600">
+          {error}
+        </div>
+      )}
+
+      {children({
+        stateForMethod: (method) => (formMethod === method ? state : 'idle'),
+      })}
     </Form>
   );
 }

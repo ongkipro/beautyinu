@@ -1039,123 +1039,85 @@ function IngredientsHighlight() {
 }
 
 // ==========================================
-// Section 7: Perjalanan 14 Hari Glowing (Full Width Clinical Research Board)
+// Section 7: Perjalanan 14 Hari Glowing (Clean Architectural Timeline)
 // ==========================================
 function FourteenDayJourney() {
   const milestones = [
     {
-      phase: 'Fase 01',
+      step: '01',
       day: 'Hari 1–3',
+      phase: 'Fase Hidrasi Awal',
       title: 'Hidrasi Mendalam 24 Jam',
-      text: 'Kulit terasa lembap seketika, kenyal terhidrasi, dan tidak lagi bersisik atau kasar saat disentuh.',
-      meter: '35% Recovery Barrier',
-      pinColor: 'bg-[#F97F9E]',
-      rotation: 'rotate-[-1.5deg]',
-      verifyText: 'Teruji Melembapkan',
+      desc: 'Kulit terasa langsung lembap seketika, sensasi kering dan bersisik mereda, serta skin barrier mulai terhidrasi dengan baik.',
+      result: 'Kulit kenyal dan lembap terhidrasi',
     },
     {
-      phase: 'Fase 02',
-      day: 'Hari 7',
-      title: 'Tekstur Halus & Lembut',
-      text: 'Permukaan kulit terasa jauh lebih halus, regenerasi sel kulit mati optimal, dan tampak segar terawat.',
-      meter: '70% Surface Refinement',
-      pinColor: 'bg-[#AF8FD1]',
-      rotation: 'rotate-[1.5deg]',
-      verifyText: 'Tekstur Halus 98%',
+      step: '02',
+      day: 'Hari 4–7',
+      phase: 'Fase Regenerasi Tekstur',
+      title: 'Eksfoliasi & Permukaan Halus',
+      desc: 'Enzim pembersih dan fermentasi kefir mengangkat daki serta tumpukan sel kulit mati secara lembut tanpa rasa perih.',
+      result: 'Tekstur kulit halus dan belang mulai pudar',
     },
     {
-      phase: 'Fase 03',
-      day: 'Hari 14',
-      title: 'Kulit Cerah Merata Glowing',
-      text: 'Warna kulit tampak lebih cerah merata, noda kusam dan belang tersamarkan, glowing sehat alami terlindungi.',
-      meter: '100% Radiant Glow',
-      pinColor: 'bg-[#E5A93C]',
-      rotation: 'rotate-[-0.75deg]',
-      verifyText: 'Cerah Merata Terbukti',
+      step: '03',
+      day: 'Hari 8–14',
+      phase: 'Fase Pencerahan Merata',
+      title: 'Cerah Merata & Terlindungi UV',
+      desc: 'Penghambatan melanin oleh Alpha Arbutin dan Niacinamide bekerja optimal, warna kulit lebih rata dan bercahaya alami.',
+      result: 'Tone cerah merata & terlindungi sinar UV',
     },
   ];
 
   return (
-    <section className="w-full bg-gradient-to-b from-[#FAF8FC] via-[#F6F0FA] to-[#FFF8FA] py-20 md:py-28 border-y border-black/[0.04] overflow-hidden">
+    <section className="w-full bg-[#FAF8FC] py-20 md:py-28 border-y border-black/[0.04] overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 lg:px-8">
         {/* Board Header — Middle Center */}
         <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white text-primary text-xs font-bold uppercase tracking-wider mb-3.5 border border-primary/20 shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5 text-primary" />
-            <span>Perjalanan 14 Hari Glowing</span>
-          </div>
+          <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-accent block mb-2">
+            Linimasa Perawatan
+          </span>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-text leading-tight mb-3">
-            Perubahan Nyata Pemakaian Rutin
+            Perjalanan 14 Hari Glowing
           </h2>
-          <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
-            Catatan klinis tahapan regenerasi dan transformasi kulit tubuh selama 14 hari pemakaian rutin 3-Step System.
+          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl mx-auto">
+            Tahapan regenerasi kulit tubuh harian dengan pemakaian teratur rangkaian 3-Step System Beautyinu.
           </p>
         </div>
 
-        {/* Progression Track Line (Desktop) & Milestone Pinned Cards — Middle Center */}
-        <div className="relative max-w-4xl mx-auto">
-          <div className="hidden md:block absolute top-[28px] inset-x-12 h-0.5 bg-gradient-to-r from-primary/30 via-accent/40 to-[#E5A93C]/40 z-0 pointer-events-none" />
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-6 relative z-10 items-stretch">
-            {milestones.map((item, idx) => (
-              <div
-                key={idx}
-                className={`relative group transition-all duration-300 ease-out hover:rotate-0 hover:scale-[1.02] ${item.rotation}`}
-              >
-                {/* Metallic 3D Pushpin on Wall */}
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-none">
-                  <div
-                    className={`w-4 h-4 rounded-full shadow-md border border-white/80 ring-2 ring-black/5 ${item.pinColor}`}
-                  >
-                    <div className="w-1 h-1 rounded-full bg-white/90 mx-auto mt-0.5" />
-                  </div>
-                  <div className="w-1.5 h-1.5 bg-black/25 rounded-full blur-[0.5px] -mt-0.5" />
+        {/* Milestone Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 relative z-10 items-stretch">
+          {milestones.map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-2xl p-6 sm:p-7 border border-black/[0.06] shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:border-accent/30 transition-all duration-200 flex flex-col justify-between h-full"
+            >
+              <div>
+                {/* Header: Step Index & Phase */}
+                <div className="flex items-center justify-between pb-3 mb-4 border-b border-black/[0.04]">
+                  <span className="font-mono text-xs font-bold text-accent tracking-wider">
+                    {item.step} // {item.day}
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-text-secondary/70">
+                    {item.phase}
+                  </span>
                 </div>
 
-                {/* Pinned Paper Memo Card */}
-                <div className="bg-white rounded-2xl p-6 sm:p-7 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.08),0_4px_12px_-2px_rgba(0,0,0,0.04)] border border-black/[0.04] pt-7 h-full flex flex-col justify-between">
-                  <div>
-                    {/* Phase & Day Header */}
-                    <div className="flex items-center justify-between gap-2 mb-3">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-text-secondary/70">
-                        {item.phase}
-                      </span>
-                      <span className="text-xs font-bold text-accent bg-accent-light px-2.5 py-0.5 rounded-full border border-accent/20">
-                        {item.day}
-                      </span>
-                    </div>
-
-                    <h3 className="font-serif text-xl text-text font-bold mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-6">
-                      {item.text}
-                    </p>
-                  </div>
-
-                  {/* Progress Bar & Verification Stamp */}
-                  <div className="pt-4 border-t border-black/[0.04] mt-auto">
-                    <div className="flex items-center justify-between text-[11px] font-bold mb-1.5">
-                      <span className="text-text-secondary">Progress Hasil:</span>
-                      <span className="text-primary">{item.meter}</span>
-                    </div>
-                    <div className="w-full h-1.5 bg-black/[0.06] rounded-full overflow-hidden mb-3">
-                      <div
-                        className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
-                        style={{
-                          width: idx === 0 ? '35%' : idx === 1 ? '70%' : '100%',
-                        }}
-                      />
-                    </div>
-                    <div className="flex items-center gap-1.5 text-[10px] font-semibold text-accent/90">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-                      <span>{item.verifyText}</span>
-                    </div>
-                  </div>
-                </div>
+                <h3 className="font-serif text-xl sm:text-2xl text-text font-bold mb-2.5 leading-snug">
+                  {item.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-6">
+                  {item.desc}
+                </p>
               </div>
-            ))}
-          </div>
+
+              {/* Verified Result Milestone */}
+              <div className="pt-4 border-t border-black/[0.04] mt-auto flex items-center gap-2 text-xs font-semibold text-text">
+                <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                <span>{item.result}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

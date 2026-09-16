@@ -943,7 +943,7 @@ function IngredientsHighlight() {
     },
     {
       name: 'Glutathione',
-      val: 'Pure Grade',
+      val: '99% Pure',
       category: 'Master Antioksidan',
       badge: 'Antioksidan Aktif',
       action: 'Netralisir Radikal',
@@ -952,7 +952,7 @@ function IngredientsHighlight() {
     },
     {
       name: 'UV Filter Shield',
-      val: 'Broad Spectrum',
+      val: 'UVA + UVB',
       category: 'Fotoproteksi Tropis',
       badge: 'Proteksi UVA & UVB',
       action: 'Filter Radiasi Surya',
@@ -977,19 +977,26 @@ function IngredientsHighlight() {
       </div>
 
       {/* 4 Clinical Actives Cards (Apothecary Lab Style with Precise Alignment) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
         {ingredients.map((ing, i) => (
           <div
             key={i}
-            className="group relative bg-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between border border-black/[0.06] shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_-6px_rgba(175,143,209,0.18)] hover:border-accent/30 transition-all duration-300 hover:-translate-y-1 h-full"
+            className="group relative bg-white rounded-3xl p-5 sm:p-6 flex flex-col justify-between border border-black/[0.06] shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_-6px_rgba(175,143,209,0.18)] hover:border-accent/30 transition-all duration-300 hover:-translate-y-1 h-full"
           >
             <div>
-              {/* Card Top Row: Formula Index + Badge with Check Icon */}
-              <div className="flex items-center justify-between gap-2 mb-4">
-                <span className="text-[11px] font-bold text-accent bg-accent-light px-2.5 py-1 rounded-full border border-accent/20">
+              {/* Card Header: Formula Index & Quality Standard Row */}
+              <div className="flex items-center justify-between gap-2 pb-2.5 mb-3 border-b border-black/[0.04]">
+                <span className="text-[11px] font-mono font-bold text-accent bg-accent-light/80 px-2.5 py-0.5 rounded-full border border-accent/20 tracking-wider uppercase">
                   Formula 0{i + 1}
                 </span>
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#FAF8FC] text-text-secondary border border-black/[0.06] whitespace-nowrap">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-text-secondary/70">
+                  Standar BPOM
+                </span>
+              </div>
+
+              {/* Verified Quality Badge Pill */}
+              <div className="mb-4">
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-xl bg-[#FAF8FC] text-text border border-black/[0.06] shadow-2xs">
                   <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
                   <span>{ing.badge}</span>
                 </span>
@@ -1000,7 +1007,7 @@ function IngredientsHighlight() {
                 <p className="font-sans font-black text-3xl sm:text-4xl tracking-tight text-text leading-none">
                   {ing.val}
                 </p>
-                <h3 className="font-serif text-2xl text-text font-bold mt-2 leading-tight">
+                <h3 className="font-serif text-xl sm:text-2xl text-text font-bold mt-2.5 leading-tight">
                   {ing.name}
                 </h3>
                 <span className="text-xs font-semibold text-accent block mt-1">
@@ -1010,16 +1017,16 @@ function IngredientsHighlight() {
 
               <div className="w-10 h-0.5 bg-accent/30 mb-4 group-hover:w-16 group-hover:bg-primary transition-all duration-300" />
 
-              <p className="text-xs sm:text-sm text-text-secondary leading-relaxed min-h-[56px]">
+              <p className="text-xs sm:text-sm text-text-secondary leading-relaxed min-h-[56px] sm:min-h-[64px]">
                 {ing.desc}
               </p>
             </div>
 
             {/* Target Spec Sheet Row */}
-            <div className="pt-4 border-t border-black/[0.04] mt-5">
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-text-secondary font-medium">Target Kerja:</span>
-                <span className="font-bold text-accent bg-accent-light/60 px-2.5 py-0.5 rounded-full border border-accent/20">
+            <div className="pt-3.5 border-t border-black/[0.04] mt-5">
+              <div className="flex items-center justify-between text-xs gap-2">
+                <span className="text-text-secondary font-medium text-[11px] whitespace-nowrap">Target Kerja:</span>
+                <span className="font-bold text-accent bg-accent-light/60 px-2.5 py-0.5 rounded-full border border-accent/20 text-[11px] truncate">
                   {ing.action}
                 </span>
               </div>

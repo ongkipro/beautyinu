@@ -1,0 +1,90 @@
+/**
+ * Beautyinu Design System — Tailwind v4 (CSS-first config)
+ * Colors from brand palette, typography from product photography analysis.
+ */
+
+@import 'tailwindcss';
+
+/* ── Fonts ── */
+@font-face {
+  font-family: 'DM Serif Display';
+  src: url('https://fonts.gstatic.com/s/dmseriftext/v12/rnCu-xZa_krGOkCBY8Rv-1RmaxQAIQ.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Theme ── */
+@theme {
+  /* Brand colors */
+  --color-primary: #F97F9E;
+  --color-primary-hover: #F06B8D;
+  --color-secondary: #FF9FBC;
+  --color-accent: #AF8FD1;
+  --color-accent-light: #F3EEFA;
+  --color-surface: #FFF8FA;
+
+  /* Neutrals */
+  --color-text: #1A1A1A;
+  --color-text-secondary: #6B7280;
+  --color-bg: #FFFFFF;
+  --color-dark: #1A1A1A;
+  --color-border: #F3EEFA;
+
+  /* Feedback */
+  --color-success: #34D399;
+  --color-error: #FB7185;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 4px 12px rgba(175, 143, 209, 0.15);
+
+  /* Fonts */
+  --font-serif: 'Playfair Display', 'DM Serif Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Animations */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+}
+
+/* ── Base ── */
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.15;
+  }
+
+  hr {
+    display: none;
+  }
+}
+
+/* ── Utilities ── */
+@utility font-serif {
+  font-family: var(--font-serif);
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}

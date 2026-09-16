@@ -1,0 +1,46 @@
+[
+  {
+    "id": "gid://shopify/Page/132654989533",
+    "title": "Contact",
+    "handle": "contact",
+    "body": "",
+    "bodySummary": "",
+    "isPublished": true,
+    "templateSuffix": "contact",
+    "createdAt": "2026-04-29T01:21:23Z",
+    "updatedAt": "2026-04-29T01:21:23Z"
+  },
+  {
+    "id": "gid://shopify/Page/138083533021",
+    "title": "About Us",
+    "handle": "about",
+    "body": "<h2>Beautyinu Skincare</h2><p>Beautyinu is an Indonesian bodycare brand for glowing, moisturized, and fresh skin. Our range includes body lotions, creams, body wash, soaps, and booster powders — all BPOM certified and cruelty-free.</p><h3>Our Promise</h3><ul>\n<li>BPOM certified products</li>\n<li>Cruelty-free formulations</li>\n<li>Affordable luxury skincare</li>\n<li>Visible results in 14 days</li>\n</ul><p>Based in Surabaya, Indonesia. Shipping to Indonesia, Malaysia, and Singapore.</p>",
+    "bodySummary": "Beautyinu SkincareBeautyinu is an Indonesian bodycare brand for glowing, moisturized, and fresh skin. Our range includes body lotions, creams, body...",
+    "isPublished": true,
+    "templateSuffix": null,
+    "createdAt": "2026-09-16T02:20:30Z",
+    "updatedAt": "2026-09-16T02:20:30Z"
+  },
+  {
+    "id": "gid://shopify/Page/138083565789",
+    "title": "FAQ",
+    "handle": "faq",
+    "body": "<h2>Frequently Asked Questions</h2><h3>How long until I see results?</h3><p>Most customers notice visible brightening within 2-4 weeks of consistent use.</p><h3>Are your products safe for sensitive skin?</h3><p>Yes, all products are BPOM certified and dermatologically tested. We recommend a patch test for sensitive skin.</p><h3>Do you ship internationally?</h3><p>Yes! We ship to Indonesia, Malaysia, and Singapore.</p><h3>What is the shelf life?</h3><p>24 months from manufacture date when stored properly.</p><h3>How do I use the Booster Gold Powder?</h3><p>Mix 1-2 scoops into your body lotion or body cream before applying. Can also be mixed with body wash.</p>",
+    "bodySummary": "Frequently Asked QuestionsHow long until I see results?Most customers notice visible brightening within 2-4 weeks of consistent use.Are your produc...",
+    "isPublished": true,
+    "templateSuffix": null,
+    "createdAt": "2026-09-16T02:20:34Z",
+    "updatedAt": "2026-09-16T02:20:34Z"
+  },
+  {
+    "id": "gid://shopify/Page/138083598557",
+    "title": "Shipping & Returns",
+    "handle": "shipping-returns",
+    "body": "<h2>Shipping Policy</h2><p>Orders are processed within 1-2 business days.</p><ul>\n<li>\n<strong>Indonesia:</strong> 2-5 business days</li>\n<li>\n<strong>Malaysia:</strong> 5-10 business days</li>\n<li>\n<strong>Singapore:</strong> 5-10 business days</li>\n</ul><h2>Returns &amp; Refunds</h2><p>We accept returns within 7 days of delivery for unopened products in original packaging. Contact hello@beautyinu.id to initiate a return.</p>",
+    "bodySummary": "Shipping PolicyOrders are processed within 1-2 business days. Indonesia: 2-5 business days Malaysia: 5-10 business days Singapore: 5-10 business da...",
+    "isPublished": true,
+    "templateSuffix": null,
+    "createdAt": "2026-09-16T02:20:37Z",
+    "updatedAt": "2026-09-16T02:20:37Z"
+  }
+]

@@ -1,0 +1,14 @@
+node_modules
+.env
+.env.*
+!.env.example
+dist
+.cache
+*.local
+.shopify
+.react-router
+tsconfig.tsbuildinfo
+*.log
+dev-server.log
+drive-assets
+.DS_Store

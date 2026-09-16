@@ -1,0 +1,340 @@
+[
+  {
+    "id": "gid://shopify/Collection/455670300893",
+    "title": "Home page",
+    "handle": "frontpage",
+    "descriptionHtml": "",
+    "sortOrder": "MOST_RELEVANT",
+    "seo": {
+      "title": null,
+      "description": null
+    },
+    "productsCount": {
+      "count": 15
+    },
+    "products": {
+      "edges": [
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492855390429",
+            "title": "Brightening Booster Gold Powder 25gr",
+            "handle": "brightening-booster-gold-powder-25gr"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9566138466525",
+            "title": "Booster Gold Powder (7-Pack Value)",
+            "handle": "booster-gold-powder-7-pack"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9566120313053",
+            "title": "Complete Brightening Set (5-in-1)",
+            "handle": "complete-brightening-set"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9566071718109",
+            "title": "Cream & Booster Set (2-in-1)",
+            "handle": "body-cream-booster-set"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9566029906141",
+            "title": "Lotion & Booster Set (2-in-1)",
+            "handle": "body-lotion-booster-set"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9565836968157",
+            "title": "Glowing Set (3-in-1)",
+            "handle": "glowing-set-3-in-1"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9535046648029",
+            "title": "Brightening Body Cream Grape 200gr",
+            "handle": "brightening-body-cream-grape-200g"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492855587037",
+            "title": "Kefir Collagen Soap 60gr",
+            "handle": "kefir-collagen-soap-60gr"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492855095517",
+            "title": "Brightening Booster Gold Powder 25gr (Classic Edition)",
+            "handle": "brightening-booster-gold-powder-25gr-classic"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492853915869",
+            "title": "Bright Glow Body Wash 250ml",
+            "handle": "bright-glow-body-wash-250ml"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492853653725",
+            "title": "English Pear Body Toner 100ml",
+            "handle": "english-pear-body-toner-100ml"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492853293277",
+            "title": "Bright Glow Body Lotion UV Filter 750ml",
+            "handle": "bright-glow-body-lotion-uv-filter-750ml"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492852834525",
+            "title": "Bright Glow Body Lotion UV Filter 750ml (Classic Edition)",
+            "handle": "bright-glow-body-lotion-uv-filter-750ml-classic"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492846510301",
+            "title": "Brightening Body Cream Grape",
+            "handle": "brightening-body-cream-grape"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492845035741",
+            "title": "Brightening Body Cream Grape 100gr",
+            "handle": "brightening-body-cream-grape-100g"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "gid://shopify/Collection/462376599773",
+    "title": "Body Care",
+    "handle": "body-care",
+    "descriptionHtml": "<p>Premium brightening body care — lotions, creams, body wash, soap, and booster powders for radiant skin.</p>",
+    "sortOrder": "MOST_RELEVANT",
+    "seo": {
+      "title": "Body Care — Beautyinu Skincare",
+      "description": "Premium brightening body care — lotions, creams, body wash, soap, and booster powders for radiant skin."
+    },
+    "productsCount": {
+      "count": 10
+    },
+    "products": {
+      "edges": [
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492855390429",
+            "title": "Brightening Booster Gold Powder 25gr",
+            "handle": "brightening-booster-gold-powder-25gr"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9535046648029",
+            "title": "Brightening Body Cream Grape 200gr",
+            "handle": "brightening-body-cream-grape-200g"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492855587037",
+            "title": "Kefir Collagen Soap 60gr",
+            "handle": "kefir-collagen-soap-60gr"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492855095517",
+            "title": "Brightening Booster Gold Powder 25gr (Classic Edition)",
+            "handle": "brightening-booster-gold-powder-25gr-classic"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492853915869",
+            "title": "Bright Glow Body Wash 250ml",
+            "handle": "bright-glow-body-wash-250ml"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492853653725",
+            "title": "English Pear Body Toner 100ml",
+            "handle": "english-pear-body-toner-100ml"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492853293277",
+            "title": "Bright Glow Body Lotion UV Filter 750ml",
+            "handle": "bright-glow-body-lotion-uv-filter-750ml"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492852834525",
+            "title": "Bright Glow Body Lotion UV Filter 750ml (Classic Edition)",
+            "handle": "bright-glow-body-lotion-uv-filter-750ml-classic"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492846510301",
+            "title": "Brightening Body Cream Grape",
+            "handle": "brightening-body-cream-grape"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492845035741",
+            "title": "Brightening Body Cream Grape 100gr",
+            "handle": "brightening-body-cream-grape-100g"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "gid://shopify/Collection/462376632541",
+    "title": "Bundles & Sets",
+    "handle": "bundles",
+    "descriptionHtml": "<p>Value sets and bundles — get more for less with curated skincare combinations.</p>",
+    "sortOrder": "MOST_RELEVANT",
+    "seo": {
+      "title": "Bundles & Sets — Beautyinu Skincare",
+      "description": "Value sets and bundles — get more for less with curated skincare combinations."
+    },
+    "productsCount": {
+      "count": 5
+    },
+    "products": {
+      "edges": [
+        {
+          "node": {
+            "id": "gid://shopify/Product/9566138466525",
+            "title": "Booster Gold Powder (7-Pack Value)",
+            "handle": "booster-gold-powder-7-pack"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9566120313053",
+            "title": "Complete Brightening Set (5-in-1)",
+            "handle": "complete-brightening-set"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9566071718109",
+            "title": "Cream & Booster Set (2-in-1)",
+            "handle": "body-cream-booster-set"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9566029906141",
+            "title": "Lotion & Booster Set (2-in-1)",
+            "handle": "body-lotion-booster-set"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9565836968157",
+            "title": "Glowing Set (3-in-1)",
+            "handle": "glowing-set-3-in-1"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "gid://shopify/Collection/462376665309",
+    "title": "Best Sellers",
+    "handle": "best-sellers",
+    "descriptionHtml": "<p>Our most popular brightening skincare products, loved by thousands of customers.</p>",
+    "sortOrder": "MOST_RELEVANT",
+    "seo": {
+      "title": "Best Sellers — Beautyinu Skincare",
+      "description": "Our most popular brightening skincare products, loved by thousands of customers."
+    },
+    "productsCount": {
+      "count": 8
+    },
+    "products": {
+      "edges": [
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492855390429",
+            "title": "Brightening Booster Gold Powder 25gr",
+            "handle": "brightening-booster-gold-powder-25gr"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9566120313053",
+            "title": "Complete Brightening Set (5-in-1)",
+            "handle": "complete-brightening-set"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9566029906141",
+            "title": "Lotion & Booster Set (2-in-1)",
+            "handle": "body-lotion-booster-set"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9565836968157",
+            "title": "Glowing Set (3-in-1)",
+            "handle": "glowing-set-3-in-1"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492855587037",
+            "title": "Kefir Collagen Soap 60gr",
+            "handle": "kefir-collagen-soap-60gr"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492853915869",
+            "title": "Bright Glow Body Wash 250ml",
+            "handle": "bright-glow-body-wash-250ml"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492853293277",
+            "title": "Bright Glow Body Lotion UV Filter 750ml",
+            "handle": "bright-glow-body-lotion-uv-filter-750ml"
+          }
+        },
+        {
+          "node": {
+            "id": "gid://shopify/Product/9492846510301",
+            "title": "Brightening Body Cream Grape",
+            "handle": "brightening-body-cream-grape"
+          }
+        }
+      ]
+    }
+  }
+]

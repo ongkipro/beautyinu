@@ -1,0 +1,703 @@
+[
+  {
+    "id": "gid://shopify/Product/9492846510301",
+    "oldTitle": "Brightening Body Cream Grape",
+    "newTitle": "Brightening Body Cream Grape",
+    "oldHandle": "brightening-body-cream-grape",
+    "newHandle": "brightening-body-cream-grape",
+    "descriptionHtml": "<p><strong>Kulit Cerah Anti Ribet.</strong> Krim tubuh bernutrisi tinggi dengan aroma anggur segar yang diformulasikan khusus untuk merawat kelembapan dan mencerahkan area tubuh yang kering serta kusam, seperti siku, lutut, tumit, tangan, dan kaki. Diperkaya Glutathione, Niacinamide, Licorice Extract, Mulberry Extract, dan Glycerin berkonsentrasi tinggi.</p><p><strong>Keunggulan Utama:</strong></p><ul><li>Membantu mencerahkan dan meratakan tampilan warna kulit</li><li>Menjaga kelembapan mendalam dan kehalusan kulit sepanjang hari</li><li>Dual-action: dapat digunakan sebagai pelembap malam tanpa bilas atau masker tubuh bilas</li><li>Formula lembut, ramah kulit, dan cepat meresap tanpa rasa lengket</li><li>Ternotifikasi BPOM NA18230100799 dan aman untuk usia 12+</li></ul>",
+    "seo": {
+      "title": "Brightening Body Cream Grape — Beautyinu",
+      "description": "Body cream beraroma anggur segar untuk melembapkan dan mencerahkan kulit. Tekstur ringan, tidak lengket, BPOM certified. Tersedia ukuran 100g dan 200g."
+    },
+    "collectionsToJoin": [
+      "gid://shopify/Collection/455670300893",
+      "gid://shopify/Collection/462376599773",
+      "gid://shopify/Collection/462376665309"
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/47908944216285",
+        "title": "100g",
+        "price": "48400.00",
+        "compareAtPrice": "55000.00",
+        "sku": "1BC-100G",
+        "inventoryPolicy": "CONTINUE"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/47908944249053",
+        "title": "200g",
+        "price": "80300.00",
+        "compareAtPrice": "110000.00",
+        "sku": "1BC-200G",
+        "inventoryPolicy": "CONTINUE"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "cara_pakai",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Cara Pemakaian:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"1. Mode Daily Night Moisturizer (Tanpa Bilas): Gunakan setelah mandi atau sebelum tidur. Ambil body cream secukupnya, oleskan tipis dan merata pada area tubuh (terutama siku, lutut, tumit), lalu pijat perlahan hingga meresap.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"2. Mode Intensive Body Mask (Bilas): Oleskan body cream dengan tebal ke area tubuh (dapat dicampurkan dengan Brightening Booster Gold Powder rasio 1:1). Diamkan selama 10–15 menit, kemudian bilas hingga bersih.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Gunakan rutin setiap hari untuk hasil optimal.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "ingredients",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Hero Ingredients & Fungsinya:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Glycerin: Menjaga kelembapan kulit secara intensif, merawat kulit kering, dan memperkuat lapisan pelindung kulit (skin barrier).\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Glutathione: Antioksidan kuat untuk membantu kulit tampak lebih cerah, segar, dan terlindungi dari radikal bebas.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Niacinamide: Mencerahkan kulit, mengurangi tampilan kusam, dan membantu warna kulit terlihat lebih merata.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Licorice Extract: Bahan pencerah alami yang membantu menyamarkan tampilan noda hitam dan merawat kesehatan kulit.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Mulberry Extract: Kaya antioksidan untuk meremajakan dan menyegarkan kulit tubuh.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "manfaat",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Manfaat Utama:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Melembapkan dan melembutkan area kulit yang kasar serta sangat kering.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Membantu mencerahkan dan meratakan warna kulit secara bertahap.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Menutrisi kulit tubuh pada malam hari saat proses regenerasi sel berlangsung.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Formula nyaman, tidak lengket, dan beraroma anggur segar menenangkan.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Aman digunakan pria dan wanita mulai usia 12 tahun ke atas (BPOM NA18230100799).\"}]}]}"
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9492853293277",
+    "oldTitle": "Bright Glow Body Lotion UV Filter 750ml",
+    "newTitle": "Bright Glow Body Lotion UV Filter 750ml",
+    "oldHandle": "bright-glow-body-lotion-uv-filter-750ml",
+    "newHandle": "bright-glow-body-lotion-uv-filter-750ml",
+    "descriptionHtml": "<p><strong>Daily Moisturizer 14 Hari Glowing.</strong> Body lotion harian ukuran jumbo 750ml dengan kombinasi UV Filter, Tranexamic Acid, Niacinamide, Shea Butter, Multivitamin (B3, B5, E), dan 4-Layer Hyaluronic Complex. Melindungi kulit dari paparan sinar matahari sekaligus merawat hidrasi dan kecerahan kulit agar tampak sehat, kenyal, dan bercahaya setiap hari.</p><p><strong>Keunggulan Utama:</strong></p><ul><li>Dilengkapi UV Filter untuk perlindungan harian dari paparan sinar matahari</li><li>Tranexamic Acid & Niacinamide untuk mencerahkan dan meratakan warna kulit</li><li>Hyaluronic Complex & Shea Butter mengunci kelembapan hingga lapisan terdalam</li><li>Tekstur ringan, cepat meresap, nyaman dipakai seharian tanpa rasa lengket</li><li>Kemasan jumbo 750ml dengan pump dispenser higienis, hemat, dan tahan lama</li><li>Ternotifikasi BPOM NA18240109992 dan aman untuk usia 12+</li></ul>",
+    "seo": {
+      "title": "Bright Glow Body Lotion UV Filter 750ml — Beautyinu",
+      "description": "Body lotion jumbo 750ml dengan UV Filter dan Tranexamic Acid. Melindungi, melembapkan, dan mencerahkan kulit harian. BPOM certified."
+    },
+    "collectionsToJoin": [
+      "gid://shopify/Collection/455670300893",
+      "gid://shopify/Collection/462376599773",
+      "gid://shopify/Collection/462376665309"
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/47908813996253",
+        "title": "Default Title",
+        "price": "100737.00",
+        "compareAtPrice": "159900.00",
+        "sku": "1BL",
+        "inventoryPolicy": "CONTINUE"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "cara_pakai",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Cara Pemakaian:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Usapkan lotion secara merata pada seluruh area badan dan tangan setelah mandi pagi dan sore.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Ulangi pemakaian di siang hari terutama jika banyak beraktivitas di bawah paparan sinar matahari langsung.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Dapat dipadukan dengan Brightening Booster Gold Powder untuk hasil cerah yang lebih cepat.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Gunakan secara teratur setiap hari untuk menjaga kulit tetap lembap, lembut, dan terlindungi.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "ingredients",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Hero Ingredients & Fungsinya:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• UV Filter System: Memberikan perlindungan harian terhadap paparan sinar UV matahari saat beraktivitas di luar ruangan.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Tranexamic Acid: Mencerahkan kulit dan membantu meratakan tampilan warna kulit yang belang.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Niacinamide (Vitamin B3): Menutrisi kulit, merawat skin barrier, dan meningkatkan kecerahan alami.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• 4-Layer Hyaluronic Complex: Menghidrasi intensif dan mengunci kelembapan pada berbagai lapisan kulit.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Shea Butter & Multivitamin (B5, E): Memberikan nutrisi esensial agar kulit terasa lebih kenyal, halus, dan ternutrisi.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "manfaat",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Manfaat Utama:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Menjaga kelembapan kulit selama 24 jam tanpa rasa berminyak atau lengket.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Memberikan perlindungan UV harian saat beraktivitas di luar ruangan.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Membantu kulit tampak lebih cerah terawat dalam 14 hari pemakaian rutin.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Ukuran jumbo 750ml lebih ekonomis untuk pemakaian harian jangka panjang.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Terdaftar resmi BPOM NA18240109992.\"}]}]}"
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9492853915869",
+    "oldTitle": "Bright Glow Body Wash 250ml",
+    "newTitle": "Bright Glow Body Wash 250ml",
+    "oldHandle": "bright-glow-body-wash-250ml",
+    "newHandle": "bright-glow-body-wash-250ml",
+    "descriptionHtml": "<p><strong>Mandi Lebih Fresh, Kulit Lembut Terawat.</strong> Sabun mandi cair bernutrisi yang membersihkan keringat, debu, dan kotoran aktivitas harian dengan lembut tanpa membuat kulit terasa kesat atau kering. Diperkaya Niacinamide, Alpha Arbutin, Tranexamic Acid, serta ekstrak susu dan mangga yang menyegarkan untuk memulai langkah pertama rutinitas kulit glowing.</p><p><strong>Keunggulan Utama:</strong></p><ul><li>Membersihkan kulit secara menyeluruh dengan busa lembut melimpah</li><li>Kandungan aktif Niacinamide, Arbutin, dan Tranexamic Acid mencerahkan sejak mandi</li><li>Ekstrak susu dan mangga menjaga kelembutan dan aroma segar tropis</li><li>Menjaga kelembapan alami kulit sehingga terasa fresh dan halus setelah dibilas</li><li>Cocok untuk mandi pagi dan sore hari</li><li>Ternotifikasi BPOM NA18250701893 dan aman untuk usia 12+</li></ul>",
+    "seo": {
+      "title": "Bright Glow Body Wash 250ml — Beautyinu",
+      "description": "Sabun mandi cair dengan Niacinamide, Arbutin, dan Glutathione untuk membersihkan secara lembut dan mencerahkan kulit. BPOM certified."
+    },
+    "collectionsToJoin": [
+      "gid://shopify/Collection/455670300893",
+      "gid://shopify/Collection/462376599773",
+      "gid://shopify/Collection/462376665309"
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/47908818157789",
+        "title": "Default Title",
+        "price": "69750.00",
+        "compareAtPrice": "155000.00",
+        "sku": "1BW",
+        "inventoryPolicy": "CONTINUE"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "cara_pakai",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Cara Pemakaian:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"1. Basahi tubuh dengan air bersih.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"2. Tuangkan body wash secukupnya ke telapak tangan atau shower puff.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"3. Busakan ke seluruh tubuh secara merata, pijat lembut, lalu bilas dengan air hingga bersih.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"4. Lanjutkan dengan Bright Glow Body Lotion setelah mandi untuk hasil kelembapan maksimal.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "ingredients",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Hero Ingredients & Fungsinya:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Niacinamide: Membersihkan dan merawat kecerahan kulit sejak langkah pertama mandi.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Alpha Arbutin: Mengurangi tampilan kusam dan membantu meratakan warna kulit.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Tranexamic Acid: Merawat tampilan noda hitam dan bekas luka ringan pada tubuh.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Milk & Mango Extract: Memberikan nutrisi alami, kelembutan ekstra, dan aroma segar buah yang membangkitkan semangat.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "manfaat",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Manfaat Utama:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Mengangkat kotoran, debu, dan keringat harian secara optimal.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Menjaga kelembapan kulit alami sehingga tidak terasa kering atau tertarik setelah mandi.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Menjadikan kulit terasa lebih halus, segar, dan wangi sepanjang hari.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Terdaftar resmi BPOM NA18250701893.\"}]}]}"
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9492855390429",
+    "oldTitle": "Brightening Booster Gold Powder 25gr",
+    "newTitle": "Brightening Booster Gold Powder 25gr",
+    "oldHandle": "brightening-booster-gold-powder-25gr",
+    "newHandle": "brightening-booster-gold-powder-25gr",
+    "descriptionHtml": "<p><strong>Booster Pencerah 3x Lebih Cepat.</strong> Serbuk booster pencerah konsentrat multifungsi dengan formulasi klinis Niacinamide 5.22%, Alpha Arbutin 2.30%, Kakadu Plum (sumber Vitamin C alami tertinggi), Glutathione, dan Salicylic Acid. Dirancang khusus untuk dicampurkan ke body lotion, body cream, atau lulur favorit guna mempercepat hasil perawatan kulit agar tampak cerah, glowing merata, dan bebas kusam tanpa efek abu-abu.</p><p><strong>Keunggulan Utama:</strong></p><ul><li>Konsentrasi presisi: Niacinamide 5.22% dan Alpha Arbutin 2.30% untuk efektivitas optimal</li><li>Kakadu Plum Extract kaya antioksidan alami melawan radikal bebas</li><li>Praktis dicampurkan ke lotion, cream, maupun lulur harian</li><li>Tidak menimbulkan white cast abu-abu saat digunakan sesuai takaran</li><li>Membantu kulit tampak lebih glowing dan noda hitam tersamarkan dalam 2–4 minggu</li><li>Ternotifikasi BPOM NA18240200017 dan aman untuk usia 12+</li></ul>",
+    "seo": {
+      "title": "Brightening Booster Gold Powder 25gr — Beautyinu",
+      "description": "Serbuk booster konsentrat dengan Kakadu Plum, Niacinamide, dan Alpha Arbutin. Campurkan ke bodycare untuk kulit cerah maksimal. BPOM certified."
+    },
+    "collectionsToJoin": [
+      "gid://shopify/Collection/455670300893",
+      "gid://shopify/Collection/462376599773",
+      "gid://shopify/Collection/462376665309"
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/47908823957725",
+        "title": "Default Title",
+        "price": "39724.00",
+        "compareAtPrice": "55950.00",
+        "sku": "1G",
+        "inventoryPolicy": "CONTINUE"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "cara_pakai",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Panduan Takaran & Cara Pemakaian:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"1. Campur ke Botol Body Lotion: Masukkan 1 tube (25gr) Gold Powder ke dalam 400ml Beautyinu Bright Glow Body Lotion. Aduk atau kocok hingga tercampur rata. Gunakan setiap hari pagi dan malam.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"2. Campur di Telapak Tangan: Ambil lotion atau body cream di telapak tangan, taburkan sedikit Gold Powder (rasio 3:1 lebih banyak lotion), ratakan, lalu usapkan ke kulit.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"3. Treatment Mingguan (Lulur / Scrub): Campurkan Gold Powder dengan perbandingan 1:1 ke lulur atau body scrub saat akan digunakan. Balurkan ke kulit, diamkan 10–15 menit, lalu bilas bersih.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Catatan Keamanan: Tidak disarankan dicampur dengan produk yang memiliki kandungan aktif tinggi seperti AHA > 8%, BHA > 2%, Retinol > 0.5%, atau Vitamin C murni > 15% untuk menghindari risiko iritasi.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "ingredients",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Hero Ingredients Presisi & Fungsinya:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Niacinamide 5.22%: Konsentrasi teruji untuk mencerahkan, memperkuat skin barrier, dan meratakan warna kulit.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Alpha Arbutin 2.30%: Agen pencerah yang efektif menyamarkan noda hitam, flek, dan hiperpigmentasi.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Kakadu Plum Extract: Sumber Vitamin C alami tertinggi dari alam untuk perlindungan antioksidan maksimal.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Glutathione: Menjaga elastisitas, kekenyalan, dan kilau cerah alami kulit.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Salicylic Acid: Membantu membersihkan pori dari minyak berlebih dan mengangkat sel kulit mati.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "manfaat",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Manfaat Utama:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Mempercepat hasil perawatan bodycare hingga 3x lebih cerah dan glowing.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Menyamarkan noda hitam, bekas luka ringan, dan area kulit yang belang.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Formulasi serbuk halus yang menyatu sempurna tanpa rasa berpasir atau abu-abu.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Terdaftar resmi BPOM NA18240200017.\"}]}]}"
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9492855587037",
+    "oldTitle": "Kefir Collagen Soap 60gr",
+    "newTitle": "Kefir Collagen Soap 60gr",
+    "oldHandle": "kefir-collagen-soap-60gr",
+    "newHandle": "kefir-collagen-soap-60gr",
+    "descriptionHtml": "<p><strong>14 Hari Kulit Lebih Cerah.</strong> Sabun batang perawatan kulit multifungsi yang dapat digunakan untuk wajah dan badan. Mengombinasikan fermentasi susu Kefir, Collagen alami, serta minyak botani pilihan (Coconut Oil, Olive Oil, Rice Bran Oil, Sunflower Oil) dengan Niacinamide, Glutathione, dan Arbutin. Membersihkan pori secara mendalam sekaligus menjaga kelembutan dan elastisitas kulit agar tampak cerah bercahaya.</p><p><strong>Keunggulan Utama:</strong></p><ul><li>Kefir & Collagen membantu peremajaan kulit agar tetap kencang dan kenyal</li><li>Kombinasi 4 botanical oils menjaga kelembapan alami kulit (tidak membuat kulit kering ketarik)</li><li>Multifungsi: aman digunakan untuk membersihkan badan maupun wajah</li><li>Membantu kulit tampak lebih bersih, segar, dan cerah dalam 14 hari pemakaian rutin</li><li>Ternotifikasi BPOM NA18211200972 dan aman untuk usia 12+</li></ul>",
+    "seo": {
+      "title": "Kefir Collagen Soap 60gr — Beautyinu",
+      "description": "Sabun batang dengan formula Kefir, Collagen, Glutathione, dan Niacinamide untuk membersihkan dan mencerahkan kulit. BPOM certified."
+    },
+    "collectionsToJoin": [
+      "gid://shopify/Collection/455670300893",
+      "gid://shopify/Collection/462376599773",
+      "gid://shopify/Collection/462376665309"
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/47908824482013",
+        "title": "Default Title",
+        "price": "37125.00",
+        "compareAtPrice": "45000.00",
+        "sku": "1KC",
+        "inventoryPolicy": "CONTINUE"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "cara_pakai",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Cara Pemakaian:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Untuk Badan: Basahi tubuh dengan air, usapkan sabun hingga berbusa melimpah, ratakan ke seluruh tubuh. Diamkan selama 2–3 menit agar nutrisi kefir dan kolagen meresap, lalu bilas hingga bersih.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Untuk Wajah: Busakan sabun di telapak tangan, aplikasikan busa lembut ke wajah dengan pijatan ringan (hindari area mata dan bibir), lalu langsung bilas bersih.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Tips: Simpan sabun di tempat yang kering setelah digunakan agar tidak mudah mencair dan tetap higienis.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "ingredients",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Hero Ingredients & Fungsinya:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Fermentasi Susu Kefir: Melembapkan mendalam, menjaga keseimbangan mikrobioma kulit, dan mencerahkan secara alami.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Hydrolyzed Collagen: Membantu menjaga kekenyalan, kelembutan, dan elastisitas kulit.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Botanical Oils (Coconut, Olive, Rice Bran, Sunflower): Menutrisi kulit dan mencegah kekeringan setelah mandi.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Niacinamide, Glutathione & Arbutin: Formula pencerah terpadu untuk meratakan warna kulit kusam.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Aloe Vera Extract: Memberikan efek hidrasi dan menyejukkan kulit.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "manfaat",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Manfaat Utama:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Membersihkan debu, kotoran, dan sel kulit mati secara menyeluruh.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Kulit tampak lebih cerah, bersih, dan segar dalam 14 hari pemakaian rutin.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Menjaga kulit tetap lembap, kenyal, dan tidak terasa ketarik setelah mandi.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Terdaftar resmi BPOM NA18211200972.\"}]}]}"
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9565836968157",
+    "oldTitle": "Glowing Set — Soap, Booster & Lotion (3 pcs)",
+    "newTitle": "Glowing Set (3-in-1)",
+    "oldHandle": "beautyinu-glowing-set-paket-hemat-isi-3-sabun-kefir-collagen-bibit-pemutih-lotion-jumbo",
+    "newHandle": "glowing-set-3-in-1",
+    "descriptionHtml": "<p><strong>Rangkaian Rutinitas Glowing 3-in-1.</strong> Paket perawatan tubuh terpadu untuk hasil cerah optimal setiap hari. Terdiri dari langkah pembersihan (Kefir Collagen Soap 60gr), booster konsentrat pencerah (Brightening Booster Gold Powder 25gr), dan pelembap harian pelindung UV (Bright Glow Body Lotion UV Filter 750ml). Diformulasikan bersinergi untuk menutrisi kulit secara menyeluruh dari pagi hingga malam.</p><p><strong>Isi Paket & Tahapan Rutinitas:</strong></p><ul><li><strong>Step 1 (Cleanse):</strong> Kefir Collagen Soap 60gr (BPOM NA18211200972) — Membersihkan pori dan menyiapkan kulit.</li><li><strong>Step 2 (Boost):</strong> Brightening Booster Gold Powder 25gr (BPOM NA18240200017) — Serbuk pencerah konsentrat tinggi.</li><li><strong>Step 3 (Moisturize & Protect):</strong> Bright Glow Body Lotion UV Filter 750ml (BPOM NA18240109992) — Hidrasi harian & UV Filter.</li></ul><p><strong>Manfaat Rangkaian:</strong></p><ul><li>Merawat kulit kusam dan kering secara berkesinambungan</li><li>Melindungi kulit dari paparan sinar UV selama beraktivitas harian</li><li>Lebih hemat dengan harga paket bundling resmi</li></ul>",
+    "seo": {
+      "title": "Glowing Set 3-in-1 — Beautyinu",
+      "description": "Paket perawatan kulit tubuh 3-in-1: Kefir Soap 60g, Booster Gold Powder 25g, dan Body Lotion UV Filter 750ml. Rangkaian lengkap ber-BPOM."
+    },
+    "collectionsToJoin": [
+      "gid://shopify/Collection/455670300893",
+      "gid://shopify/Collection/462376632541",
+      "gid://shopify/Collection/462376665309"
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/48185056100573",
+        "title": "Default Title",
+        "price": "155092.00",
+        "compareAtPrice": "254250.00",
+        "sku": "BUNDLE-GLOW3",
+        "inventoryPolicy": "CONTINUE"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "cara_pakai",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Urutan Pemakaian Rangkaian Glowing Set 3-in-1:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"1. Step 1 (Mandi): Gunakan Kefir Collagen Soap saat mandi pagi dan sore. Usap hingga berbusa, ratakan ke tubuh, diamkan 2–3 menit, lalu bilas bersih.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"2. Step 2 & 3 (Campur Booster & Lotion): Campurkan 1 tube Gold Powder ke botol Body Lotion 750ml (atau campur perbandingan 3:1 lotion:booster di telapak tangan). Usapkan merata ke seluruh tubuh setiap hari setelah mandi.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "ingredients",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Kandungan Aktif Rangkaian:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Kefir Collagen Soap: Kefir ferment, hydrolyzed collagen, botanical oils, niacinamide, glutathione.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Brightening Booster Gold Powder: Niacinamide 5.22%, alpha arbutin 2.30%, kakadu plum, glutathione, salicylic acid.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Bright Glow Body Lotion: UV filter, tranexamic acid, niacinamide, 4-layer hyaluronic complex, shea butter, multivitamin B5 & E.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "manfaat",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Manfaat Rangkaian:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Memberikan perawatan menyeluruh: membersihkan, mencerahkan intensif, dan melindungi dari sinar matahari.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Kulit tampak lebih cerah, halus, dan glowing alami secara bertahap.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Paket bundling hemat resmi bersertifikasi BPOM lengkap.\"}]}]}"
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9566029906141",
+    "oldTitle": "Body Lotion 750ml & Booster Gold Powder Set",
+    "newTitle": "Lotion & Booster Set (2-in-1)",
+    "oldHandle": "beautyinu-bright-glow-body-lotion-with-uv-filter-750ml-brightening-booster-gold-powder-25gr",
+    "newHandle": "body-lotion-booster-set",
+    "descriptionHtml": "<p><strong>Duo Daily Glow Routine.</strong> Kombinasi favorit untuk perawatan kulit cerah harian. Memadukan Bright Glow Body Lotion UV Filter 750ml dengan Brightening Booster Gold Powder 25gr. Cukup campurkan serbuk booster ke dalam lotion untuk mendapatkan lotion pencerah berkonsentrasi tinggi yang melindungi kulit dari sinar UV sekaligus menjaga kelembapan 24 jam.</p><p><strong>Isi Paket:</strong></p><ul><li>Bright Glow Body Lotion UV Filter 750ml (BPOM NA18240109992)</li><li>Brightening Booster Gold Powder 25gr (BPOM NA18240200017)</li></ul><p><strong>Cara Pakai Praktis:</strong></p><ul><li>Campurkan 1 tube Gold Powder ke botol lotion 750ml (atau gunakan rasio 3:1 di telapak tangan saat pakai)</li><li>Oleskan merata ke seluruh tubuh setiap pagi dan sore setelah mandi</li></ul>",
+    "seo": {
+      "title": "Lotion & Booster Set 2-in-1 — Beautyinu",
+      "description": "Duo pencerah harian: Bright Glow Body Lotion 750ml + Brightening Booster Gold Powder 25g. Kulit lembap, cerah, terlindungi UV. BPOM certified."
+    },
+    "collectionsToJoin": [
+      "gid://shopify/Collection/455670300893",
+      "gid://shopify/Collection/462376632541",
+      "gid://shopify/Collection/462376665309"
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/48185462554845",
+        "title": "Default Title",
+        "price": "140302.00",
+        "compareAtPrice": "215850.00",
+        "sku": "BUNDLE-LOBST",
+        "inventoryPolicy": "CONTINUE"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "cara_pakai",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Cara Pakai Duo Lotion & Booster:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Cara Praktis: Masukkan 1 tube (25gr) Gold Powder ke dalam botol Body Lotion 750ml, kocok atau aduk hingga tercampur merata. Gunakan lotion seperti biasa setiap hari setelah mandi.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Cara Manual: Ambil lotion di telapak tangan, tambahkan sedikit Gold Powder (rasio 3:1), campurkan dan oleskan merata pada kulit badan dan tangan.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "ingredients",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Kandungan Aktif Sinergis:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Tranexamic Acid & Niacinamide: Mencerahkan dan meratakan warna kulit.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Alpha Arbutin 2.30% & Kakadu Plum: Menyamarkan noda hitam dan melindungi dari radikal bebas.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• UV Filter & Hyaluronic Complex: Proteksi dari sinar matahari dan hidrasi mendalam 24 jam.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "manfaat",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Manfaat Utama:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Melindungi kulit dari sinar UV matahari saat beraktivitas siang hari.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Membantu mencerahkan kulit tubuh lebih cepat dan merata.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Menjaga kelembapan kulit agar tetap lembut, kenyal, dan tidak kering.\"}]}]}"
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9566071718109",
+    "oldTitle": "Body Cream 200gr & Booster Gold Powder Set",
+    "newTitle": "Cream & Booster Set (2-in-1)",
+    "oldHandle": "beautyinu-isi-brightening-booster-gold-powder-brightening-body-cream-200gr",
+    "newHandle": "body-cream-booster-set",
+    "descriptionHtml": "<p><strong>Duo Intensive Night Care & Body Mask.</strong> Kombinasi ampuh untuk menutrisi kulit kering, kasar, dan warna kulit tidak merata. Menggabungkan Brightening Body Cream Grape Scent 200gr dengan Brightening Booster Gold Powder 25gr. Sangat ideal sebagai perawatan hidrasi mendalam di malam hari atau sebagai masker tubuh mingguan.</p><p><strong>Isi Paket:</strong></p><ul><li>Brightening Body Cream Grape Scent 200gr (BPOM NA18230100799)</li><li>Brightening Booster Gold Powder 25gr (BPOM NA18240200017)</li></ul><p><strong>Cara Pakai:</strong></p><ul><li>Sebagai Krim Malam: Campurkan di telapak tangan, oleskan tipis pada area tubuh sebelum tidur.</li><li>Sebagai Body Mask: Campurkan dengan rasio 1:1, oleskan tebal pada tubuh, diamkan 15 menit, lalu bilas bersih.</li></ul>",
+    "seo": {
+      "title": "Cream & Booster Set 2-in-1 — Beautyinu",
+      "description": "Duo pencerah intensif: Brightening Body Cream Grape 200g + Booster Gold Powder 25g. Menutrisi kulit kering dan kusam secara optimal. BPOM certified."
+    },
+    "collectionsToJoin": [
+      "gid://shopify/Collection/455670300893",
+      "gid://shopify/Collection/462376632541"
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/48185519505629",
+        "title": "Default Title",
+        "price": "121143.00",
+        "compareAtPrice": "165950.00",
+        "sku": "BUNDLE-CRBST",
+        "inventoryPolicy": "CONTINUE"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "cara_pakai",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Cara Pakai Duo Cream & Booster:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"1. Perawatan Malam (Tanpa Bilas): Ambil body cream secukupnya di telapak tangan, taburkan sedikit booster powder, ratakan dan oleskan tipis ke kulit sebelum tidur.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"2. Body Mask Mingguan (Bilas): Campurkan body cream dan booster powder dengan perbandingan 1:1 di mangkuk bersih. Oleskan tebal ke seluruh tubuh atau area yang kusam, diamkan 10–15 menit, lalu bilas bersih saat mandi.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "ingredients",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Kandungan Aktif Sinergis:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Glutathione, Niacinamide & Alpha Arbutin: Formula pencerah konsentrasi tinggi.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Licorice & Mulberry Extract: Botanical actives untuk menyamarkan bintik hitam.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Glycerin & Kakadu Plum: Hidrasi mendalam dan antioksidan alami pelindung kulit.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "manfaat",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Manfaat Utama:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Membantu melembutkan dan mencerahkan area kulit yang sangat kering atau kasar (siku, lutut, tumit).\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Memberikan perawatan ekstra di malam hari saat kulit beristirahat.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Menjadikan kulit tampak lebih halus, glowing, dan bernutrisi sehat.\"}]}]}"
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9566120313053",
+    "oldTitle": "Complete Brightening Set — All 5 Products",
+    "newTitle": "Complete Brightening Set (5-in-1)",
+    "oldHandle": "beautyinu-special-all-product-sabun-booster-body-wash-lotion-dan-body-cream-100gr",
+    "newHandle": "complete-brightening-set",
+    "descriptionHtml": "<p><strong>Rangkaian Lengkap 5-in-1 Head-to-Toe.</strong> Solusi menyeluruh untuk perawatan kulit tubuh dari A sampai Z. Menghadirkan 5 produk unggulan Beautyinu untuk membersihkan, menutrisi, mencerahkan, melindungi dari sinar matahari, dan meregenerasi kulit secara optimal.</p><p><strong>Rangkaian 5 Produk Resmi:</strong></p><ul><li><strong>1. Kefir Collagen Soap 60gr (BPOM NA18211200972):</strong> Sabun batang pembersih wajah dan tubuh.</li><li><strong>2. Bright Glow Body Wash 250ml (BPOM NA18250701893):</strong> Sabun cair mandi harian beraroma segar.</li><li><strong>3. Brightening Booster Gold Powder 25gr (BPOM NA18240200017):</strong> Serbuk pencerah konsentrat tinggi.</li><li><strong>4. Bright Glow Body Lotion UV Filter 750ml (BPOM NA18240109992):</strong> Pelembap harian pelindung UV ukuran jumbo.</li><li><strong>5. Brightening Body Cream Grape 100gr (BPOM NA18230100799):</strong> Krim pelembap intensif & masker pencerah.</li></ul><p><strong>Urutan Pemakaian:</strong> Mandi (Soap / Body Wash) ➔ Campur Booster ke Lotion untuk pemakaian harian ➔ Gunakan Body Cream untuk area kering atau sebagai masker malam.</p>",
+    "seo": {
+      "title": "Complete Brightening Set 5-in-1 — Beautyinu",
+      "description": "Rangkaian lengkap 5 produk body care Beautyinu: Sabun, Body Wash, Booster, Lotion 750ml, dan Body Cream. Perawatan kulit cerah maksimal ber-BPOM."
+    },
+    "collectionsToJoin": [
+      "gid://shopify/Collection/455670300893",
+      "gid://shopify/Collection/462376632541",
+      "gid://shopify/Collection/462376665309"
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/48185597722845",
+        "title": "Default Title",
+        "price": "259117.00",
+        "compareAtPrice": "488900.00",
+        "sku": "BUNDLE-ALL5",
+        "inventoryPolicy": "CONTINUE"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "cara_pakai",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Panduan Rutinitas Lengkap 5 Produk:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"1. Mandi (Cleanse): Bersihkan tubuh dengan Kefir Collagen Soap atau Bright Glow Body Wash saat mandi pagi dan sore.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"2. Pagi / Siang (Protect): Campurkan Gold Powder ke Body Lotion Jumbo 750ml, gunakan merata ke seluruh tubuh sebelum beraktivitas.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"3. Malam (Intensive Care): Oleskan Body Cream pada area kulit yang membutuhkan hidrasi ekstra sebelum tidur.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"4. Perawatan Mingguan: Campurkan Body Cream dengan Gold Powder rasio 1:1 sebagai masker tubuh selama 15 menit, lalu bilas bersih.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "ingredients",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Formulasi Lengkap 5 Produk Resmi:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Body Lotion: UV Filter, Tranexamic Acid, Niacinamide, Hyaluronic Complex, Shea Butter, Vitamin B5 & E.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Kefir Collagen Soap: Kefir ferment, Collagen, Coconut, Olive, Rice Bran & Sunflower Oils, Niacinamide, Arbutin.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Gold Powder: Niacinamide 5.22%, Alpha Arbutin 2.30%, Kakadu Plum, Glutathione, Salicylic Acid.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Body Wash: Niacinamide, Alpha Arbutin, Tranexamic Acid, Milk & Mango Extract.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Body Cream: Glycerin, Glutathione, Niacinamide, Licorice Extract, Mulberry Extract.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "manfaat",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Manfaat Lengkap 5-in-1:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Menjawab seluruh kebutuhan kulit tubuh: membersihkan, melembapkan, mencerahkan, dan melindungi dari sinar UV.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Merawat kulit kusam, kering, dan warna kulit tidak merata secara menyeluruh.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Seluruh 5 produk 100% berlegalitas resmi BPOM.\"}]}]}"
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9566138466525",
+    "oldTitle": "Brightening Booster Gold Powder 25gr × 7 Pack",
+    "newTitle": "Booster Gold Powder (7-Pack Value)",
+    "oldHandle": "paket-lebih-hemat-banget-isi-7-brightening-booster-gold-powder-25gr",
+    "newHandle": "booster-gold-powder-7-pack",
+    "descriptionHtml": "<p><strong>Paket Super Hemat Isi 7 Pcs.</strong> Pilihan terbaik dan paling ekonomis bagi pengguna setia Brightening Booster Gold Powder 25gr. Ideal untuk stok perawatan jangka panjang, berbagi bersama keluarga, atau persediaan rutin harian dengan jaminan produk 100% original ber-BPOM langsung dari produsen resmi.</p><p><strong>Detail Paket:</strong></p><ul><li>Total: 7 botol Brightening Booster Gold Powder @ 25gr (Total 175gr)</li><li>Sertifikasi Resmi: BPOM NA18240200017</li><li>Formulasi: Niacinamide 5.22%, Alpha Arbutin 2.30%, Kakadu Plum, Glutathione, Salicylic Acid</li><li>Masa Simpan: 2 tahun (simpan di tempat kering dan sejuk)</li></ul>",
+    "seo": {
+      "title": "Booster Gold Powder 7-Pack — Beautyinu",
+      "description": "Paket hemat isi 7 pcs Brightening Booster Gold Powder 25gr. Stok perawatan kulit harian lebih hemat dengan serbuk booster konsentrat ber-BPOM."
+    },
+    "collectionsToJoin": [
+      "gid://shopify/Collection/455670300893",
+      "gid://shopify/Collection/462376632541"
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/48185623150813",
+        "title": "Default Title",
+        "price": "277095.00",
+        "compareAtPrice": "391650.00",
+        "sku": "BUNDLE-7G",
+        "inventoryPolicy": "CONTINUE"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "cara_pakai",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Panduan Pemakaian:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Campurkan 1 tube ke dalam botol body lotion ukuran 400ml–750ml, aduk/kocok hingga rata, gunakan setiap hari setelah mandi.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Atau campurkan di telapak tangan dengan rasio 3:1 (lebih banyak lotion daripada booster).\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Dapat pula digunakan sebagai campuran lulur atau masker tubuh mingguan.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "ingredients",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Hero Ingredients Presisi:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Niacinamide 5.22% & Alpha Arbutin 2.30%: Agen pencerah efektif meratakan warna kulit.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Kakadu Plum Extract: Sumber Vitamin C alami tertinggi untuk antioksidan harian.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Glutathione & Salicylic Acid: Mengangkat sel kulit mati dan menjaga elastisitas kulit.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "manfaat",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Manfaat Paket Hemat 7 Pcs:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Stok perawatan pencerah harian jangka panjang dengan harga bundling paling hemat.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Produk multifungsi: dapat dicampur ke berbagai body lotion, body cream, maupun lulur.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Jaminan 100% original ber-BPOM NA18240200017.\"}]}]}"
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9492853653725",
+    "oldHandle": "english-pear-freesia-deep-cleansing-body-toner-100ml",
+    "newTitle": "English Pear Body Toner 100ml",
+    "newHandle": "english-pear-body-toner-100ml",
+    "productType": "Body Toner",
+    "descriptionHtml": "<p><strong>Segarkan dan Bersihkan Kulit Tubuh Secara Mendalam.</strong> Body toner dengan keharuman mewah English Pear &amp; Freesia yang diformulasikan khusus untuk mengangkat sisa kotoran, minyak berlebih, dan residu sabun setelah mandi. Membantu mengembalikan kesegaran alami kulit, menghaluskan tekstur, serta mempersiapkan kulit agar menyerap lotion dan booster nutrisi secara optimal.</p><p><strong>Keunggulan Utama:</strong></p><ul><li>Membersihkan sisa kotoran dan sel kulit mati secara lembut tanpa rasa perih</li><li>Menyegarkan dan menyeimbangkan kelembapan kulit tubuh seketika</li><li>Membantu kulit tampak lebih cerah, halus, dan tidak kusam</li><li>Aroma floral-fruity mewah menyegarkan yang tahan lama</li><li>Formula ringan, cepat meresap, dan nyaman untuk penggunaan harian</li><li>Aman digunakan setiap hari untuk usia 12+</li></ul>",
+    "seo": {
+      "title": "English Pear Body Toner 100ml — Beautyinu",
+      "description": "Body toner dengan aroma English Pear & Freesia untuk membersihkan sisa kotoran dan residu setelah mandi. Kulit terasa segar, halus, dan bercahaya alami."
+    },
+    "collectionsToJoin": [
+      "gid://shopify/Collection/455670300893",
+      "gid://shopify/Collection/462376599773"
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/47908817535197",
+        "price": "100000.00",
+        "compareAtPrice": "125000.00",
+        "sku": "1BT-100",
+        "inventoryPolicy": "CONTINUE"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "cara_pakai",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Cara Pemakaian:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"1. Gunakan setelah mandi saat tubuh sudah kering bersih.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"2. Tuangkan body toner secukupnya pada kapas atau telapak tangan yang bersih.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"3. Usapkan secara merata ke seluruh tubuh, terutama area yang rentan kotor seperti leher, lipatan tangan, siku, dan kaki.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"4. Biarkan meresap sempurna sebelum mengaplikasikan body lotion atau body cream.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "ingredients",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Hero Ingredients & Fungsinya:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• English Pear & Freesia Extract: Memberikan keharuman floral-fruity mewah yang menyegarkan tubuh sepanjang hari.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Niacinamide: Mencerahkan kulit tubuh, menyamarkan tampilan kusam, dan merawat lapisan pelindung kulit.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Mild Exfoliant Complex: Mengangkat residu kotoran dan sel kulit mati secara lembut tanpa mengikis kelembapan alami.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Glycerin & Panthenol: Menghidrasi kulit secara intensif agar terasa kenyal, halus, dan tenang.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "manfaat",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Manfaat Utama:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Membersihkan kotoran dan residu sabun yang tertinggal di pori-pori kulit.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Mengembalikan kesegaran dan kelembapan alami setelah mandi.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Membantu penyerapan body lotion dan booster hingga 2x lebih efektif.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Merawat kehalusan kulit dan menyamarkan tampilan kulit kasar.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Memberikan wangi segar elegan yang menenangkan.\"}]}]}"
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9535046648029",
+    "oldHandle": "brightening-body-cream-grape-scent-gr",
+    "newTitle": "Brightening Body Cream Grape 200gr",
+    "newHandle": "brightening-body-cream-grape-200g",
+    "productType": "Body Cream",
+    "descriptionHtml": "<p><strong>Nutrisi Intensif Ukuran Jumbo 200gr.</strong> Krim tubuh bernutrisi tinggi dengan aroma anggur segar yang diformulasikan khusus untuk merawat kelembapan mendalam dan mencerahkan area tubuh yang kering serta kusam, seperti siku, lutut, tumit, tangan, dan kaki. Ukuran 200gr lebih ekonomis dan tahan lama untuk perawatan harian keluarga.</p><p><strong>Keunggulan Utama:</strong></p><ul><li>Kombinasi Glutathione &amp; Niacinamide untuk mencerahkan kulit kusam</li><li>Glycerin konsentrat tinggi mengunci kelembapan hingga lapisan terdalam</li><li>Dual-action: pelembap malam tanpa bilas atau masker tubuh bilas intensif</li><li>Tekstur rich namun mudah meresap tanpa rasa lengket</li><li>Ukuran jumbo 200gr hemat untuk perawatan rutin harian</li><li>Ternotifikasi BPOM NA18230100799 dan aman untuk usia 12+</li></ul>",
+    "seo": {
+      "title": "Brightening Body Cream Grape 200gr — Beautyinu",
+      "description": "Krim tubuh 200gr beraroma anggur dengan Glutathione dan Niacinamide. Melembapkan area sangat kering dan mencerahkan kulit secara intensif."
+    },
+    "collectionsToJoin": [
+      "gid://shopify/Collection/455670300893",
+      "gid://shopify/Collection/462376599773"
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/48082473844957",
+        "price": "80300.00",
+        "compareAtPrice": "110000.00",
+        "sku": "1BC-200G",
+        "inventoryPolicy": "CONTINUE"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "cara_pakai",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Cara Pemakaian:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"1. Mode Daily Night Moisturizer (Tanpa Bilas): Oleskan tipis dan merata pada area tubuh (terutama siku, lutut, tumit) setelah mandi malam atau sebelum tidur. Pijat perlahan hingga meresap.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"2. Mode Intensive Body Mask (Bilas): Oleskan tebal ke area tubuh yang kusam (dapat dipadukan dengan Brightening Booster Gold Powder rasio 1:1). Diamkan 10–15 menit, lalu bilas hingga bersih.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "ingredients",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Hero Ingredients & Fungsinya:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Glutathione: Antioksidan utama untuk membantu kulit tampak cerah bercahaya dan terlindungi dari radikal bebas.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Niacinamide: Mencerahkan noda hitam, meratakan warna kulit, dan memperkuat skin barrier.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Licorice & Mulberry Extract: Ekstrak botani alami untuk menyamarkan hiperpigmentasi dan meremajakan sel kulit.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Concentrated Glycerin: Menutrisi dan melembutkan kulit yang sangat kering, bersisik, atau kasar.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "manfaat",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Manfaat Utama:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Melembapkan dan melembutkan area kulit yang kasar dan tebal.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Membantu meratakan warna kulit tubuh yang belang secara teratur.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Menutrisi kulit saat malam hari untuk mendukung regenerasi alami sel kulit.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Formula lembut beraroma anggur segar yang menenangkan.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Terdaftar resmi BPOM NA18230100799.\"}]}]}"
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9492845035741",
+    "oldHandle": "beautyinu-brightening-body-cream-grape-scent-bleaching-pemutih-badan-100-gram-200-gram",
+    "newTitle": "Brightening Body Cream Grape 100gr",
+    "newHandle": "brightening-body-cream-grape-100g",
+    "productType": "Body Cream",
+    "descriptionHtml": "<p><strong>Perawatan Mencerahkan Praktis Ukuran 100gr.</strong> Krim tubuh bernutrisi dengan aroma anggur segar yang diformulasikan untuk melembapkan dan mencerahkan area tubuh yang kering serta kusam. Kemasan 100gr yang praktis dan mudah dibawa bepergian (travel-friendly).</p><p><strong>Keunggulan Utama:</strong></p><ul><li>Membantu mencerahkan dan meratakan tampilan warna kulit tubuh</li><li>Merawat kelembapan mendalam pada area siku, lutut, dan tumit</li><li>Dual fungsi: pelembap harian tanpa bilas atau masker tubuh bilas</li><li>Tekstur lembut, cepat meresap, dan tidak lengket di kulit</li><li>Kemasan compact 100gr praktis dibawa ke mana saja</li><li>Ternotifikasi BPOM NA18230100799 dan aman untuk usia 12+</li></ul>",
+    "seo": {
+      "title": "Brightening Body Cream Grape 100gr — Beautyinu",
+      "description": "Krim tubuh 100gr beraroma anggur segar dengan Glutathione & Niacinamide. Solusi praktis merawat kelembapan dan mencerahkan area tubuh yang kusam."
+    },
+    "collectionsToJoin": [
+      "gid://shopify/Collection/455670300893",
+      "gid://shopify/Collection/462376599773"
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/47908794892509",
+        "price": "50600.00",
+        "compareAtPrice": "65000.00",
+        "sku": "1BC-100G",
+        "inventoryPolicy": "CONTINUE"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "cara_pakai",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Cara Pemakaian:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"1. Mode Daily Night Moisturizer (Tanpa Bilas): Oleskan tipis dan merata pada tubuh setelah mandi atau sebelum tidur. Pijat perlahan hingga meresap.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"2. Mode Intensive Body Mask (Bilas): Oleskan tebal ke kulit tubuh, diamkan selama 10–15 menit, lalu bilas dengan air hingga bersih.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "ingredients",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Hero Ingredients & Fungsinya:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Glutathione: Antioksidan kuat untuk membantu kulit tampak cerah dan bersinar alami.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Niacinamide: Mengurangi kusam dan membantu warna kulit terlihat lebih merata.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Licorice Extract: Bahan pencerah alami yang membantu menyamarkan noda hitam.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Glycerin: Mengunci hidrasi dan menjaga kehalusan kulit sepanjang hari.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "manfaat",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Manfaat Utama:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Menghidrasi area kulit tubuh yang kering dan kasar.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Membantu kulit tampak lebih cerah dan bersih terawat.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Menenangkan kulit dengan keharuman anggur segar.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Kemasan 100gr yang praktis dan hemat.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Terdaftar resmi BPOM NA18230100799.\"}]}]}"
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9492852834525",
+    "oldHandle": "beautyinu-bright-glow-body-lotion-jumbo-with-uv-filter-750ml",
+    "newTitle": "Bright Glow Body Lotion UV Filter 750ml (Classic Edition)",
+    "newHandle": "bright-glow-body-lotion-uv-filter-750ml-classic",
+    "productType": "Body Lotion",
+    "descriptionHtml": "<p><strong>Daily Moisturizer 14 Hari Kulit Lembap &amp; Glowing (Classic Edition).</strong> Body lotion harian kemasan jumbo 750ml dengan formula klasik terpercaya yang dilengkapi UV Filter, Tranexamic Acid, Niacinamide, Shea Butter, dan Multivitamin. Memberikan perlindungan harian dari sinar matahari sekaligus merawat hidrasi dan kecerahan kulit agar selalu kenyal, halus, dan bercahaya.</p><p><strong>Keunggulan Utama:</strong></p><ul><li>Dilengkapi UV Filter untuk perlindungan harian dari sinar matahari</li><li>Tranexamic Acid &amp; Niacinamide untuk mencerahkan dan meratakan warna kulit</li><li>Shea Butter &amp; Hyaluronic Complex mengunci kelembapan 24 jam</li><li>Tekstur ringan, mudah meresap, dan tidak meninggalkan rasa lengket</li><li>Kemasan jumbo 750ml dengan pump higienis, ekonomis untuk pemakaian harian</li><li>Ternotifikasi BPOM NA18240109992 dan aman untuk usia 12+</li></ul>",
+    "seo": {
+      "title": "Bright Glow Body Lotion UV Filter 750ml Classic — Beautyinu",
+      "description": "Body lotion jumbo 750ml Classic Edition dengan UV Filter, Tranexamic Acid, dan Niacinamide. Menjaga kelembapan 24 jam dan melindungi kulit dari sinar UV."
+    },
+    "collectionsToJoin": [
+      "gid://shopify/Collection/455670300893",
+      "gid://shopify/Collection/462376599773"
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/47908813242589",
+        "price": "100737.00",
+        "compareAtPrice": "159900.00",
+        "sku": "1BL-750-CLASSIC",
+        "inventoryPolicy": "CONTINUE"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "cara_pakai",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Cara Pemakaian:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Usapkan lotion secara merata pada seluruh area badan, tangan, dan kaki setelah mandi pagi dan sore.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Ulangi pemakaian di siang hari terutama jika banyak beraktivitas di luar ruangan.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Dapat dipadukan dengan Brightening Booster Gold Powder untuk hasil cerah yang lebih maksimal.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "ingredients",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Hero Ingredients & Fungsinya:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• UV Filter System: Melindungi kulit dari paparan sinar UV matahari saat beraktivitas harian.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Tranexamic Acid: Mencerahkan dan membantu menyamarkan tampilan noda hitam dan warna kulit tidak merata.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Niacinamide: Menutrisi kulit, merawat skin barrier, dan meningkatkan kecerahan alami.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Shea Butter & Multivitamin: Melembutkan kulit serta menjaga elastisitas dan kekenyalan kulit.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "manfaat",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Manfaat Utama:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Melindungi kulit dari bahaya paparan sinar UV matahari.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Menghidrasi kulit sepanjang hari tanpa rasa berminyak.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Membantu kulit tampak lebih cerah dalam 14 hari pemakaian rutin.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Kemasan jumbo 750ml hemat dan tahan lama.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Terdaftar resmi BPOM NA18240109992.\"}]}]}"
+      }
+    ]
+  },
+  {
+    "id": "gid://shopify/Product/9492855095517",
+    "oldHandle": "beautyinu-brightening-booster-gold-powder-serbuk-pemutih-badan-wajah-25-gram",
+    "newTitle": "Brightening Booster Gold Powder 25gr (Classic Edition)",
+    "newHandle": "brightening-booster-gold-powder-25gr-classic",
+    "productType": "Booster Powder",
+    "descriptionHtml": "<p><strong>Booster Pencerah 3x Lebih Cepat (Classic Edition).</strong> Serbuk booster pencerah kulit tubuh berkonsentrasi tinggi dengan Niacinamide 5.22%, Alpha Arbutin 2.30%, Kakadu Plum, Glutathione, dan Salicylic Acid. Diformulasikan khusus untuk dicampurkan ke dalam body lotion atau lulur mandi guna mempercepat proses regenerasi sel kulit dan mencerahkan kulit tubuh yang kusam serta belang.</p><p><strong>Keunggulan Utama:</strong></p><ul><li>Konsentrasi aktif Niacinamide 5.22% &amp; Alpha Arbutin 2.30% teruji klinis</li><li>Ekstrak Kakadu Plum alami kaya Vitamin C untuk antioksidan tinggi</li><li>Praktis dicampurkan ke body lotion harian atau lulur mandi mingguan</li><li>Bebas merkuri, bebas hidrokuinon, dan tidak membuat kulit tampak abu-abu</li><li>Ternotifikasi BPOM NA18240200017 dan aman untuk usia 12+</li></ul>",
+    "seo": {
+      "title": "Brightening Booster Gold Powder 25gr Classic — Beautyinu",
+      "description": "Serbuk booster pencerah 25gr Classic Edition dengan Niacinamide 5.22% & Alpha Arbutin 2.30%. Campuran lotion dan masker tubuh untuk kulit tampak cerah merata."
+    },
+    "collectionsToJoin": [
+      "gid://shopify/Collection/455670300893",
+      "gid://shopify/Collection/462376599773"
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/47908820320477",
+        "price": "55350.00",
+        "compareAtPrice": "75000.00",
+        "sku": "1G-25-CLASSIC",
+        "inventoryPolicy": "CONTINUE"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "custom",
+        "key": "cara_pakai",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Cara Pemakaian:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"1. Pemakaian Harian (Campuran Body Lotion): Tuangkan 1 botol (25gr) serbuk ke dalam botol lotion 400–750ml, lalu kocok hingga larut merata. Atau campurkan secubit serbuk dengan lotion di telapak tangan saat akan digunakan.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"2. Pemakaian Mingguan (Masker / Lulur Tubuh): Campurkan serbuk dengan body cream atau lulur mandi dengan rasio 1:1. Oleskan ke seluruh tubuh, diamkan 10–15 menit, lalu bilas bersih.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Catatan: Jangan mencampur dengan produk yang mengandung AHA/BHA konsentrasi sangat tinggi atau retinol dosis tinggi.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "ingredients",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Hero Ingredients & Fungsinya:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Niacinamide 5.22%: Mencerahkan kulit secara intensif, merawat skin barrier, dan mengurangi kusam.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Alpha Arbutin 2.30%: Menyamarkan noda hitam, hiperpigmentasi, dan meratakan warna kulit.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Kakadu Plum Extract: Sumber alami Vitamin C tertinggi untuk melindungi kulit dari kerusakan radikal bebas.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Glutathione & Salicylic Acid: Antioksidan kuat dan eksfoliasi ringan untuk membersihkan sel kulit mati.\"}]}]}"
+      },
+      {
+        "namespace": "custom",
+        "key": "manfaat",
+        "type": "rich_text_field",
+        "value": "{\"type\":\"root\",\"children\":[{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"Manfaat Utama:\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Mempercepat hasil cerah lotion harian hingga 3x lipat.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Membantu meratakan warna kulit yang belang akibat paparan matahari.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Menjadikan kulit tubuh terasa lebih halus, cerah, dan glowing sehat.\"}]},{\"type\":\"paragraph\",\"children\":[{\"type\":\"text\",\"value\":\"• Aman digunakan jangka panjang dengan izin edar resmi BPOM NA18240200017.\"}]}]}"
+      }
+    ]
+  }
+]

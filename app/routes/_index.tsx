@@ -903,14 +903,6 @@ function SkinConcernMatcher() {
                 ))}
               </div>
             </div>
-
-            {/* Routine Synergy Tip */}
-            <div className="mt-4 p-3.5 rounded-xl bg-white/70 border border-black/[0.04] flex items-center gap-2.5 text-xs text-text-secondary">
-              <Sparkles className="w-4 h-4 text-accent flex-shrink-0" />
-              <span>
-                Gunakan rangkaian ini secara berurutan setiap pagi &amp; malam untuk hasil pencerahan dan hidrasi maksimal.
-              </span>
-            </div>
           </div>
         </div>
       </div>

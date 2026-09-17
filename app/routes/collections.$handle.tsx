@@ -214,17 +214,8 @@ export default function Collection() {
 
   return (
     <div className="w-full bg-white">
-      {/* 1. Standardized Breadcrumbs Wayfinding Bar */}
-      <Breadcrumb
-        variant="bar"
-        items={[
-          {label: 'Koleksi', to: '/collections'},
-          {label: collection.title},
-        ]}
-      />
-
-      {/* 2. Full-Width Editorial Hero with Adaptable Precision Height */}
-      <div className="relative w-full overflow-hidden bg-[#FBF9FC] border-b border-black/[0.04] min-h-[340px] sm:min-h-[400px] lg:h-[450px] py-8 sm:py-12 flex items-center">
+      {/* 1. Full-Width Editorial Hero with Integrated Frosted Glass Breadcrumb */}
+      <div className="relative w-full overflow-hidden bg-[#FBF9FC] border-b border-black/[0.04] min-h-[360px] sm:min-h-[420px] lg:h-[460px] flex flex-col justify-between">
         {/* Full-width Model Background Image */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <picture>
@@ -232,18 +223,27 @@ export default function Collection() {
             <img
               src={heroModelDesktop}
               alt="Beautyinu Glowing Skin Routine"
-              className="w-full h-full object-cover object-right lg:object-[center_right] opacity-30 sm:opacity-90 lg:opacity-95"
+              className="w-full h-full object-cover object-right lg:object-[center_right] opacity-55 sm:opacity-90 lg:opacity-95"
             />
           </picture>
 
-          {/* Smooth Directional Scrim: Solid overlay on mobile to guarantee text contrast, soft gradient on desktop */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#FBF9FC] via-[#FBF9FC]/95 via-60% to-[#FBF9FC]/80 sm:bg-gradient-to-r sm:from-[#FBF9FC] sm:via-[#FBF9FC]/90 sm:via-55% lg:via-[#FBF9FC]/80 lg:via-60% sm:to-transparent" />
+          {/* Smooth Directional Scrim: Text area protected, top glass breadcrumb and right photo clearly visible */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#FBF9FC] via-[#FBF9FC]/80 via-50% to-[#FBF9FC]/10 sm:bg-gradient-to-r sm:from-[#FBF9FC]/90 sm:via-[#FBF9FC]/70 sm:via-55% lg:via-[#FBF9FC]/60 lg:via-60% sm:to-transparent" />
           {/* Subtle bottom edge blend */}
           <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#FBF9FC] to-transparent" />
         </div>
 
+        {/* Integrated Top Breadcrumb Bar */}
+        <Breadcrumb
+          variant="bar"
+          items={[
+            {label: 'Koleksi', to: '/collections'},
+            {label: collection.title},
+          ]}
+        />
+
         {/* Hero Content (Vertically centered on Left) */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 my-auto">
           <div className="max-w-xl lg:max-w-2xl flex flex-col justify-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/90 backdrop-blur-md text-accent text-[11px] font-mono font-semibold uppercase tracking-wider mb-2.5 border border-accent/20 shadow-2xs self-start">
               <ShieldCheck className="w-3.5 h-3.5 text-accent" />

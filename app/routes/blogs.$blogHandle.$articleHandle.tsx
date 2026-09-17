@@ -185,17 +185,8 @@ export default function Article() {
       {/* Subtle Top Reading Progress Bar */}
       <ReadingProgressBar />
 
-      {/* 1. Standardized Breadcrumbs Wayfinding Bar */}
-      <Breadcrumb
-        variant="bar"
-        items={[
-          {label: 'Skincare Journal', to: `/blogs/${blogHandle}`},
-          {label: title},
-        ]}
-      />
-
-      {/* 2. Full-Width Editorial Background Hero Section with 3:2 Precision Framing */}
-      <div className="relative w-full overflow-hidden bg-[#16141D] min-h-[400px] sm:min-h-[460px] lg:h-[520px] flex items-center border-b border-black/[0.04]">
+      {/* Full-Width Editorial Background Hero Section with Integrated Glass Breadcrumb */}
+      <div className="relative w-full overflow-hidden bg-[#16141D] min-h-[440px] sm:min-h-[500px] lg:h-[560px] flex flex-col justify-between border-b border-black/[0.04]">
         {/* Full-width Article Cover as Background */}
         {image ? (
           <div className="absolute inset-0 z-0 pointer-events-none">
@@ -206,9 +197,8 @@ export default function Article() {
               loading="eager"
               className="w-full h-full object-cover object-center"
             />
-            {/* Cinematic Scrim Gradient: Balanced dark overlay ensuring perfect centered text legibility */}
-            <div className="absolute inset-0 bg-[#0C0B10]/55" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0C0B10]/95 via-[#0C0B10]/65 to-[#0C0B10]/45" />
+            {/* Cinematic Scrim Gradient: Clean dark gradient ensuring perfect centered text legibility while letting top photo and glass breadcrumb shine */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0C0B10]/95 via-[#0C0B10]/70 via-55% to-[#0C0B10]/25" />
             {/* Subtle bottom edge blend */}
             <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/50 to-transparent" />
           </div>
@@ -216,8 +206,18 @@ export default function Article() {
           <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#1C1924] via-[#2A2436] to-[#16141D]" />
         )}
 
-        {/* Hero Content (Centered Editorial Composition) */}
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 text-center flex flex-col items-center justify-center">
+        {/* 1. Integrated Wayfinding Glass Breadcrumb */}
+        <Breadcrumb
+          variant="bar"
+          theme="dark"
+          items={[
+            {label: 'Skincare Journal', to: `/blogs/${blogHandle}`},
+            {label: title},
+          ]}
+        />
+
+        {/* 2. Hero Content (Centered Editorial Composition) */}
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 text-center flex flex-col items-center justify-center my-auto">
           <div className="max-w-3xl lg:max-w-4xl mx-auto flex flex-col items-center">
             {/* Kicker Editorial */}
             <p className="text-[10px] sm:text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-white/75 mb-3.5">

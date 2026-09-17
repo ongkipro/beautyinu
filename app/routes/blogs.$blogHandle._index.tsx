@@ -77,14 +77,8 @@ export default function Blog() {
 
   return (
     <div className="w-full bg-white">
-      {/* 1. Standardized Breadcrumbs Wayfinding Bar */}
-      <Breadcrumb
-        variant="bar"
-        items={[{label: 'Skincare Journal'}]}
-      />
-
-      {/* 2. Full-Width Editorial Hero with Adaptable Precision Height */}
-      <div className="relative w-full overflow-hidden bg-[#FBF9FC] border-b border-black/[0.04] min-h-[300px] sm:min-h-[360px] lg:h-[400px] py-8 sm:py-10 flex items-center">
+      {/* 1. Full-Width Editorial Hero with Integrated Frosted Glass Breadcrumb */}
+      <div className="relative w-full overflow-hidden bg-[#FBF9FC] border-b border-black/[0.04] min-h-[340px] sm:min-h-[380px] lg:h-[420px] flex flex-col justify-between">
         {/* Full-width Model Editorial Background Image */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <picture>
@@ -92,17 +86,23 @@ export default function Blog() {
             <img
               src={heroEditorialDesktop}
               alt="Beautyinu Skincare Journal"
-              className="w-full h-full object-cover object-right lg:object-[center_right] opacity-35 sm:opacity-90 lg:opacity-95"
+              className="w-full h-full object-cover object-right lg:object-[center_right] opacity-55 sm:opacity-90 lg:opacity-95"
             />
           </picture>
 
-          {/* Smooth Directional Scrim */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#FBF9FC] via-[#FBF9FC]/95 via-60% to-[#FBF9FC]/80 sm:bg-gradient-to-r sm:from-[#FBF9FC] sm:via-[#FBF9FC]/90 sm:via-55% lg:via-[#FBF9FC]/80 lg:via-60% sm:to-transparent" />
+          {/* Smooth Directional Scrim: Text area protected, top glass breadcrumb and right photo clearly visible */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#FBF9FC] via-[#FBF9FC]/80 via-50% to-[#FBF9FC]/10 sm:bg-gradient-to-r sm:from-[#FBF9FC]/90 sm:via-[#FBF9FC]/70 sm:via-55% lg:via-[#FBF9FC]/60 lg:via-60% sm:to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#FBF9FC] to-transparent" />
         </div>
 
+        {/* Integrated Top Breadcrumb Bar */}
+        <Breadcrumb
+          variant="bar"
+          items={[{label: 'Skincare Journal'}]}
+        />
+
         {/* Hero Content */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 my-auto">
           <div className="max-w-xl lg:max-w-2xl flex flex-col justify-center">
             <p className="text-[10px] sm:text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-primary mb-2.5">
               The Journal

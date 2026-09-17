@@ -73,15 +73,15 @@ export default function Collections() {
 
   return (
     <div className="w-full bg-white">
-      {/* 1. Standardized Breadcrumbs Wayfinding Bar */}
-      <Breadcrumb
-        variant="bar"
-        items={[{label: 'Koleksi'}]}
-      />
+      {/* 1. Hero Section with Integrated Frosted Glass Breadcrumb */}
+      <div className="relative bg-[#FAF9FB] border-b border-black/[0.04]">
+        {/* Integrated Top Breadcrumb Bar */}
+        <Breadcrumb
+          variant="bar"
+          items={[{label: 'Koleksi'}]}
+        />
 
-      {/* 2. Hero Section */}
-      <div className="relative bg-[#FAF9FB] border-b border-black/[0.04] py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center py-12 md:py-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-accent-light text-accent text-[11px] font-mono font-semibold uppercase tracking-wider mb-3.5">
             <ShieldCheck className="w-3.5 h-3.5 text-accent" />
             <span>Beautyinu · Official Directory</span>

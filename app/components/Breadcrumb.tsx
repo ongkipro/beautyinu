@@ -13,11 +13,17 @@ export interface BreadcrumbProps {
    */
   items: BreadcrumbItem[];
   /**
-   * - 'bar': Dedicated top strip bar (h-11, border-b, bg-white) for catalog & archive pages.
+   * - 'bar': Dedicated top strip bar (h-11, border-b, backdrop-blur) for catalog & archive pages.
    * - 'inline': Directly embedded within content/grid (PDP, CMS pages, Cart, Search).
    * - 'hero': Translucent white for dark/cinematic hero covers (Single Article).
    */
   variant?: 'bar' | 'inline' | 'hero';
+  /**
+   * Visual theme when variant is 'bar':
+   * - 'light' (default): Glass white with dark text and subtle dark fading bottom border.
+   * - 'dark': Translucent black glass (bg-black/25 backdrop-blur-md) with white text and white fading bottom border (for dark hero images).
+   */
+  theme?: 'light' | 'dark';
   /**
    * Whether to automatically prepend "Home" (default: true).
    */
@@ -31,7 +37,7 @@ export interface BreadcrumbProps {
    */
   align?: 'left' | 'center';
   /**
-   * Optional additional class name for the nav element.
+   * Optional additional class name for the wrapper element.
    */
   className?: string;
 }
@@ -39,6 +45,7 @@ export interface BreadcrumbProps {
 export function Breadcrumb({
   items,
   variant = 'inline',
+  theme = 'light',
   includeHome = true,
   homeLabel = 'Home',
   align = 'left',
@@ -50,21 +57,23 @@ export function Breadcrumb({
 
   if (fullItems.length === 0) return null;
 
-  const isHero = variant === 'hero';
+  const isDark = theme === 'dark' || variant === 'hero';
   const isBar = variant === 'bar';
 
   const navContent = (
     <nav
       aria-label="Breadcrumb"
-      className={`min-w-0 ${isHero ? 'w-full' : ''} ${className}`}
+      className={`min-w-0 ${align === 'center' || variant === 'hero' ? 'w-full' : ''}`}
     >
       <ol
         className={`flex items-center gap-1.5 text-xs min-w-0 ${
-          isHero
-            ? 'justify-center text-white/75 flex-wrap'
+          isDark
+            ? 'text-white/80'
             : align === 'center'
               ? 'justify-center text-text-secondary'
               : 'text-text-secondary'
+        } ${
+          align === 'center' || variant === 'hero' ? 'justify-center' : ''
         } ${
           variant === 'inline'
             ? 'overflow-hidden flex-nowrap whitespace-nowrap'
@@ -85,7 +94,7 @@ export function Breadcrumb({
               {index > 0 && (
                 <ChevronRight
                   className={`w-3.5 h-3.5 flex-shrink-0 select-none ${
-                    isHero ? 'text-white/40' : 'text-black/30'
+                    isDark ? 'text-white/40' : 'text-black/30'
                   }`}
                   strokeWidth={1.5}
                   aria-hidden="true"
@@ -96,7 +105,7 @@ export function Breadcrumb({
                 <Link
                   to={item.to}
                   className={`transition-colors flex-shrink-0 ${
-                    isHero ? 'hover:text-white' : 'hover:text-primary'
+                    isDark ? 'hover:text-white' : 'hover:text-primary'
                   }`}
                 >
                   {item.label}
@@ -104,7 +113,7 @@ export function Breadcrumb({
               ) : (
                 <span
                   className={`truncate ${
-                    isHero
+                    isDark
                       ? 'text-white font-medium max-w-[200px] sm:max-w-md'
                       : isBar
                         ? 'font-semibold text-text'
@@ -124,13 +133,32 @@ export function Breadcrumb({
 
   if (isBar) {
     return (
-      <div className="border-b border-black/[0.04] bg-white h-11 flex items-center">
+      <div
+        className={`relative w-full h-11 flex items-center z-10 ${
+          isDark
+            ? 'bg-white/[0.08] backdrop-blur-md backdrop-saturate-150 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]'
+            : 'bg-white/30 sm:bg-white/20 backdrop-blur-md backdrop-saturate-150 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)]'
+        } ${className}`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           {navContent}
         </div>
+        {/* Soft Fading Bottom Border: Disappears smoothly at left & right edges (0% -> 100% -> 0%) */}
+        <div
+          className={`absolute inset-x-0 bottom-0 h-px pointer-events-none select-none ${
+            isDark
+              ? 'bg-gradient-to-r from-transparent via-15% via-white/25 via-85% to-transparent'
+              : 'bg-gradient-to-r from-transparent via-15% via-black/[0.10] via-85% to-transparent'
+          }`}
+          aria-hidden="true"
+        />
       </div>
     );
   }
 
-  return navContent;
+  return (
+    <div className={className}>
+      {navContent}
+    </div>
+  );
 }

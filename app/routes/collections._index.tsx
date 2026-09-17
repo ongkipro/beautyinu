@@ -3,9 +3,9 @@ import type {Route} from './+types/collections._index';
 import {getPaginationVariables, Image} from '@shopify/hydrogen';
 import type {CollectionFragment} from 'storefrontapi.generated';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
-import {getSeoMeta} from '~/lib/seo';
+import {getSeoMeta, buildBreadcrumbJsonLd} from '~/lib/seo';
+import {Breadcrumb} from '~/components/Breadcrumb';
 import {
-  ChevronRight,
   ShieldCheck,
   Sparkles,
   Truck,
@@ -25,12 +25,19 @@ const COLLECTION_SUMMARIES: Record<string, string> = {
 };
 
 export const meta: Route.MetaFunction = ({data}) => {
+  const canonicalUrl = data?.canonicalUrl || 'https://beautyinu.id/collections';
   return getSeoMeta({
     title: 'Koleksi Produk — Beautyinu Official Store',
     description:
       'Jelajahi seluruh koleksi perawatan tubuh Beautyinu: Body Care harian, Bundles hemat, dan jajaran produk Best Sellers berizin BPOM.',
-    url: data?.canonicalUrl,
+    url: canonicalUrl,
     type: 'website',
+    jsonLd: [
+      buildBreadcrumbJsonLd([
+        {name: 'Home', url: 'https://beautyinu.id'},
+        {name: 'Koleksi', url: canonicalUrl},
+      ]),
+    ],
   });
 };
 
@@ -66,20 +73,11 @@ export default function Collections() {
 
   return (
     <div className="w-full bg-white">
-      {/* 1. Breadcrumbs Wayfinding */}
-      <div className="border-b border-black/[0.04] bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-text-secondary">
-            <Link to="/" className="hover:text-primary transition-colors flex items-center gap-1">
-              <span>Beranda</span>
-            </Link>
-            <ChevronRight className="w-3.5 h-3.5 text-black/30 flex-shrink-0" />
-            <span className="font-semibold text-text truncate">
-              Koleksi
-            </span>
-          </nav>
-        </div>
-      </div>
+      {/* 1. Standardized Breadcrumbs Wayfinding Bar */}
+      <Breadcrumb
+        variant="bar"
+        items={[{label: 'Koleksi'}]}
+      />
 
       {/* 2. Hero Section */}
       <div className="relative bg-[#FAF9FB] border-b border-black/[0.04] py-12 md:py-16">
@@ -99,7 +97,7 @@ export default function Collections() {
 
           <Link
             to="/collections/all"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#111111] text-white text-xs font-semibold tracking-tight hover:bg-black transition-all shadow-xs"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#111111] hover:bg-primary text-white text-xs font-semibold tracking-tight transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-primary/25 active:scale-[0.98] cursor-pointer"
           >
             <span>Lihat Semua Produk (Katalog Lengkap)</span>
             <ArrowRight className="w-3.5 h-3.5" />

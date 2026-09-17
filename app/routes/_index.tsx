@@ -23,7 +23,7 @@ import {
   Star,
   ShieldCheck,
 } from 'lucide-react';
-import {getSeoMeta, buildOrganizationJsonLd} from '~/lib/seo';
+import {getSeoMeta, buildOrganizationJsonLd, buildWebsiteJsonLd} from '~/lib/seo';
 
 export const meta: Route.MetaFunction = ({data}) => {
   const siteUrl = data?.canonicalUrl || 'https://beautyinu.id';
@@ -33,7 +33,7 @@ export const meta: Route.MetaFunction = ({data}) => {
       'Brightening bodycare dengan Niacinamide 5.22%, Alpha Arbutin 2.30% & Glutathione. Bersertifikat BPOM RI resmi. 3-step routine untuk kulit tampak cerah, lembap, dan glowing terawat.',
     url: siteUrl,
     type: 'website',
-    jsonLd: buildOrganizationJsonLd(siteUrl),
+    jsonLd: [buildOrganizationJsonLd(siteUrl), buildWebsiteJsonLd(siteUrl)],
   });
 };
 
@@ -384,7 +384,7 @@ function Hero() {
           <div className="flex flex-row items-center gap-2 sm:gap-3 mb-2.5 sm:mb-8">
             <a
               href={currentSlide.primaryHref}
-              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-full bg-[#111111] hover:bg-black px-3.5 sm:px-8 py-2.5 sm:py-4 text-xs font-bold uppercase tracking-wider text-white transition-all shadow-xs whitespace-nowrap"
+              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-full bg-[#111111] hover:bg-primary px-3.5 sm:px-8 py-2.5 sm:py-4 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 shadow-xs hover:shadow-lg hover:shadow-primary/25 whitespace-nowrap active:scale-[0.98]"
             >
               <span className="sm:hidden">{currentSlide.primaryCtaMobile || currentSlide.primaryCta}</span>
               <span className="hidden sm:inline">{currentSlide.primaryCta}</span>
@@ -392,7 +392,7 @@ function Hero() {
             </a>
             <Link
               to={currentSlide.secondaryHref}
-              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-full bg-white/95 backdrop-blur-md hover:bg-white border border-black/10 px-3.5 sm:px-7 py-2.5 sm:py-4 text-xs font-bold uppercase tracking-wider text-text transition-all shadow-2xs whitespace-nowrap"
+              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-full bg-white/95 backdrop-blur-md hover:bg-[#FFF3F6] hover:text-primary hover:border-primary/40 border border-black/10 px-3.5 sm:px-7 py-2.5 sm:py-4 text-xs font-bold uppercase tracking-wider text-text transition-all duration-300 shadow-2xs whitespace-nowrap active:scale-[0.98]"
             >
               <span className="sm:hidden">{currentSlide.secondaryCtaMobile || currentSlide.secondaryCta}</span>
               <span className="hidden sm:inline">{currentSlide.secondaryCta}</span>
@@ -425,8 +425,8 @@ function Hero() {
                     aria-label={`Pindah ke slide ${idx + 1}`}
                     className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                       idx === activeSlide
-                        ? 'w-6 sm:w-7 bg-[#111111]'
-                        : 'w-1.5 sm:w-2 bg-black/20 hover:bg-black/40'
+                        ? 'w-6 sm:w-7 bg-primary'
+                        : 'w-1.5 sm:w-2 bg-black/20 hover:bg-primary/50'
                     }`}
                   />
                 ))}
@@ -440,7 +440,7 @@ function Hero() {
                     type="button"
                     onClick={prevSlide}
                     aria-label="Slide sebelumnya"
-                    className="w-7 h-7 rounded-full border border-black/10 bg-white/90 hover:bg-white backdrop-blur-xs flex items-center justify-center text-black/60 hover:text-black transition-all active:scale-95 shadow-2xs cursor-pointer"
+                    className="w-7 h-7 rounded-full border border-black/10 bg-white/90 hover:bg-primary hover:border-primary text-black/60 hover:text-white backdrop-blur-xs flex items-center justify-center transition-all duration-300 active:scale-95 shadow-2xs hover:shadow-primary/20 cursor-pointer"
                   >
                     <ChevronLeft className="w-3.5 h-3.5" />
                   </button>
@@ -448,7 +448,7 @@ function Hero() {
                     type="button"
                     onClick={nextSlide}
                     aria-label="Slide berikutnya"
-                    className="w-7 h-7 rounded-full border border-black/10 bg-white/90 hover:bg-white backdrop-blur-xs flex items-center justify-center text-black/60 hover:text-black transition-all active:scale-95 shadow-2xs cursor-pointer"
+                    className="w-7 h-7 rounded-full border border-black/10 bg-white/90 hover:bg-primary hover:border-primary text-black/60 hover:text-white backdrop-blur-xs flex items-center justify-center transition-all duration-300 active:scale-95 shadow-2xs hover:shadow-primary/20 cursor-pointer"
                   >
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>
@@ -986,11 +986,13 @@ function BestSellerCard({product, index, isDragging}: BestSellerCardProps) {
             </div>
           )}
 
-          {/* Brand Theme Schema Glassmorphic Discount Pill */}
+          {/* High-Contrast Editorial Glass Badge (Transparent, No Shadow) */}
           {isDiscounted && (
-            <span className="absolute top-3 left-3 inline-flex items-center gap-1 bg-white/90 backdrop-blur-md border border-white text-[#D8456C] text-[10px] sm:text-[11px] font-bold tracking-wider px-2.5 py-0.5 rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
-              <span className="text-[9px] uppercase tracking-widest text-[#D8456C]/70 font-mono">HEMAT</span>
-              <span>{savePercentage}%</span>
+            <span className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 inline-flex items-center gap-1 bg-white/80 backdrop-blur-md border border-black/[0.08] px-2 sm:px-2.5 py-0.5 rounded-md text-[10px] sm:text-[11px] font-mono">
+              <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#D8456C] font-bold">
+                HEMAT
+              </span>
+              <span className="font-bold text-text">{savePercentage}%</span>
             </span>
           )}
         </div>
@@ -1213,7 +1215,7 @@ function BestSellersSlider({products}: {products: any[]}) {
                 onClick={() => scroll('left')}
                 disabled={!canScrollLeft}
                 aria-label="Geser produk ke kiri"
-                className="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center text-text transition-all cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed hover:enabled:bg-black hover:enabled:text-white hover:enabled:border-black active:scale-95"
+                className="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center text-text transition-all duration-300 cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed hover:enabled:bg-primary hover:enabled:text-white hover:enabled:border-primary active:scale-95 shadow-2xs hover:enabled:shadow-primary/20"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
@@ -1222,7 +1224,7 @@ function BestSellersSlider({products}: {products: any[]}) {
                 onClick={() => scroll('right')}
                 disabled={!canScrollRight}
                 aria-label="Geser produk ke kanan"
-                className="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center text-text transition-all cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed hover:enabled:bg-black hover:enabled:text-white hover:enabled:border-black active:scale-95"
+                className="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center text-text transition-all duration-300 cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed hover:enabled:bg-primary hover:enabled:text-white hover:enabled:border-primary active:scale-95 shadow-2xs hover:enabled:shadow-primary/20"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -1238,7 +1240,7 @@ function BestSellersSlider({products}: {products: any[]}) {
             onClick={() => scroll('left')}
             disabled={!canScrollLeft}
             aria-label="Geser produk ke kiri"
-            className="hidden lg:flex absolute -left-5 top-[45%] -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-black/10 items-center justify-center text-text hover:bg-black hover:text-white hover:border-black transition-all duration-200 cursor-pointer disabled:opacity-0 disabled:pointer-events-none active:scale-95 shadow-xs"
+            className="hidden lg:flex absolute -left-5 top-[45%] -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-black/10 items-center justify-center text-text hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 cursor-pointer disabled:opacity-0 disabled:pointer-events-none active:scale-95 shadow-xs"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -1249,7 +1251,7 @@ function BestSellersSlider({products}: {products: any[]}) {
             onClick={() => scroll('right')}
             disabled={!canScrollRight}
             aria-label="Geser produk ke kanan"
-            className="hidden lg:flex absolute -right-5 top-[45%] -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-black/10 items-center justify-center text-text hover:bg-black hover:text-white hover:border-black transition-all duration-200 cursor-pointer disabled:opacity-0 disabled:pointer-events-none active:scale-95 shadow-xs"
+            className="hidden lg:flex absolute -right-5 top-[45%] -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-black/10 items-center justify-center text-text hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 cursor-pointer disabled:opacity-0 disabled:pointer-events-none active:scale-95 shadow-xs"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
@@ -1299,7 +1301,7 @@ function BestSellersSlider({products}: {products: any[]}) {
               onClick={() => scroll('left')}
               disabled={!canScrollLeft}
               aria-label="Geser produk sebelumnya"
-              className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-3 py-1.5 rounded-full border border-black/10 bg-white hover:bg-black hover:text-white hover:border-black transition-all disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer active:scale-95"
+              className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-3 py-1.5 rounded-full border border-black/10 bg-white hover:bg-primary hover:text-white hover:border-primary transition-all disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer active:scale-95 shadow-2xs"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
               <span>Back</span>
@@ -1328,7 +1330,7 @@ function BestSellersSlider({products}: {products: any[]}) {
               onClick={() => scroll('right')}
               disabled={!canScrollRight}
               aria-label="Geser produk berikutnya"
-              className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-3 py-1.5 rounded-full border border-black/10 bg-white hover:bg-black hover:text-white hover:border-black transition-all disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer active:scale-95"
+              className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-3 py-1.5 rounded-full border border-black/10 bg-white hover:bg-primary hover:text-white hover:border-primary transition-all disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer active:scale-95 shadow-2xs"
             >
               <span>Next</span>
               <ChevronRight className="w-3.5 h-3.5" />

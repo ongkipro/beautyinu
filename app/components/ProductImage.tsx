@@ -209,7 +209,7 @@ export function ProductImage({images}: ProductImageProps) {
                 prevImage();
               }}
               aria-label="Foto sebelumnya"
-              className="hidden sm:flex absolute left-3.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white text-text backdrop-blur-md items-center justify-center transition-all active:scale-95 cursor-pointer opacity-0 group-hover:opacity-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
+              className="hidden sm:flex absolute left-3.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-primary text-text hover:text-white backdrop-blur-md items-center justify-center transition-all duration-300 active:scale-95 cursor-pointer opacity-0 group-hover:opacity-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-primary/25"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -220,7 +220,7 @@ export function ProductImage({images}: ProductImageProps) {
                 nextImage();
               }}
               aria-label="Foto selanjutnya"
-              className="hidden sm:flex absolute right-3.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white text-text backdrop-blur-md items-center justify-center transition-all active:scale-95 cursor-pointer opacity-0 group-hover:opacity-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
+              className="hidden sm:flex absolute right-3.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-primary text-text hover:text-white backdrop-blur-md items-center justify-center transition-all duration-300 active:scale-95 cursor-pointer opacity-0 group-hover:opacity-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-primary/25"
             >
               <ChevronRight className="w-4 h-4" />
             </button>

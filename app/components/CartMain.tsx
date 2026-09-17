@@ -172,14 +172,14 @@ export function CartMain({layout, cart: originalCart}: CartMainProps) {
                   </p>
                   <div className="flex flex-wrap gap-2.5 mt-4">
                     <Link
-                      to="/collections/frontpage"
-                      className="bg-[#1A1A1A] hover:bg-black text-white rounded-xl py-2 px-4 text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
+                      to="/collections/all"
+                      className="bg-[#111111] hover:bg-primary active:scale-[0.98] text-white rounded-xl py-2 px-4 text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-primary/25 cursor-pointer"
                     >
                       Lihat Produk Best Seller
                     </Link>
                     <Link
                       to="/collections/bundles"
-                      className="bg-white hover:bg-[#FAF8FC] text-text border border-black/10 rounded-xl py-2 px-4 text-xs font-bold uppercase tracking-wider transition-all"
+                      className="bg-white hover:bg-[#FFF3F6] hover:text-primary hover:border-primary/40 text-text border border-black/10 rounded-xl py-2 px-4 text-xs font-bold uppercase tracking-wider transition-all duration-300 active:scale-[0.98] cursor-pointer"
                     >
                       Paket Hemat 3-in-1
                     </Link>
@@ -243,7 +243,7 @@ export function CartMain({layout, cart: originalCart}: CartMainProps) {
           <div className="flex items-center justify-between text-xs text-text-secondary px-2">
             <Link
               to="/collections/frontpage"
-              className="inline-flex items-center gap-1.5 font-semibold text-text hover:text-primary transition-colors"
+              className="inline-flex items-center gap-1.5 font-semibold text-text hover:text-primary transition-all duration-200 active:scale-95 cursor-pointer"
             >
               <ArrowLeft className="w-3.5 h-3.5" strokeWidth={1.5} />
               <span>Tambah Produk Lainnya</span>
@@ -297,10 +297,10 @@ function CartEmpty({
       {/* Dual CTAs */}
       <div className="w-full max-w-xs space-y-2 mb-8">
         <Link 
-          to="/collections/frontpage" 
+          to="/collections/all" 
           onClick={layout === 'aside' ? close : undefined} 
           prefetch="intent"
-          className="w-full bg-[#111111] hover:bg-black text-white rounded-full py-3 px-6 text-xs font-bold uppercase tracking-widest transition-all shadow-md block text-center cursor-pointer active:scale-98"
+          className="w-full bg-[#111111] hover:bg-primary text-white rounded-full py-3 px-6 text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-primary/25 block text-center cursor-pointer active:scale-98"
         >
           Lihat Produk Best Seller
         </Link>
@@ -308,7 +308,7 @@ function CartEmpty({
           to="/collections/bundles" 
           onClick={layout === 'aside' ? close : undefined} 
           prefetch="intent"
-          className="w-full bg-transparent hover:bg-black/5 text-text border border-black/10 rounded-full py-2.5 px-6 text-xs font-semibold uppercase tracking-wider transition-all block text-center cursor-pointer"
+          className="w-full bg-transparent hover:bg-[#FFF3F6] hover:text-primary hover:border-primary/40 text-text border border-black/10 rounded-full py-2.5 px-6 text-xs font-semibold uppercase tracking-wider transition-all block text-center cursor-pointer"
         >
           Paket Hemat 3-in-1 (Diskon 39%)
         </Link>

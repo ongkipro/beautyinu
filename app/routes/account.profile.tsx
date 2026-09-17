@@ -145,7 +145,7 @@ export default function AccountProfile() {
           <button
             type="submit"
             disabled={state !== 'idle'}
-            className="px-6 py-3 rounded-xl bg-[#111111] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-xs disabled:opacity-50"
+            className="px-6 py-3 rounded-xl bg-[#111111] hover:bg-primary active:scale-[0.98] text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-xs hover:shadow-md hover:shadow-primary/25 disabled:opacity-50"
           >
             {state !== 'idle' ? 'Menyimpan...' : 'Simpan Perubahan'}
           </button>

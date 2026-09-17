@@ -1,8 +1,8 @@
 import {Link, redirect, useLoaderData} from 'react-router';
 import type {Route} from './+types/policies.$handle';
 import {type Shop} from '@shopify/hydrogen/storefront-api-types';
-import {getSeoMeta} from '~/lib/seo';
-import {ChevronRight} from 'lucide-react';
+import {getSeoMeta, buildBreadcrumbJsonLd} from '~/lib/seo';
+import {Breadcrumb} from '~/components/Breadcrumb';
 
 type SelectedPolicies = keyof Pick<
   Shop,
@@ -19,11 +19,19 @@ export const meta: Route.MetaFunction = ({data}) => {
     policy.body?.replace(/<[^>]+>/g, '').trim().slice(0, 160) ||
     `Kebijakan ${policy.title} resmi Beautyinu Official Store.`;
 
+  const pageUrl = canonicalUrl || 'https://beautyinu.id/policies';
+  const breadcrumbSchema = buildBreadcrumbJsonLd([
+    {name: 'Home', url: 'https://beautyinu.id'},
+    {name: 'Policies', url: 'https://beautyinu.id/policies'},
+    {name: policy.title, url: pageUrl},
+  ]);
+
   return getSeoMeta({
     title,
     description,
     url: canonicalUrl,
     type: 'website',
+    jsonLd: [breadcrumbSchema],
   });
 };
 
@@ -79,23 +87,21 @@ export default function Policy() {
   const {policy} = useLoaderData<typeof loader>();
 
   return (
-    <div className="mx-auto max-w-4xl px-4 lg:px-8 py-10 md:py-16">
-      {/* Breadcrumb navigation */}
-      <nav className="text-xs sm:text-sm text-text-secondary mb-8 flex items-center gap-1.5">
-        <Link to="/" className="hover:text-primary transition-colors">
-          Home
-        </Link>
-        <ChevronRight className="w-3.5 h-3.5 flex-shrink-0" />
-        <Link to="/policies" className="hover:text-primary transition-colors">
-          Policies
-        </Link>
-        <ChevronRight className="w-3.5 h-3.5 flex-shrink-0" />
-        <span className="text-text font-medium truncate">{policy.title}</span>
-      </nav>
+    <div className="w-full bg-white">
+      {/* 1. Standardized Breadcrumbs Wayfinding Bar */}
+      <Breadcrumb
+        variant="bar"
+        items={[
+          {label: 'Policies', to: '/policies'},
+          {label: policy.title},
+        ]}
+      />
 
-      <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-text mb-8">
-        {policy.title}
-      </h1>
+      {/* 2. Main Policy Content */}
+      <div className="mx-auto max-w-4xl px-4 lg:px-8 py-10 md:py-16">
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-text mb-8">
+          {policy.title}
+        </h1>
 
       <div
         dangerouslySetInnerHTML={{__html: policy.body}}
@@ -116,6 +122,7 @@ export default function Policy() {
           [&_td]:p-3.5 [&_td]:border-b [&_td]:border-black/[0.04] [&_td]:text-sm
         "
       />
+      </div>
     </div>
   );
 }

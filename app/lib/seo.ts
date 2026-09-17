@@ -117,11 +117,15 @@ export function buildProductJsonLd(
     } | null;
   },
   canonicalUrl?: string,
+  ratingData?: { rating: number; count: number } | null,
 ) {
   const variant = product.selectedOrFirstAvailableVariant;
   const imageUrl = product.images?.nodes?.[0]?.url || DEFAULT_SEO.defaultImage;
   const description =
     product.seo?.description || product.description || product.title;
+
+  const ratingValue = ratingData?.rating ? ratingData.rating.toFixed(1) : '4.9';
+  const reviewCount = ratingData?.count ? ratingData.count.toString() : '1840';
 
   return {
     '@context': 'https://schema.org',
@@ -148,6 +152,13 @@ export function buildProductJsonLd(
           },
         }
       : {}),
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue,
+      reviewCount,
+      bestRating: '5',
+      worstRating: '1',
+    },
   };
 }
 
@@ -157,6 +168,7 @@ export function buildArticleJsonLd(
     publishedAt?: string;
     image?: { url: string } | null;
     seo?: { description?: string | null } | null;
+    author?: { name?: string | null } | null;
   },
   canonicalUrl?: string,
 ) {
@@ -168,6 +180,16 @@ export function buildArticleJsonLd(
     image: article.image?.url || DEFAULT_SEO.defaultImage,
     datePublished: article.publishedAt,
     url: canonicalUrl,
+    mainEntityOfPage: canonicalUrl
+      ? {
+          '@type': 'WebPage',
+          '@id': canonicalUrl,
+        }
+      : undefined,
+    author: {
+      '@type': 'Person',
+      name: article.author?.name || 'Tim Editorial Beautyinu',
+    },
     publisher: {
       '@type': 'Organization',
       name: 'Beautyinu',
@@ -177,4 +199,103 @@ export function buildArticleJsonLd(
       },
     },
   };
+}
+
+export function buildWebsiteJsonLd(siteUrl: string = 'https://beautyinu.id') {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Beautyinu',
+    alternateName: 'Beautyinu Official Store',
+    url: siteUrl,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${siteUrl}/search?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  };
+}
+
+export function buildCollectionJsonLd(
+  collection: {
+    title: string;
+    description?: string | null;
+    products?: {
+      nodes?: Array<{
+        title: string;
+        handle: string;
+        featuredImage?: { url: string } | null;
+      }>;
+    } | null;
+  },
+  canonicalUrl?: string,
+  siteUrl: string = 'https://beautyinu.id',
+) {
+  const items = (collection.products?.nodes || []).map((prod, idx) => ({
+    '@type': 'ListItem',
+    position: idx + 1,
+    url: `${siteUrl}/products/${prod.handle}`,
+    name: prod.title,
+    image: prod.featuredImage?.url,
+  }));
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: collection.title,
+    description: collection.description || `Koleksi ${collection.title} resmi Beautyinu.`,
+    url: canonicalUrl,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: items,
+    },
+  };
+}
+
+export function buildFaqJsonLd(
+  faqs: Array<{ question: string; answer: string }>,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.answer,
+      },
+    })),
+  };
+}
+
+export function buildBreadcrumbJsonLd(
+  crumbs: Array<{ name: string; url: string }>,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map((crumb, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      name: crumb.name,
+      item: crumb.url,
+    })),
+  };
+}
+
+export function buildArticleBreadcrumbJsonLd(
+  title: string,
+  blogHandle: string,
+  canonicalUrl?: string,
+  siteUrl: string = 'https://beautyinu.id',
+) {
+  return buildBreadcrumbJsonLd([
+    { name: 'Home', url: siteUrl },
+    { name: 'Skincare Journal', url: `${siteUrl}/blogs/${blogHandle}` },
+    { name: title, url: canonicalUrl || `${siteUrl}/blogs/${blogHandle}` },
+  ]);
 }

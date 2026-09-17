@@ -90,7 +90,7 @@ export function Aside({
           <button
             type="button"
             onClick={close}
-            className="w-9 h-9 rounded-full flex items-center justify-center text-text-secondary hover:text-text hover:bg-black/5 active:scale-95 transition-all cursor-pointer"
+            className="w-9 h-9 rounded-full flex items-center justify-center text-text-secondary hover:text-primary hover:bg-[#FFF3F6] active:scale-95 transition-all duration-200 cursor-pointer"
             aria-label="Tutup panel"
           >
             <X className="w-4 h-4" strokeWidth={1.5} />

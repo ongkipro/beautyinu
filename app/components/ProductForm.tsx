@@ -47,10 +47,10 @@ export function ProductForm({
                 } = value;
 
                 const baseClasses =
-                  'flex h-9 sm:h-10 items-center justify-center rounded-full px-4 sm:px-5 text-xs font-semibold transition-all duration-150 cursor-pointer';
+                  'flex h-9 sm:h-10 items-center justify-center rounded-full px-4 sm:px-5 text-xs font-semibold transition-all duration-200 cursor-pointer active:scale-95';
                 const stateClasses = selected
-                  ? 'bg-[#111111] text-white'
-                  : 'bg-[#F8F7FA] text-black/80 hover:bg-[#EFECEF]';
+                  ? 'bg-[#111111] text-white shadow-xs'
+                  : 'bg-[#F8F7FA] text-black/80 hover:bg-[#FFF3F6] hover:text-primary hover:border-primary/30 border border-transparent';
                 const disabledClasses = available ? '' : 'opacity-40 line-through';
 
                 const className = `${baseClasses} ${stateClasses} ${disabledClasses}`;
@@ -101,7 +101,7 @@ export function ProductForm({
             type="button"
             onClick={() => setQuantity((q) => Math.max(1, q - 1))}
             disabled={quantity <= 1}
-            className="w-7 h-7 flex items-center justify-center text-text hover:text-primary transition-colors disabled:opacity-25 cursor-pointer"
+            className="w-7 h-7 flex items-center justify-center text-text hover:text-primary transition-all duration-200 disabled:opacity-25 cursor-pointer active:scale-90"
             aria-label="Kurangi jumlah"
           >
             <Minus className="w-3.5 h-3.5" />
@@ -112,7 +112,7 @@ export function ProductForm({
           <button
             type="button"
             onClick={() => setQuantity((q) => q + 1)}
-            className="w-7 h-7 flex items-center justify-center text-text hover:text-primary transition-colors cursor-pointer"
+            className="w-7 h-7 flex items-center justify-center text-text hover:text-primary transition-all duration-200 cursor-pointer active:scale-90"
             aria-label="Tambah jumlah"
           >
             <Plus className="w-3.5 h-3.5" />
@@ -137,7 +137,7 @@ export function ProductForm({
                   ]
                 : []
             }
-            className="w-full h-12 flex items-center justify-center bg-[#111111] hover:bg-black active:scale-[0.99] text-white rounded-full font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-xs disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+            className="w-full h-12 flex items-center justify-center bg-[#111111] hover:bg-primary active:scale-[0.98] text-white rounded-full font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 shadow-xs hover:shadow-lg hover:shadow-primary/25 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
             {selectedVariant?.availableForSale ? '+ Tambah ke Keranjang' : 'Stok Habis'}
           </AddToCartButton>

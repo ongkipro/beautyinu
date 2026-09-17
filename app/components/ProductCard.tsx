@@ -106,11 +106,13 @@ export function ProductCard({product, loading}: ProductCardProps) {
           </div>
         )}
 
-        {/* Brand Theme Schema Glassmorphic Discount Pill */}
+        {/* High-Contrast Editorial Glass Badge (Transparent, No Shadow) */}
         {isDiscounted && (
-          <span className="absolute top-2.5 left-2.5 inline-flex items-center gap-1 bg-white/90 backdrop-blur-md border border-white text-[#D8456C] text-[10px] sm:text-[11px] font-bold tracking-wider px-2.5 py-0.5 rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
-            <span className="text-[9px] uppercase tracking-widest text-[#D8456C]/70 font-mono">HEMAT</span>
-            <span>{savePercentage}%</span>
+          <span className="absolute top-2.5 left-2.5 inline-flex items-center gap-1 bg-white/80 backdrop-blur-md border border-black/[0.08] px-2 sm:px-2.5 py-0.5 rounded-md text-[10px] sm:text-[11px] font-mono">
+            <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#D8456C] font-bold">
+              HEMAT
+            </span>
+            <span className="font-bold text-text">{savePercentage}%</span>
           </span>
         )}
       </div>

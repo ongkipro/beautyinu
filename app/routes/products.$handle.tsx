@@ -21,8 +21,9 @@ import {AddToCartButton} from '~/components/AddToCartButton';
 import {useAside} from '~/components/Aside';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 import {checkLegacyProductRedirect} from '~/lib/productRedirects';
+import {Breadcrumb} from '~/components/Breadcrumb';
 import {Star, CheckCircle2, Truck} from 'lucide-react';
-import {getSeoMeta, buildProductJsonLd} from '~/lib/seo';
+import {getSeoMeta, buildProductJsonLd, buildBreadcrumbJsonLd} from '~/lib/seo';
 
 export const meta: Route.MetaFunction = ({data}) => {
   if (!data?.product) {
@@ -35,7 +36,27 @@ export const meta: Route.MetaFunction = ({data}) => {
     product.descriptionHtml?.replace(/<[^>]+>/g, '').trim().slice(0, 160) ||
     `${product.title} by Beautyinu. Official BPOM certified body care.`;
   const imageUrl = product.images?.nodes?.[0]?.url;
-  const jsonLd = buildProductJsonLd(product, canonicalUrl);
+
+  const shopeeData = getShopeeProductData(product.handle);
+  const jsonLdProduct = buildProductJsonLd(
+    product,
+    canonicalUrl,
+    shopeeData ? {rating: shopeeData.ratingNum, count: shopeeData.reviewsCountNum} : null,
+  );
+
+  const primaryCollection = product.collections?.nodes?.find(
+    (c: any) => c.handle !== 'frontpage' && c.handle !== 'all',
+  ) || product.collections?.nodes?.[0];
+  const collectionLabel = primaryCollection?.title || 'Semua Produk';
+  const collectionUrl = primaryCollection
+    ? `https://beautyinu.id/collections/${primaryCollection.handle}`
+    : 'https://beautyinu.id/collections/all';
+
+  const jsonLdBreadcrumb = buildBreadcrumbJsonLd([
+    {name: 'Home', url: 'https://beautyinu.id'},
+    {name: collectionLabel, url: collectionUrl},
+    {name: product.title, url: canonicalUrl},
+  ]);
 
   return getSeoMeta({
     title,
@@ -44,7 +65,7 @@ export const meta: Route.MetaFunction = ({data}) => {
     image: imageUrl,
     imageAlt: product.title,
     type: 'product',
-    jsonLd,
+    jsonLd: [jsonLdProduct, jsonLdBreadcrumb],
   });
 };
 
@@ -192,7 +213,18 @@ export default function Product() {
   useCleanProductUrl(selectedVariant, productOptions);
 
   const {title, descriptionHtml, collections, images, handle} = product;
-  const collection = collections?.nodes?.[0];
+  // Prioritize specific category collection (e.g. body-care, bundles, best-sellers) over generic frontpage/all
+  const primaryCollection = collections?.nodes?.find(
+    (c: {handle: string; title: string}) =>
+      c.handle !== 'frontpage' &&
+      c.handle !== 'all' &&
+      c.title.toLowerCase() !== 'all products' &&
+      c.title.toLowerCase() !== 'home page' &&
+      c.title.toLowerCase() !== 'semua produk',
+  );
+
+  const collectionLabel = primaryCollection?.title || 'Koleksi';
+  const collectionHref = primaryCollection ? `/collections/${primaryCollection.handle}` : '/collections';
   const socialProof = getShopeeProductData(handle);
 
   const accordionItems: {title: string; content: React.ReactNode; defaultOpen?: boolean}[] = [];
@@ -256,30 +288,19 @@ export default function Product() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-10 pb-28 md:pb-16 min-w-0 w-full overflow-x-clip">
-      {/* Minimalist Micro Breadcrumb */}
-      <nav className="mb-6 text-[11px] font-mono uppercase tracking-wider text-black/40 flex items-center gap-2 overflow-x-auto scrollbar-none min-w-0 max-w-full">
-        <Link to="/" className="hover:text-primary transition-colors flex-shrink-0">Home</Link>
-        <span>/</span>
-        {collection ? (
-          <>
-            <Link to={`/collections/${collection.handle}`} className="hover:text-primary transition-colors flex-shrink-0">
-              {collection.title}
-            </Link>
-            <span>/</span>
-          </>
-        ) : (
-          <>
-            <Link to="/collections/all" className="hover:text-primary transition-colors flex-shrink-0">
-              Koleksi
-            </Link>
-            <span>/</span>
-          </>
-        )}
-        <span className="text-black/80 font-medium truncate max-w-xs">{title}</span>
-      </nav>
+    <div className="w-full bg-white">
+      {/* 1. Standardized Breadcrumbs Wayfinding Bar */}
+      <Breadcrumb
+        variant="bar"
+        items={[
+          {label: collectionLabel, to: collectionHref},
+          {label: title},
+        ]}
+      />
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10 xl:gap-14 min-w-0 max-w-full lg:items-start">
+      {/* 2. Main Product Container */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-10 pb-28 md:pb-16 min-w-0 w-full overflow-x-clip">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10 xl:gap-14 min-w-0 max-w-full lg:items-start">
         {/* Left: Image Gallery (Sticky on desktop) */}
         <div className="lg:col-span-7 min-w-0 max-w-full lg:sticky lg:top-24 self-start">
           <ProductImage images={images?.nodes || []} />
@@ -312,8 +333,8 @@ export default function Product() {
 
             <span className="text-black/20">•</span>
 
-            <span className="inline-flex items-center gap-1 text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-2 py-0.5 rounded-md font-medium text-[11px]">
-              <CheckCircle2 className="w-3 h-3 text-emerald-600 flex-shrink-0" />
+            <span className="inline-flex items-center gap-1 text-[11px] font-mono tracking-wide text-text-secondary">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" strokeWidth={2} />
               <span>{socialProof.bpomNumber}</span>
             </span>
           </div>
@@ -406,7 +427,7 @@ export default function Product() {
                   ]
                 : []
             }
-            className="w-full h-11 flex items-center justify-center bg-[#111111] hover:bg-black active:scale-[0.99] text-white rounded-full font-medium text-xs tracking-wide transition-all shadow-xs disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+            className="w-full h-11 flex items-center justify-center bg-[#111111] hover:bg-primary active:scale-[0.98] text-white rounded-full font-medium text-xs tracking-wide transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-primary/25 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
             {selectedVariant?.availableForSale ? '+ Keranjang' : 'Habis'}
           </AddToCartButton>
@@ -428,6 +449,7 @@ export default function Product() {
           ],
         }}
       />
+      </div>
     </div>
   );
 }
@@ -477,7 +499,7 @@ const PRODUCT_FRAGMENT = `#graphql
     handle
     descriptionHtml
     description
-    collections(first: 1) {
+    collections(first: 5) {
       nodes {
         title
         handle

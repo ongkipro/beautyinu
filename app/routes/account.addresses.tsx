@@ -328,7 +328,7 @@ function NewAddressForm() {
             disabled={stateForMethod('POST') !== 'idle'}
             formMethod="POST"
             type="submit"
-            className="px-6 py-3 rounded-xl bg-[#111111] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-xs disabled:opacity-50"
+            className="px-6 py-3 rounded-xl bg-[#111111] hover:bg-primary active:scale-[0.98] text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-xs hover:shadow-md hover:shadow-primary/25 disabled:opacity-50"
           >
             {stateForMethod('POST') !== 'idle' ? 'Menyimpan...' : 'Simpan Alamat Baru'}
           </button>
@@ -360,7 +360,7 @@ function ExistingAddresses({
                   disabled={stateForMethod('PUT') !== 'idle'}
                   formMethod="PUT"
                   type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-[#111111] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-xs disabled:opacity-50"
+                  className="px-5 py-2.5 rounded-xl bg-[#111111] hover:bg-primary active:scale-[0.98] text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-xs hover:shadow-md hover:shadow-primary/25 disabled:opacity-50"
                 >
                   {stateForMethod('PUT') !== 'idle' ? 'Menyimpan...' : 'Simpan Perubahan'}
                 </button>
@@ -368,7 +368,7 @@ function ExistingAddresses({
                   disabled={stateForMethod('DELETE') !== 'idle'}
                   formMethod="DELETE"
                   type="submit"
-                  className="px-4 py-2.5 rounded-xl bg-white hover:bg-red-50 text-black/60 hover:text-red-600 border border-black/10 text-xs font-semibold transition-colors cursor-pointer disabled:opacity-50"
+                  className="px-4 py-2.5 rounded-xl bg-white hover:bg-rose-50 text-black/60 hover:text-rose-600 hover:border-rose-200 border border-black/10 text-xs font-semibold transition-all duration-200 cursor-pointer active:scale-95 disabled:opacity-50"
                 >
                   {stateForMethod('DELETE') !== 'idle' ? 'Menghapus...' : 'Hapus'}
                 </button>

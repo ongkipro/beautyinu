@@ -147,7 +147,7 @@ function OrderSearchForm({
         <button
           type="submit"
           disabled={isSearching}
-          className="px-5 py-2.5 rounded-xl bg-[#111111] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer disabled:opacity-50"
+          className="px-5 py-2.5 rounded-xl bg-[#111111] hover:bg-primary active:scale-[0.98] text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-xs hover:shadow-md hover:shadow-primary/25 disabled:opacity-50"
         >
           {isSearching ? 'Mencari...' : 'Cari'}
         </button>
@@ -159,7 +159,7 @@ function OrderSearchForm({
               setSearchParams(new URLSearchParams());
               formRef.current?.reset();
             }}
-            className="px-4 py-2.5 rounded-xl bg-[#FAF9FB] hover:bg-neutral-100 border border-black/10 text-xs font-medium text-text transition-colors cursor-pointer"
+            className="px-4 py-2.5 rounded-xl bg-[#FAF9FB] hover:bg-[#FFF8FA] hover:text-primary hover:border-primary/30 border border-black/10 text-xs font-medium text-text transition-all duration-200 cursor-pointer active:scale-95"
           >
             Reset
           </button>

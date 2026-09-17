@@ -1,32 +1,45 @@
-import {useState, useEffect, useMemo} from 'react';
-import {Link, redirect, useLoaderData} from 'react-router';
+import {useState, useEffect, useMemo, useCallback} from 'react';
+import {Link, redirect, useLoaderData, useNavigate} from 'react-router';
 import type {Route} from './+types/blogs.$blogHandle.$articleHandle';
 import {Image} from '@shopify/hydrogen';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 import {ProductCard} from '~/components/ProductCard';
 import {ArticleCard} from '~/components/ArticleCard';
+import {Breadcrumb} from '~/components/Breadcrumb';
 import {
-  ChevronRight,
   ArrowLeft,
   ArrowRight,
   MessageCircle,
   Copy,
   Check,
+  Clock,
+  Share2,
+  BookOpen,
 } from 'lucide-react';
-import {getSeoMeta, buildArticleJsonLd} from '~/lib/seo';
+import {
+  getSeoMeta,
+  buildArticleJsonLd,
+  buildArticleBreadcrumbJsonLd,
+} from '~/lib/seo';
 
 export const meta: Route.MetaFunction = ({data}) => {
   if (!data?.article) {
     return getSeoMeta({title: 'Article Not Found — Beautyinu'});
   }
-  const {article, canonicalUrl} = data;
+  const {article, canonicalUrl, blogHandle} = data;
   const title = article.seo?.title || `${article.title} — Beautyinu`;
   const description =
     article.seo?.description ||
     article.contentHtml?.replace(/<[^>]+>/g, '').trim().slice(0, 160) ||
     `${article.title} — Beautyinu Official Blog.`;
   const imageUrl = article.image?.url;
-  const jsonLd = buildArticleJsonLd(article, canonicalUrl);
+
+  const articleJsonLd = buildArticleJsonLd(article, canonicalUrl);
+  const breadcrumbJsonLd = buildArticleBreadcrumbJsonLd(
+    article.title,
+    blogHandle,
+    canonicalUrl,
+  );
 
   return getSeoMeta({
     title,
@@ -36,7 +49,7 @@ export const meta: Route.MetaFunction = ({data}) => {
     imageAlt: article.image?.altText || article.title,
     type: 'article',
     publishedTime: article.publishedAt,
-    jsonLd,
+    jsonLd: [articleJsonLd, breadcrumbJsonLd],
   });
 };
 
@@ -53,7 +66,11 @@ async function loadCriticalData({context, request, params}: Route.LoaderArgs) {
     throw new Response('Not found', {status: 404});
   }
 
-  if (blogHandle === 'berita' || blogHandle === 'journal' || blogHandle === 'articles') {
+  if (
+    blogHandle === 'berita' ||
+    blogHandle === 'journal' ||
+    blogHandle === 'articles'
+  ) {
     throw redirect(`/blogs/news/${articleHandle}`, 301);
   }
 
@@ -102,6 +119,8 @@ export default function Article() {
   } = useLoaderData<typeof loader>();
   const {title, image, contentHtml} = article;
 
+  const navigate = useNavigate();
+
   const publishedDate = new Intl.DateTimeFormat('id-ID', {
     day: 'numeric',
     month: 'long',
@@ -111,12 +130,21 @@ export default function Article() {
   const authorName = article.author?.name || 'Tim Editorial Beautyinu';
   const readTime = Math.max(2, Math.ceil((contentHtml?.length || 0) / 900));
 
-  // Extract H2 headings for Table of Contents & inject anchor IDs
+  // 1. Sanitize HTML & extract H2 headings for Table of Contents
+  // Removes in-body "Rekomendasi Produk Terkait" as requested (products are cleanly shown below)
   const {enhancedHtml, headings} = useMemo(() => {
     if (!contentHtml) return {enhancedHtml: '', headings: []};
 
+    // Strip out redundant in-article product recommendation section and its trailing list
+    const cleaned = contentHtml
+      .replace(
+        /<h2[^>]*>(?:Rekomendasi Produk Terkait|Panduan &amp; Produk Rekomendasi|Produk Rekomendasi)[\s\S]*?(?=<h2|$)/gi,
+        '',
+      )
+      .trim();
+
     const items: {id: string; text: string}[] = [];
-    const enhanced = contentHtml.replace(
+    const enhanced = cleaned.replace(
       /<h2([^>]*)>(.*?)<\/h2>/gi,
       (match: string, attrs: string, inner: string) => {
         const plainText = inner.replace(/<[^>]+>/g, '').trim();
@@ -135,206 +163,240 @@ export default function Article() {
     return {enhancedHtml: enhanced, headings: items};
   }, [contentHtml]);
 
+  // 2. Client-side SPA navigation handler for internal links inside dangerouslySetInnerHTML
+  const handleContentClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const target = (e.target as HTMLElement).closest('a');
+      if (!target) return;
+      const href = target.getAttribute('href');
+      if (!href) return;
+
+      // Intercept local relative paths (e.g. /products/...)
+      if (href.startsWith('/') && !href.startsWith('//')) {
+        e.preventDefault();
+        navigate(href);
+      }
+    },
+    [navigate],
+  );
+
   return (
     <article className="w-full bg-white relative">
-      {/* 1. Subtle Reading Progress Bar */}
+      {/* Subtle Top Reading Progress Bar */}
       <ReadingProgressBar />
 
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14">
-        {/* 2. Standard Breadcrumb Navigation */}
-        <nav className="text-xs sm:text-sm text-text-secondary mb-6 sm:mb-8 flex items-center gap-1.5">
-          <Link to="/" className="hover:text-primary transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={1.5} />
-          <Link to={`/blogs/${blogHandle}`} className="hover:text-primary transition-colors">
-            Skincare Journal
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={1.5} />
-          <span className="text-text font-medium truncate max-w-xs sm:max-w-md">{title}</span>
-        </nav>
+      {/* 1. Standardized Breadcrumbs Wayfinding Bar */}
+      <Breadcrumb
+        variant="bar"
+        items={[
+          {label: 'Skincare Journal', to: `/blogs/${blogHandle}`},
+          {label: title},
+        ]}
+      />
 
-        {/* 3. Editorial Header */}
-        <header className="max-w-3xl mx-auto mb-8 sm:mb-12">
-          <p className="text-[10px] sm:text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-black/50 mb-2">
-            Beautyinu · Skincare Journal
-          </p>
-
-          <h1 className="font-serif text-3xl sm:text-5xl lg:text-[52px] text-text font-normal leading-[1.15] tracking-tight mb-6">
-            {title}
-          </h1>
-
-          {/* Clean Flat Byline Row */}
-          <div className="flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm text-text-secondary pb-6 border-b border-black/[0.06]">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-text font-semibold">{authorName}</span>
-              <span className="text-black/20">·</span>
-              <time dateTime={article.publishedAt}>{publishedDate}</time>
-              <span className="text-black/20">·</span>
-              <span>{readTime} menit baca</span>
-            </div>
-
-            <ArticleShareActions title={title} canonicalUrl={canonicalUrl} />
-          </div>
-        </header>
-
-        {/* 4. Hero Photography — Matching Standard aspect-[3/2] rounded-2xl */}
-        {image && (
-          <div className="w-full max-w-4xl mx-auto mb-12 sm:mb-16 aspect-[3/2] overflow-hidden rounded-3xl bg-[#F0EAF8] border border-black/[0.05]">
+      {/* 2. Full-Width Editorial Background Hero Section with 3:2 Precision Framing */}
+      <div className="relative w-full overflow-hidden bg-[#16141D] min-h-[400px] sm:min-h-[460px] lg:h-[520px] flex items-center border-b border-black/[0.04]">
+        {/* Full-width Article Cover as Background */}
+        {image ? (
+          <div className="absolute inset-0 z-0 pointer-events-none">
             <Image
               data={image}
               aspectRatio="3/2"
-              sizes="(min-width: 1024px) 896px, 100vw"
+              sizes="100vw"
               loading="eager"
               className="w-full h-full object-cover object-center"
             />
+            {/* Cinematic Scrim Gradient: Balanced dark overlay ensuring perfect centered text legibility */}
+            <div className="absolute inset-0 bg-[#0C0B10]/55" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0C0B10]/95 via-[#0C0B10]/65 to-[#0C0B10]/45" />
+            {/* Subtle bottom edge blend */}
+            <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/50 to-transparent" />
           </div>
+        ) : (
+          <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#1C1924] via-[#2A2436] to-[#16141D]" />
         )}
 
-        {/* 5. Editorial Content Measure (max-w-3xl) */}
-        <div className="max-w-3xl mx-auto">
-          {/* Table of Contents (Clean, Consistent Font Pattern) */}
-          {headings.length > 1 && (
-            <div className="mb-10 sm:mb-12 p-6 sm:p-7 rounded-3xl bg-[#FAF9FB] border border-black/[0.05]">
-              <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-primary block mb-3">
-                Daftar Isi Artikel
-              </span>
-              <ol className="space-y-2.5 text-xs sm:text-sm text-text-secondary">
-                {headings.map((heading, i) => (
-                  <li key={heading.id} className="flex items-baseline gap-2.5">
-                    <span className="font-semibold text-xs text-primary/80 select-none">
-                      {String(i + 1).padStart(2, '0')}.
-                    </span>
-                    <a
-                      href={`#${heading.id}`}
-                      className="hover:text-primary transition-colors leading-relaxed hover:underline"
-                    >
-                      {heading.text}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          )}
-
-          {/* Article Typography */}
-          <div
-            dangerouslySetInnerHTML={{__html: enhancedHtml}}
-            className="prose prose-lg max-w-none
-              [&_h2]:font-serif [&_h2]:text-2xl sm:[&_h2]:text-3xl [&_h2]:text-text [&_h2]:font-normal [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:tracking-tight [&_h2]:scroll-mt-20
-              [&_h3]:font-serif [&_h3]:text-xl sm:[&_h3]:text-2xl [&_h3]:text-text [&_h3]:font-normal [&_h3]:mt-10 [&_h3]:mb-3 [&_h3]:scroll-mt-20
-              [&_p]:leading-[1.75] [&_p]:mb-5 [&_p]:text-text/90 [&_p]:text-base sm:[&_p]:text-[17px]
-              [&_a]:text-primary [&_a]:underline hover:[&_a]:text-primary-hover [&_a]:font-medium
-              [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:space-y-2 [&_ul]:text-text/90
-              [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:space-y-2 [&_ol]:text-text/90
-              [&_li]:leading-relaxed
-              [&_hr]:hidden
-              [&_img]:w-full [&_img]:h-auto [&_img]:rounded-3xl [&_img]:my-8 [&_img]:border [&_img]:border-black/[0.05]
-              [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:pl-5 [&_blockquote]:italic [&_blockquote]:text-text-secondary [&_blockquote]:my-8 [&_blockquote]:text-lg
-            "
-          />
-
-          {/* 6. Routine Bridge Box (Luminous Glass) */}
-          <div className="mt-14 sm:mt-18 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-white/90 via-white/80 to-[#FFF3F6]/85 backdrop-blur-xl border border-white/90 shadow-[0_10px_35px_rgba(249,127,158,0.07)] text-left relative overflow-hidden">
-            <span className="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-mono font-bold uppercase tracking-widest text-primary inline-block mb-3">
-              Rekomendasi Rutinitas
-            </span>
-            <h3 className="font-serif text-2xl sm:text-3xl text-text font-normal tracking-tight mb-2.5">
-              Siap Rawat Kulit Tubuh Lebih Sehat &amp; Glowing?
-            </h3>
-            <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-6 max-w-xl font-normal">
-              Terapkan panduan artikel ini dengan rangkaian harian Cleanse, Boost, dan Lock dari Beautyinu. Diformulasikan dengan Niacinamide 5.22% + Alpha Arbutin resmi BPOM RI untuk iklim tropis Indonesia.
+        {/* Hero Content (Centered Editorial Composition) */}
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 text-center flex flex-col items-center justify-center">
+          <div className="max-w-3xl lg:max-w-4xl mx-auto flex flex-col items-center">
+            {/* Kicker Editorial */}
+            <p className="text-[10px] sm:text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-white/75 mb-3.5">
+              The Journal
             </p>
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              <Link
-                to="/collections/bundles"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary hover:bg-primary-hover text-white text-xs sm:text-sm font-semibold px-7 py-3.5 shadow-xs transition-all cursor-pointer text-center hover:scale-[1.02]"
-              >
-                <span>Lihat Paket Glowing Set (Hemat 47%)</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <a
-                href="https://wa.me/6287777118186?text=Halo%20Beautyinu%2C%20saya%20membaca%20artikel%20dan%20ingin%20konsultasi%20skincare"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-surface text-text border border-black/[0.08] text-xs sm:text-sm font-semibold px-6 py-3.5 shadow-2xs transition-all cursor-pointer text-center hover:scale-[1.02]"
-              >
-                <MessageCircle className="w-4 h-4 text-primary" />
-                <span>Konsultasi WhatsApp</span>
-              </a>
+
+            {/* Title */}
+            <h1 className="font-serif text-2xl sm:text-4xl lg:text-[48px] text-white font-normal leading-[1.16] tracking-tight mb-6 max-w-3xl sm:max-w-4xl mx-auto drop-shadow-xs text-center">
+              {title}
+            </h1>
+
+            {/* In-Hero Byline & Share Row (Centered Symmetrical) */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-6 pt-5 border-t border-white/20 w-full max-w-2xl mx-auto">
+              <div className="flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm text-white/85">
+                <div className="w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white font-serif font-bold text-[10px]">
+                  B
+                </div>
+                <span className="text-white font-semibold">{authorName}</span>
+                <span className="text-white/30 select-none">·</span>
+                <time dateTime={article.publishedAt}>{publishedDate}</time>
+                <span className="text-white/30 select-none">·</span>
+                <span className="inline-flex items-center gap-1 text-white/90">
+                  <Clock className="w-3.5 h-3.5 text-white/60" />
+                  <span>{readTime} menit baca</span>
+                </span>
+              </div>
+
+              <span className="hidden sm:inline text-white/25 select-none" aria-hidden="true">
+                |
+              </span>
+
+              <ArticleShareActions
+                title={title}
+                canonicalUrl={canonicalUrl}
+                variant="light"
+              />
             </div>
-          </div>
-
-          {/* 7. Bottom Navigation */}
-          <div className="mt-12 flex items-center justify-between">
-            <Link
-              to={`/blogs/${blogHandle}`}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-hover transition-colors cursor-pointer"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Kembali ke Skincare Journal</span>
-            </Link>
-
-            <ArticleShareActions title={title} canonicalUrl={canonicalUrl} />
           </div>
         </div>
-
-        {/* 8. Products from the Article (Shop the Routine) */}
-        {recommendedProducts.length > 0 && (
-          <div className="mt-20 sm:mt-24 max-w-5xl mx-auto">
-            <div className="text-center max-w-2xl mx-auto mb-10">
-              <span className="text-xs font-bold uppercase tracking-widest text-accent">
-                Pilihan Terbaik
-              </span>
-              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-text mt-2 mb-2">
-                Lengkapi Rutinitas Perawatanmu
-              </h2>
-              <p className="text-sm text-text-secondary">
-                Produk favorit yang direkomendasikan para beauty enthusiasts Indonesia.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-              {recommendedProducts.slice(0, 3).map((product: any) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* 9. Related Articles Grid — Exact Unified ArticleCard from Homepage */}
-        {relatedArticles.length > 0 && (
-          <div className="mt-20 sm:mt-24 max-w-5xl mx-auto">
-            <div className="flex items-end justify-between mb-8 sm:mb-10">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-accent">
-                  Edukasi Lanjutan
-                </span>
-                <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-text mt-2">
-                  Artikel Terkait Lainnya
-                </h2>
-              </div>
-              <Link
-                to={`/blogs/${blogHandle}`}
-                className="text-sm font-semibold text-primary hover:text-primary-hover flex items-center gap-1 transition-colors"
-              >
-                <span>Lihat Semua Artikel</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {relatedArticles.map((rel: any) => (
-                <ArticleCard
-                  key={rel.id}
-                  article={rel}
-                  blogHandle={blogHandle}
-                />
-              ))}
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* 2. Article Reading Body (Optimal measure for reading comfort) */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-12 sm:pb-16">
+        {/* Table of Contents (Clean, Architectural Precision) */}
+        {headings.length > 1 && (
+          <nav
+            aria-label="Daftar Isi Artikel"
+            className="mb-10 sm:mb-12 p-6 sm:p-7 rounded-2xl bg-[#FAF9FB] border border-black/[0.06] shadow-2xs"
+          >
+            <div className="flex items-center gap-2 mb-3.5">
+              <BookOpen className="w-4 h-4 text-primary" strokeWidth={2} />
+              <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-text block">
+                Daftar Isi Artikel
+              </span>
+            </div>
+            <ol className="space-y-2.5 text-xs sm:text-sm text-text-secondary">
+              {headings.map((heading, i) => (
+                <li key={heading.id} className="flex items-baseline gap-2.5">
+                  <span className="font-mono font-bold text-xs text-primary/80 select-none">
+                    {String(i + 1).padStart(2, '0')}.
+                  </span>
+                  <a
+                    href={`#${heading.id}`}
+                    className="hover:text-primary transition-colors leading-relaxed hover:underline"
+                  >
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
+
+        {/* Article Typography & Rendered HTML */}
+        <div
+          onClick={handleContentClick}
+          dangerouslySetInnerHTML={{__html: enhancedHtml}}
+          className="prose prose-lg max-w-none
+            [&_h2]:font-serif [&_h2]:text-2xl sm:[&_h2]:text-3xl [&_h2]:text-text [&_h2]:font-normal [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:tracking-tight [&_h2]:scroll-mt-24
+            [&_h3]:font-serif [&_h3]:text-xl sm:[&_h3]:text-2xl [&_h3]:text-text [&_h3]:font-normal [&_h3]:mt-10 [&_h3]:mb-3 [&_h3]:scroll-mt-24
+            [&_p]:leading-[1.8] [&_p]:mb-6 [&_p]:text-text/90 [&_p]:text-base sm:[&_p]:text-[17px]
+            [&_a]:text-primary [&_a]:underline hover:[&_a]:text-primary-hover [&_a]:font-medium transition-colors
+            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:space-y-2 [&_ul]:text-text/90
+            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:space-y-2 [&_ol]:text-text/90
+            [&_li]:leading-relaxed
+            [&_hr]:hidden
+            [&_img]:w-full [&_img]:h-auto [&_img]:rounded-2xl [&_img]:my-8 [&_img]:border [&_img]:border-black/[0.06] [&_img]:shadow-xs
+            [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:pl-5 [&_blockquote]:py-1 [&_blockquote]:italic [&_blockquote]:text-text-secondary [&_blockquote]:my-8 [&_blockquote]:text-base sm:[&_blockquote]:text-lg [&_blockquote]:bg-[#FAF8FC] [&_blockquote]:rounded-r-xl
+            [&_table]:w-full [&_table]:my-6 [&_table]:border-collapse [&_table]:overflow-x-auto [&_table]:block [&_th]:border-b [&_th]:border-black/10 [&_th]:p-3 [&_th]:text-left [&_th]:font-semibold [&_td]:border-b [&_td]:border-black/5 [&_td]:p-3 [&_td]:text-sm
+          "
+        />
+
+        {/* 3. Bottom Article Navigation */}
+        <div className="mt-14 pt-6 border-t border-black/[0.06] flex items-center justify-between">
+          <Link
+            to={`/blogs/${blogHandle}`}
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-primary hover:text-primary-hover transition-colors cursor-pointer"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Kembali ke Skincare Journal</span>
+          </Link>
+
+          <ArticleShareActions
+            title={title}
+            canonicalUrl={canonicalUrl}
+            variant="dark"
+          />
+        </div>
+      </div>
+
+      {/* 4. Products from the Article (Exactly 4 Products matching PDP Related Products Grid) */}
+      {recommendedProducts.length > 0 && (
+        <section
+          className="border-t border-black/[0.06] pt-14 sm:pt-20 pb-10 sm:pb-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          aria-labelledby="section-recommended-products"
+        >
+          <div className="mb-8 text-center md:text-left">
+            <span className="text-xs font-mono uppercase tracking-[0.2em] text-accent font-semibold block mb-1">
+              Padanan Sempurna
+            </span>
+            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+              <h2
+                id="section-recommended-products"
+                className="font-serif text-2xl sm:text-3xl text-text font-normal tracking-tight"
+              >
+                Lengkapi Routine Glowing Kamu
+              </h2>
+              <span className="text-xs text-text-secondary">
+                Formula resmi berizin BPOM RI untuk hasil optimal
+              </span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3.5 sm:gap-4 md:grid-cols-4 md:gap-6 min-w-0">
+            {recommendedProducts.slice(0, 4).map((product: any) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* 5. Related Articles Grid (Exactly 3 Articles matching Homepage The Journal Grid) */}
+      {relatedArticles.length > 0 && (
+        <section
+          className="border-t border-black/[0.06] pt-14 sm:pt-20 pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          aria-labelledby="section-related-articles"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
+            <div>
+              <p className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.25em] text-black/50 mb-1.5">
+                The Journal
+              </p>
+              <h2
+                id="section-related-articles"
+                className="font-serif text-2xl sm:text-3xl lg:text-4xl text-text font-normal tracking-tight"
+              >
+                Artikel Terkait Lainnya
+              </h2>
+            </div>
+            <Link
+              to={`/blogs/${blogHandle}`}
+              className="text-xs font-mono font-semibold uppercase tracking-wider text-text hover:text-primary flex items-center gap-1.5 transition-colors self-start sm:self-auto"
+            >
+              <span>Lihat Semua Artikel</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {relatedArticles.slice(0, 3).map((rel: any) => (
+              <ArticleCard
+                key={rel.id}
+                article={rel}
+                blogHandle={blogHandle}
+              />
+            ))}
+          </div>
+        </section>
+      )}
     </article>
   );
 }
@@ -368,23 +430,45 @@ function ReadingProgressBar() {
   );
 }
 
-// ── Subcomponent: Share Actions ──
+// ── Subcomponent: Share Actions with Native Share & Copy Feedback ──
 function ArticleShareActions({
   title,
   canonicalUrl,
+  variant = 'dark',
 }: {
   title: string;
   canonicalUrl: string;
+  variant?: 'light' | 'dark';
 }) {
   const [copied, setCopied] = useState(false);
+  const [canShare, setCanShare] = useState(false);
+
+  useEffect(() => {
+    if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
+      setCanShare(true);
+    }
+  }, []);
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(canonicalUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      // Ignore
+    } catch {
+      // Fallback ignore
+    }
+  };
+
+  const handleNativeShare = async () => {
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share({
+          title,
+          url: canonicalUrl,
+        });
+      } catch {
+        // Ignored if cancelled
+      }
     }
   };
 
@@ -392,18 +476,49 @@ function ArticleShareActions({
     `${title} — Baca selengkapnya di Beautyinu: ${canonicalUrl}`,
   )}`;
 
+  const isLight = variant === 'light';
+
   return (
-    <div className="flex items-center gap-3 text-xs">
+    <div className="flex items-center gap-2.5 sm:gap-3 text-xs">
+      {/* Native Web Share API button for Mobile */}
+      {canShare && (
+        <>
+          <button
+            type="button"
+            onClick={handleNativeShare}
+            className={`inline-flex items-center gap-1.5 transition-all duration-200 active:scale-95 cursor-pointer ${
+              isLight
+                ? 'text-white/80 hover:text-white'
+                : 'text-text-secondary hover:text-primary'
+            }`}
+            title="Bagikan artikel"
+          >
+            <Share2 className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Bagikan</span>
+          </button>
+          <span className={isLight ? 'text-white/30' : 'text-black/20 select-none'}>
+            ·
+          </span>
+        </>
+      )}
+
+      {/* Copy Link */}
       <button
         type="button"
         onClick={handleCopy}
-        className="inline-flex items-center gap-1 text-text-secondary hover:text-text transition-colors cursor-pointer"
+        className={`inline-flex items-center gap-1.5 transition-all duration-200 active:scale-95 cursor-pointer ${
+          isLight
+            ? 'text-white/80 hover:text-white'
+            : 'text-text-secondary hover:text-primary'
+        }`}
         title="Salin tautan artikel"
       >
         {copied ? (
           <>
             <Check className="w-3.5 h-3.5 text-primary" />
-            <span className="text-primary font-bold">Tersalin</span>
+            <span className={`font-bold ${isLight ? 'text-white' : 'text-primary'}`}>
+              Tersalin
+            </span>
           </>
         ) : (
           <>
@@ -413,13 +528,20 @@ function ArticleShareActions({
         )}
       </button>
 
-      <span className="text-black/20 select-none">·</span>
+      <span className={isLight ? 'text-white/30' : 'text-black/20 select-none'}>
+        ·
+      </span>
 
+      {/* WhatsApp Link */}
       <a
         href={waUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 text-text-secondary hover:text-[#25D366] transition-colors cursor-pointer"
+        className={`inline-flex items-center gap-1.5 transition-colors cursor-pointer ${
+          isLight
+            ? 'text-white/80 hover:text-[#25D366]'
+            : 'text-text-secondary hover:text-[#25D366]'
+        }`}
         title="Bagikan ke WhatsApp"
       >
         <MessageCircle className="w-3.5 h-3.5" />
@@ -483,7 +605,7 @@ const ARTICLE_PRODUCTS_QUERY = `#graphql
     $country: CountryCode
     $language: LanguageCode
   ) @inContext(country: $country, language: $language) {
-    products(first: 3, sortKey: BEST_SELLING) {
+    products(first: 4, sortKey: BEST_SELLING) {
       nodes {
         id
         title

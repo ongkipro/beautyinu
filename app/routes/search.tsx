@@ -13,6 +13,7 @@ import type {
   PredictiveSearchQuery,
 } from 'storefrontapi.generated';
 import {getSeoMeta} from '~/lib/seo';
+import {Breadcrumb} from '~/components/Breadcrumb';
 import {Search, ArrowRight, TrendingUp} from 'lucide-react';
 
 export const meta: Route.MetaFunction = ({data}) => {
@@ -99,16 +100,15 @@ export default function SearchPage() {
 
   return (
     <div className="bg-white min-h-[70vh]">
-      {/* 1. Header & Search Bar Hero */}
+      {/* 1. Standardized Breadcrumbs Wayfinding Bar */}
+      <Breadcrumb
+        variant="bar"
+        items={[{label: 'Pencarian'}]}
+      />
+
+      {/* 2. Header & Search Bar Hero */}
       <div className="bg-gradient-to-b from-[#FAF8FC] via-surface/60 to-white py-10 sm:py-14 border-b border-black/[0.04]">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
-          {/* Breadcrumb */}
-          <div className="flex items-center justify-center gap-2 text-xs text-text-secondary mb-4">
-            <Link to="/" className="hover:text-primary transition-colors">Beranda</Link>
-            <span>/</span>
-            <span className="text-text font-medium">Pencarian</span>
-          </div>
-
           <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-accent bg-accent-light px-3 py-1 rounded-md mb-3 border border-accent/20">
             Katalog &amp; Formula Resmi
           </span>
@@ -141,7 +141,7 @@ export default function SearchPage() {
                   />
                   <button
                     type="submit"
-                    className="bg-[#1A1A1A] hover:bg-black text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors flex-shrink-0 flex items-center gap-1.5 cursor-pointer shadow-2xs active:scale-95"
+                    className="bg-[#111111] hover:bg-primary text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 flex-shrink-0 flex items-center gap-1.5 cursor-pointer shadow-xs hover:shadow-md hover:shadow-primary/25 active:scale-95"
                   >
                     <span>Cari</span>
                     <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />

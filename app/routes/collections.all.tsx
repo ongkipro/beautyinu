@@ -4,28 +4,48 @@ import {getPaginationVariables} from '@shopify/hydrogen';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
 import {ProductCard} from '~/components/ProductCard';
 import type {CollectionItemFragment} from 'storefrontapi.generated';
-import {getSeoMeta} from '~/lib/seo';
+import {
+  getSeoMeta,
+  buildCollectionJsonLd,
+  buildBreadcrumbJsonLd,
+} from '~/lib/seo';
+import {Breadcrumb} from '~/components/Breadcrumb';
 import heroModelDesktop from '~/assets/beautyinu-hero-model.webp';
 import heroModelMobile from '~/assets/beautyinu-hero-model-mobile.webp';
 import {
-  ChevronRight,
   ShieldCheck,
   Sparkles,
   Truck,
   Clock,
-  ChevronDown,
   ArrowUpDown,
   ArrowRight,
+  Check,
+  ChevronDown,
 } from 'lucide-react';
 
 export const meta: Route.MetaFunction = ({data}) => {
-  return getSeoMeta({
-    title: 'Semua Produk — Beautyinu Official Store',
+  const canonicalUrl = data?.canonicalUrl || 'https://beautyinu.id/collections/all';
+  const collectionData = {
+    title: 'Semua Produk',
     description:
       'Katalog lengkap seluruh rangkaian produk perawatan tubuh Beautyinu berizin BPOM: body lotion UV filter, serbuk booster pencerah, krim tubuh, toner, dan sabun mandi.',
-    url: data?.canonicalUrl,
+    products: data?.products,
+  };
+
+  const collectionSchema = buildCollectionJsonLd(collectionData, canonicalUrl);
+  const breadcrumbSchema = buildBreadcrumbJsonLd([
+    {name: 'Home', url: 'https://beautyinu.id'},
+    {name: 'Koleksi', url: 'https://beautyinu.id/collections'},
+    {name: 'Semua Produk', url: canonicalUrl},
+  ]);
+
+  return getSeoMeta({
+    title: 'Semua Produk — Beautyinu Official Store',
+    description: collectionData.description,
+    url: canonicalUrl,
     image: heroModelDesktop,
     type: 'website',
+    jsonLd: [collectionSchema, breadcrumbSchema],
   });
 };
 
@@ -107,27 +127,17 @@ export default function Collection() {
 
   return (
     <div className="w-full bg-white">
-      {/* 1. Breadcrumbs Wayfinding with Standardized Height */}
-      <div className="border-b border-black/[0.04] bg-white h-11 flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-text-secondary">
-            <Link to="/" className="hover:text-primary transition-colors flex items-center gap-1">
-              <span>Beranda</span>
-            </Link>
-            <ChevronRight className="w-3.5 h-3.5 text-black/30 flex-shrink-0" />
-            <Link to="/collections" className="hover:text-primary transition-colors">
-              <span>Koleksi</span>
-            </Link>
-            <ChevronRight className="w-3.5 h-3.5 text-black/30 flex-shrink-0" />
-            <span className="font-semibold text-text truncate">
-              Semua Produk
-            </span>
-          </nav>
-        </div>
-      </div>
+      {/* 1. Standardized Breadcrumbs Wayfinding Bar */}
+      <Breadcrumb
+        variant="bar"
+        items={[
+          {label: 'Koleksi', to: '/collections'},
+          {label: 'Semua Produk'},
+        ]}
+      />
 
-      {/* 2. Full-Width Editorial Hero with Mathematically Locked Precision Height */}
-      <div className="relative w-full overflow-hidden bg-[#FBF9FC] border-b border-black/[0.04] h-[380px] sm:h-[420px] lg:h-[460px] flex items-center">
+      {/* 2. Full-Width Editorial Hero with Adaptable Precision Height */}
+      <div className="relative w-full overflow-hidden bg-[#FBF9FC] border-b border-black/[0.04] min-h-[340px] sm:min-h-[400px] lg:h-[450px] py-8 sm:py-12 flex items-center">
         {/* Full-width Model Background Image */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <picture>
@@ -135,25 +145,25 @@ export default function Collection() {
             <img
               src={heroModelDesktop}
               alt="Beautyinu Glowing Skin Routine"
-              className="w-full h-full object-cover object-right lg:object-[center_right] opacity-90 sm:opacity-95"
+              className="w-full h-full object-cover object-right lg:object-[center_right] opacity-30 sm:opacity-90 lg:opacity-95"
             />
           </picture>
 
-          {/* Smooth Directional Scrim */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FBF9FC] via-[#FBF9FC]/95 via-45% to-transparent sm:via-[#FBF9FC]/90 sm:via-55% lg:via-[#FBF9FC]/80 lg:via-60%" />
+          {/* Smooth Directional Scrim: Solid overlay on mobile to guarantee text contrast, soft gradient on desktop */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#FBF9FC] via-[#FBF9FC]/95 via-60% to-[#FBF9FC]/80 sm:bg-gradient-to-r sm:from-[#FBF9FC] sm:via-[#FBF9FC]/90 sm:via-55% lg:via-[#FBF9FC]/80 lg:via-60% sm:to-transparent" />
           {/* Subtle bottom edge blend */}
-          <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#FBF9FC] to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#FBF9FC] to-transparent" />
         </div>
 
         {/* Hero Content (Vertically centered on Left) */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-xl lg:max-w-2xl flex flex-col justify-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/85 backdrop-blur-md text-accent text-[11px] font-mono font-semibold uppercase tracking-wider mb-2.5 border border-accent/20 shadow-2xs self-start">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/90 backdrop-blur-md text-accent text-[11px] font-mono font-semibold uppercase tracking-wider mb-2.5 border border-accent/20 shadow-2xs self-start">
               <ShieldCheck className="w-3.5 h-3.5 text-accent" />
               <span>Beautyinu · Official Complete Catalog</span>
             </div>
 
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-text font-normal tracking-tight mb-2 line-clamp-1 sm:line-clamp-2">
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-text font-normal tracking-tight mb-2">
               Semua Produk
             </h1>
 
@@ -161,7 +171,7 @@ export default function Collection() {
               Katalog Lengkap Seluruh Rangkaian
             </p>
 
-            <p className="text-xs sm:text-sm md:text-[15px] text-text-secondary leading-relaxed font-normal mb-4 max-w-lg line-clamp-2 sm:line-clamp-3">
+            <p className="text-xs sm:text-sm md:text-[15px] text-text-secondary leading-relaxed font-normal mb-4 max-w-lg">
               Jelajahi seluruh rangkaian perawatan tubuh lengkap Beautyinu berizin resmi BPOM RI: body lotion UV filter, serbuk booster pencerah, krim tubuh, toner, dan sabun mandi collagen.
             </p>
 
@@ -171,9 +181,10 @@ export default function Collection() {
                 (highlight) => (
                   <span
                     key={highlight}
-                    className="text-[11px] font-medium text-text bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-md border border-black/[0.08] shadow-2xs"
+                    className="inline-flex items-center gap-1.5 text-[11px] font-medium text-text bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-md border border-black/[0.08] shadow-2xs"
                   >
-                    ✓ {highlight}
+                    <Check className="w-3 h-3 text-emerald-600 flex-shrink-0" strokeWidth={2.5} />
+                    {highlight}
                   </span>
                 ),
               )}
@@ -184,8 +195,8 @@ export default function Collection() {
 
       {/* 3. Main Content & Product Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        {/* Toolbar: Live Counter & Sort */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 pb-4 border-b border-black/[0.04] gap-4">
+        {/* Toolbar: Live Counter & Refined Sort */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 pb-4 border-b border-black/[0.04] gap-3 sm:gap-4">
           <div className="flex items-center gap-2 text-xs font-mono text-text-secondary">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>Menampilkan</span>
@@ -193,26 +204,31 @@ export default function Collection() {
             <span>Produk Pilihan</span>
           </div>
 
-          <div className="flex items-center gap-2.5 self-end sm:self-auto">
+          <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
             <label
               htmlFor="sort"
-              className="text-[11px] font-mono font-bold uppercase tracking-wider text-black/50 flex items-center gap-1"
+              className="text-[11px] font-mono font-bold uppercase tracking-wider text-black/50 flex items-center gap-1 shrink-0"
             >
               <ArrowUpDown className="w-3 h-3 text-black/40" />
               <span>Urutkan:</span>
             </label>
-            <select
-              id="sort"
-              value={currentSort}
-              onChange={handleSortChange}
-              className="bg-white border border-black/10 rounded-xl py-2 px-3 text-xs font-medium text-text focus:outline-none focus:border-black/30 hover:border-black/20 transition-colors shadow-2xs cursor-pointer"
-            >
-              <option value="featured">Rekomendasi Unggulan</option>
-              <option value="best-selling">Paling Laris (Best Selling)</option>
-              <option value="price-low-high">Harga: Terendah → Tertinggi</option>
-              <option value="price-high-low">Harga: Tertinggi → Terendah</option>
-              <option value="newest">Produk Terbaru</option>
-            </select>
+            <div className="relative group inline-flex items-center flex-1 sm:flex-initial sm:w-auto">
+              <select
+                id="sort"
+                value={currentSort}
+                onChange={handleSortChange}
+                className="appearance-none w-full bg-white border border-black/10 hover:border-primary/50 focus:border-primary focus:ring-2 focus:ring-primary/15 rounded-xl py-2 pl-3 pr-8 text-xs font-semibold text-text shadow-2xs hover:shadow-xs transition-all cursor-pointer outline-none select-none"
+              >
+                <option value="featured">Rekomendasi Unggulan</option>
+                <option value="best-selling">Paling Laris (Best Selling)</option>
+                <option value="price-low-high">Harga: Terendah &rarr; Tertinggi</option>
+                <option value="price-high-low">Harga: Tertinggi &rarr; Terendah</option>
+                <option value="newest">Produk Terbaru</option>
+              </select>
+              <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center justify-center text-black/40 group-hover:text-primary transition-colors">
+                <ChevronDown className="w-3.5 h-3.5" strokeWidth={2} />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -238,7 +254,7 @@ export default function Collection() {
             </p>
             <Link
               to="/"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#111111] text-white text-xs font-bold uppercase tracking-wider hover:bg-black transition-all shadow-xs"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#111111] text-white text-xs font-bold uppercase tracking-wider hover:bg-primary transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-primary/25"
             >
               <span>Kembali ke Beranda</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -297,46 +313,6 @@ export default function Collection() {
                 Bingung menentukan produk? Konsultasikan kondisi kulitmu langsung dengan Beauty Advisor resmi kami.
               </p>
             </div>
-          </div>
-        </div>
-
-        {/* 5. FAQ Accordion */}
-        <div className="mt-12 sm:mt-16 max-w-3xl mx-auto">
-          <div className="text-center mb-6">
-            <h3 className="font-serif text-lg sm:text-xl text-text font-normal">
-              Pertanyaan Seputar Perawatan Tubuh Beautyinu
-            </h3>
-          </div>
-          <div className="space-y-3">
-            <details className="group bg-[#FAF9FB] border border-black/[0.05] rounded-xl p-4 transition-all">
-              <summary className="flex items-center justify-between cursor-pointer list-none text-xs sm:text-sm font-semibold text-text select-none">
-                <span>Bagaimana urutan pemakaian body care Beautyinu yang benar?</span>
-                <ChevronDown className="w-4 h-4 text-black/40 group-open:rotate-180 transition-transform duration-200" />
-              </summary>
-              <p className="mt-2.5 text-xs sm:text-[13px] text-text-secondary leading-relaxed border-t border-black/[0.04] pt-2.5">
-                Mulai dengan mandi menggunakan Kefir Collagen Soap atau Body Wash, keringkan tubuh, lalu semprotkan English Pear Body Toner. Campurkan sedikit Booster Gold Powder ke dalam Bright Glow Body Lotion untuk perlindungan siang hari (dengan UV Filter), atau aplikasikan Brightening Body Cream Grape di malam hari sebelum tidur.
-              </p>
-            </details>
-
-            <details className="group bg-[#FAF9FB] border border-black/[0.05] rounded-xl p-4 transition-all">
-              <summary className="flex items-center justify-between cursor-pointer list-none text-xs sm:text-sm font-semibold text-text select-none">
-                <span>Berapa lama hasil pemakaian rutin dapat terlihat?</span>
-                <ChevronDown className="w-4 h-4 text-black/40 group-open:rotate-180 transition-transform duration-200" />
-              </summary>
-              <p className="mt-2.5 text-xs sm:text-[13px] text-text-secondary leading-relaxed border-t border-black/[0.04] pt-2.5">
-                Peningkatan kelembapan dan kelembutan tekstur kulit mulai terasa sejak 3–7 hari pertama pemakaian teratur. Perubahan warna kulit yang lebih cerah, glowing, dan merata umumnya terlihat mulai minggu ke-2 hingga ke-4 sesuai siklus regenerasi alami kulit tubuh.
-              </p>
-            </details>
-
-            <details className="group bg-[#FAF9FB] border border-black/[0.05] rounded-xl p-4 transition-all">
-              <summary className="flex items-center justify-between cursor-pointer list-none text-xs sm:text-sm font-semibold text-text select-none">
-                <span>Apakah produk Beautyinu aman untuk kulit sensitif dan ibu hamil?</span>
-                <ChevronDown className="w-4 h-4 text-black/40 group-open:rotate-180 transition-transform duration-200" />
-              </summary>
-              <p className="mt-2.5 text-xs sm:text-[13px] text-text-secondary leading-relaxed border-t border-black/[0.04] pt-2.5">
-                Semua formula Beautyinu resmi terdaftar di BPOM RI tanpa merkuri, steroid, atau hidrokuinon. Produk diformulasikan aman digunakan harian oleh ibu hamil maupun menyusui. Jika Anda memiliki kulit hipersensitif, lakukan uji tempel (patch test) pada area lengan bawah sebelum pemakaian menyeluruh.
-              </p>
-            </details>
           </div>
         </div>
       </div>

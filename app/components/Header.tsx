@@ -114,7 +114,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
           <button
             type="button"
             onClick={() => setShowAnnouncement(false)}
-            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors p-1 cursor-pointer"
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 text-white/60 hover:text-primary hover:bg-white/10 rounded-full p-1 transition-all active:scale-95 cursor-pointer"
             aria-label="Tutup pengumuman"
           >
             <X className="w-3.5 h-3.5" strokeWidth={1.5} />
@@ -301,7 +301,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                       </div>
                       <Link
                         to="/collections/bundles"
-                        className="flex items-center justify-center gap-1.5 w-full py-2 rounded-full bg-primary hover:bg-primary-hover text-white text-xs font-semibold transition-colors shadow-xs"
+                        className="flex items-center justify-center gap-1.5 w-full py-2 rounded-full bg-primary hover:bg-[#F06B8D] text-white text-xs font-semibold transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-primary/25 active:scale-[0.98]"
                       >
                         <span>Lihat Paket Promo</span>
                         <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />
@@ -431,8 +431,8 @@ function MobileMenuToggle() {
       type="button"
       className={`group relative w-10 h-10 rounded-full -ml-1.5 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer active:scale-95 ${
         isOpen
-          ? 'bg-[#111111] text-white shadow-xs'
-          : 'text-text hover:text-primary hover:bg-black/[0.04]'
+          ? 'bg-primary text-white shadow-xs'
+          : 'text-text hover:text-primary hover:bg-[#FFF3F6]'
       }`}
       onClick={() => (isOpen ? close() : open('mobile'))}
       aria-label={isOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
@@ -473,10 +473,10 @@ function SearchToggle() {
   const isOpen = type === 'search';
   return (
     <button
-      className={`w-10 h-10 rounded-full flex items-center justify-center transition-all focus:outline-none cursor-pointer ${
+      className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none cursor-pointer active:scale-95 ${
         isOpen
-          ? 'bg-[#1A1A1A] text-white shadow-xs'
-          : 'text-text hover:text-primary hover:bg-accent-light/50'
+          ? 'bg-primary text-white shadow-xs'
+          : 'text-text hover:text-primary hover:bg-[#FFF3F6]'
       }`}
       onClick={() => (isOpen ? close() : open('search'))}
       aria-label={isOpen ? 'Tutup pencarian' : 'Cari produk kecantikan'}
@@ -485,7 +485,7 @@ function SearchToggle() {
       {isOpen ? (
         <X className="w-4 h-4" strokeWidth={1.5} />
       ) : (
-        <Search className="w-5 h-5" strokeWidth={1.5} />
+        <Search className="w-5 h-5 transition-transform duration-200 group-hover:scale-105" strokeWidth={1.5} />
       )}
     </button>
   );
@@ -499,10 +499,10 @@ function CartBadge({count}: {count: number}) {
   return (
     <button
       type="button"
-      className={`relative w-10 h-10 rounded-full flex items-center justify-center transition-all focus:outline-none cursor-pointer ${
+      className={`group relative w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none cursor-pointer active:scale-95 ${
         isOpen
-          ? 'bg-[#1A1A1A] text-white shadow-xs'
-          : 'text-text hover:text-primary hover:bg-accent-light/50'
+          ? 'bg-primary text-white shadow-xs'
+          : 'text-text hover:text-primary hover:bg-[#FFF3F6]'
       }`}
       onClick={() => {
         if (isOpen) {
@@ -520,9 +520,9 @@ function CartBadge({count}: {count: number}) {
       aria-label={`Keranjang Belanja ${count} item`}
       aria-expanded={isOpen}
     >
-      <ShoppingBag className="w-5 h-5" strokeWidth={1.5} />
+      <ShoppingBag className="w-5 h-5 transition-transform duration-200 group-hover:scale-105" strokeWidth={1.5} />
       {count > 0 && (
-        <span className="absolute top-1 right-1 bg-primary text-white text-[10px] font-bold rounded-full w-4.5 h-4.5 flex items-center justify-center shadow-2xs">
+        <span className="absolute top-1 right-1 bg-primary text-white text-[10px] font-bold rounded-full w-4.5 h-4.5 flex items-center justify-center shadow-xs ring-2 ring-white">
           {count}
         </span>
       )}
@@ -561,7 +561,7 @@ function AccountBadge({isLoggedIn}: {isLoggedIn: boolean}) {
     <NavLink
       to="/account"
       prefetch="intent"
-      className="hidden sm:flex relative w-10 h-10 rounded-full items-center justify-center text-text hover:text-primary hover:bg-accent-light/50 transition-colors focus:outline-none cursor-pointer"
+      className="hidden sm:flex relative w-10 h-10 rounded-full items-center justify-center text-text hover:text-primary hover:bg-[#FFF3F6] transition-all duration-200 active:scale-95 focus:outline-none cursor-pointer"
       aria-label={isLoggedIn ? 'Akun Saya' : 'Masuk ke Akun'}
       title={isLoggedIn ? 'Akun Saya' : 'Masuk ke Akun'}
     >

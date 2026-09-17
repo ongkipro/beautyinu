@@ -205,7 +205,7 @@ function SearchResultsProducts({
                           <span className="text-black/20 text-[10px]">•</span>
                           <span className="font-medium text-text-secondary">10rb+ terjual</span>
                         </div>
-                        <div className="mt-2.5 w-full py-2 rounded-xl bg-[#FAF8FC] group-hover:bg-[#1A1A1A] text-text group-hover:text-white text-xs font-bold transition-all text-center flex items-center justify-center gap-1">
+                        <div className="mt-2.5 w-full py-2 rounded-xl bg-[#FAF8FC] group-hover:bg-primary text-text group-hover:text-white text-xs font-bold transition-all duration-300 group-hover:shadow-md group-hover:shadow-primary/25 text-center flex items-center justify-center gap-1 active:scale-[0.98]">
                           <span>Lihat Formula</span>
                           <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" strokeWidth={1.5} />
                         </div>
@@ -216,7 +216,7 @@ function SearchResultsProducts({
               </div>
 
               <div className="text-center mt-10">
-                <NextLink className="inline-flex items-center gap-2 rounded-xl bg-[#1A1A1A] text-white px-6 py-3 text-xs font-bold uppercase tracking-wider hover:bg-black transition-colors shadow-xs">
+                <NextLink className="inline-flex items-center gap-2 rounded-xl bg-[#111111] text-white px-6 py-3 text-xs font-bold uppercase tracking-wider hover:bg-primary transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-primary/25">
                   <span>{isLoading ? 'Memuat...' : 'Muat Lebih Banyak'}</span>
                   <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />
                 </NextLink>
@@ -240,8 +240,8 @@ function SearchResultsEmpty() {
         Kami tidak menemukan produk yang cocok dengan kata kunci Anda. Coba periksa ejaan atau gunakan kata kunci umum seperti <em>sabun</em>, <em>lotion</em>, atau <em>kefir</em>.
       </p>
       <Link
-        to="/collections/frontpage"
-        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#1A1A1A] hover:bg-black text-white text-xs font-bold uppercase tracking-wider shadow-xs transition-all"
+        to="/collections/all"
+        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#111111] hover:bg-primary text-white text-xs font-bold uppercase tracking-wider shadow-xs hover:shadow-md hover:shadow-primary/25 transition-all duration-300"
       >
         <span>Jelajahi Semua Produk</span>
         <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />

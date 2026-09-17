@@ -150,8 +150,8 @@ function CartCheckoutActions({
     return (
       <div>
         <Link
-          to="/collections/frontpage"
-          className="inline-flex justify-center items-center gap-2 w-full bg-[#111111] hover:bg-black text-white text-center rounded-full py-3.5 px-6 text-xs sm:text-sm font-bold uppercase tracking-widest transition-all shadow-md active:scale-98 cursor-pointer"
+          to="/collections/all"
+          className="inline-flex justify-center items-center gap-2 w-full bg-[#111111] hover:bg-primary text-white text-center rounded-full py-3.5 px-6 text-xs sm:text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-primary/25 active:scale-98 cursor-pointer"
         >
           <span>Mulai Belanja Sekarang</span>
           <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
@@ -165,7 +165,7 @@ function CartCheckoutActions({
       <a
         href={checkoutUrl || '/cart'}
         target="_self"
-        className="inline-flex justify-center items-center gap-2 w-full bg-[#111111] hover:bg-black text-white text-center rounded-full py-3.5 px-6 text-xs sm:text-sm font-bold uppercase tracking-widest transition-all shadow-md active:scale-98 cursor-pointer"
+        className="inline-flex justify-center items-center gap-2 w-full bg-[#111111] hover:bg-primary text-white text-center rounded-full py-3.5 px-6 text-xs sm:text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-primary/25 active:scale-98 cursor-pointer"
       >
         <span>Lanjut ke Pembayaran</span>
         <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
@@ -205,7 +205,7 @@ function CartDiscounts({
                 <Tag className="w-3.5 h-3.5 text-primary" strokeWidth={1.5} />
                 <code className="text-xs font-semibold text-text">{codes?.join(', ')}</code>
               </div>
-              <button type="submit" aria-label="Hapus diskon" className="text-xs font-semibold text-text-secondary hover:text-error transition-colors cursor-pointer">
+              <button type="submit" aria-label="Hapus diskon" className="text-xs font-semibold text-text-secondary hover:text-rose-600 transition-colors cursor-pointer active:scale-95">
                 Hapus
               </button>
             </div>
@@ -220,7 +220,7 @@ function CartDiscounts({
             <button
               type="button"
               onClick={() => setIsOpen(true)}
-              className="text-xs font-semibold text-primary hover:underline flex items-center gap-1 cursor-pointer py-1"
+              className="text-xs font-semibold text-primary hover:text-primary-hover hover:underline flex items-center gap-1 cursor-pointer py-1 transition-colors"
             >
               <Tag className="w-3.5 h-3.5" strokeWidth={1.5} />
               <span>Punya kode voucher / promo?</span>
@@ -238,7 +238,7 @@ function CartDiscounts({
                   placeholder="Kode voucher promo..."
                   className="flex-1 bg-[#FAF8FC] border border-black/10 rounded-xl px-3.5 py-2 text-base sm:text-xs text-text placeholder:text-text-secondary/60 focus:outline-none focus:border-primary"
                 />
-                <button type="submit" aria-label="Terapkan voucher" className="bg-[#1A1A1A] hover:bg-black text-white px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer">
+                <button type="submit" aria-label="Terapkan voucher" className="bg-[#111111] hover:bg-primary active:scale-[0.98] text-white px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-primary/20 cursor-pointer">
                   Terapkan
                 </button>
               </div>
@@ -351,7 +351,7 @@ function CartGiftCard({
                   <button
                     type="submit"
                     aria-label={`Hapus gift card berakhiran ${giftCard.lastCharacters}`}
-                    className="text-xs font-semibold text-text-secondary hover:text-error transition-colors cursor-pointer"
+                    className="text-xs font-semibold text-text-secondary hover:text-rose-600 transition-colors cursor-pointer active:scale-95"
                   >
                     Hapus
                   </button>
@@ -366,7 +366,7 @@ function CartGiftCard({
         <button
           type="button"
           onClick={() => setIsGiftCardOpen(true)}
-          className="text-[11px] font-medium text-text-secondary/70 hover:text-text-secondary flex items-center gap-1 cursor-pointer py-0.5"
+          className="text-[11px] font-medium text-text-secondary/70 hover:text-primary flex items-center gap-1 cursor-pointer py-0.5 transition-colors"
         >
           <span>Punya gift card?</span>
         </button>
@@ -388,7 +388,7 @@ function CartGiftCard({
               type="submit"
               disabled={giftCardAddFetcher.state !== 'idle'}
               aria-label="Terapkan gift card"
-              className="bg-[#1A1A1A] hover:bg-black text-white px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors disabled:opacity-50 cursor-pointer"
+              className="bg-[#111111] hover:bg-primary active:scale-[0.98] text-white px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-primary/20 disabled:opacity-50 cursor-pointer"
             >
               Terapkan
             </button>

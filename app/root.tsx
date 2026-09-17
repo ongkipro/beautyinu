@@ -35,7 +35,9 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
 export function links() {
   return [
     {rel: 'preconnect', href: 'https://cdn.shopify.com'},
+    {rel: 'dns-prefetch', href: 'https://cdn.shopify.com'},
     {rel: 'preconnect', href: 'https://shop.app'},
+    {rel: 'dns-prefetch', href: 'https://shop.app'},
     {rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' as const},
     {
       rel: 'stylesheet',
@@ -85,6 +87,7 @@ export function Layout({children}: {children?: React.ReactNode}) {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
         />
+        <meta name="theme-color" content="#FAF9FB" />
         <link rel="stylesheet" href={appStyles}></link>
         <link rel="stylesheet" href={tailwindCss}></link>
         <Meta />
@@ -139,17 +142,17 @@ export function ErrorBoundary() {
 
   return (
     <div className="min-h-screen bg-[#FAF9FB] flex flex-col items-center justify-center p-6 text-center">
-      <div className="max-w-md w-full bg-white rounded-3xl p-8 sm:p-10 border border-black/[0.06] shadow-sm">
+      <div className="max-w-md w-full bg-white rounded-2xl p-8 sm:p-10 border border-black/[0.06] shadow-2xs">
         <NavLink to="/" className="inline-block mb-6">
           <span className="font-serif text-3xl text-primary font-bold tracking-tight">
             Beautyinu
           </span>
         </NavLink>
-        <span className="inline-block text-[10px] sm:text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-black/50 mb-2">
+        <div className="inline-block text-[10px] sm:text-[11px] font-mono font-medium uppercase tracking-[0.2em] text-black/50 mb-2 px-3 py-1 bg-[#FAF9FB] rounded-md border border-black/[0.04]">
           {is404
             ? 'Kode 404 · Halaman Tidak Ditemukan'
             : `Kode ${errorStatus} · Terjadi Gangguan`}
-        </span>
+        </div>
         <h1 className="font-serif text-2xl sm:text-3xl text-text font-normal tracking-tight mb-3">
           {is404 ? 'Halaman Belum Tersedia' : 'Terjadi Kendala Teknis'}
         </h1>
@@ -161,13 +164,13 @@ export function ErrorBoundary() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <NavLink
             to="/"
-            className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#111111] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
+            className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#111111] hover:bg-primary text-white text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-xs hover:shadow-md hover:shadow-primary/25"
           >
             Ke Beranda
           </NavLink>
           <NavLink
             to="/collections/all"
-            className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#FFF3F6] hover:bg-primary/15 text-primary border border-primary/20 text-xs font-bold uppercase tracking-wider transition-all"
+            className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#FFF3F6] hover:bg-primary/20 text-primary border border-primary/20 text-xs font-bold uppercase tracking-wider transition-all"
           >
             Lihat Semua Produk
           </NavLink>

@@ -31,7 +31,7 @@ export function AddToCartButton({
             disabled={disabled ?? fetcher.state !== 'idle'}
             className={
               className ||
-              'w-full h-12 flex items-center justify-center bg-[#F97F9E] hover:bg-[#F06B8D] active:scale-[0.99] text-white rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-xs disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'
+              'w-full h-12 flex items-center justify-center bg-[#111111] hover:bg-primary active:scale-[0.98] text-white rounded-full font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 shadow-xs hover:shadow-lg hover:shadow-primary/25 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'
             }
           >
             {fetcher.state !== 'idle' ? 'Menambahkan...' : children}

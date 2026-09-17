@@ -1,16 +1,24 @@
 import {useLoaderData, Link} from 'react-router';
 import type {Route} from './+types/policies._index';
 import type {PoliciesQuery, PolicyItemFragment} from 'storefrontapi.generated';
-import {getSeoMeta} from '~/lib/seo';
+import {getSeoMeta, buildBreadcrumbJsonLd} from '~/lib/seo';
+import {Breadcrumb} from '~/components/Breadcrumb';
 import {ChevronRight, ShieldCheck, FileText, Truck, HelpCircle} from 'lucide-react';
 
 export const meta: Route.MetaFunction = ({data}) => {
+  const canonicalUrl = data?.canonicalUrl || 'https://beautyinu.id/policies';
   return getSeoMeta({
     title: 'Kebijakan & Ketentuan Layanan — Beautyinu Official Store',
     description:
       'Pusat informasi kebijakan resmi Beautyinu: Kebijakan Privasi, Syarat & Ketentuan, Panduan Pengiriman, dan Garansi Retur Produk.',
-    url: data?.canonicalUrl,
+    url: canonicalUrl,
     type: 'website',
+    jsonLd: [
+      buildBreadcrumbJsonLd([
+        {name: 'Home', url: 'https://beautyinu.id'},
+        {name: 'Kebijakan Toko', url: canonicalUrl},
+      ]),
+    ],
   });
 };
 
@@ -63,7 +71,13 @@ export default function Policies() {
   ];
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-white">
+      {/* 1. Standardized Breadcrumbs Wayfinding Bar */}
+      <Breadcrumb
+        variant="bar"
+        items={[{label: 'Kebijakan Toko'}]}
+      />
+
       <div className="bg-[#F3EEFA] py-12 md:py-20">
         <div className="max-w-7xl mx-auto px-4 lg:px-8 text-center flex flex-col items-center">
           <h1 className="font-serif text-4xl md:text-5xl text-[#1A1A1A] mb-4">

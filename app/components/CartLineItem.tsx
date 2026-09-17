@@ -145,7 +145,7 @@ function CartLineQuantity({line}: {line: CartLine}) {
           disabled={quantity <= 1 || !!isOptimistic}
           name="decrease-quantity"
           value={prevQuantity}
-          className="w-6 h-6 flex items-center justify-center rounded-full text-text hover:bg-white hover:shadow-xs transition-all disabled:opacity-30 cursor-pointer"
+          className="w-6 h-6 flex items-center justify-center rounded-full text-text hover:bg-white hover:text-primary hover:shadow-xs transition-all duration-200 disabled:opacity-30 cursor-pointer active:scale-90"
         >
           <Minus className="w-3 h-3" />
         </button>
@@ -159,7 +159,7 @@ function CartLineQuantity({line}: {line: CartLine}) {
           name="increase-quantity"
           value={nextQuantity}
           disabled={!!isOptimistic}
-          className="w-6 h-6 flex items-center justify-center rounded-full text-text hover:bg-white hover:shadow-xs transition-all disabled:opacity-30 cursor-pointer"
+          className="w-6 h-6 flex items-center justify-center rounded-full text-text hover:bg-white hover:text-primary hover:shadow-xs transition-all duration-200 disabled:opacity-30 cursor-pointer active:scale-90"
         >
           <Plus className="w-3 h-3" />
         </button>
@@ -191,7 +191,7 @@ function CartLineRemoveButton({
         disabled={disabled} 
         type="submit"
         aria-label="Hapus produk dari keranjang"
-        className="inline-flex items-center gap-1 text-[11px] font-medium text-text-secondary/50 hover:text-red-500 transition-colors disabled:opacity-30 p-1 rounded-full hover:bg-red-50 cursor-pointer"
+        className="inline-flex items-center gap-1 text-[11px] font-medium text-text-secondary/60 hover:text-rose-600 hover:bg-rose-50 transition-all duration-200 disabled:opacity-30 px-2 py-0.5 rounded-full cursor-pointer active:scale-95"
       >
         <Trash2 className="w-3.5 h-3.5" strokeWidth={1.5} />
         <span>Hapus</span>

@@ -214,7 +214,7 @@ export function SearchPopover() {
                   <button
                     type="button"
                     onClick={close}
-                    className="sm:hidden w-9 h-9 rounded-full flex items-center justify-center text-text-secondary hover:text-text hover:bg-black/5 active:scale-95 transition-all cursor-pointer flex-shrink-0"
+                    className="sm:hidden w-9 h-9 rounded-full flex items-center justify-center text-text-secondary hover:text-primary hover:bg-[#FFF3F6] active:scale-95 transition-all duration-200 cursor-pointer flex-shrink-0"
                     aria-label="Kembali dari pencarian"
                   >
                     <ArrowLeft className="w-4.5 h-4.5" strokeWidth={1.5} />
@@ -259,7 +259,7 @@ export function SearchPopover() {
                             setQueryText('');
                           }
                         }}
-                        className="absolute right-2.5 text-text-secondary/50 hover:text-text p-1 rounded-full hover:bg-black/5 transition-colors cursor-pointer"
+                        className="absolute right-2.5 text-text-secondary/50 hover:text-primary p-1 rounded-full hover:bg-[#FFF3F6] transition-colors cursor-pointer active:scale-90"
                         aria-label="Bersihkan input pencarian"
                       >
                         <X className="w-3.5 h-3.5" strokeWidth={1.5} />
@@ -275,7 +275,7 @@ export function SearchPopover() {
                     <button
                       type="button"
                       onClick={close}
-                      className="w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:text-text hover:bg-black/5 transition-colors cursor-pointer"
+                      className="w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:text-primary hover:bg-[#FFF3F6] transition-all duration-200 active:scale-95 cursor-pointer"
                       aria-label="Tutup pencarian"
                     >
                       <X className="w-4 h-4" strokeWidth={1.5} />
@@ -320,7 +320,7 @@ export function SearchPopover() {
                                   <button
                                     type="button"
                                     onClick={clearAllRecent}
-                                    className="text-[10px] lowercase text-text-secondary/60 hover:text-red-500 font-medium transition-colors cursor-pointer"
+                                    className="text-[10px] lowercase text-text-secondary/60 hover:text-rose-600 font-medium transition-colors cursor-pointer"
                                   >
                                     hapus riwayat
                                   </button>
@@ -329,7 +329,7 @@ export function SearchPopover() {
                                   {recentSearches.map((query) => (
                                     <div
                                       key={query}
-                                      className="group inline-flex items-center gap-1.5 pl-3 pr-2 py-1.5 bg-[#F7F6F9] hover:bg-[#ECE9EE] text-text hover:text-primary rounded-full text-xs font-medium transition-all"
+                                      className="group inline-flex items-center gap-1.5 pl-3 pr-2 py-1.5 bg-[#F7F6F9] hover:bg-[#FFF3F6] text-text hover:text-primary rounded-full text-xs font-medium transition-all duration-200"
                                     >
                                       <button
                                         type="button"
@@ -343,7 +343,7 @@ export function SearchPopover() {
                                         onClick={(e) =>
                                           removeSearchTerm(query, e)
                                         }
-                                        className="text-text-secondary/40 hover:text-red-500 p-0.5 rounded-full hover:bg-black/5 transition-colors cursor-pointer"
+                                        className="text-text-secondary/40 hover:text-rose-600 p-0.5 rounded-full hover:bg-rose-50 transition-colors cursor-pointer"
                                         aria-label={`Hapus ${query}`}
                                       >
                                         <X className="w-3 h-3" />
@@ -500,7 +500,7 @@ export function SearchPopover() {
                               <button
                                 type="button"
                                 onClick={handleViewAll}
-                                className="w-full bg-[#111111] hover:bg-black text-white py-3 px-4 rounded-full text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all active:scale-98 cursor-pointer"
+                                className="w-full bg-[#111111] hover:bg-primary text-white py-3 px-4 rounded-full text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-primary/25 active:scale-98 cursor-pointer"
                               >
                                 <span>Lihat Semua Hasil ({total})</span>
                                 <ArrowRight

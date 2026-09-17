@@ -3,6 +3,7 @@ import type {Route} from './+types/cart';
 import type {CartQueryDataReturn} from '@shopify/hydrogen';
 import {CartForm} from '@shopify/hydrogen';
 import {CartMain} from '~/components/CartMain';
+import {Breadcrumb} from '~/components/Breadcrumb';
 import {getSeoMeta} from '~/lib/seo';
 
 export const meta: Route.MetaFunction = () => {
@@ -108,26 +109,24 @@ export default function Cart() {
   const cart = useLoaderData<typeof loader>();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-      {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="mb-4">
-        <ol className="flex items-center gap-2 text-xs text-text-secondary">
-          <li>
-            <Link to="/" className="hover:text-primary transition-colors">Beranda</Link>
-          </li>
-          <li>/</li>
-          <li className="text-text font-medium" aria-current="page">Keranjang Belanja</li>
-        </ol>
-      </nav>
+    <div className="w-full bg-white">
+      {/* 1. Standardized Breadcrumbs Wayfinding Bar */}
+      <Breadcrumb
+        variant="bar"
+        items={[{label: 'Keranjang Belanja'}]}
+      />
 
-      <div className="mb-8 sm:mb-10">
-        <h1 className="font-serif text-3xl sm:text-4xl text-text">Keranjang Belanja</h1>
-        <p className="text-xs sm:text-sm text-text-secondary mt-1.5">
-          Periksa formula ritual kulit pilihanmu sebelum melanjutkan ke pembayaran.
-        </p>
+      {/* 2. Main Cart Content */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="mb-8 sm:mb-10">
+          <h1 className="font-serif text-3xl sm:text-4xl text-text">Keranjang Belanja</h1>
+          <p className="text-xs sm:text-sm text-text-secondary mt-1.5">
+            Periksa formula ritual kulit pilihanmu sebelum melanjutkan ke pembayaran.
+          </p>
+        </div>
+
+        <CartMain layout="page" cart={cart} />
       </div>
-
-      <CartMain layout="page" cart={cart} />
     </div>
   );
 }

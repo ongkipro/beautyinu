@@ -59,26 +59,21 @@ export function Breadcrumb({
 
   const isDark = theme === 'dark' || variant === 'hero';
   const isBar = variant === 'bar';
+  const isCentered = align === 'center' || variant === 'hero';
 
   const navContent = (
     <nav
       aria-label="Breadcrumb"
-      className={`min-w-0 ${align === 'center' || variant === 'hero' ? 'w-full' : ''}`}
+      className={`w-full min-w-0 ${isCentered ? 'text-center' : ''}`}
     >
       <ol
-        className={`flex items-center gap-1.5 text-xs min-w-0 ${
+        className={`flex items-center gap-1 sm:gap-1.5 text-xs w-full min-w-0 overflow-hidden flex-nowrap whitespace-nowrap ${
           isDark
             ? 'text-white/80'
-            : align === 'center'
+            : isCentered
               ? 'justify-center text-text-secondary'
               : 'text-text-secondary'
-        } ${
-          align === 'center' || variant === 'hero' ? 'justify-center' : ''
-        } ${
-          variant === 'inline'
-            ? 'overflow-hidden flex-nowrap whitespace-nowrap'
-            : ''
-        }`}
+        } ${isCentered ? 'justify-center' : ''}`}
       >
         {fullItems.map((item, index) => {
           const isLast = index === fullItems.length - 1;
@@ -86,8 +81,12 @@ export function Breadcrumb({
           return (
             <li
               key={`${item.label}-${index}`}
-              className={`flex items-center gap-1.5 min-w-0 ${
-                isLast ? 'truncate flex-1 sm:flex-initial' : 'flex-shrink-0'
+              className={`flex items-center gap-1 sm:gap-1.5 min-w-0 ${
+                isLast
+                  ? isCentered
+                    ? 'flex-shrink min-w-0'
+                    : 'flex-1 min-w-0'
+                  : 'flex-shrink-0'
               }`}
               aria-current={isLast ? 'page' : undefined}
             >
@@ -104,7 +103,8 @@ export function Breadcrumb({
               {item.to && !isLast ? (
                 <Link
                   to={item.to}
-                  className={`transition-colors flex-shrink-0 ${
+                  title={item.label}
+                  className={`transition-colors flex-shrink-0 max-w-[110px] sm:max-w-none truncate ${
                     isDark ? 'hover:text-white' : 'hover:text-primary'
                   }`}
                 >
@@ -112,11 +112,13 @@ export function Breadcrumb({
                 </Link>
               ) : (
                 <span
-                  className={`truncate ${
+                  className={`truncate block min-w-0 ${
+                    isCentered ? 'max-w-xs sm:max-w-md' : 'flex-1 w-full'
+                  } ${
                     isDark
-                      ? 'text-white font-medium max-w-[200px] sm:max-w-md'
+                      ? 'text-white font-medium'
                       : isBar
-                        ? 'font-semibold text-text max-w-[150px] xs:max-w-[220px] sm:max-w-xs md:max-w-md'
+                        ? 'font-semibold text-text'
                         : 'font-medium text-text'
                   }`}
                   title={item.label}
@@ -155,7 +157,7 @@ export function Breadcrumb({
   }
 
   return (
-    <div className={className}>
+    <div className={`w-full min-w-0 ${className}`}>
       {navContent}
     </div>
   );

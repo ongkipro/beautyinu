@@ -330,34 +330,40 @@ export default function Product() {
 
         {/* Right: Product Info (Natural scroll since description & accordions are long) */}
         <div className="lg:col-span-5 flex flex-col min-w-0 max-w-full">
-          {/* Social Proof & Reassurance */}
-          <div className="flex items-center gap-2 sm:gap-2.5 mb-3 text-xs text-text-secondary flex-wrap">
+          {/* Social Proof & Reassurance — Single Line Mobile-Optimized */}
+          <div className="flex items-center gap-1.5 sm:gap-2.5 mb-3.5 text-xs text-text-secondary flex-nowrap whitespace-nowrap overflow-x-auto scrollbar-none py-0.5">
             <a
               href="#reviews-section"
-              className="inline-flex items-center gap-1.5 hover:text-primary transition-colors group/rating"
+              className="inline-flex items-center gap-1 hover:text-primary transition-colors group/rating flex-shrink-0"
+              title={`${socialProof.rating} dari 5 bintang (${socialProof.reviews} Penilaian)`}
             >
               <div className="flex items-center gap-0.5 text-amber-400">
                 <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400 flex-shrink-0" />
-                <span className="font-semibold text-text group-hover/rating:text-primary">
+                <span className="font-semibold text-text text-xs sm:text-[13px] group-hover/rating:text-primary">
                   {socialProof.rating}
                 </span>
               </div>
-              <span className="text-text-secondary underline decoration-black/20 underline-offset-2 group-hover/rating:decoration-primary">
-                ({socialProof.reviews} Penilaian)
+              <span className="text-text-secondary text-[11px] sm:text-xs underline decoration-black/20 underline-offset-2 group-hover/rating:decoration-primary">
+                ({socialProof.reviews}<span className="hidden sm:inline"> Penilaian</span>)
               </span>
             </a>
 
-            <span className="text-black/20">•</span>
+            <span className="h-3 w-px bg-black/15 flex-shrink-0" aria-hidden="true" />
 
-            <span className="text-text-secondary">
+            <span className="text-text-secondary text-[11px] sm:text-xs flex-shrink-0">
               <strong className="text-text font-semibold">{socialProof.sold}</strong> Terjual
             </span>
 
-            <span className="text-black/20">•</span>
+            <span className="h-3 w-px bg-black/15 flex-shrink-0" aria-hidden="true" />
 
-            <span className="inline-flex items-center gap-1 text-[11px] font-mono tracking-wide text-text-secondary">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" strokeWidth={2} />
-              <span>{socialProof.bpomNumber}</span>
+            <span
+              className="inline-flex items-center gap-1 text-[10.5px] sm:text-xs text-emerald-800 font-medium bg-emerald-50/90 border border-emerald-200/70 px-1.5 sm:px-2 py-0.5 rounded-full flex-shrink-0"
+              title={socialProof.bpomNumber}
+            >
+              <CheckCircle2 className="w-3 h-3 text-emerald-600 flex-shrink-0" strokeWidth={2.2} />
+              <span className="font-mono tracking-tight font-medium">
+                {socialProof.bpomNumber}
+              </span>
             </span>
           </div>
 

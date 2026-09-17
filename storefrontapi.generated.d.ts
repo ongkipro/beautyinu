@@ -377,6 +377,53 @@ export type FooterQuery = {
   >;
 };
 
+export type SitemapAllResourcesQueryVariables = StorefrontAPI.Exact<{
+  [key: string]: never;
+}>;
+
+export type SitemapAllResourcesQuery = {
+  products: {
+    resources?: StorefrontAPI.Maybe<{
+      items: Array<
+        | Pick<StorefrontAPI.SitemapResource, 'handle' | 'updatedAt'>
+        | Pick<StorefrontAPI.SitemapResourceMetaobject, 'handle' | 'updatedAt'>
+      >;
+    }>;
+  };
+  collections: {
+    resources?: StorefrontAPI.Maybe<{
+      items: Array<
+        | Pick<StorefrontAPI.SitemapResource, 'handle' | 'updatedAt'>
+        | Pick<StorefrontAPI.SitemapResourceMetaobject, 'handle' | 'updatedAt'>
+      >;
+    }>;
+  };
+  articles: {
+    resources?: StorefrontAPI.Maybe<{
+      items: Array<
+        | Pick<StorefrontAPI.SitemapResource, 'handle' | 'updatedAt'>
+        | Pick<StorefrontAPI.SitemapResourceMetaobject, 'handle' | 'updatedAt'>
+      >;
+    }>;
+  };
+  pages: {
+    resources?: StorefrontAPI.Maybe<{
+      items: Array<
+        | Pick<StorefrontAPI.SitemapResource, 'handle' | 'updatedAt'>
+        | Pick<StorefrontAPI.SitemapResourceMetaobject, 'handle' | 'updatedAt'>
+      >;
+    }>;
+  };
+  blogs: {
+    resources?: StorefrontAPI.Maybe<{
+      items: Array<
+        | Pick<StorefrontAPI.SitemapResource, 'handle' | 'updatedAt'>
+        | Pick<StorefrontAPI.SitemapResourceMetaobject, 'handle' | 'updatedAt'>
+      >;
+    }>;
+  };
+};
+
 export type BlogPreviewQueryVariables = StorefrontAPI.Exact<{
   handle: StorefrontAPI.Scalars['String']['input'];
   country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
@@ -1470,6 +1517,10 @@ interface GeneratedQueryTypes {
   '#graphql\n  query Footer(\n    $country: CountryCode\n    $footerMenuHandle: String!\n    $language: LanguageCode\n  ) @inContext(language: $language, country: $country) {\n    menu(handle: $footerMenuHandle) {\n      ...Menu\n    }\n  }\n  #graphql\n  fragment MenuItem on MenuItem {\n    id\n    resourceId\n    tags\n    title\n    type\n    url\n  }\n  fragment ChildMenuItem on MenuItem {\n    ...MenuItem\n  }\n  fragment ParentMenuItem on MenuItem {\n    ...MenuItem\n    items {\n      ...ChildMenuItem\n    }\n  }\n  fragment Menu on Menu {\n    id\n    items {\n      ...ParentMenuItem\n    }\n  }\n\n': {
     return: FooterQuery;
     variables: FooterQueryVariables;
+  };
+  '#graphql\n  query SitemapAllResources {\n    products: sitemap(type: PRODUCT) {\n      resources(page: 1) {\n        items {\n          handle\n          updatedAt\n        }\n      }\n    }\n    collections: sitemap(type: COLLECTION) {\n      resources(page: 1) {\n        items {\n          handle\n          updatedAt\n        }\n      }\n    }\n    articles: sitemap(type: ARTICLE) {\n      resources(page: 1) {\n        items {\n          handle\n          updatedAt\n        }\n      }\n    }\n    pages: sitemap(type: PAGE) {\n      resources(page: 1) {\n        items {\n          handle\n          updatedAt\n        }\n      }\n    }\n    blogs: sitemap(type: BLOG) {\n      resources(page: 1) {\n        items {\n          handle\n          updatedAt\n        }\n      }\n    }\n  }\n': {
+    return: SitemapAllResourcesQuery;
+    variables: SitemapAllResourcesQueryVariables;
   };
   '#graphql\n  query BlogPreview($handle: String!, $country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    blog(handle: $handle) {\n      articles(first: 3) {\n        nodes {\n          id\n          title\n          handle\n          publishedAt\n          image {\n            id\n            url\n            altText\n            width\n            height\n          }\n        }\n      }\n    }\n  }\n': {
     return: BlogPreviewQuery;

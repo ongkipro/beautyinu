@@ -1,5 +1,6 @@
 import {
   data as remixData,
+  redirect,
   Form,
   NavLink,
   Outlet,
@@ -21,6 +22,12 @@ export function shouldRevalidate() {
 }
 
 export async function loader({context}: Route.LoaderArgs) {
+  if (!context.env.PUBLIC_CUSTOMER_ACCOUNT_API_CLIENT_ID) {
+    const customerAccountUrl =
+      context.env.PUBLIC_CUSTOMER_ACCOUNT_API_URL || 'https://account.beautyinu.co';
+    return redirect(customerAccountUrl);
+  }
+
   const {customerAccount} = context;
   const {data, errors} = await customerAccount.query(CUSTOMER_DETAILS_QUERY, {
     variables: {

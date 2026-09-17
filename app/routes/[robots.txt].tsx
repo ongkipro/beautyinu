@@ -2,13 +2,16 @@ import type {Route} from './+types/[robots.txt]';
 
 export function loader({request}: Route.LoaderArgs) {
   const url = new URL(request.url);
-  const body = robotsTxtData({url: url.origin});
+  const host = request.headers.get('x-forwarded-host') || url.host;
+  const origin = host.includes('localhost')
+    ? `${url.protocol}//${host}`
+    : 'https://beautyinu.co';
+  const body = robotsTxtData({url: origin});
 
   return new Response(body, {
     status: 200,
     headers: {
-      'Content-Type': 'text/plain',
-
+      'Content-Type': 'text/plain; charset=utf-8',
       'Cache-Control': `max-age=${60 * 60 * 24}`,
     },
   });

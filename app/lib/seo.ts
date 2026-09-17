@@ -2,6 +2,8 @@ export const DEFAULT_SEO = {
   siteName: 'Beautyinu',
   title: 'Beautyinu — Your Bodycare Bestie',
   siteUrl: 'https://beautyinu.co',
+  author: 'Beautyinu',
+  publisher: 'Beautyinu',
   description:
     'Brightening bodycare resmi BPOM RI dengan formula Niacinamide 5.22%, Alpha Arbutin 2.30% & Kefir Collagen untuk kulit tampak cerah merata, lembap, dan glowing sehat.',
   defaultImage:
@@ -16,6 +18,8 @@ export interface SeoMetaOptions {
   image?: string | null;
   imageAlt?: string | null;
   type?: 'website' | 'product' | 'article';
+  author?: string | null;
+  publisher?: string | null;
   publishedTime?: string | null;
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>> | null;
   noIndex?: boolean;
@@ -34,10 +38,14 @@ export function getSeoMeta(options: SeoMetaOptions = {}): MetaDescriptor[] {
   const image = options.image?.trim() || DEFAULT_SEO.defaultImage;
   const imageAlt = options.imageAlt?.trim() || title;
   const type = options.type || 'website';
+  const author = options.author?.trim() || DEFAULT_SEO.author;
+  const publisher = options.publisher?.trim() || DEFAULT_SEO.publisher;
 
   const tags: MetaDescriptor[] = [
     { title },
     { name: 'description', content: description },
+    { name: 'author', content: author },
+    { name: 'publisher', content: publisher },
     { property: 'og:site_name', content: DEFAULT_SEO.siteName },
     { property: 'og:type', content: type },
     { property: 'og:title', content: title },
@@ -49,6 +57,9 @@ export function getSeoMeta(options: SeoMetaOptions = {}): MetaDescriptor[] {
     tags.push({ property: 'og:url', content: options.url });
     tags.push({ tagName: 'link', rel: 'canonical', href: options.url });
   }
+
+  // Publisher link
+  tags.push({ tagName: 'link', rel: 'publisher', href: DEFAULT_SEO.siteUrl });
 
   if (image) {
     tags.push({ property: 'og:image', content: image });
@@ -66,6 +77,11 @@ export function getSeoMeta(options: SeoMetaOptions = {}): MetaDescriptor[] {
     tags.push({ name: 'twitter:image:alt', content: imageAlt });
   }
 
+  if (type === 'article') {
+    tags.push({ property: 'article:author', content: author });
+    tags.push({ property: 'article:publisher', content: DEFAULT_SEO.siteUrl });
+  }
+
   if (options.publishedTime) {
     tags.push({
       property: 'article:published_time',
@@ -73,8 +89,25 @@ export function getSeoMeta(options: SeoMetaOptions = {}): MetaDescriptor[] {
     });
   }
 
+  // Explicit Robots & Googlebot Directives
   if (options.noIndex) {
-    tags.push({ name: 'robots', content: 'noindex, nofollow' });
+    tags.push(
+      { name: 'robots', content: 'noindex, nofollow' },
+      { name: 'googlebot', content: 'noindex, nofollow' },
+    );
+  } else {
+    tags.push(
+      {
+        name: 'robots',
+        content:
+          'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+      },
+      {
+        name: 'googlebot',
+        content:
+          'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+      },
+    );
   }
 
   if (options.jsonLd) {
@@ -102,6 +135,17 @@ export function buildOrganizationJsonLd(siteUrl: string = DEFAULT_SEO.siteUrl) {
       contactType: 'customer service',
       availableLanguage: ['Indonesian', 'English'],
     },
+    hasMerchantReturnPolicy: {
+      '@type': 'MerchantReturnPolicy',
+      applicableCountry: 'ID',
+      returnPolicyCategory:
+        'https://schema.org/MerchantReturnFiniteReturnWindow',
+      merchantReturnDays: 7,
+      returnMethod: 'https://schema.org/ReturnByMail',
+      returnFees: 'https://schema.org/FreeReturn',
+      refundType: 'https://schema.org/FullRefund',
+      returnLink: `${siteUrl}/pages/shipping-returns`,
+    },
   };
 }
 
@@ -128,6 +172,10 @@ export function buildProductJsonLd(
   const ratingValue = ratingData?.rating ? ratingData.rating.toFixed(1) : '4.9';
   const reviewCount = ratingData?.count ? ratingData.count.toString() : '1840';
 
+  const priceValidUntil = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .split('T')[0];
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -146,10 +194,49 @@ export function buildProductJsonLd(
             url: canonicalUrl,
             priceCurrency: variant.price.currencyCode,
             price: variant.price.amount,
+            priceValidUntil,
             availability: variant.availableForSale
               ? 'https://schema.org/InStock'
               : 'https://schema.org/OutOfStock',
             itemCondition: 'https://schema.org/NewCondition',
+            shippingDetails: {
+              '@type': 'OfferShippingDetails',
+              shippingRate: {
+                '@type': 'MonetaryAmount',
+                value: '0',
+                currency: variant.price.currencyCode || 'IDR',
+              },
+              shippingDestination: {
+                '@type': 'DefinedRegion',
+                addressCountry: 'ID',
+              },
+              deliveryTime: {
+                '@type': 'ShippingDeliveryTime',
+                handlingTime: {
+                  '@type': 'QuantitativeValue',
+                  minValue: 0,
+                  maxValue: 1,
+                  unitCode: 'DAY',
+                },
+                transitTime: {
+                  '@type': 'QuantitativeValue',
+                  minValue: 1,
+                  maxValue: 4,
+                  unitCode: 'DAY',
+                },
+              },
+            },
+            hasMerchantReturnPolicy: {
+              '@type': 'MerchantReturnPolicy',
+              applicableCountry: 'ID',
+              returnPolicyCategory:
+                'https://schema.org/MerchantReturnFiniteReturnWindow',
+              merchantReturnDays: 7,
+              returnMethod: 'https://schema.org/ReturnByMail',
+              returnFees: 'https://schema.org/FreeReturn',
+              refundType: 'https://schema.org/FullRefund',
+              returnLink: 'https://beautyinu.co/pages/shipping-returns',
+            },
           },
         }
       : {}),

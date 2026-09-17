@@ -14,11 +14,20 @@ export default async function handleRequest(
   reactRouterContext: EntryContext,
   context: HydrogenRouterContextProvider,
 ) {
+  const customerAccountDomain = context.env.PUBLIC_CUSTOMER_ACCOUNT_API_URL
+    ? new URL(context.env.PUBLIC_CUSTOMER_ACCOUNT_API_URL).hostname
+    : 'account.beautyinu.co';
+
   const {nonce, header, NonceProvider} = createContentSecurityPolicy({
     shop: {
       checkoutDomain: context.env.PUBLIC_CHECKOUT_DOMAIN,
       storeDomain: context.env.PUBLIC_STORE_DOMAIN,
     },
+    connectSrc: [
+      `https://${customerAccountDomain}`,
+      'https://account.beautyinu.co',
+      'https://checkout.beautyinu.co',
+    ],
   });
 
   const body = await renderToReadableStream(

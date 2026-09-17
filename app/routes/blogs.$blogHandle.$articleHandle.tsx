@@ -51,6 +51,8 @@ export const meta: Route.MetaFunction = ({data}) => {
     image: imageUrl,
     imageAlt: article.image?.altText || article.title,
     type: 'article',
+    author: article.author?.name || 'Aisyah Putri',
+    publisher: 'Beautyinu',
     publishedTime: article.publishedAt,
     jsonLd: [articleJsonLd, breadcrumbJsonLd],
   });

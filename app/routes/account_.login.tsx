@@ -1,6 +1,14 @@
+import {redirect} from 'react-router';
 import type {Route} from './+types/account_.login';
 
 export async function loader({request, context}: Route.LoaderArgs) {
+  const customerAccountUrl =
+    context.env.PUBLIC_CUSTOMER_ACCOUNT_API_URL || 'https://account.beautyinu.co';
+
+  if (!context.env.PUBLIC_CUSTOMER_ACCOUNT_API_CLIENT_ID) {
+    return redirect(customerAccountUrl);
+  }
+
   const url = new URL(request.url);
   const acrValues = url.searchParams.get('acr_values') || undefined;
   const loginHint = url.searchParams.get('login_hint') || undefined;

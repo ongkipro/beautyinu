@@ -57,6 +57,9 @@ export async function createHydrogenRouterContext(
       cart: {
         queryFragment: CART_QUERY_FRAGMENT,
       },
+      customerAccount: {
+        useCustomAuthDomain: true,
+      },
     },
     additionalContext,
   );

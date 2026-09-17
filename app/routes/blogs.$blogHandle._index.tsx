@@ -30,6 +30,8 @@ export const meta: Route.MetaFunction = ({data}) => {
       'Catatan edukasi perawatan tubuh, panduan bahan aktif, dan tips merawat skin barrier harian dari tim riset Beautyinu.',
     url: canonicalUrl,
     type: 'website',
+    author: 'Aisyah Putri & Tim Riset Beautyinu',
+    publisher: 'Beautyinu',
     jsonLd: [
       buildBreadcrumbJsonLd([
         {name: 'Home', url: 'https://beautyinu.co'},

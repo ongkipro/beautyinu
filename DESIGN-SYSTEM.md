@@ -21,7 +21,7 @@ Beautyinu embraces a modern, high-end Gen-Z & Millennial aesthetic (Rhode, Gloss
 
 | Token | Class | Pixel Value | Permitted Use Cases | Forbidden Uses |
 |---|---|---|---|---|
-| **Frame / Feature Container** | `rounded-2xl` | `16px` | Section feature boards (`CategorySplit` master cards, Hero canvas) | Never use `rounded-3xl` (24px) |
+| **Frame / Feature Container** | `rounded-2xl` | `16px` | Section feature boards (`CategorySplit` master cards, Hero canvas, Sticky ATC Medal) | Never use `rounded-3xl` (24px) |
 | **Card / Milestone / Review** | `rounded-xl` / `rounded-2xl` | `12px` / `16px` | Product cards, Clinical actives cards, Timeline cards, Review testimonial cards | Never use bloated pill borders |
 | **Interactive Buttons (CTA)** | `rounded-xl` | `12px` | Primary action buttons (`Lihat Produk`, `Beli Sekarang`, `Add to Cart`, `Follow @beautyinu.id`, Hero dual CTAs) | Avoid `rounded-full` capsules for text buttons |
 | **Media / Image Viewports** | `rounded-xl` / `rounded-lg` | `12px` / `8px` | Product image thumbnails, feed photo viewports, gallery tiles | Never `rounded-3xl` |
@@ -30,50 +30,73 @@ Beautyinu embraces a modern, high-end Gen-Z & Millennial aesthetic (Rhode, Gloss
 
 ---
 
-## 3. Component Radius Blueprint
+## 3. Specialized Component Blueprints
 
-### A. Buttons & Interactive CTAs
+### A. Mobile Sticky Add to Cart (Floating Medal)
 ```tsx
-// Primary CTA (Dark or Brand Color)
-<button className="px-6 py-3 rounded-xl bg-[#1A1A1A] hover:bg-black text-white text-xs sm:text-sm font-bold shadow-xs hover:shadow-md transition-all">
-  <span>Lihat Produk Satuan</span>
-  <ArrowRight className="w-4 h-4" />
-</button>
+// Only appears on mobile after scrolling past hero ATC button
+<div className="fixed bottom-4 left-0 right-0 z-40 sm:hidden pointer-events-none px-4">
+  <div className="pointer-events-auto w-full max-w-md bg-white/70 backdrop-blur-2xl border border-white/80 ring-1 ring-black/[0.06] shadow-[0_10px_35px_rgba(0,0,0,0.12)] rounded-2xl px-3.5 py-2.5 flex items-center justify-between gap-3 transition-all duration-300">
+    {/* Frameless primary thumbnail */}
+    <img src={primaryImageUrl} alt={product.title} className="w-11 h-11 object-cover rounded-lg flex-shrink-0" />
+    
+    {/* Product title & price */}
+    <div className="flex-1 min-w-0 pr-1">
+      <p className="text-xs font-semibold text-text truncate leading-tight">{product.title}</p>
+      <span className="text-xs font-bold text-primary font-mono">{formattedPrice}</span>
+    </div>
 
-// Secondary / Ghost CTA
-<Link className="px-6 py-3 rounded-xl bg-white hover:bg-[#FAF8FC] text-text border border-black/10 text-xs sm:text-sm font-bold shadow-xs transition-all">
-  <span>Lihat Semua Paket</span>
-</Link>
-```
-
-### B. Cards & Feature Panels
-```tsx
-// Master Category Split Cards (16px radius)
-<div className="group relative rounded-2xl overflow-hidden min-h-[420px] p-7 sm:p-10 border border-black/[0.06] shadow-xs">
-  {/* Full-bleed background with gradient overlay */}
-</div>
-
-// Product Card & Actives Card (16px outer, 12px image)
-<div className="bg-white rounded-2xl p-4 sm:p-5 border border-black/[0.06] shadow-xs">
-  <div className="relative aspect-square w-full rounded-xl overflow-hidden mb-3.5">
-    {/* Product image */}
+    {/* Compact action CTA */}
+    <AddToCartButton lines={[{merchandiseId: variant.id, quantity: 1}]} className="px-4 py-2 rounded-xl bg-primary text-white text-xs font-bold shadow-xs">
+      + Keranjang
+    </AddToCartButton>
   </div>
 </div>
 ```
 
-### C. Badges & Tags
+### B. Single-Line PDP Social Proof & Micro-Reassurance
 ```tsx
-// Clinical Spec / Step Badge (6px - 8px radius)
-<span className="text-[11px] font-mono font-bold text-accent bg-accent-light px-2.5 py-0.5 rounded-md border border-accent/20">
-  Formula 01
-</span>
-
-// Quality Certification Tag (8px radius)
-<div className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-lg bg-[#FAF8FC] text-text border border-black/[0.06]">
-  <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
-  <span>Resmi BPOM RI</span>
+// Compact, single-row social proof above product title
+<div className="flex items-center gap-2 text-xs text-text-secondary flex-wrap">
+  <div className="flex items-center gap-1 text-amber-500">
+    <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+    <span className="font-bold text-text text-xs">4.9</span>
+    <span className="text-[11px] text-text-secondary">(1.8k+)</span>
+  </div>
+  <span className="text-black/20 text-xs">·</span>
+  <span className="text-[11px] font-medium text-text-secondary">Terjual 10k+</span>
+  <span className="text-black/20 text-xs">·</span>
+  <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60">
+    <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+    BPOM Resmi
+  </span>
 </div>
 ```
+
+### C. Dynamic Breadcrumb System (Frosted Wayfinding)
+```tsx
+// Responsive truncation with mobile width constraints
+<nav aria-label="Breadcrumb" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/75 backdrop-blur-md border border-black/[0.06] text-xs">
+  <Link to="/" className="text-text-secondary hover:text-text flex items-center gap-1">
+    <Home className="w-3.5 h-3.5" />
+    <span className="hidden sm:inline">Home</span>
+  </Link>
+  <ChevronRight className="w-3 h-3 text-text-secondary/50" />
+  <Link to="/collections/all" className="text-text-secondary hover:text-text">
+    Katalog
+  </Link>
+  <ChevronRight className="w-3 h-3 text-text-secondary/50" />
+  <span className="font-semibold text-text max-w-[120px] sm:max-w-[240px] truncate">
+    {product.title}
+  </span>
+</nav>
+```
+
+### D. Editorial Medium-Style Journal Layout
+- **Author Attribution**: Aisyah Putri & Tim Riset Formulasi Beautyinu.
+- **Editorial Metrics**: Reading time estimate (`5 min baca`), publication date, table of contents.
+- **Full-Width Hero Media**: Borderless mobile-friendly viewports with intentional captioning.
+- **Sticky Actions**: Mobile reading progress line + floating share pill (`Web Share API`).
 
 ---
 
@@ -83,3 +106,4 @@ Beautyinu embraces a modern, high-end Gen-Z & Millennial aesthetic (Rhode, Gloss
 - [x] No `Sparkles` or magic star icons inside pill kickers.
 - [x] No 3D pushpins, tilted/rotated post-it notes, or fake percentage meter bars.
 - [x] Baseline alignment: all adjacent cards share unified vertical heights and matching baselines.
+- [x] High-performance glassmorphism: `backdrop-blur-md/2xl` with fallback solid tints for older WebKit engines.

@@ -1,8 +1,25 @@
-# skeleton
+# Beautyinu Storefront Changelog
 
-## 2026.4.6
+## 2026.09.17 — Production Release
 
-### Patch Changes
+### Features & Polish
+- **Custom Domains Integration**: Connected `checkout.beautyinu.co` for checkout and `account.beautyinu.co` for customer accounts with automated redirects and CSP whitelist.
+- **Full Sitemap.xml**: Replaced empty sitemap index with a comprehensive 35-URL `<urlset>` containing homepage, all products, collections, articles, and pages with priority and changefreq.
+- **Enhanced SEO & Rich Schemas**:
+  - Added explicit `<meta name="robots">` and `<meta name="googlebot">` tags across all routes.
+  - Added `author` and `publisher` tags and links.
+  - Added Google Merchant listing structured data: `OfferShippingDetails` (ID, free shipping, 0-1d handling, 1-4d transit) and `MerchantReturnPolicy` (7-day finite return window).
+  - Added `priceValidUntil` (+1 year) to clear Google Rich Results warnings.
+- **Content Security Policy**: Allowed Google Fonts (`style-src` for `fonts.googleapis.com`, `font-src` for `fonts.gstatic.com`) to prevent production font blocking.
+- **Mobile UI Refinements**:
+  - Dynamic breadcrumb truncation to prevent overflowing on mobile viewports.
+  - Single-line PDP social proof (`⭐ 4.9 · Terjual 10k+ · BPOM Resmi`).
+  - Mobile sticky Add to Cart medal with frosted glass effect (`bg-white/70 backdrop-blur-2xl`) and frameless primary image thumbnail.
+- **Repository Documentation**: Added canonical `ARCHITECTURE.md` (System Map), `STATUS.md`, and updated `DESIGN-SYSTEM.md` and `README.md`.
+
+---
+
+# Upstream Template Changelog (Hydrogen Skeleton)
 
 - Recommend the Shopify AI Toolkit in newly scaffolded storefronts. ([#3887](https://github.com/Shopify/hydrogen/pull/3887)) by [@gonzaloriestra](https://github.com/gonzaloriestra)
 

@@ -66,9 +66,9 @@ Beautyinu embraces a modern, high-end Gen-Z & Millennial aesthetic (Rhode, Gloss
   <span className="text-black/20 text-xs">·</span>
   <span className="text-[11px] font-medium text-text-secondary">Terjual 10k+</span>
   <span className="text-black/20 text-xs">·</span>
-  <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60">
-    <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-    BPOM Resmi
+  <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700">
+    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" strokeWidth={2.2} />
+    BPOM NA18...
   </span>
 </div>
 ```

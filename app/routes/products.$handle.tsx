@@ -357,11 +357,11 @@ export default function Product() {
             <span className="h-3 w-px bg-black/15 flex-shrink-0" aria-hidden="true" />
 
             <span
-              className="inline-flex items-center gap-1 text-[10.5px] sm:text-xs text-emerald-800 font-medium bg-emerald-50/90 border border-emerald-200/70 px-1.5 sm:px-2 py-0.5 rounded-full flex-shrink-0"
+              className="inline-flex items-center gap-1 text-[11px] sm:text-xs text-emerald-700 font-medium flex-shrink-0"
               title={socialProof.bpomNumber}
             >
-              <CheckCircle2 className="w-3 h-3 text-emerald-600 flex-shrink-0" strokeWidth={2.2} />
-              <span className="font-mono tracking-tight font-medium">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" strokeWidth={2.2} />
+              <span className="font-mono tracking-tight">
                 {socialProof.bpomNumber}
               </span>
             </span>

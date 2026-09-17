@@ -145,6 +145,7 @@ export function buildOrganizationJsonLd(siteUrl: string = DEFAULT_SEO.siteUrl) {
       returnFees: 'https://schema.org/FreeReturn',
       refundType: 'https://schema.org/FullRefund',
       returnLink: `${siteUrl}/pages/shipping-returns`,
+      validFrom: '2024-01-01',
     },
   };
 }
@@ -155,6 +156,7 @@ export function buildProductJsonLd(
     description?: string | null;
     seo?: { description?: string | null } | null;
     images?: { nodes?: Array<{ url: string }> } | null;
+    publishedAt?: string | null;
     selectedOrFirstAvailableVariant?: {
       sku?: string | null;
       availableForSale?: boolean;
@@ -171,6 +173,18 @@ export function buildProductJsonLd(
 
   const ratingValue = ratingData?.rating ? ratingData.rating.toFixed(1) : '4.9';
   const reviewCount = ratingData?.count ? ratingData.count.toString() : '1840';
+
+  let validFrom = '2024-01-01';
+  if (product.publishedAt) {
+    try {
+      const parsed = new Date(product.publishedAt);
+      if (!isNaN(parsed.getTime())) {
+        validFrom = parsed.toISOString().split('T')[0];
+      }
+    } catch {
+      // fallback
+    }
+  }
 
   const priceValidUntil = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
     .toISOString()
@@ -194,6 +208,7 @@ export function buildProductJsonLd(
             url: canonicalUrl,
             priceCurrency: variant.price.currencyCode,
             price: variant.price.amount,
+            validFrom,
             priceValidUntil,
             availability: variant.availableForSale
               ? 'https://schema.org/InStock'
@@ -236,6 +251,7 @@ export function buildProductJsonLd(
               returnFees: 'https://schema.org/FreeReturn',
               refundType: 'https://schema.org/FullRefund',
               returnLink: 'https://beautyinu.co/pages/shipping-returns',
+              validFrom,
             },
           },
         }

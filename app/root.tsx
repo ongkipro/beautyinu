@@ -16,6 +16,7 @@ import favicon from '~/assets/favicon.png';
 import appStyles from '~/styles/app.css?url';
 import tailwindCss from './styles/tailwind.css?url';
 import {PageLayout} from './components/PageLayout';
+import {transformCartCheckoutUrl} from '~/lib/checkout';
 
 export type RootLoader = typeof loader;
 
@@ -71,7 +72,7 @@ export async function loader(args: Route.LoaderArgs) {
 function loadDeferredData({context}: Route.LoaderArgs) {
   const {customerAccount, cart} = context;
   return {
-    cart: cart.get(),
+    cart: cart.get().then((cartData) => transformCartCheckoutUrl(cartData)),
     isLoggedIn: customerAccount.isLoggedIn(),
   };
 }

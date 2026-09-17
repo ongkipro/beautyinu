@@ -5,6 +5,7 @@ import {CartForm} from '@shopify/hydrogen';
 import {CartMain} from '~/components/CartMain';
 import {Breadcrumb} from '~/components/Breadcrumb';
 import {getSeoMeta} from '~/lib/seo';
+import {transformCartCheckoutUrl} from '~/lib/checkout';
 
 export const meta: Route.MetaFunction = () => {
   return getSeoMeta({
@@ -79,7 +80,8 @@ export async function action({request, context}: Route.ActionArgs) {
 
   const cartId = result?.cart?.id;
   const headers = cartId ? cart.setCartId(result.cart.id) : new Headers();
-  const {cart: cartResult, errors, warnings} = result;
+  const cartResult = transformCartCheckoutUrl(result.cart);
+  const {errors, warnings} = result;
 
   const redirectTo = formData.get('redirectTo') ?? null;
   if (typeof redirectTo === 'string') {
@@ -102,7 +104,7 @@ export async function action({request, context}: Route.ActionArgs) {
 
 export async function loader({context}: Route.LoaderArgs) {
   const {cart} = context;
-  return await cart.get();
+  return transformCartCheckoutUrl(await cart.get());
 }
 
 export default function Cart() {

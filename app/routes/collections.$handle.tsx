@@ -11,8 +11,15 @@ import {
   buildBreadcrumbJsonLd,
 } from '~/lib/seo';
 import {Breadcrumb} from '~/components/Breadcrumb';
-import heroModelDesktop from '~/assets/beautyinu-hero-model.webp';
-import heroModelMobile from '~/assets/beautyinu-hero-model-mobile.webp';
+import collectionHeroDesktop from '~/assets/collection-hero-model-desktop.webp';
+import collectionHeroTablet from '~/assets/collection-hero-model-tablet.webp';
+import collectionHeroMobile from '~/assets/collection-hero-model-mobile.webp';
+import collectionBodyCareDesktop from '~/assets/collection-bodycare-desktop.webp';
+import collectionBodyCareTablet from '~/assets/collection-bodycare-tablet.webp';
+import collectionBodyCareMobile from '~/assets/collection-bodycare-mobile.webp';
+import collectionBestSellersDesktop from '~/assets/collection-bestsellers-desktop.webp';
+import collectionBestSellersTablet from '~/assets/collection-bestsellers-tablet.webp';
+import collectionBestSellersMobile from '~/assets/collection-bestsellers-mobile.webp';
 import {
   ShieldCheck,
   Sparkles,
@@ -23,6 +30,22 @@ import {
   Check,
   ChevronDown,
 } from 'lucide-react';
+
+const COLLECTION_HERO_ASSETS: Record<
+  string,
+  {desktop: string; tablet: string; mobile: string}
+> = {
+  'body-care': {
+    desktop: collectionBodyCareDesktop,
+    tablet: collectionBodyCareTablet,
+    mobile: collectionBodyCareMobile,
+  },
+  'best-sellers': {
+    desktop: collectionBestSellersDesktop,
+    tablet: collectionBestSellersTablet,
+    mobile: collectionBestSellersMobile,
+  },
+};
 
 const COLLECTION_301_REDIRECTS: Record<string, string> = {
   'paket-hemat': 'bundles',
@@ -102,11 +125,17 @@ export const meta: Route.MetaFunction = ({data}) => {
     {name: collection.title, url: canonicalUrl || `https://beautyinu.co/collections/${collection.handle}`},
   ]);
 
+  const heroAssets = (collection.handle && COLLECTION_HERO_ASSETS[collection.handle]) || {
+    desktop: collectionHeroDesktop,
+    tablet: collectionHeroTablet,
+    mobile: collectionHeroMobile,
+  };
+
   return getSeoMeta({
     title,
     description,
     url: canonicalUrl,
-    image: collection.image?.url || heroModelDesktop,
+    image: collection.image?.url || heroAssets.desktop,
     imageAlt: collection.image?.altText || collection.title,
     type: 'website',
     jsonLd: [collectionSchema, breadcrumbSchema],
@@ -211,24 +240,32 @@ export default function Collection() {
 
   const productCount = collection.products.nodes.length;
   const editorial = COLLECTION_EDITORIAL_CONFIG[collection.handle] || DEFAULT_EDITORIAL;
+  const heroAssets = COLLECTION_HERO_ASSETS[collection.handle] || {
+    desktop: collectionHeroDesktop,
+    tablet: collectionHeroTablet,
+    mobile: collectionHeroMobile,
+  };
 
   return (
     <div className="w-full bg-white">
       {/* 1. Full-Width Editorial Hero with Integrated Frosted Glass Breadcrumb */}
-      <div className="relative w-full overflow-hidden bg-[#FBF9FC] border-b border-black/[0.04] min-h-[360px] sm:min-h-[420px] lg:h-[460px] flex flex-col justify-between">
-        {/* Full-width Model Background Image */}
+      <div className="relative w-full overflow-hidden bg-[#FBF9FC] border-b border-black/[0.04] min-h-[380px] sm:min-h-[420px] lg:h-[460px] flex flex-col justify-between">
+        {/* Full-width Model Background Image with Desktop, Tablet, and Mobile art direction */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <picture>
-            <source media="(max-width: 640px)" srcSet={heroModelMobile} />
+            <source media="(max-width: 639px)" srcSet={heroAssets.mobile} />
+            <source media="(max-width: 1023px)" srcSet={heroAssets.tablet} />
             <img
-              src={heroModelDesktop}
-              alt="Beautyinu Glowing Skin Routine"
-              className="w-full h-full object-cover object-right lg:object-[center_right] opacity-55 sm:opacity-90 lg:opacity-95"
+              src={heroAssets.desktop}
+              alt={`${collection.title} — Beautyinu Glowing Skin Routine`}
+              className="w-full h-full object-cover object-right lg:object-[center_right] opacity-90 sm:opacity-95 lg:opacity-100"
             />
           </picture>
 
-          {/* Smooth Directional Scrim: Text area protected, top glass breadcrumb and right photo clearly visible */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#FBF9FC] via-[#FBF9FC]/80 via-50% to-[#FBF9FC]/10 sm:bg-gradient-to-r sm:from-[#FBF9FC]/90 sm:via-[#FBF9FC]/70 sm:via-55% lg:via-[#FBF9FC]/60 lg:via-60% sm:to-transparent" />
+          {/* Smooth Directional Scrim: text is 100% legible on left, model & products 100% vivid on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#FBF9FC] via-[#FBF9FC]/90 via-50% to-transparent sm:via-[#FBF9FC]/70 sm:via-48% lg:via-[#FBF9FC]/40 lg:via-52%" />
+          {/* Mobile soft bottom gradient to guarantee clean tag & description readability */}
+          <div className="sm:hidden absolute inset-0 bg-gradient-to-t from-[#FBF9FC] via-[#FBF9FC]/60 via-40% to-transparent" />
           {/* Subtle bottom edge blend */}
           <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#FBF9FC] to-transparent" />
         </div>
@@ -242,23 +279,23 @@ export default function Collection() {
           ]}
         />
 
-        {/* Hero Content (Vertically centered on Left) */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 my-auto">
-          <div className="max-w-xl lg:max-w-2xl flex flex-col justify-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/90 backdrop-blur-md text-accent text-[11px] font-mono font-semibold uppercase tracking-wider mb-2.5 border border-accent/20 shadow-2xs self-start">
-              <ShieldCheck className="w-3.5 h-3.5 text-accent" />
+        {/* Hero Content (Vertically centered on Left, with right breathing room for model on mobile) */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-12 my-auto">
+          <div className="max-w-[76%] xs:max-w-[70%] sm:max-w-xl lg:max-w-2xl flex flex-col justify-center">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-md bg-white/95 backdrop-blur-md text-accent text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider mb-2 sm:mb-2.5 border border-accent/20 shadow-2xs self-start">
+              <ShieldCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-accent flex-shrink-0" />
               <span>{editorial.kicker}</span>
             </div>
 
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-text font-normal tracking-tight mb-2">
+            <h1 className="font-serif text-2.5xl sm:text-5xl lg:text-6xl text-text font-normal tracking-tight mb-1.5 sm:mb-2">
               {collection.title}
             </h1>
 
-            <p className="text-xs sm:text-sm font-mono font-medium text-primary uppercase tracking-wide mb-2.5">
+            <p className="text-[11px] sm:text-sm font-mono font-medium text-primary uppercase tracking-wide mb-2 sm:mb-2.5">
               {editorial.subtitle}
             </p>
 
-            <div className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal mb-4 max-w-lg">
+            <div className="text-xs sm:text-base text-text-secondary leading-relaxed font-normal mb-3 sm:mb-4 max-w-lg line-clamp-3 sm:line-clamp-none">
               {collection.descriptionHtml ? (
                 <div dangerouslySetInnerHTML={{__html: collection.descriptionHtml}} />
               ) : (
@@ -267,13 +304,15 @@ export default function Collection() {
             </div>
 
             {/* Editorial Highlight Tags */}
-            <div className="flex items-center gap-2 flex-wrap">
-              {editorial.highlights.map((highlight) => (
+            <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+              {editorial.highlights.map((highlight, idx) => (
                 <span
                   key={highlight}
-                  className="inline-flex items-center gap-1.5 text-[11px] font-medium text-text bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-md border border-black/[0.08] shadow-2xs"
+                  className={`items-center gap-1.5 text-[10px] sm:text-[11px] font-medium text-text bg-white/95 backdrop-blur-md px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md border border-black/[0.08] shadow-2xs ${
+                    idx >= 2 ? 'hidden sm:inline-flex' : 'inline-flex'
+                  }`}
                 >
-                  <Check className="w-3 h-3 text-emerald-600 flex-shrink-0" strokeWidth={2.5} />
+                  <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-600 flex-shrink-0" strokeWidth={2.5} />
                   {highlight}
                 </span>
               ))}

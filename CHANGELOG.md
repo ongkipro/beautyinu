@@ -2,14 +2,15 @@
 
 ## 2026.09.17 — Production Release
 
-### Features & Polish
-- **Custom Domains Integration**: Connected `checkout.beautyinu.co` for checkout and `account.beautyinu.co` for customer accounts with automated redirects and CSP whitelist.
+- **Custom Domains & Branded Checkout Integration**:
+  - Connected `checkout.beautyinu.co` for checkout and `account.beautyinu.co` for customer accounts with automated redirects and CSP whitelist.
+  - Implemented `app/lib/checkout.ts` (`formatCheckoutUrl`, `transformCartCheckoutUrl`) routing all cart and direct-line checkout requests to `https://checkout.beautyinu.co/checkouts/...`, preventing raw myshopify.com URLs and maintaining customer session flow back to the Hydrogen storefront.
 - **Full Sitemap.xml**: Replaced empty sitemap index with a comprehensive 35-URL `<urlset>` containing homepage, all products, collections, articles, and pages with priority and changefreq.
 - **Enhanced SEO & Rich Schemas**:
   - Added explicit `<meta name="robots">` and `<meta name="googlebot">` tags across all routes.
   - Added `author` and `publisher` tags and links.
   - Added Google Merchant listing structured data: `OfferShippingDetails` (ID, free shipping, 0-1d handling, 1-4d transit) and `MerchantReturnPolicy` (7-day finite return window).
-  - Added `priceValidUntil` (+1 year) to clear Google Rich Results warnings.
+  - Added `priceValidUntil` (+1 year) and `validFrom` (product publishedAt with fallback) across Offer and MerchantReturnPolicy to eliminate Google Rich Results warnings.
 - **Content Security Policy**: Allowed Google Fonts (`style-src` for `fonts.googleapis.com`, `font-src` for `fonts.gstatic.com`) to prevent production font blocking.
 - **Mobile UI & Typography Refinements**:
   - **Product Card Vertical Row Spacing**: Refactored product grids across collections (`collections.all`, `collections.$handle`), recommendations (`products.$handle`, `blogs`), and search results with differentiated gaps (`gap-x-4 sm:gap-x-6 lg:gap-x-8` and `gap-y-8 sm:gap-y-10 lg:gap-y-12`), resolving crowded vertical stacking on mobile.

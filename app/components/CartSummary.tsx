@@ -3,6 +3,7 @@ import type {CartLayout} from '~/components/CartMain';
 import {CartForm, Money, type OptimisticCart} from '@shopify/hydrogen';
 import {useEffect, useId, useRef, useState} from 'react';
 import {useFetcher, Link} from 'react-router';
+import {formatCheckoutUrl} from '~/lib/checkout';
 import {
   ArrowRight,
   Truck,
@@ -146,6 +147,8 @@ function CartCheckoutActions({
   checkoutUrl?: string;
   isEmpty?: boolean;
 }) {
+  const targetUrl = formatCheckoutUrl(checkoutUrl);
+
   if (isEmpty) {
     return (
       <div>
@@ -163,7 +166,7 @@ function CartCheckoutActions({
   return (
     <div>
       <a
-        href={checkoutUrl || '/cart'}
+        href={targetUrl}
         target="_self"
         className="inline-flex justify-center items-center gap-2 w-full bg-[#111111] hover:bg-primary text-white text-center rounded-xl py-3.5 px-6 text-sm sm:text-base font-bold uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-primary/25 active:scale-98 cursor-pointer"
       >

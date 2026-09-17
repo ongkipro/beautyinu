@@ -540,6 +540,7 @@ const PRODUCT_FRAGMENT = `#graphql
     handle
     descriptionHtml
     description
+    publishedAt
     collections(first: 5) {
       nodes {
         title

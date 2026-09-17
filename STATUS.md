@@ -10,16 +10,16 @@
 | Dimension | Status | Target / Endpoint | Evidence / Verification |
 |---|---|---|---|
 | **Production Storefront** | 🟢 Healthy (200 OK) | `https://beautyinu.co` | Live curl verified, SSR streaming active |
-| **Custom Checkout Domain** | 🟢 Configured | `https://checkout.beautyinu.co` | Set in `.env`, CSP `connectSrc`, and Hydrogen client |
+| **Custom Checkout Domain** | 🟢 Active & Formatted | `https://checkout.beautyinu.co` | Transformed across CartSummary, CartDrawer, cart.$lines, and root.tsx |
 | **Customer Account Domain** | 🟢 Configured | `https://account.beautyinu.co` | New Customer Account API URL + fallback redirect |
 | **XML Sitemap** | 🟢 100% Populated | `https://beautyinu.co/sitemap.xml` | Direct `<urlset>` containing all 35 URLs |
 | **Robots Directives** | 🟢 Compliant | `https://beautyinu.co/robots.txt` | Explicit Sitemap link + crawler delay/disallow rules |
 | **Meta Robots / Googlebot** | 🟢 Explicit | All routes | `index, follow, max-image-preview:large` |
 | **Author & Publisher** | 🟢 Validated | All routes & articles | `<meta name="author">`, `<meta name="publisher">` |
-| **Merchant Rich Schemas** | 🟢 Validated | PDP & Organization | `shippingDetails` + `hasMerchantReturnPolicy` |
+| **Merchant Rich Schemas** | 🟢 Validated | PDP & Organization | `shippingDetails` + `hasMerchantReturnPolicy` + `validFrom` |
 | **Content Security Policy** | 🟢 Verified | Edge headers | Google Fonts (`style-src` & `font-src`) whitelisted |
 | **TypeScript / Typegen** | 🟢 0 Errors | `npm run typecheck` | React Router typegen & TSC pass cleanly |
-| **Production Build** | 🟢 0 Errors | `npm run build` | Oxygen worker bundle (782 kB) compiles cleanly |
+| **Production Build** | 🟢 0 Errors | `npm run build` | Oxygen worker bundle (789 kB) compiles cleanly |
 | **CI/CD Oxygen Workflow** | 🟢 Passing | GitHub Actions | Automated build & deploy on push to `main` |
 
 ---
@@ -27,6 +27,7 @@
 ## 2. Completed Milestones & Feature Registry
 
 ### A. Commercial Experience & UI/UX Polish
+- [x] **Branded Checkout Routing (`checkout.beautyinu.co`)**: Formatted all checkout URLs (`formatCheckoutUrl`, `transformCartCheckoutUrl`) across CartSummary, CartDrawer, `cart.$lines`, and `root.tsx` to route to `https://checkout.beautyinu.co/checkouts/...`, preventing raw myshopify redirects and ensuring seamless loopback to Hydrogen storefront.
 - [x] **Product Card Grid Spacing & Precision**: Differentiated horizontal and vertical grid gaps across all product catalogs (`gap-x-4 sm:gap-x-6 lg:gap-x-8` and `gap-y-8 sm:gap-y-10 lg:gap-y-12`), providing generous breathing room between rows on mobile and desktop. Standardized product title min-heights (`min-h-[2.5rem] sm:min-h-[2.75rem]`) for baseline-level price and rating alignment.
 - [x] **Mobile Typography Scale**: Upgraded body copy from cramped `text-xs` (11px-12px) to ergonomic `text-sm sm:text-base` (14px-16px) across PDP accordions, product cards, reviews, cart items, collections, search results, and CMS pages.
 - [x] **Zero Rounded-3xl Enforcement**: Strict adherence to `DESIGN-SYSTEM.md` architectural radius scale (`rounded-2xl` frame, `rounded-xl` card/btn, `rounded-lg` media, `rounded-md` badge); 100% eliminated `rounded-3xl` across all components.
@@ -52,7 +53,7 @@
 - [x] **Comprehensive `/sitemap.xml`**: Populated with 35 real store URLs (Homepage, Catalog, Products, Collections, Articles, CMS Pages).
 - [x] **Meta Tags Pipeline**: Author, Publisher, Canonical, OpenGraph, Twitter, and explicit Robots/Googlebot tags on every route.
 - [x] **Google Merchant Schemas**: `OfferShippingDetails` (free shipping Indonesia, 0-1d handling, 1-4d transit) and `MerchantReturnPolicy` (7-day unboxing guarantee).
-- [x] **Price Validity**: `priceValidUntil` set to +1 year to clear Rich Results testing warnings.
+- [x] **Price & Offer Validity**: `validFrom` (product publication date with fallback) and `priceValidUntil` (+1 year) to clear Google Rich Results testing warnings across Product Offer and MerchantReturnPolicy schemas.
 
 ---
 

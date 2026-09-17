@@ -477,7 +477,7 @@ function TrustBar() {
   return (
     <section className="w-full bg-white py-3 sm:py-3.5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-3.5">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
+        <div className="h-px w-full hairline-divider" />
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-6 overflow-x-auto no-scrollbar text-[11px] sm:text-xs font-mono tracking-[0.2em] uppercase text-text/75 whitespace-nowrap">
@@ -492,7 +492,7 @@ function TrustBar() {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-3.5">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
+        <div className="h-px w-full hairline-divider" />
       </div>
     </section>
   );
@@ -723,7 +723,7 @@ function IngredientsHighlight() {
     <section id="actives-section" className="w-full pt-6 md:pt-8 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Subtle Gradient Divider */}
       <div className="w-full mb-6 sm:mb-8">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
+        <div className="h-px w-full hairline-divider" />
       </div>
 
       {/* Header */}
@@ -1052,7 +1052,7 @@ function BestSellersSkeleton() {
   return (
     <section className="relative w-full pt-6 md:pt-8 pb-8 md:pb-10 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto mb-6 sm:mb-8">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
+        <div className="h-px w-full hairline-divider" />
       </div>
       <div className="max-w-7xl mx-auto">
         <div className="h-6 w-40 bg-black/[0.06] rounded-md mb-3 animate-pulse" />
@@ -1181,7 +1181,7 @@ function BestSellersSlider({products}: {products: any[]}) {
     <section className="relative w-full pt-6 md:pt-8 pb-6 md:pb-8 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
       {/* Subtle Gradient Divider */}
       <div className="max-w-7xl mx-auto mb-6 sm:mb-8">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
+        <div className="h-px w-full hairline-divider" />
       </div>
 
       <div className="max-w-7xl mx-auto relative">
@@ -1487,7 +1487,7 @@ function SocialProof() {
       <div className="max-w-7xl mx-auto">
         {/* Subtle Gradient Divider */}
         <div className="w-full mb-8 sm:mb-10">
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
+          <div className="h-px w-full hairline-divider" />
         </div>
 
         {/* Header Section (Centered, Precise & Flat Minimalist) */}

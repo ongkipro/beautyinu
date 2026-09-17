@@ -88,3 +88,17 @@
     height: 0;
   }
 }
+
+@utility hairline-divider {
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.08) 16px, rgba(0, 0, 0, 0.08) calc(100% - 16px), transparent);
+  @variant sm {
+    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.08) 60px, rgba(0, 0, 0, 0.08) calc(100% - 60px), transparent);
+  }
+}
+
+@utility hairline-divider-dark {
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.22) 16px, rgba(255, 255, 255, 0.22) calc(100% - 16px), transparent);
+  @variant sm {
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.22) 60px, rgba(255, 255, 255, 0.22) calc(100% - 60px), transparent);
+  }
+}

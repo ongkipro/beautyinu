@@ -143,12 +143,10 @@ export function Breadcrumb({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           {navContent}
         </div>
-        {/* Soft Fading Bottom Border: Opacity gradient that disappears smoothly at left & right edges */}
+        {/* Soft Fading Bottom Border: Smooth edge fade with consistent plateau across content */}
         <div
           className={`absolute inset-x-0 bottom-0 h-px pointer-events-none select-none ${
-            isDark
-              ? 'bg-gradient-to-r from-transparent via-white/20 to-transparent'
-              : 'bg-gradient-to-r from-transparent via-black/[0.07] to-transparent'
+            isDark ? 'hairline-divider-dark' : 'hairline-divider'
           }`}
           aria-hidden="true"
         />

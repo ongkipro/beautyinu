@@ -160,7 +160,7 @@ export function Footer() {
         </div>
 
         {/* Gradient Fading Divider for Legal / Copyright */}
-        <div className="mt-12 sm:mt-14 mb-6 sm:mb-8 h-px w-full bg-gradient-to-r from-transparent via-black/[0.08] to-transparent" />
+        <div className="mt-12 sm:mt-14 mb-6 sm:mb-8 h-px w-full hairline-divider" />
 
         {/* 5. Bottom Copyright, Socials & Legal Links — Minimalist, Ergonomic & Clean */}
         <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-5 sm:gap-6 text-xs text-text-secondary/70">

@@ -1,4 +1,4 @@
-import {Suspense, useEffect} from 'react';
+import {Suspense, useEffect, useState, useRef} from 'react';
 import {redirect, useLoaderData, Await, Link} from 'react-router';
 import type {Route} from './+types/products.$handle';
 import {
@@ -200,6 +200,28 @@ export default function Product() {
   const {product, recommendedProducts} = useLoaderData<typeof loader>();
   const {open} = useAside();
 
+  const mainAddToCartRef = useRef<HTMLDivElement>(null);
+  const [showSticky, setShowSticky] = useState(false);
+
+  useEffect(() => {
+    const checkVisibility = () => {
+      const target = mainAddToCartRef.current;
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
+      // Only show sticky medal AFTER user has scrolled past the main add-to-cart button
+      setShowSticky(rect.bottom < 0);
+    };
+
+    window.addEventListener('scroll', checkVisibility, {passive: true});
+    window.addEventListener('resize', checkVisibility, {passive: true});
+    checkVisibility();
+
+    return () => {
+      window.removeEventListener('scroll', checkVisibility);
+      window.removeEventListener('resize', checkVisibility);
+    };
+  }, []);
+
   const selectedVariant = useOptimisticVariant(
     product.selectedOrFirstAvailableVariant,
     getAdjacentAndFirstAvailableVariants(product),
@@ -348,7 +370,7 @@ export default function Product() {
             compareAtPrice={selectedVariant?.compareAtPrice}
           />
 
-          <div className="mt-6">
+          <div className="mt-6" ref={mainAddToCartRef}>
             <ProductForm
               productOptions={productOptions}
               selectedVariant={selectedVariant}
@@ -391,46 +413,59 @@ export default function Product() {
         </Suspense>
       </div>
 
-      {/* Mobile Fixed Sticky Add-to-Cart Dock */}
-      <div className="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-black/[0.08] px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] sm:hidden shadow-[0_-8px_25px_rgba(0,0,0,0.06)] flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2.5 min-w-0 flex-1">
-          {selectedVariant?.image?.url || images?.nodes?.[0]?.url ? (
-            <div className="w-11 h-11 rounded-xl overflow-hidden bg-[#F8F7FA] flex-shrink-0 flex items-center justify-center">
+      {/* Floating Glass Medal Sticky Add-to-Cart (Mobile-only, appears after scrolling past main CTA) */}
+      <div
+        className={`fixed bottom-4 inset-x-0 z-40 flex justify-center pointer-events-none px-3.5 sm:hidden transition-all duration-300 ease-out ${
+          showSticky
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8 pointer-events-none'
+        }`}
+        aria-hidden={!showSticky}
+      >
+        <div className="pointer-events-auto w-full max-w-md bg-white/70 backdrop-blur-2xl border border-white/80 ring-1 ring-black/[0.06] shadow-[0_10px_35px_rgba(0,0,0,0.12)] rounded-2xl px-3.5 py-2.5 flex items-center justify-between gap-3">
+          {/* Product Thumbnail & Details */}
+          <div className="flex items-center gap-2.5 min-w-0 flex-1">
+            {/* Pure Primary Thumbnail with Precise Rounded */}
+            {(images?.nodes?.[0]?.url || selectedVariant?.image?.url) && (
               <img
-                src={selectedVariant?.image?.url || images?.nodes?.[0]?.url}
+                src={images?.nodes?.[0]?.url || selectedVariant?.image?.url}
                 alt={title}
-                className="w-full h-full object-contain p-0.5"
+                className="w-10 h-10 rounded-lg object-contain flex-shrink-0"
               />
+            )}
+            <div className="flex flex-col min-w-0">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-black/50 truncate">
+                {title}
+              </span>
+              <span className="font-bold text-sm text-text leading-tight font-mono">
+                {selectedVariant?.price && (
+                  <Money data={selectedVariant.price} withoutTrailingZeros />
+                )}
+              </span>
             </div>
-          ) : null}
-          <div className="flex flex-col min-w-0">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-black/40 truncate">{title}</span>
-            <span className="font-bold text-sm text-text leading-tight">
-              {selectedVariant?.price && (
-                <Money data={selectedVariant.price} withoutTrailingZeros />
-              )}
-            </span>
           </div>
-        </div>
-        <div className="w-36 flex-shrink-0">
-          <AddToCartButton
-            disabled={!selectedVariant || !selectedVariant.availableForSale}
-            onClick={() => open('cart')}
-            lines={
-              selectedVariant
-                ? [
-                    {
-                      merchandiseId: selectedVariant.id,
-                      quantity: 1,
-                      selectedVariant,
-                    },
-                  ]
-                : []
-            }
-            className="w-full h-11 flex items-center justify-center bg-[#111111] hover:bg-primary active:scale-[0.98] text-white rounded-full font-medium text-xs tracking-wide transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-primary/25 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-          >
-            {selectedVariant?.availableForSale ? '+ Keranjang' : 'Habis'}
-          </AddToCartButton>
+
+          {/* Action Button (Reduced rounded: rounded-xl) */}
+          <div className="flex-shrink-0">
+            <AddToCartButton
+              disabled={!selectedVariant || !selectedVariant.availableForSale}
+              onClick={() => open('cart')}
+              lines={
+                selectedVariant
+                  ? [
+                      {
+                        merchandiseId: selectedVariant.id,
+                        quantity: 1,
+                        selectedVariant,
+                      },
+                    ]
+                  : []
+              }
+              className="h-9 px-4 flex items-center justify-center bg-[#111111] hover:bg-primary active:scale-95 text-white rounded-xl font-semibold text-xs tracking-wide transition-all duration-200 shadow-xs hover:shadow-md hover:shadow-primary/25 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+            >
+              {selectedVariant?.availableForSale ? '+ Keranjang' : 'Habis'}
+            </AddToCartButton>
+          </div>
         </div>
       </div>
 

@@ -3,6 +3,7 @@ import {Link, redirect, useLoaderData, useNavigate} from 'react-router';
 import type {Route} from './+types/blogs.$blogHandle.$articleHandle';
 import {Image} from '@shopify/hydrogen';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
+import authorAvatar from '~/assets/author-aisyah-putri.jpg';
 import {ProductCard} from '~/components/ProductCard';
 import {ArticleCard} from '~/components/ArticleCard';
 import {Breadcrumb} from '~/components/Breadcrumb';
@@ -15,6 +16,8 @@ import {
   Clock,
   Share2,
   BookOpen,
+  Heart,
+  ChevronUp,
 } from 'lucide-react';
 import {
   getSeoMeta,
@@ -180,88 +183,121 @@ export default function Article() {
     [navigate],
   );
 
+  // 3. Medium-style Interactive Claps (persisted locally)
+  const [claps, setClaps] = useState(128);
+  const [hasClapped, setHasClapped] = useState(false);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(`claps_${article.handle}`);
+      if (saved) {
+        setClaps(parseInt(saved, 10));
+        setHasClapped(true);
+      } else {
+        // Deterministic organic seed based on title length
+        setClaps(85 + (title.length % 75));
+      }
+    } catch {
+      // Ignore SSR / privacy storage errors
+    }
+  }, [article.handle, title]);
+
+  const handleClap = useCallback(() => {
+    setClaps((prev) => {
+      const next = prev + 1;
+      try {
+        localStorage.setItem(`claps_${article.handle}`, String(next));
+      } catch {}
+      return next;
+    });
+    setHasClapped(true);
+  }, [article.handle]);
+
   return (
-    <article className="w-full bg-white relative">
-      {/* Subtle Top Reading Progress Bar */}
+    <article className="w-full bg-white relative selection:bg-primary/20">
+      {/* 1. Top Reading Progress Bar */}
       <ReadingProgressBar />
 
-      {/* Full-Width Editorial Background Hero Section with Integrated Glass Breadcrumb */}
-      <div className="relative w-full overflow-hidden bg-[#16141D] min-h-[440px] sm:min-h-[500px] lg:h-[560px] flex flex-col justify-between border-b border-black/[0.04]">
-        {/* Full-width Article Cover as Background */}
-        {image ? (
-          <div className="absolute inset-0 z-0 pointer-events-none">
+      {/* 2. Top Wayfinding Glass Breadcrumb (Light Mode) */}
+      <Breadcrumb
+        variant="bar"
+        items={[
+          {label: 'Skincare Journal', to: `/blogs/${blogHandle}`},
+          {label: title},
+        ]}
+      />
+
+      {/* 3. Medium-Style Story Header */}
+      <header className="max-w-[720px] mx-auto px-4 sm:px-6 pt-8 sm:pt-12 text-left">
+        {/* Medium-Grade Editorial Title */}
+        <h1 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-text font-normal leading-[1.18] tracking-tight mb-6">
+          {title}
+        </h1>
+
+        {/* Medium-Style Intimate Author Byline & Actions Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-4 border-y border-black/[0.08]">
+          <div className="flex items-center gap-3.5">
+            {/* Author Avatar with Photo */}
+            <div className="w-11 h-11 rounded-full overflow-hidden border border-black/[0.08] shadow-2xs flex-shrink-0 bg-[#FAF9FB]">
+              <img
+                src={authorAvatar}
+                alt={authorName}
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+            <div>
+              <div className="flex items-center gap-1.5">
+                <span className="font-semibold text-sm sm:text-[15px] text-text leading-tight">
+                  {authorName}
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 text-xs text-text-secondary mt-0.5 font-normal">
+                <time dateTime={article.publishedAt}>{publishedDate}</time>
+                <span className="text-black/25">·</span>
+                <span className="inline-flex items-center gap-1">
+                  <Clock className="w-3 h-3 text-text-secondary/70" />
+                  <span>~{readTime} menit baca</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Inline Action Bar (Claps, Share, Copy Link) */}
+          <div className="flex items-center gap-2 sm:self-center pt-2 sm:pt-0 border-t sm:border-t-0 border-black/[0.04]">
+            <ArticleShareActions
+              title={title}
+              canonicalUrl={canonicalUrl}
+              claps={claps}
+              onClap={handleClap}
+              hasClapped={hasClapped}
+            />
+          </div>
+        </div>
+      </header>
+
+      {/* 4. Story Featured Image (Locked 3:2, Full-Width on Mobile, In-Column on Desktop) */}
+      {image && (
+        <figure className="w-full max-w-[720px] mx-auto px-0 sm:px-6 mt-6 sm:mt-10">
+          <div className="overflow-hidden aspect-[3/2] rounded-none sm:rounded-2xl bg-[#FAF9FB] border-y sm:border border-black/[0.06] shadow-xs">
             <Image
               data={image}
               aspectRatio="3/2"
-              sizes="100vw"
+              sizes="(min-width: 768px) 720px, 100vw"
               loading="eager"
               className="w-full h-full object-cover object-center"
             />
-            {/* Cinematic Scrim Gradient: Clean dark gradient ensuring perfect centered text legibility while letting top photo and glass breadcrumb shine */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0C0B10]/95 via-[#0C0B10]/70 via-55% to-[#0C0B10]/25" />
-            {/* Subtle bottom edge blend */}
-            <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/50 to-transparent" />
           </div>
-        ) : (
-          <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#1C1924] via-[#2A2436] to-[#16141D]" />
-        )}
+          {image.altText && (
+            <figcaption className="mt-2.5 text-center text-xs text-text-secondary/70 italic font-sans px-4">
+              {image.altText}
+            </figcaption>
+          )}
+        </figure>
+      )}
 
-        {/* 1. Integrated Wayfinding Glass Breadcrumb */}
-        <Breadcrumb
-          variant="bar"
-          theme="dark"
-          items={[
-            {label: 'Skincare Journal', to: `/blogs/${blogHandle}`},
-            {label: title},
-          ]}
-        />
-
-        {/* 2. Hero Content (Centered Editorial Composition) */}
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 text-center flex flex-col items-center justify-center my-auto">
-          <div className="max-w-3xl lg:max-w-4xl mx-auto flex flex-col items-center">
-            {/* Kicker Editorial */}
-            <p className="text-[10px] sm:text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-white/75 mb-3.5">
-              The Journal
-            </p>
-
-            {/* Title */}
-            <h1 className="font-serif text-2xl sm:text-4xl lg:text-[48px] text-white font-normal leading-[1.16] tracking-tight mb-6 max-w-3xl sm:max-w-4xl mx-auto drop-shadow-xs text-center">
-              {title}
-            </h1>
-
-            {/* In-Hero Byline & Share Row (Centered Symmetrical) */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-6 pt-5 border-t border-white/20 w-full max-w-2xl mx-auto">
-              <div className="flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm text-white/85">
-                <div className="w-6 h-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white font-serif font-bold text-[10px]">
-                  B
-                </div>
-                <span className="text-white font-semibold">{authorName}</span>
-                <span className="text-white/30 select-none">·</span>
-                <time dateTime={article.publishedAt}>{publishedDate}</time>
-                <span className="text-white/30 select-none">·</span>
-                <span className="inline-flex items-center gap-1 text-white/90">
-                  <Clock className="w-3.5 h-3.5 text-white/60" />
-                  <span>{readTime} menit baca</span>
-                </span>
-              </div>
-
-              <span className="hidden sm:inline text-white/25 select-none" aria-hidden="true">
-                |
-              </span>
-
-              <ArticleShareActions
-                title={title}
-                canonicalUrl={canonicalUrl}
-                variant="light"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 2. Article Reading Body (Optimal measure for reading comfort) */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-12 sm:pb-16">
-        {/* Table of Contents (Clean, Architectural Precision) */}
+      {/* 5. Golden Measure Reading Column (Max 680px for ultimate reading comfort) */}
+      <div className="max-w-[680px] mx-auto px-4 sm:px-6 pt-8 sm:pt-10 pb-16">
+        {/* Table of Contents (Clean, Medium "In this story" Box) */}
         {headings.length > 1 && (
           <nav
             aria-label="Daftar Isi Artikel"
@@ -270,7 +306,7 @@ export default function Article() {
             <div className="flex items-center gap-2 mb-3.5">
               <BookOpen className="w-4 h-4 text-primary" strokeWidth={2} />
               <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-text block">
-                Daftar Isi Artikel
+                Topik Utama dalam Artikel Ini
               </span>
             </div>
             <ol className="space-y-2.5 text-xs sm:text-sm text-text-secondary">
@@ -291,27 +327,51 @@ export default function Article() {
           </nav>
         )}
 
-        {/* Article Typography & Rendered HTML */}
+        {/* Medium-Grade Editorial Body Typography */}
         <div
           onClick={handleContentClick}
           dangerouslySetInnerHTML={{__html: enhancedHtml}}
           className="prose prose-lg max-w-none
             [&_h2]:font-serif [&_h2]:text-2xl sm:[&_h2]:text-3xl [&_h2]:text-text [&_h2]:font-normal [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:tracking-tight [&_h2]:scroll-mt-24
             [&_h3]:font-serif [&_h3]:text-xl sm:[&_h3]:text-2xl [&_h3]:text-text [&_h3]:font-normal [&_h3]:mt-10 [&_h3]:mb-3 [&_h3]:scroll-mt-24
-            [&_p]:leading-[1.8] [&_p]:mb-6 [&_p]:text-text/90 [&_p]:text-base sm:[&_p]:text-[17px]
+            [&_p]:leading-[1.85] [&_p]:mb-6 [&_p]:text-[#242424] [&_p]:text-[17px] sm:[&_p]:text-[18.5px] [&_p]:font-normal
             [&_a]:text-primary [&_a]:underline hover:[&_a]:text-primary-hover [&_a]:font-medium transition-colors
-            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:space-y-2 [&_ul]:text-text/90
-            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:space-y-2 [&_ol]:text-text/90
+            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:space-y-2.5 [&_ul]:text-[#242424] [&_ul]:text-[17px] sm:[&_ul]:text-[18px]
+            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:space-y-2.5 [&_ol]:text-[#242424] [&_ol]:text-[17px] sm:[&_ol]:text-[18px]
             [&_li]:leading-relaxed
             [&_hr]:hidden
             [&_img]:w-full [&_img]:h-auto [&_img]:rounded-2xl [&_img]:my-8 [&_img]:border [&_img]:border-black/[0.06] [&_img]:shadow-xs
-            [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:pl-5 [&_blockquote]:py-1 [&_blockquote]:italic [&_blockquote]:text-text-secondary [&_blockquote]:my-8 [&_blockquote]:text-base sm:[&_blockquote]:text-lg [&_blockquote]:bg-[#FAF8FC] [&_blockquote]:rounded-r-xl
+            [&_blockquote]:border-l-[3px] [&_blockquote]:border-primary [&_blockquote]:pl-5 sm:[&_blockquote]:pl-6 [&_blockquote]:py-3 [&_blockquote]:italic [&_blockquote]:text-[#333333] [&_blockquote]:my-8 [&_blockquote]:font-serif [&_blockquote]:text-lg sm:[&_blockquote]:text-xl [&_blockquote]:bg-[#FFF9FA] [&_blockquote]:rounded-r-xl
             [&_table]:w-full [&_table]:my-6 [&_table]:border-collapse [&_table]:overflow-x-auto [&_table]:block [&_th]:border-b [&_th]:border-black/10 [&_th]:p-3 [&_th]:text-left [&_th]:font-semibold [&_td]:border-b [&_td]:border-black/5 [&_td]:p-3 [&_td]:text-sm
           "
         />
 
-        {/* 3. Bottom Article Navigation */}
-        <div className="mt-14 pt-6 border-t border-black/[0.06] flex items-center justify-between">
+        {/* Author Bio Box at Article End (Refined & Mobile-Precise) */}
+        <div className="mt-12 sm:mt-14 mb-8 p-4.5 sm:p-6 rounded-2xl bg-[#FAF9FB] border border-black/[0.06] flex items-start gap-3.5 sm:gap-4.5">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border border-black/[0.08] flex-shrink-0 shadow-2xs bg-white">
+            <img
+              src={authorAvatar}
+              alt={authorName}
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center justify-between gap-2 mb-1">
+              <p className="text-sm sm:text-base font-semibold text-text leading-tight truncate">
+                Ditulis oleh {authorName}
+              </p>
+              <span className="text-[10px] sm:text-[11px] font-mono text-primary font-medium flex-shrink-0">
+                Edukator Kulit
+              </span>
+            </div>
+            <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed font-normal">
+              Tim riset dan edukasi Beautyinu berfokus menyajikan panduan perawatan kulit tubuh, transparansi bahan aktif, dan tips merawat skin barrier sehat bagi wanita Indonesia.
+            </p>
+          </div>
+        </div>
+
+        {/* End of Story Navigation & Share Bar */}
+        <div className="pt-6 border-t border-black/[0.08] flex items-center justify-between">
           <Link
             to={`/blogs/${blogHandle}`}
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-primary hover:text-primary-hover transition-colors cursor-pointer"
@@ -323,32 +383,35 @@ export default function Article() {
           <ArticleShareActions
             title={title}
             canonicalUrl={canonicalUrl}
-            variant="dark"
+            claps={claps}
+            onClap={handleClap}
+            hasClapped={hasClapped}
           />
         </div>
       </div>
 
-      {/* 4. Products from the Article (Exactly 4 Products matching PDP Related Products Grid) */}
+      {/* 6. Signature Medium Floating Action Bar (Sticky at Bottom) */}
+      <MediumFloatingBar
+        title={title}
+        canonicalUrl={canonicalUrl}
+        claps={claps}
+        onClap={handleClap}
+        hasClapped={hasClapped}
+      />
+
+      {/* 7. Products from the Article (Lengkapi Routine Glowing Kamu) */}
       {recommendedProducts.length > 0 && (
         <section
           className="border-t border-black/[0.06] pt-14 sm:pt-20 pb-10 sm:pb-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
           aria-labelledby="section-recommended-products"
         >
           <div className="mb-8 text-center md:text-left">
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-accent font-semibold block mb-1">
-              Padanan Sempurna
-            </span>
-            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-              <h2
-                id="section-recommended-products"
-                className="font-serif text-2xl sm:text-3xl text-text font-normal tracking-tight"
-              >
-                Lengkapi Routine Glowing Kamu
-              </h2>
-              <span className="text-xs text-text-secondary">
-                Formula resmi berizin BPOM RI untuk hasil optimal
-              </span>
-            </div>
+            <h2
+              id="section-recommended-products"
+              className="font-serif text-2xl sm:text-3xl text-text font-normal tracking-tight"
+            >
+              Rekomendasi Produk Terkait
+            </h2>
           </div>
 
           <div className="grid grid-cols-2 gap-3.5 sm:gap-4 md:grid-cols-4 md:gap-6 min-w-0">
@@ -359,7 +422,7 @@ export default function Article() {
         </section>
       )}
 
-      {/* 5. Related Articles Grid (Exactly 3 Articles matching Homepage The Journal Grid) */}
+      {/* 8. Related Articles Grid (Medium-Style 3 Cards) */}
       {relatedArticles.length > 0 && (
         <section
           className="border-t border-black/[0.06] pt-14 sm:pt-20 pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -367,14 +430,11 @@ export default function Article() {
         >
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
             <div>
-              <p className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.25em] text-black/50 mb-1.5">
-                The Journal
-              </p>
               <h2
                 id="section-related-articles"
                 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-text font-normal tracking-tight"
               >
-                Artikel Terkait Lainnya
+                Artikel Terkait
               </h2>
             </div>
             <Link
@@ -424,21 +484,25 @@ function ReadingProgressBar() {
   return (
     <div
       aria-hidden="true"
-      className="fixed top-0 left-0 right-0 h-[2px] bg-primary z-50 transition-all duration-75"
+      className="fixed top-0 left-0 right-0 h-[2.5px] bg-primary z-50 transition-all duration-75 shadow-[0_1px_4px_rgba(249,127,158,0.5)]"
       style={{width: `${progress}%`}}
     />
   );
 }
 
-// ── Subcomponent: Share Actions with Native Share & Copy Feedback ──
+// ── Subcomponent: Share Actions with Native Share, Claps & Copy Feedback ──
 function ArticleShareActions({
   title,
   canonicalUrl,
-  variant = 'dark',
+  claps,
+  onClap,
+  hasClapped,
 }: {
   title: string;
   canonicalUrl: string;
-  variant?: 'light' | 'dark';
+  claps: number;
+  onClap: () => void;
+  hasClapped: boolean;
 }) {
   const [copied, setCopied] = useState(false);
   const [canShare, setCanShare] = useState(false);
@@ -454,100 +518,211 @@ function ArticleShareActions({
       await navigator.clipboard.writeText(canonicalUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // Fallback ignore
-    }
+    } catch {}
   };
 
   const handleNativeShare = async () => {
-    if (typeof navigator !== 'undefined' && navigator.share) {
-      try {
-        await navigator.share({
-          title,
-          url: canonicalUrl,
-        });
-      } catch {
-        // Ignored if cancelled
-      }
-    }
+    if (!canShare) return;
+    try {
+      await navigator.share({
+        title,
+        text: `${title} — Beautyinu Skincare Journal`,
+        url: canonicalUrl,
+      });
+    } catch {}
   };
 
   const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
-    `${title} — Baca selengkapnya di Beautyinu: ${canonicalUrl}`,
+    `${title}\n\nBaca selengkapnya di Beautyinu:\n${canonicalUrl}`,
   )}`;
 
-  const isLight = variant === 'light';
-
   return (
-    <div className="flex items-center gap-2.5 sm:gap-3 text-xs">
-      {/* Native Web Share API button for Mobile */}
+    <div className="flex items-center gap-2.5 text-xs text-text-secondary font-medium">
+      {/* Interactive Clap Button */}
+      <button
+        type="button"
+        onClick={onClap}
+        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all duration-200 cursor-pointer active:scale-95 ${
+          hasClapped
+            ? 'bg-primary/10 border-primary/30 text-primary'
+            : 'bg-[#FAF8FC] hover:bg-surface border-black/[0.08] text-text hover:border-primary/30'
+        }`}
+        title="Apresiasi artikel ini (Clap)"
+      >
+        <Heart
+          className={`w-3.5 h-3.5 transition-transform ${
+            hasClapped ? 'fill-primary text-primary scale-110' : 'text-text-secondary'
+          }`}
+        />
+        <span className="font-mono text-xs">{claps}</span>
+      </button>
+
+      {/* Web Share (Native) */}
       {canShare && (
-        <>
-          <button
-            type="button"
-            onClick={handleNativeShare}
-            className={`inline-flex items-center gap-1.5 transition-all duration-200 active:scale-95 cursor-pointer ${
-              isLight
-                ? 'text-white/80 hover:text-white'
-                : 'text-text-secondary hover:text-primary'
-            }`}
-            title="Bagikan artikel"
-          >
-            <Share2 className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Bagikan</span>
-          </button>
-          <span className={isLight ? 'text-white/30' : 'text-black/20 select-none'}>
-            ·
-          </span>
-        </>
+        <button
+          type="button"
+          onClick={handleNativeShare}
+          className="p-1.5 rounded-full hover:bg-black/[0.04] text-text-secondary hover:text-text transition-colors cursor-pointer"
+          title="Bagikan artikel"
+        >
+          <Share2 className="w-4 h-4" />
+        </button>
       )}
 
       {/* Copy Link */}
       <button
         type="button"
         onClick={handleCopy}
-        className={`inline-flex items-center gap-1.5 transition-all duration-200 active:scale-95 cursor-pointer ${
-          isLight
-            ? 'text-white/80 hover:text-white'
-            : 'text-text-secondary hover:text-primary'
-        }`}
+        className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full hover:bg-black/[0.04] text-text-secondary hover:text-text transition-colors cursor-pointer"
         title="Salin tautan artikel"
       >
         {copied ? (
           <>
             <Check className="w-3.5 h-3.5 text-primary" />
-            <span className={`font-bold ${isLight ? 'text-white' : 'text-primary'}`}>
-              Tersalin
-            </span>
+            <span className="text-primary font-semibold text-xs">Tersalin</span>
           </>
         ) : (
           <>
             <Copy className="w-3.5 h-3.5" />
-            <span>Salin Link</span>
+            <span className="text-xs">Salin</span>
           </>
         )}
       </button>
 
-      <span className={isLight ? 'text-white/30' : 'text-black/20 select-none'}>
-        ·
-      </span>
-
-      {/* WhatsApp Link */}
+      {/* WhatsApp Share */}
       <a
         href={waUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className={`inline-flex items-center gap-1.5 transition-colors cursor-pointer ${
-          isLight
-            ? 'text-white/80 hover:text-[#25D366]'
-            : 'text-text-secondary hover:text-[#25D366]'
-        }`}
+        className="p-1.5 rounded-full hover:bg-[#25D366]/10 text-text-secondary hover:text-[#25D366] transition-colors cursor-pointer"
         title="Bagikan ke WhatsApp"
       >
-        <MessageCircle className="w-3.5 h-3.5" />
-        <span>WhatsApp</span>
+        <MessageCircle className="w-4 h-4" />
       </a>
     </div>
+  );
+}
+
+// ── Subcomponent: Medium Signature Floating Bottom Action Bar ──
+function MediumFloatingBar({
+  title,
+  canonicalUrl,
+  claps,
+  onClap,
+  hasClapped,
+}: {
+  title: string;
+  canonicalUrl: string;
+  claps: number;
+  onClap: () => void;
+  hasClapped: boolean;
+}) {
+  const [copied, setCopied] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show floating bar once scrolled past header (~350px)
+      if (window.scrollY > 350) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, {passive: true});
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(canonicalUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {}
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  };
+
+  const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
+    `${title}\n\n${canonicalUrl}`,
+  )}`;
+
+  if (!visible) return null;
+
+  return (
+    <aside
+      aria-label="Aksi Artikel"
+      className="fixed bottom-5 inset-x-0 z-40 flex justify-center pointer-events-none px-4"
+    >
+      <div className="pointer-events-auto bg-white/95 backdrop-blur-xl border border-black/[0.08] shadow-[0_12px_35px_rgba(0,0,0,0.12)] rounded-full px-4 sm:px-5 py-2 flex items-center gap-3 sm:gap-4 text-xs text-text animate-in fade-in slide-in-from-bottom-3 duration-300">
+        {/* Interactive Claps */}
+        <button
+          type="button"
+          onClick={onClap}
+          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full transition-all cursor-pointer active:scale-90 ${
+            hasClapped
+              ? 'bg-primary/10 text-primary font-bold'
+              : 'text-text-secondary hover:text-text'
+          }`}
+          title="Beri tepukan apresiasi"
+        >
+          <Heart
+            className={`w-4 h-4 transition-transform ${
+              hasClapped ? 'fill-primary text-primary scale-110' : ''
+            }`}
+          />
+          <span className="font-mono text-xs">{claps}</span>
+        </button>
+
+        <span className="text-black/15 select-none" aria-hidden="true">|</span>
+
+        {/* Copy Link */}
+        <button
+          type="button"
+          onClick={handleCopy}
+          className="inline-flex items-center gap-1.5 text-text-secondary hover:text-text transition-colors cursor-pointer px-1 py-1"
+          title="Salin link artikel"
+        >
+          {copied ? (
+            <>
+              <Check className="w-3.5 h-3.5 text-primary" />
+              <span className="text-primary font-semibold text-xs">Tersalin</span>
+            </>
+          ) : (
+            <>
+              <Copy className="w-3.5 h-3.5" />
+              <span className="hidden xs:inline text-xs">Salin</span>
+            </>
+          )}
+        </button>
+
+        {/* WhatsApp Share */}
+        <a
+          href={waUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-text-secondary hover:text-[#25D366] transition-colors cursor-pointer px-1 py-1"
+          title="Bagikan ke WhatsApp"
+        >
+          <MessageCircle className="w-4 h-4" />
+          <span className="hidden xs:inline text-xs">WhatsApp</span>
+        </a>
+
+        <span className="text-black/15 select-none" aria-hidden="true">|</span>
+
+        {/* Scroll to Top */}
+        <button
+          type="button"
+          onClick={scrollToTop}
+          className="p-1 rounded-full text-text-secondary hover:text-text hover:bg-black/[0.04] transition-colors cursor-pointer"
+          title="Kembali ke atas"
+        >
+          <ChevronUp className="w-4 h-4" />
+        </button>
+      </div>
+    </aside>
   );
 }
 

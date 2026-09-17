@@ -20,14 +20,15 @@ import collectionBodyCareMobile from '~/assets/collection-bodycare-mobile.webp';
 import collectionBestSellersDesktop from '~/assets/collection-bestsellers-desktop.webp';
 import collectionBestSellersTablet from '~/assets/collection-bestsellers-tablet.webp';
 import collectionBestSellersMobile from '~/assets/collection-bestsellers-mobile.webp';
+import {OfficialAssurance} from '~/components/OfficialAssurance';
 import {
   ShieldCheck,
+  CheckCircle2,
+  Star,
   Sparkles,
   Truck,
-  Clock,
   ArrowUpDown,
   ArrowRight,
-  Check,
   ChevronDown,
 } from 'lucide-react';
 
@@ -59,50 +60,80 @@ const COLLECTION_301_REDIRECTS: Record<string, string> = {
   'semua-produk': 'all',
 };
 
-const DEFAULT_EDITORIAL = {
+interface EditorialMetric {
+  label: string;
+  icon?: 'star' | 'check' | 'shield' | 'pulse' | 'fire' | 'sparkle' | 'truck';
+  highlight?: boolean;
+}
+
+interface CollectionEditorial {
+  subtitle: string;
+  kicker: string;
+  description: string;
+  metrics: EditorialMetric[];
+}
+
+const DEFAULT_EDITORIAL: CollectionEditorial = {
   subtitle: 'Official Beautyinu Collection',
   kicker: 'Beautyinu · Official Collection',
   description:
     'Rangkaian perawatan tubuh dermatologis dengan bahan aktif presisi berizin resmi BPOM RI untuk kulit cerah, lembap, dan glowing harian.',
-  highlights: ['100% Resmi BPOM', 'Active UV Filters', 'Formula Klinis', 'Pengiriman Cepat'],
+  metrics: [
+    {icon: 'shield', label: '100% Terdaftar BPOM RI'},
+    {icon: 'sparkle', label: 'Active UV Filters'},
+    {icon: 'check', label: 'Formula Konsentrasi Tinggi'},
+    {icon: 'truck', label: 'Garansi Originalitas'},
+  ],
 };
 
-const COLLECTION_EDITORIAL_CONFIG: Record<
-  string,
-  {
-    subtitle: string;
-    kicker: string;
-    description: string;
-    highlights: string[];
-  }
-> = {
+const COLLECTION_EDITORIAL_CONFIG: Record<string, CollectionEditorial> = {
   'body-care': {
     subtitle: 'Daily Brightening & UV Protection Routine',
     kicker: 'Beautyinu · Clinical Body Care',
     description:
       'Rangkaian perawatan tubuh dermatologis dengan formulasi aktif presisi (Niacinamide, Alpha Arbutin, Kefir Collagen, dan UV Filters harian) berizin resmi BPOM RI untuk kulit cerah merata dan skin barrier terlindungi.',
-    highlights: ['100% Resmi BPOM', 'Active UV Filters', 'Non-Sticky Formula', 'Busui & Bumil Safe'],
+    metrics: [
+      {icon: 'shield', label: '100% Terdaftar BPOM RI'},
+      {icon: 'sparkle', label: 'Active UV Filters'},
+      {icon: 'check', label: 'Formula Non-Sticky'},
+      {icon: 'check', label: 'Busui & Bumil Friendly'},
+    ],
   },
   'bundles': {
-    subtitle: 'Exclusive Value Sets · Hemat Hingga 35%',
+    subtitle: 'Exclusive Value Sets · Hemat Hingga 47%',
     kicker: 'Beautyinu · Synergistic Sets',
     description:
       'Kombinasi formulasi terbaik yang dirancang untuk bekerja sinergis mempercepat regenerasi sel kulit mati, mengunci kelembapan, dan mencerahkan kulit tubuh secara maksimal.',
-    highlights: ['Lebih Hemat', 'Hasil 3x Lebih Cepat', 'Paket Lengkap Rutin', 'Gratis Bubble Wrap'],
+    metrics: [
+      {icon: 'sparkle', label: 'Hemat s.d 47%', highlight: true},
+      {icon: 'check', label: 'Hasil 3x Lebih Cepat'},
+      {icon: 'check', label: 'Paket Komplit Rutin'},
+      {icon: 'truck', label: 'Garansi Ganti Baru'},
+    ],
   },
   'best-sellers': {
     subtitle: 'Top Rated by 10.000+ Verified Buyers',
     kicker: 'Beautyinu · Most Loved Products',
     description:
-      'Produk terfavorit pilihan ribuan wanita Indonesia dengan kepuasan bintang 4.9/5.0. Terbukti efektif memberikan hasil nyata sejak minggu pertama pemakaian rutin.',
-    highlights: ['Rating 4.9 / 5.0', '10.000+ Terjual', 'Ulasan Terverifikasi', 'Stok Terbatas'],
+      'Produk perawatan tubuh terfavorit yang paling banyak diminati dan dipercaya ribuan konsumen di seluruh Indonesia. Dari serbuk booster pencerah 3x lebih cepat hingga body lotion jumbo 750ml untuk perlindungan harian keluarga.',
+    metrics: [
+      {icon: 'star', label: 'Rating 4.9 / 5.0'},
+      {icon: 'pulse', label: '10.000+ Terjual'},
+      {icon: 'check', label: 'Ulasan Terverifikasi'},
+      {icon: 'fire', label: 'Stok Terbatas', highlight: true},
+    ],
   },
   'frontpage': {
-    subtitle: 'Official Complete Catalog',
+    subtitle: 'Katalog Lengkap Seluruh Rangkaian',
     kicker: 'Beautyinu · Official Store',
     description:
-      'Katalog lengkap seluruh rangkaian produk perawatan tubuh resmi Beautyinu berizin BPOM: body lotion UV filter, serbuk booster pencerah, krim tubuh, toner, dan sabun kefir collagen.',
-    highlights: ['Semua Produk Resmi', 'Langsung dari Pabrik', 'Garansi Original', 'Pengiriman Cepat'],
+      'Katalog resmi seluruh varian produk perawatan tubuh Beautyinu yang telah terdaftar resmi BPOM RI: body lotion UV filter, serbuk booster pencerah, krim tubuh, toner, dan sabun kefir collagen.',
+    metrics: [
+      {icon: 'shield', label: '100% Terdaftar BPOM RI'},
+      {icon: 'sparkle', label: 'Active UV Filters'},
+      {icon: 'check', label: 'Formula Konsentrasi Tinggi'},
+      {icon: 'truck', label: 'Garansi Keaslian Resmi'},
+    ],
   },
 };
 
@@ -249,25 +280,65 @@ export default function Collection() {
   return (
     <div className="w-full bg-white">
       {/* 1. Full-Width Editorial Hero with Integrated Frosted Glass Breadcrumb */}
-      <div className="relative w-full overflow-hidden bg-[#FBF9FC] border-b border-black/[0.04] min-h-[380px] sm:min-h-[420px] lg:h-[460px] flex flex-col justify-between">
+      <div className="relative w-full overflow-hidden bg-white border-b border-black/[0.04] min-h-[460px] sm:min-h-[420px] lg:h-[460px] flex flex-col justify-between">
         {/* Full-width Model Background Image with Desktop, Tablet, and Mobile art direction */}
         <div className="absolute inset-0 z-0 pointer-events-none">
-          <picture>
-            <source media="(max-width: 639px)" srcSet={heroAssets.mobile} />
-            <source media="(max-width: 1023px)" srcSet={heroAssets.tablet} />
+          <picture className="w-full h-full block">
+            <source media="(min-width: 1024px)" srcSet={heroAssets.desktop} />
+            <source media="(min-width: 640px)" srcSet={heroAssets.tablet} />
             <img
-              src={heroAssets.desktop}
+              src={heroAssets.mobile}
               alt={`${collection.title} — Beautyinu Glowing Skin Routine`}
-              className="w-full h-full object-cover object-right lg:object-[center_right] opacity-90 sm:opacity-95 lg:opacity-100"
+              className="w-full h-full object-cover object-[right_top] sm:object-[center_right] lg:object-right"
+              loading="eager"
             />
           </picture>
 
-          {/* Smooth Directional Scrim: text is 100% legible on left, model & products 100% vivid on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FBF9FC] via-[#FBF9FC]/90 via-50% to-transparent sm:via-[#FBF9FC]/70 sm:via-48% lg:via-[#FBF9FC]/40 lg:via-52%" />
-          {/* Mobile soft bottom gradient to guarantee clean tag & description readability */}
-          <div className="sm:hidden absolute inset-0 bg-gradient-to-t from-[#FBF9FC] via-[#FBF9FC]/60 via-40% to-transparent" />
-          {/* Subtle bottom edge blend */}
-          <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#FBF9FC] to-transparent" />
+          {/* Scrim Overlays — Precision Non-Linear Feathering (Zero Opacity Reduction on Model) */}
+          {/* Top Header Scrim (for navbar/breadcrumb blend) */}
+          <div
+            className="absolute top-0 inset-x-0 h-16 sm:h-24 pointer-events-none z-1"
+            style={{
+              background:
+                'linear-gradient(to bottom, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.40) 50%, rgba(255,255,255,0) 100%)',
+            }}
+          />
+
+          {/* Desktop Left Scrim: Eased horizontal fade behind text, completely transparent before reaching the model */}
+          <div
+            className="hidden sm:block absolute inset-y-0 left-0 w-[58%] lg:w-[50%] pointer-events-none z-1"
+            style={{
+              background:
+                'linear-gradient(to right, #FFFFFF 0%, rgba(255,255,255,0.98) 22%, rgba(255,255,255,0.88) 45%, rgba(255,255,255,0.55) 68%, rgba(255,255,255,0.18) 85%, rgba(255,255,255,0.03) 95%, rgba(255,255,255,0) 100%)',
+            }}
+          />
+
+          {/* Desktop Bottom Scrim: Smooth vertical fade into the product section */}
+          <div
+            className="hidden sm:block absolute bottom-0 inset-x-0 h-20 sm:h-28 pointer-events-none z-1"
+            style={{
+              background:
+                'linear-gradient(to top, #FFFFFF 0%, rgba(255,255,255,0.96) 20%, rgba(255,255,255,0.60) 50%, rgba(255,255,255,0.15) 80%, rgba(255,255,255,0) 100%)',
+            }}
+          />
+
+          {/* Mobile Left Scrim: Eased horizontal fade behind left-aligned text */}
+          <div
+            className="sm:hidden absolute inset-y-0 left-0 w-[78%] pointer-events-none z-1"
+            style={{
+              background:
+                'linear-gradient(to right, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 40%, rgba(255,255,255,0.65) 70%, rgba(255,255,255,0.20) 88%, rgba(255,255,255,0) 100%)',
+            }}
+          />
+
+          {/* Mobile Bottom Scrim: Smooth bottom edge blend */}
+          <div
+            className="sm:hidden absolute bottom-0 inset-x-0 h-24 pointer-events-none z-1"
+            style={{
+              background:
+                'linear-gradient(to top, #FFFFFF 0%, rgba(255,255,255,0.85) 45%, rgba(255,255,255,0) 100%)',
+            }}
+          />
         </div>
 
         {/* Integrated Top Breadcrumb Bar */}
@@ -279,42 +350,70 @@ export default function Collection() {
           ]}
         />
 
-        {/* Hero Content (Vertically centered on Left, with right breathing room for model on mobile) */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-12 my-auto">
-          <div className="max-w-[76%] xs:max-w-[70%] sm:max-w-xl lg:max-w-2xl flex flex-col justify-center">
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-md bg-white/95 backdrop-blur-md text-accent text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider mb-2 sm:mb-2.5 border border-accent/20 shadow-2xs self-start">
-              <ShieldCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-accent flex-shrink-0" />
-              <span>{editorial.kicker}</span>
+        {/* Hero Content (Foreground Editorial Area) */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-6 sm:py-12 sm:my-auto">
+          <div className="max-w-[70%] xs:max-w-[66%] sm:max-w-xl lg:max-w-2xl flex flex-col justify-center">
+            {/* Clean Micro-Kicker (Zero Boxy Card Chrome) */}
+            <div className="flex items-center gap-2 mb-2 sm:mb-2.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <p className="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-[0.22em] text-accent">
+                {editorial.kicker}
+              </p>
             </div>
 
-            <h1 className="font-serif text-2.5xl sm:text-5xl lg:text-6xl text-text font-normal tracking-tight mb-1.5 sm:mb-2">
+            {/* Editorial Headline */}
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-[54px] text-text font-normal tracking-tight leading-[1.08] mb-2 sm:mb-2.5">
               {collection.title}
             </h1>
 
-            <p className="text-[11px] sm:text-sm font-mono font-medium text-primary uppercase tracking-wide mb-2 sm:mb-2.5">
+            {/* Subtitle */}
+            <p className="text-xs sm:text-sm font-sans font-medium text-primary tracking-normal mb-2.5 sm:mb-3">
               {editorial.subtitle}
             </p>
 
-            <div className="text-xs sm:text-base text-text-secondary leading-relaxed font-normal mb-3 sm:mb-4 max-w-lg line-clamp-3 sm:line-clamp-none">
-              {collection.descriptionHtml ? (
-                <div dangerouslySetInnerHTML={{__html: collection.descriptionHtml}} />
-              ) : (
-                <p>{editorial.description}</p>
-              )}
-            </div>
+            {/* Editorial Description */}
+            <p className="text-xs sm:text-[13.5px] text-text-secondary leading-relaxed font-normal mb-4 sm:mb-5 max-w-lg">
+              {editorial.description}
+            </p>
 
-            {/* Editorial Highlight Tags */}
-            <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-              {editorial.highlights.map((highlight, idx) => (
-                <span
-                  key={highlight}
-                  className={`items-center gap-1.5 text-[10px] sm:text-[11px] font-medium text-text bg-white/95 backdrop-blur-md px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md border border-black/[0.08] shadow-2xs ${
-                    idx >= 2 ? 'hidden sm:inline-flex' : 'inline-flex'
-                  }`}
-                >
-                  <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-600 flex-shrink-0" strokeWidth={2.5} />
-                  {highlight}
-                </span>
+            {/* Editorial Specs / Social Proof Strip — Flat & Architectural */}
+            <div className="flex items-center flex-wrap gap-y-2 gap-x-3 sm:gap-x-4 pt-3.5 border-t border-black/[0.08] text-xs">
+              {editorial.metrics.map((item, idx) => (
+                <div key={item.label} className="inline-flex items-center gap-1.5">
+                  {idx > 0 && (
+                    <span className="text-black/20 select-none mr-2 sm:mr-2.5 font-light">
+                      /
+                    </span>
+                  )}
+                  {item.icon === 'star' && (
+                    <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400 flex-shrink-0" />
+                  )}
+                  {item.icon === 'check' && (
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+                  )}
+                  {item.icon === 'shield' && (
+                    <ShieldCheck className="w-3.5 h-3.5 text-text flex-shrink-0" />
+                  )}
+                  {item.icon === 'sparkle' && (
+                    <Sparkles className="w-3.5 h-3.5 text-accent flex-shrink-0" />
+                  )}
+                  {item.icon === 'truck' && (
+                    <Truck className="w-3.5 h-3.5 text-text flex-shrink-0" />
+                  )}
+                  {item.icon === 'pulse' && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
+                  )}
+                  {item.icon === 'fire' && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse flex-shrink-0" />
+                  )}
+                  <span
+                    className={`text-xs sm:text-[13px] tracking-tight ${
+                      item.highlight ? 'font-semibold text-rose-600' : 'font-medium text-text'
+                    }`}
+                  >
+                    {item.label}
+                  </span>
+                </div>
               ))}
             </div>
           </div>
@@ -389,60 +488,8 @@ export default function Collection() {
           </div>
         )}
 
-        {/* 4. Trust Assurance Pillars */}
-        <div className="mt-16 sm:mt-24 pt-10 border-t border-black/[0.06]">
-          <div className="text-center mb-8 sm:mb-10">
-            <p className="text-[10px] sm:text-[11px] font-mono font-medium uppercase tracking-[0.25em] text-black/50 mb-1.5">
-              Official Assurance
-            </p>
-            <h3 className="font-serif text-xl sm:text-2xl text-text font-normal">
-              Jaminan Belanja Resmi Beautyinu
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            <div className="bg-[#FAF9FB] rounded-2xl p-5 border border-black/[0.04] flex flex-col items-start">
-              <div className="w-9 h-9 rounded-xl bg-white border border-black/[0.06] flex items-center justify-center text-primary mb-3 shadow-2xs">
-                <ShieldCheck className="w-5 h-5 text-primary" />
-              </div>
-              <h4 className="text-xs sm:text-sm font-bold text-text mb-1">100% Terdaftar BPOM RI</h4>
-              <p className="text-xs text-text-secondary leading-relaxed">
-                Seluruh formula bebas merkuri &amp; hidrokuinon, teruji klinis dan aman untuk pemakaian harian.
-              </p>
-            </div>
-
-            <div className="bg-[#FAF9FB] rounded-2xl p-5 border border-black/[0.04] flex flex-col items-start">
-              <div className="w-9 h-9 rounded-xl bg-white border border-black/[0.06] flex items-center justify-center text-accent mb-3 shadow-2xs">
-                <Sparkles className="w-5 h-5 text-accent" />
-              </div>
-              <h4 className="text-xs sm:text-sm font-bold text-text mb-1">Formula Konsentrasi Tinggi</h4>
-              <p className="text-xs text-text-secondary leading-relaxed">
-                Niacinamide, Alpha Arbutin &amp; Collagen dipadukan dengan UV Filter untuk hasil cerah optimal.
-              </p>
-            </div>
-
-            <div className="bg-[#FAF9FB] rounded-2xl p-5 border border-black/[0.04] flex flex-col items-start">
-              <div className="w-9 h-9 rounded-xl bg-white border border-black/[0.06] flex items-center justify-center text-[#25D366] mb-3 shadow-2xs">
-                <Truck className="w-5 h-5 text-[#25D366]" />
-              </div>
-              <h4 className="text-xs sm:text-sm font-bold text-text mb-1">Pengiriman Cepat &amp; Aman</h4>
-              <p className="text-xs text-text-secondary leading-relaxed">
-                Gratis bubble wrap ekstra tebal. Garansi ganti baru 100% jika botol pecah atau bocor saat ekspedisi.
-              </p>
-            </div>
-
-            <div className="bg-[#FAF9FB] rounded-2xl p-5 border border-black/[0.04] flex flex-col items-start">
-              <div className="w-9 h-9 rounded-xl bg-white border border-black/[0.06] flex items-center justify-center text-text mb-3 shadow-2xs">
-                <Clock className="w-5 h-5 text-text" />
-              </div>
-              <h4 className="text-xs sm:text-sm font-bold text-text mb-1">Konsultasi Kulit Gratis</h4>
-              <p className="text-xs text-text-secondary leading-relaxed">
-                Bingung menentukan produk? Konsultasikan kondisi kulitmu langsung dengan Beauty Advisor resmi kami.
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
+      <OfficialAssurance />
 
       <Analytics.CollectionView
         data={{

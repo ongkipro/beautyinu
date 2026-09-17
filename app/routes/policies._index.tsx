@@ -6,7 +6,7 @@ import {Breadcrumb} from '~/components/Breadcrumb';
 import {ChevronRight, ShieldCheck, FileText, Truck, HelpCircle} from 'lucide-react';
 
 export const meta: Route.MetaFunction = ({data}) => {
-  const canonicalUrl = data?.canonicalUrl || 'https://beautyinu.id/policies';
+  const canonicalUrl = data?.canonicalUrl || 'https://beautyinu.co/policies';
   return getSeoMeta({
     title: 'Kebijakan & Ketentuan Layanan — Beautyinu Official Store',
     description:
@@ -15,7 +15,7 @@ export const meta: Route.MetaFunction = ({data}) => {
     type: 'website',
     jsonLd: [
       buildBreadcrumbJsonLd([
-        {name: 'Home', url: 'https://beautyinu.id'},
+        {name: 'Home', url: 'https://beautyinu.co'},
         {name: 'Kebijakan Toko', url: canonicalUrl},
       ]),
     ],

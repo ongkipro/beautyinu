@@ -19,10 +19,10 @@ export const meta: Route.MetaFunction = ({data}) => {
     policy.body?.replace(/<[^>]+>/g, '').trim().slice(0, 160) ||
     `Kebijakan ${policy.title} resmi Beautyinu Official Store.`;
 
-  const pageUrl = canonicalUrl || 'https://beautyinu.id/policies';
+  const pageUrl = canonicalUrl || 'https://beautyinu.co/policies';
   const breadcrumbSchema = buildBreadcrumbJsonLd([
-    {name: 'Home', url: 'https://beautyinu.id'},
-    {name: 'Policies', url: 'https://beautyinu.id/policies'},
+    {name: 'Home', url: 'https://beautyinu.co'},
+    {name: 'Policies', url: 'https://beautyinu.co/policies'},
     {name: policy.title, url: pageUrl},
   ]);
 

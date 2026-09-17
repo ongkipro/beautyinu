@@ -24,7 +24,7 @@ import {
 } from 'lucide-react';
 
 export const meta: Route.MetaFunction = ({data}) => {
-  const canonicalUrl = data?.canonicalUrl || 'https://beautyinu.id/collections/all';
+  const canonicalUrl = data?.canonicalUrl || 'https://beautyinu.co/collections/all';
   const collectionData = {
     title: 'Semua Produk',
     description:
@@ -34,8 +34,8 @@ export const meta: Route.MetaFunction = ({data}) => {
 
   const collectionSchema = buildCollectionJsonLd(collectionData, canonicalUrl);
   const breadcrumbSchema = buildBreadcrumbJsonLd([
-    {name: 'Home', url: 'https://beautyinu.id'},
-    {name: 'Koleksi', url: 'https://beautyinu.id/collections'},
+    {name: 'Home', url: 'https://beautyinu.co'},
+    {name: 'Koleksi', url: 'https://beautyinu.co/collections'},
     {name: 'Semua Produk', url: canonicalUrl},
   ]);
 

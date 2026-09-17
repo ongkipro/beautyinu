@@ -49,11 +49,11 @@ export const meta: Route.MetaFunction = ({data}) => {
   ) || product.collections?.nodes?.[0];
   const collectionLabel = primaryCollection?.title || 'Semua Produk';
   const collectionUrl = primaryCollection
-    ? `https://beautyinu.id/collections/${primaryCollection.handle}`
-    : 'https://beautyinu.id/collections/all';
+    ? `https://beautyinu.co/collections/${primaryCollection.handle}`
+    : 'https://beautyinu.co/collections/all';
 
   const jsonLdBreadcrumb = buildBreadcrumbJsonLd([
-    {name: 'Home', url: 'https://beautyinu.id'},
+    {name: 'Home', url: 'https://beautyinu.co'},
     {name: collectionLabel, url: collectionUrl},
     {name: product.title, url: canonicalUrl},
   ]);

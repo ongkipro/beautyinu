@@ -8,7 +8,7 @@ import type {
 import {AddToCartButton} from './AddToCartButton';
 import {useAside} from './Aside';
 import type {ProductFragment} from 'storefrontapi.generated';
-import {Minus, Plus} from 'lucide-react';
+import {Minus, Plus, Truck} from 'lucide-react';
 
 export function ProductForm({
   productOptions,
@@ -144,16 +144,19 @@ export function ProductForm({
         </div>
       </div>
 
-      {/* Clean Shipping & Authenticity micro reassurance */}
-      <div className="mt-3 flex items-center justify-center gap-3 text-[11px] text-text-secondary/75">
-        <span className="flex items-center gap-1.5 font-medium text-text">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#25D366]" />
-          100% BPOM Resmi
+      {/* Clean Shipping & Authenticity micro reassurance (2 columns, frameless, borderless) */}
+      <div className="mt-3 flex items-center justify-center gap-3 sm:gap-4 text-[11px] text-text-secondary/80">
+        <span className="inline-flex items-center gap-1.5 font-medium text-text">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] flex-shrink-0" />
+          <span>100% BPOM Resmi</span>
         </span>
-        <span className="text-black/20">•</span>
-        <span>Bebas Ongkir min. Rp 150K</span>
-        <span className="text-black/20">•</span>
-        <span>Kirim dari Surabaya</span>
+
+        <span className="text-black/20 select-none" aria-hidden="true">•</span>
+
+        <span className="inline-flex items-center gap-1.5">
+          <Truck className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+          <span>Bebas Ongkir min. Rp 150K</span>
+        </span>
       </div>
     </div>
   );

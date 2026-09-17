@@ -25,7 +25,7 @@ const COLLECTION_SUMMARIES: Record<string, string> = {
 };
 
 export const meta: Route.MetaFunction = ({data}) => {
-  const canonicalUrl = data?.canonicalUrl || 'https://beautyinu.id/collections';
+  const canonicalUrl = data?.canonicalUrl || 'https://beautyinu.co/collections';
   return getSeoMeta({
     title: 'Koleksi Produk — Beautyinu Official Store',
     description:
@@ -34,7 +34,7 @@ export const meta: Route.MetaFunction = ({data}) => {
     type: 'website',
     jsonLd: [
       buildBreadcrumbJsonLd([
-        {name: 'Home', url: 'https://beautyinu.id'},
+        {name: 'Home', url: 'https://beautyinu.co'},
         {name: 'Koleksi', url: canonicalUrl},
       ]),
     ],

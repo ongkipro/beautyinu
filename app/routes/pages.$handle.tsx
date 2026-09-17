@@ -68,7 +68,7 @@ export const meta: Route.MetaFunction = ({data}) => {
     page.body?.replace(/<[^>]+>/g, '').trim().slice(0, 160) ||
     `${page.title} — Beautyinu Official Store Indonesia.`;
 
-  const siteUrl = 'https://beautyinu.id';
+  const siteUrl = 'https://beautyinu.co';
   const pageUrl = canonicalUrl || `${siteUrl}/pages/${page.handle}`;
   const jsonLdList: Array<Record<string, unknown>> = [
     buildBreadcrumbJsonLd([
@@ -288,10 +288,10 @@ function ContactView({page}: {page: any}) {
             </div>
             <div>
               <div className="text-xs font-mono text-text-secondary mb-3 font-medium">
-                support@beautyinu.id
+                support@beautyinu.co
               </div>
               <a
-                href="mailto:support@beautyinu.id"
+                href="mailto:support@beautyinu.co"
                 className="w-full inline-flex items-center justify-center gap-2 rounded-md bg-[#111111] hover:bg-primary text-white text-xs font-semibold py-3 px-4 transition-all duration-200 shadow-xs hover:shadow-md hover:shadow-primary/25"
               >
                 <span>Kirim Email Resmi</span>
@@ -1033,7 +1033,7 @@ function DistributorView({page}: {page: any}) {
               <span>Chat WhatsApp</span>
             </a>
             <a
-              href="mailto:support@beautyinu.id?subject=Permohonan%20Kemitraan%20Beautyinu"
+              href="mailto:support@beautyinu.co?subject=Permohonan%20Kemitraan%20Beautyinu"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-surface text-text border border-black/[0.08] text-xs sm:text-sm font-semibold px-7 py-3 transition-all shadow-2xs whitespace-nowrap cursor-pointer hover:scale-[1.02]"
             >
               <Mail className="w-4 h-4 text-black/60" />
@@ -1041,7 +1041,7 @@ function DistributorView({page}: {page: any}) {
             </a>
           </div>
           <p className="mt-4 text-[11px] font-mono text-text-secondary">
-            +62 819-3657-4690 · support@beautyinu.id
+            +62 819-3657-4690 · support@beautyinu.co
           </p>
         </div>
       </div>

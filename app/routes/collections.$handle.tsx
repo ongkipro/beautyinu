@@ -97,9 +97,9 @@ export const meta: Route.MetaFunction = ({data}) => {
 
   const collectionSchema = buildCollectionJsonLd(collection, canonicalUrl);
   const breadcrumbSchema = buildBreadcrumbJsonLd([
-    {name: 'Home', url: 'https://beautyinu.id'},
-    {name: 'Koleksi', url: 'https://beautyinu.id/collections'},
-    {name: collection.title, url: canonicalUrl || `https://beautyinu.id/collections/${collection.handle}`},
+    {name: 'Home', url: 'https://beautyinu.co'},
+    {name: 'Koleksi', url: 'https://beautyinu.co/collections'},
+    {name: collection.title, url: canonicalUrl || `https://beautyinu.co/collections/${collection.handle}`},
   ]);
 
   return getSeoMeta({

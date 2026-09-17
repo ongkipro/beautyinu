@@ -1,6 +1,7 @@
 export const DEFAULT_SEO = {
   siteName: 'Beautyinu',
   title: 'Beautyinu — Your Bodycare Bestie',
+  siteUrl: 'https://beautyinu.co',
   description:
     'Brightening bodycare resmi BPOM RI dengan formula Niacinamide 5.22%, Alpha Arbutin 2.30% & Kefir Collagen untuk kulit tampak cerah merata, lembap, dan glowing sehat.',
   defaultImage:
@@ -83,7 +84,7 @@ export function getSeoMeta(options: SeoMetaOptions = {}): MetaDescriptor[] {
   return tags;
 }
 
-export function buildOrganizationJsonLd(siteUrl: string = 'https://beautyinu.id') {
+export function buildOrganizationJsonLd(siteUrl: string = DEFAULT_SEO.siteUrl) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -201,7 +202,7 @@ export function buildArticleJsonLd(
   };
 }
 
-export function buildWebsiteJsonLd(siteUrl: string = 'https://beautyinu.id') {
+export function buildWebsiteJsonLd(siteUrl: string = DEFAULT_SEO.siteUrl) {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -232,7 +233,7 @@ export function buildCollectionJsonLd(
     } | null;
   },
   canonicalUrl?: string,
-  siteUrl: string = 'https://beautyinu.id',
+  siteUrl: string = DEFAULT_SEO.siteUrl,
 ) {
   const items = (collection.products?.nodes || []).map((prod, idx) => ({
     '@type': 'ListItem',
@@ -291,7 +292,7 @@ export function buildArticleBreadcrumbJsonLd(
   title: string,
   blogHandle: string,
   canonicalUrl?: string,
-  siteUrl: string = 'https://beautyinu.id',
+  siteUrl: string = DEFAULT_SEO.siteUrl,
 ) {
   return buildBreadcrumbJsonLd([
     { name: 'Home', url: siteUrl },

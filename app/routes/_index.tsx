@@ -26,7 +26,7 @@ import {
 import {getSeoMeta, buildOrganizationJsonLd, buildWebsiteJsonLd} from '~/lib/seo';
 
 export const meta: Route.MetaFunction = ({data}) => {
-  const siteUrl = data?.canonicalUrl || 'https://beautyinu.id';
+  const siteUrl = data?.canonicalUrl || 'https://beautyinu.co';
   return getSeoMeta({
     title: 'Beautyinu — Your Bodycare Bestie',
     description:

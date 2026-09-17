@@ -17,7 +17,7 @@ import {
 
 export const meta: Route.MetaFunction = ({data}) => {
   const blogTitle = data?.blog?.title || 'Journal';
-  const canonicalUrl = data?.canonicalUrl || 'https://beautyinu.id/blogs/news';
+  const canonicalUrl = data?.canonicalUrl || 'https://beautyinu.co/blogs/news';
   return getSeoMeta({
     title: `${blogTitle} — Beautyinu Official Store`,
     description:
@@ -26,7 +26,7 @@ export const meta: Route.MetaFunction = ({data}) => {
     type: 'website',
     jsonLd: [
       buildBreadcrumbJsonLd([
-        {name: 'Home', url: 'https://beautyinu.id'},
+        {name: 'Home', url: 'https://beautyinu.co'},
         {name: 'Skincare Journal', url: canonicalUrl},
       ]),
     ],

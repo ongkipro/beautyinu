@@ -116,7 +116,7 @@ export function Breadcrumb({
                     isDark
                       ? 'text-white font-medium max-w-[200px] sm:max-w-md'
                       : isBar
-                        ? 'font-semibold text-text'
+                        ? 'font-semibold text-text max-w-[150px] xs:max-w-[220px] sm:max-w-xs md:max-w-md'
                         : 'font-medium text-text'
                   }`}
                   title={item.label}
@@ -136,19 +136,19 @@ export function Breadcrumb({
       <div
         className={`relative w-full h-11 flex items-center z-10 ${
           isDark
-            ? 'bg-white/[0.08] backdrop-blur-md backdrop-saturate-150 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]'
-            : 'bg-white/30 sm:bg-white/20 backdrop-blur-md backdrop-saturate-150 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)]'
+            ? 'bg-black/25 backdrop-blur-md'
+            : 'bg-white/75 backdrop-blur-md'
         } ${className}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           {navContent}
         </div>
-        {/* Soft Fading Bottom Border: Disappears smoothly at left & right edges (0% -> 100% -> 0%) */}
+        {/* Soft Fading Bottom Border: Opacity gradient that disappears smoothly at left & right edges */}
         <div
           className={`absolute inset-x-0 bottom-0 h-px pointer-events-none select-none ${
             isDark
-              ? 'bg-gradient-to-r from-transparent via-15% via-white/25 via-85% to-transparent'
-              : 'bg-gradient-to-r from-transparent via-15% via-black/[0.10] via-85% to-transparent'
+              ? 'bg-gradient-to-r from-transparent via-white/20 to-transparent'
+              : 'bg-gradient-to-r from-transparent via-black/[0.07] to-transparent'
           }`}
           aria-hidden="true"
         />

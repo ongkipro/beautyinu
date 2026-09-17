@@ -112,7 +112,7 @@ export function ProductImage({images}: ProductImageProps) {
 
   if (safeImages.length === 0) {
     return (
-      <div className="w-full aspect-square bg-[#F8F7FA] rounded-3xl flex items-center justify-center text-text-secondary/50 text-xs font-mono uppercase tracking-wider">
+      <div className="w-full aspect-square bg-[#F8F7FA] rounded-2xl flex items-center justify-center text-text-secondary/50 text-xs font-mono uppercase tracking-wider">
         <span>No image available</span>
       </div>
     );
@@ -180,7 +180,7 @@ export function ProductImage({images}: ProductImageProps) {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        className="group relative aspect-square w-full flex-1 overflow-hidden rounded-3xl flex items-center justify-center min-w-0 select-none"
+        className="group relative aspect-square w-full flex-1 overflow-hidden rounded-2xl flex items-center justify-center min-w-0 select-none"
       >
         <Image
           key={activeImage.id || activeImage.url}

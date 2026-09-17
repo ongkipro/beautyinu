@@ -273,7 +273,7 @@ export default function Addresses() {
 
       <div className="space-y-8">
         {/* Create Address Form */}
-        <div className="rounded-3xl bg-[#FAF9FB] border border-black/[0.05] p-6 sm:p-8">
+        <div className="rounded-2xl bg-[#FAF9FB] border border-black/[0.05] p-6 sm:p-8">
           <h3 className="font-serif text-lg text-text font-normal mb-4">
             Tambah Alamat Baru
           </h3>
@@ -347,7 +347,7 @@ function ExistingAddresses({
       {addresses.nodes.map((address) => (
         <div
           key={address.id}
-          className="rounded-3xl bg-[#FAF9FB] border border-black/[0.05] p-6 sm:p-8"
+          className="rounded-2xl bg-[#FAF9FB] border border-black/[0.05] p-6 sm:p-8"
         >
           <AddressForm
             addressId={address.id}

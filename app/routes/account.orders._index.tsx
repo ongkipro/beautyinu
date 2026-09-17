@@ -94,22 +94,32 @@ function OrdersTable({
 
 function EmptyOrders({hasFilters = false}: {hasFilters?: boolean}) {
   return (
-    <div>
+    <div className="py-12 px-6 rounded-2xl bg-[#FAF9FB] border border-black/[0.05] text-center max-w-md mx-auto">
       {hasFilters ? (
         <>
-          <p>No orders found matching your search.</p>
-          <br />
-          <p>
-            <Link to="/account/orders">Clear filters →</Link>
+          <p className="text-sm font-semibold text-text mb-1">Pesanan Tidak Ditemukan</p>
+          <p className="text-xs text-text-secondary mb-4">
+            Tidak ada pesanan yang cocok dengan pencarian Anda.
           </p>
+          <Link
+            to="/account/orders"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white border border-black/10 text-xs font-semibold text-text hover:border-black transition-colors"
+          >
+            Hapus Filter
+          </Link>
         </>
       ) : (
         <>
-          <p>You haven&apos;t placed any orders yet.</p>
-          <br />
-          <p>
-            <Link to="/collections">Start Shopping →</Link>
+          <p className="text-sm font-semibold text-text mb-1">Belum Ada Riwayat Pesanan</p>
+          <p className="text-xs text-text-secondary mb-5">
+            Jelajahi rangkaian produk perawatan tubuh kami dan mulai pesanan pertamamu.
           </p>
+          <Link
+            to="/collections/all"
+            className="inline-flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-xl bg-[#111111] hover:bg-primary text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-primary/25"
+          >
+            Mulai Belanja Sekarang
+          </Link>
         </>
       )}
     </div>
@@ -182,12 +192,12 @@ function OrderItem({order}: {order: OrderItemFragment}) {
             #{order.number}
           </Link>
           {order.financialStatus && (
-            <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+            <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200/60 font-medium">
               {order.financialStatus}
             </span>
           )}
           {fulfillmentStatus && (
-            <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200/60">
+            <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/60 font-medium">
               {fulfillmentStatus}
             </span>
           )}

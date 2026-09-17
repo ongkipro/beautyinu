@@ -180,7 +180,7 @@ export function SearchPopover() {
         aria-label="Pencarian Cepat Produk Beautyinu"
         className={`fixed z-50 bg-white flex flex-col overflow-hidden overscroll-contain transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] text-left
           /* Mobile: Floating island with 12px margin all around and safe area compensation */
-          top-3 right-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom,0px))] left-3 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.22)] border border-black/[0.08]
+          top-3 right-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom,0px))] left-3 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.22)] border border-black/[0.08]
           /* Desktop: Floating card on right with 16px margins — matched with Cart modal width */
           sm:left-auto sm:top-4 sm:right-4 sm:bottom-4 sm:w-[460px] md:w-[480px] sm:max-h-[calc(100dvh-2rem)]
           ${
@@ -409,9 +409,9 @@ export function SearchPopover() {
                               <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-text-secondary mb-2.5">
                                 <span>Rekomendasi Rangkaian Rutin</span>
                                 <Link
-                                  to="/collections/frontpage"
+                                  to="/collections/all"
                                   onClick={close}
-                                  className="text-primary hover:underline text-[10px] font-bold"
+                                  className="text-primary hover:underline text-xs font-bold"
                                 >
                                   Semua Produk →
                                 </Link>
@@ -440,10 +440,10 @@ export function SearchPopover() {
                                           {item.step}
                                         </span>
                                       </div>
-                                      <p className="text-xs sm:text-sm font-semibold text-text line-clamp-1 group-hover:text-primary transition-colors">
+                                      <p className="text-sm font-semibold text-text line-clamp-1 group-hover:text-primary transition-colors">
                                         {item.title}
                                       </p>
-                                      <span className="text-xs font-bold text-text mt-0.5 block">
+                                      <span className="text-sm font-bold text-text mt-0.5 block">
                                         {item.price}
                                       </span>
                                     </div>
@@ -500,7 +500,7 @@ export function SearchPopover() {
                               <button
                                 type="button"
                                 onClick={handleViewAll}
-                                className="w-full bg-[#111111] hover:bg-primary text-white py-3 px-4 rounded-full text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-primary/25 active:scale-98 cursor-pointer"
+                                className="w-full bg-[#111111] hover:bg-primary text-white py-3 px-4 rounded-full text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-primary/25 active:scale-98 cursor-pointer"
                               >
                                 <span>Lihat Semua Hasil ({total})</span>
                                 <ArrowRight

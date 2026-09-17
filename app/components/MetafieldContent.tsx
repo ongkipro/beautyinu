@@ -98,7 +98,7 @@ export function MetafieldContent({value, className = ''}: MetafieldContentProps)
         if (parsed.children.length === 0) return null;
         return (
           <div
-            className={`prose prose-sm max-w-none text-text-secondary/90 leading-relaxed space-y-2 [&_p]:mb-2 [&_p:last-child]:mb-0 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_strong]:font-semibold [&_strong]:text-text ${className}`}
+            className={`text-sm sm:text-base text-text/85 leading-relaxed space-y-2.5 [&_p]:mb-2.5 [&_p:last-child]:mb-0 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_strong]:font-semibold [&_strong]:text-text ${className}`}
           >
             <RichText data={cleaned} />
           </div>
@@ -117,7 +117,7 @@ export function MetafieldContent({value, className = ''}: MetafieldContentProps)
     );
     return (
       <div
-        className={`prose prose-sm max-w-none text-text-secondary/90 leading-relaxed space-y-2 [&_p]:mb-2 [&_p:last-child]:mb-0 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_strong]:font-semibold [&_strong]:text-text ${className}`}
+        className={`text-sm sm:text-base text-text/85 leading-relaxed space-y-2.5 [&_p]:mb-2.5 [&_p:last-child]:mb-0 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_strong]:font-semibold [&_strong]:text-text ${className}`}
         dangerouslySetInnerHTML={{__html: cleanedHtml}}
       />
     );
@@ -131,7 +131,7 @@ export function MetafieldContent({value, className = ''}: MetafieldContentProps)
 
   return (
     <div
-      className={`text-xs sm:text-sm text-text-secondary/90 leading-relaxed whitespace-pre-line ${className}`}
+      className={`text-sm sm:text-base text-text/85 leading-relaxed whitespace-pre-line ${className}`}
     >
       {cleanedText}
     </div>

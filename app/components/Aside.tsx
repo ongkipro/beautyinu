@@ -70,7 +70,7 @@ export function Aside({
         aria-label={typeof heading === 'string' ? heading : 'Panel'}
         className={`fixed z-50 bg-white flex flex-col overflow-hidden overscroll-contain transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
           /* Mobile: Floating island with 12px margin all-around and safe area compensation */
-          top-3 right-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom,0px))] left-3 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.22)] border border-black/[0.08]
+          top-3 right-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom,0px))] left-3 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.22)] border border-black/[0.08]
           /* Desktop: Floating card on right with 16px margins */
           sm:left-auto sm:top-4 sm:right-4 sm:bottom-4 sm:w-[460px] md:w-[480px] sm:max-h-[calc(100dvh-2rem)]
           ${

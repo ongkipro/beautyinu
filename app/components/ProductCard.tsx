@@ -118,34 +118,34 @@ export function ProductCard({product, loading}: ProductCardProps) {
       </div>
 
       {/* 2. Product Title */}
-      <h3 className="text-xs sm:text-sm font-medium text-text leading-snug line-clamp-2 text-center group-hover:text-primary transition-colors">
+      <h3 className="text-sm sm:text-base font-medium text-text leading-snug line-clamp-2 text-center group-hover:text-primary transition-colors">
         {title}
       </h3>
 
       {/* 3. Price & Strikethrough */}
       <div className="mt-1 flex items-baseline justify-center gap-1.5 sm:gap-2 flex-wrap">
         {price && (
-          <span className="text-xs sm:text-sm font-semibold text-text">
+          <span className="text-sm sm:text-base font-bold text-text">
             <Money data={price as any} withoutTrailingZeros />
           </span>
         )}
         {isDiscounted && compareAtPrice && (
-          <span className="text-[11px] sm:text-xs text-text-secondary/60 line-through">
+          <span className="text-xs sm:text-sm text-text-secondary/60 line-through">
             <Money data={compareAtPrice as any} withoutTrailingZeros />
           </span>
         )}
       </div>
 
       {/* 4. Shopee-style Social Proof (Rating & Sold) */}
-      <div className="mt-1.5 flex items-center justify-center gap-1.5 text-[11px] sm:text-xs text-text-secondary">
+      <div className="mt-1.5 flex items-center justify-center gap-1.5 text-xs sm:text-sm text-text-secondary">
         <div className="flex items-center gap-0.5 font-semibold text-text">
-          <Star className="w-3 h-3 fill-amber-400 text-amber-400 flex-shrink-0" />
+          <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400 flex-shrink-0" />
           <span>{socialProof.rating}</span>
         </div>
         <span className="hidden sm:inline text-text-secondary/60">
           ({socialProof.reviews})
         </span>
-        <span className="text-black/20 text-[10px]">•</span>
+        <span className="text-black/20 text-xs">•</span>
         <span className="font-medium text-text-secondary">
           {socialProof.sold} terjual
         </span>

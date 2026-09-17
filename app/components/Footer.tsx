@@ -122,9 +122,9 @@ export function Footer() {
 
           {/* Col 4: WhatsApp Consultation Card */}
           <div className="w-full md:w-auto lg:w-[320px] xl:w-[350px] shrink-0">
-            <div className="rounded-3xl bg-white border border-black/[0.06] p-5 sm:p-6 space-y-3.5 shadow-2xs">
+            <div className="rounded-2xl bg-white border border-black/[0.06] p-5 sm:p-6 space-y-3.5 shadow-2xs">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-text flex items-center gap-2">
+                <span className="text-xs sm:text-sm font-semibold text-text flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
                   Live Chat Konsultasi
                 </span>
@@ -132,7 +132,7 @@ export function Footer() {
                   Fast Response
                 </span>
               </div>
-              <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">
+              <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
                 Butuh saran pemilihan produk atau info pesanan? Hubungi beauty advisor resmi kami.
               </p>
               <a
@@ -242,7 +242,7 @@ export function Footer() {
 }
 
 const SHOP_LINKS = [
-  {label: 'Semua Produk', to: '/collections/frontpage'},
+  {label: 'Semua Produk', to: '/collections/all'},
   {label: 'Body Care Series', to: '/collections/body-care'},
   {label: 'Paket Hemat', to: '/collections/bundles'},
   {label: 'Best Sellers', to: '/collections/best-sellers'},

@@ -82,7 +82,7 @@ export default function AccountLayout() {
 
 function AccountMenu() {
   const baseTabClasses =
-    'px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all cursor-pointer inline-flex items-center gap-1.5';
+    'px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all cursor-pointer inline-flex items-center gap-1.5';
 
   return (
     <nav role="navigation" className="flex items-center gap-2 flex-wrap">
@@ -132,7 +132,7 @@ function Logout() {
     <Form className="inline-block ml-auto sm:ml-2" method="POST" action="/account/logout">
       <button
         type="submit"
-        className="px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-black/50 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
+        className="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium text-black/50 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
       >
         Keluar
       </button>

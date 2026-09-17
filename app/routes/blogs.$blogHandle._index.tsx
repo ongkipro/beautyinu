@@ -167,7 +167,7 @@ export default function Blog() {
                   key={topic.id}
                   type="button"
                   onClick={() => setSelectedTopic(topic.id)}
-                  className={`px-4 py-2 rounded-full font-medium whitespace-nowrap transition-all cursor-pointer select-none active:scale-95 ${
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap transition-all cursor-pointer select-none active:scale-95 ${
                     isActive
                       ? 'bg-[#111111] text-white shadow-2xs font-semibold'
                       : 'bg-white text-text-secondary hover:text-text border border-black/[0.08] hover:border-black/20'
@@ -190,13 +190,13 @@ export default function Blog() {
               <div className="text-center py-20 bg-[#FAF9FB] rounded-2xl border border-black/[0.06] p-8">
                 <BookOpen className="w-10 h-10 text-text-secondary/40 mx-auto mb-3" />
                 <p className="font-serif text-xl text-text mb-2">Belum ada artikel pada topik ini</p>
-                <p className="text-xs sm:text-sm text-text-secondary mb-5">
+                <p className="text-sm text-text-secondary mb-5">
                   Coba pilih topik lain atau kembali ke semua topik artikel.
                 </p>
                 <button
                   type="button"
                   onClick={() => setSelectedTopic('all')}
-                  className="px-5 py-2.5 rounded-full bg-primary text-white text-xs font-semibold hover:bg-primary-hover transition-colors cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-primary text-white text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-primary-hover transition-colors cursor-pointer shadow-xs"
                 >
                   Tampilkan Semua Artikel
                 </button>
@@ -255,7 +255,7 @@ export default function Blog() {
             {featuredProducts.length > 0 && (
               <div className="p-6 rounded-2xl bg-[#FAF9FB] border border-black/[0.06]">
                 <div className="flex items-center gap-2 mb-4">
-                  <Sparkles className="w-4 h-4 text-primary" />
+                  <Bookmark className="w-4 h-4 text-primary" />
                   <span className="text-xs font-mono font-bold uppercase tracking-wider text-text">
                     Rekomendasi Routine
                   </span>
@@ -327,7 +327,7 @@ export default function Blog() {
                 ].map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1.5 rounded-full bg-[#FAF9FB] hover:bg-[#F3EEFA] text-text-secondary hover:text-text border border-black/[0.06] text-xs font-medium transition-colors cursor-default"
+                    className="px-2.5 py-1 rounded-md bg-[#FAF9FB] hover:bg-[#F3EEFA] text-text-secondary hover:text-text border border-black/[0.06] text-xs font-medium transition-colors cursor-default"
                   >
                     #{tag}
                   </span>
@@ -358,7 +358,7 @@ export default function Blog() {
                 href="https://wa.me/6287777118186?text=Halo%20Beautyinu%2C%20saya%20ingin%20konsultasi%20skincare"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-semibold shadow-2xs transition-all flex-shrink-0"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold shadow-2xs transition-all flex-shrink-0"
               >
                 <MessageCircle className="w-3.5 h-3.5" />
                 <span>WhatsApp</span>
@@ -369,19 +369,19 @@ export default function Blog() {
 
         {/* 4. Mobile Routine Banner at Bottom */}
         <div className="lg:hidden mt-16 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-[#FFF8FA] via-white to-[#F3EEFA] border border-primary/20 text-center">
-          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary font-mono text-[10px] font-bold uppercase tracking-widest inline-block mb-3">
+          <span className="px-3 py-1 rounded-md bg-primary/10 text-primary font-mono text-[10px] font-bold uppercase tracking-widest inline-block mb-3">
             Konsultasi Perawatan
           </span>
           <h3 className="font-serif text-2xl text-text font-normal tracking-tight mb-2">
             Butuh Rekomendasi Rutinitas?
           </h3>
-          <p className="text-xs text-text-secondary leading-relaxed max-w-md mx-auto mb-6">
+          <p className="text-sm text-text-secondary leading-relaxed max-w-md mx-auto mb-6">
             Konsultasikan masalah kulitmu langsung dengan tim kami atau temukan paket perawatan tubuh berizin BPOM resmi.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               to="/collections/bundles"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-primary hover:bg-primary-hover text-white text-xs font-semibold px-6 py-3 shadow-xs transition-all cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-6 py-3 shadow-xs transition-all cursor-pointer"
             >
               <span>Lihat Paket Perawatan</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -390,7 +390,7 @@ export default function Blog() {
               href="https://wa.me/6287777118186?text=Halo%20Beautyinu%2C%20saya%20ingin%20konsultasi%20skincare"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-surface text-text border border-black/[0.08] text-xs font-semibold px-6 py-3 shadow-2xs transition-all cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white hover:bg-surface text-text border border-black/[0.08] text-xs sm:text-sm font-bold uppercase tracking-wider px-6 py-3 shadow-2xs transition-all cursor-pointer"
             >
               <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
               <span>Chat WhatsApp</span>
@@ -467,14 +467,14 @@ function MediumFeaturedStory({
 
         {/* Excerpt */}
         {excerpt && (
-          <p className="text-xs sm:text-sm text-text-secondary leading-relaxed line-clamp-3 font-normal mb-4">
+          <p className="text-sm sm:text-base text-text-secondary leading-relaxed line-clamp-3 font-normal mb-4">
             {excerpt}
           </p>
         )}
 
         {/* Footer Read Action */}
         <div className="flex items-center justify-between">
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary group-hover:translate-x-1 transition-transform">
+          <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary group-hover:translate-x-1 transition-transform">
             <span>Baca Cerita Lengkap</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </span>
@@ -539,7 +539,7 @@ function MediumArticleRow({
 
             {/* Excerpt (hidden on very small screens, visible on sm+) */}
             {excerpt && (
-              <p className="text-xs sm:text-sm text-text-secondary leading-relaxed line-clamp-2 font-normal mb-3">
+              <p className="text-sm sm:text-base text-text-secondary leading-relaxed line-clamp-2 font-normal mb-3">
                 {excerpt}
               </p>
             )}

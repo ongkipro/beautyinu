@@ -384,7 +384,7 @@ function Hero() {
           <div className="flex flex-row items-center gap-2 sm:gap-3 mb-2.5 sm:mb-8">
             <a
               href={currentSlide.primaryHref}
-              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-full bg-[#111111] hover:bg-primary px-3.5 sm:px-8 py-2.5 sm:py-4 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 shadow-xs hover:shadow-lg hover:shadow-primary/25 whitespace-nowrap active:scale-[0.98]"
+              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl bg-[#111111] hover:bg-primary px-3.5 sm:px-8 py-2.5 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 shadow-xs hover:shadow-lg hover:shadow-primary/25 whitespace-nowrap active:scale-[0.98]"
             >
               <span className="sm:hidden">{currentSlide.primaryCtaMobile || currentSlide.primaryCta}</span>
               <span className="hidden sm:inline">{currentSlide.primaryCta}</span>
@@ -392,7 +392,7 @@ function Hero() {
             </a>
             <Link
               to={currentSlide.secondaryHref}
-              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-full bg-white/95 backdrop-blur-md hover:bg-[#FFF3F6] hover:text-primary hover:border-primary/40 border border-black/10 px-3.5 sm:px-7 py-2.5 sm:py-4 text-xs font-bold uppercase tracking-wider text-text transition-all duration-300 shadow-2xs whitespace-nowrap active:scale-[0.98]"
+              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl bg-white/95 backdrop-blur-md hover:bg-[#FFF3F6] hover:text-primary hover:border-primary/40 border border-black/10 px-3.5 sm:px-7 py-2.5 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-text transition-all duration-300 shadow-2xs whitespace-nowrap active:scale-[0.98]"
             >
               <span className="sm:hidden">{currentSlide.secondaryCtaMobile || currentSlide.secondaryCta}</span>
               <span className="hidden sm:inline">{currentSlide.secondaryCta}</span>
@@ -403,7 +403,7 @@ function Hero() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 pt-2.5 border-t border-black/[0.06] sm:border-0">
             {/* Milestone Social Proof Badge */}
             <div className="flex items-center gap-2 text-xs text-text-secondary">
-              <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-black/[0.08] text-[10px] sm:text-[11px] font-mono text-black/80 shadow-2xs whitespace-nowrap">
+              <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-md bg-white/95 backdrop-blur-md border border-black/[0.08] text-[10px] sm:text-[11px] font-mono text-black/80 shadow-2xs whitespace-nowrap">
                 <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
                 <span className="font-semibold text-black">1 Juta++ pcs Terjual</span>
               </span>
@@ -567,7 +567,7 @@ function RoutineSteps() {
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-text font-normal tracking-tight mb-3">
             Simple Steps. Maximum Glow.
           </h2>
-          <p className="text-xs sm:text-sm md:text-base text-text-secondary leading-relaxed">
+          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl mx-auto">
             Rangkaian harian yang dirancang sinergis untuk membersihkan, menutrisi, dan melindungi kulit sepanjang hari.
           </p>
         </div>
@@ -578,7 +578,7 @@ function RoutineSteps() {
             <Link
               key={i}
               to={item.to}
-              className="group relative overflow-hidden flex flex-col justify-between bg-[#FAF9FB] hover:bg-[#F5F3F8] rounded-3xl p-6 sm:p-7 border border-black/[0.05] hover:border-black/[0.12] transition-all duration-300"
+              className="group relative overflow-hidden flex flex-col justify-between bg-[#FAF9FB] hover:bg-[#F5F3F8] rounded-2xl p-6 sm:p-7 border border-black/[0.05] hover:border-black/[0.12] transition-all duration-300"
             >
               {/* Subtle Ghost Watermark Number */}
               <span className="absolute top-3 right-5 text-7xl font-mono font-black text-black/[0.03] select-none pointer-events-none group-hover:text-black/[0.06] group-hover:scale-105 transition-all duration-300">
@@ -601,7 +601,7 @@ function RoutineSteps() {
                   </div>
                 </div>
 
-                <div className="aspect-square w-full rounded-2xl overflow-hidden bg-white mb-5 border border-black/[0.04]">
+                <div className="aspect-square w-full rounded-xl overflow-hidden bg-white mb-5 border border-black/[0.04]">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -618,7 +618,7 @@ function RoutineSteps() {
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-white/80 border border-black/[0.05] text-[11px] font-mono text-accent font-medium mb-2.5">
                   <span>{item.spec}</span>
                 </div>
-                <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
+                <p className="text-sm text-text-secondary leading-relaxed">
                   {item.benefit}
                 </p>
               </div>
@@ -633,7 +633,7 @@ function RoutineSteps() {
                   </span>
                 </div>
                 <span className="w-8 h-8 rounded-full bg-white border border-black/[0.06] flex items-center justify-center text-text group-hover:bg-[#111111] group-hover:text-white group-hover:border-[#111111] transition-all flex-shrink-0">
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </span>
               </div>
             </Link>
@@ -641,7 +641,7 @@ function RoutineSteps() {
         </div>
 
         {/* Minimalist Routine Synergy Bundle Box (Luminous Glass Effect) */}
-        <div id="bundle-banner" className="relative rounded-3xl bg-gradient-to-r from-white/90 via-white/80 to-[#FFF3F6]/85 backdrop-blur-xl border border-white/90 shadow-[0_10px_35px_rgba(249,127,158,0.07)] p-6 sm:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 overflow-hidden">
+        <div id="bundle-banner" className="relative rounded-2xl bg-gradient-to-r from-white/90 via-white/80 to-[#FFF3F6]/85 backdrop-blur-xl border border-white/90 shadow-[0_10px_35px_rgba(249,127,158,0.07)] p-6 sm:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 overflow-hidden">
           {/* Top Hairline Glass Sheen */}
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none" />
 
@@ -661,7 +661,7 @@ function RoutineSteps() {
             <h3 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-text mb-1.5">
               The Glowing Set (3-in-1 Complete Ritual)
             </h3>
-            <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
+            <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
               Dapatkan Sabun Kefir + Booster Gold Powder + Body Lotion UV 750ml dalam satu paket hemat. Formulasi saling melengkapi untuk hasil glowing 3x lebih cepat.
             </p>
           </div>
@@ -676,7 +676,7 @@ function RoutineSteps() {
             </div>
             <Link
               to="/products/glowing-set-3-in-1"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary hover:bg-primary-hover text-white px-7 py-3.5 text-xs font-semibold uppercase tracking-wider transition-all hover:scale-[1.02] shadow-sm hover:shadow-md hover:shadow-primary/25 w-full sm:w-auto cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary hover:bg-primary-hover text-white px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all hover:scale-[1.02] shadow-sm hover:shadow-md hover:shadow-primary/25 w-full sm:w-auto cursor-pointer"
             >
               <span>Beli Paket Lengkap</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -734,7 +734,7 @@ function IngredientsHighlight() {
         <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-text font-normal tracking-tight mb-3">
           Active Ingredients. Real Science.
         </h2>
-        <p className="text-xs sm:text-sm md:text-base text-text-secondary leading-relaxed">
+        <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
           Transparansi formula bahan aktif berstandar resmi BPOM RI untuk hasil optimal dan aman jangka panjang.
         </p>
       </div>
@@ -744,7 +744,7 @@ function IngredientsHighlight() {
         {ingredients.map((ing, i) => (
           <div
             key={i}
-            className="group bg-[#FAF9FB] hover:bg-[#F5F3F8] rounded-3xl p-7 flex flex-col justify-between transition-colors duration-300"
+            className="group bg-[#FAF9FB] hover:bg-[#F5F3F8] rounded-2xl p-7 flex flex-col justify-between transition-colors duration-300"
           >
             <div>
               <span className="text-[10px] font-mono uppercase tracking-widest text-black/40 block mb-4">
@@ -756,7 +756,7 @@ function IngredientsHighlight() {
               <h3 className="font-serif text-xl text-text font-normal mb-3">
                 {ing.name}
               </h3>
-              <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
+              <p className="text-sm text-text-secondary leading-relaxed">
                 {ing.desc}
               </p>
             </div>
@@ -823,7 +823,7 @@ function FourteenDayJourney() {
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-text font-normal tracking-tight mb-3">
             Perjalanan 14 Hari Glowing
           </h2>
-          <p className="text-xs sm:text-sm md:text-base text-text-secondary leading-relaxed">
+          <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
             Tahapan regenerasi kulit tubuh harian dengan pemakaian teratur rangkaian 3-Step Beautyinu.
           </p>
         </div>
@@ -833,7 +833,7 @@ function FourteenDayJourney() {
           {milestones.map((item, idx) => (
             <div
               key={idx}
-              className="group relative rounded-3xl p-7 sm:p-8 flex flex-col justify-between bg-white/45 hover:bg-white/65 backdrop-blur-xl backdrop-saturate-180 border border-white/70 hover:border-white shadow-[0_8px_32px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.09)] transition-all duration-500 hover:-translate-y-1"
+              className="group relative rounded-2xl p-7 sm:p-8 flex flex-col justify-between bg-white/45 hover:bg-white/65 backdrop-blur-xl backdrop-saturate-180 border border-white/70 hover:border-white shadow-[0_8px_32px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.09)] transition-all duration-500 hover:-translate-y-1"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -848,7 +848,7 @@ function FourteenDayJourney() {
                 <h3 className="font-serif text-xl sm:text-2xl text-text font-medium mb-3 tracking-tight">
                   {item.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-text/85 leading-relaxed font-normal">
+                <p className="text-sm sm:text-base text-text/85 leading-relaxed font-normal">
                   {item.desc}
                 </p>
               </div>
@@ -967,7 +967,7 @@ function BestSellerCard({product, index, isDragging}: BestSellerCardProps) {
         onClick={(e) => {
           if (isDragging) e.preventDefault();
         }}
-        className="group relative flex flex-col bg-[#FAF9FB] hover:bg-[#F5F3F8] rounded-3xl p-4 sm:p-5 transition-all duration-300 h-full cursor-pointer"
+        className="group relative flex flex-col bg-[#FAF9FB] hover:bg-[#F5F3F8] rounded-2xl p-4 sm:p-5 transition-all duration-300 h-full cursor-pointer"
       >
         {/* 1. Image Canvas — Minimalist Rounded 2XL */}
         <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-white mb-4">
@@ -1194,7 +1194,7 @@ function BestSellersSlider({products}: {products: any[]}) {
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-text font-normal tracking-tight">
               Best Sellers
             </h2>
-            <p className="text-xs sm:text-sm md:text-base text-text-secondary mt-1.5 max-w-lg leading-relaxed">
+            <p className="text-sm sm:text-base text-text-secondary mt-1.5 max-w-lg leading-relaxed">
               Formula terlaris dengan konsentrasi aktif presisi untuk mencerahkan, melembapkan, dan merawat kulit harian.
             </p>
           </div>
@@ -1352,7 +1352,7 @@ function CategorySplit() {
         {/* Card 1: Body Care Essentials */}
         <Link
           to="/collections/body-care"
-          className="group relative rounded-3xl overflow-hidden aspect-[4/3] sm:aspect-[3/2] w-full flex flex-col justify-between p-7 sm:p-9 border border-black/[0.06] transition-all duration-500"
+          className="group relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[3/2] w-full flex flex-col justify-between p-7 sm:p-9 border border-black/[0.06] transition-all duration-500"
         >
           {/* 3:2 Background Image */}
           <img
@@ -1382,10 +1382,10 @@ function CategorySplit() {
             <h3 className="font-sans text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight tracking-tight">
               Single Essentials
             </h3>
-            <p className="text-xs sm:text-sm text-white/80 mb-5 leading-relaxed max-w-sm line-clamp-2">
+            <p className="text-sm sm:text-base text-white/85 mb-5 leading-relaxed max-w-sm line-clamp-2">
               Lotion jumbo 750ml, body wash, body cream &amp; booster powder untuk ritual harian.
             </p>
-            <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-white/90 text-black text-xs font-semibold uppercase tracking-wider transition-all hover:scale-[1.02]">
+            <span className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-white/90 text-black text-xs sm:text-sm font-bold uppercase tracking-wider transition-all hover:scale-[1.02] shadow-xs cursor-pointer">
               <span>Shop Essentials</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </span>
@@ -1395,7 +1395,7 @@ function CategorySplit() {
         {/* Card 2: Sets & Bundles */}
         <Link
           to="/collections/bundles"
-          className="group relative rounded-3xl overflow-hidden aspect-[4/3] sm:aspect-[3/2] w-full flex flex-col justify-between p-7 sm:p-9 border border-black/[0.06] transition-all duration-500"
+          className="group relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[3/2] w-full flex flex-col justify-between p-7 sm:p-9 border border-black/[0.06] transition-all duration-500"
         >
           {/* 3:2 Background Image */}
           <img
@@ -1412,10 +1412,10 @@ function CategorySplit() {
 
           {/* Top Badges Row */}
           <div className="relative z-10 flex items-center justify-between gap-2">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-white bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-white bg-black/40 backdrop-blur-md px-3 py-1 rounded-md border border-white/15">
               Bundles &amp; Sets
             </span>
-            <span className="text-[10px] font-mono font-semibold text-amber-300 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-amber-300/30">
+            <span className="text-[10px] font-mono font-semibold text-amber-300 bg-black/40 backdrop-blur-md px-3 py-1 rounded-md border border-amber-300/30">
               Hemat s/d 47%
             </span>
           </div>
@@ -1425,10 +1425,10 @@ function CategorySplit() {
             <h3 className="font-sans text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight tracking-tight">
               Curated Bundles
             </h3>
-            <p className="text-xs sm:text-sm text-white/80 mb-5 leading-relaxed max-w-sm line-clamp-2">
+            <p className="text-sm sm:text-base text-white/85 mb-5 leading-relaxed max-w-sm line-clamp-2">
               Rangkaian sinergi 3-in-1 hingga 5-in-1 dengan penawaran hemat maksimal, mulai Rp 121.143.
             </p>
-            <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-white/90 text-black text-xs font-semibold uppercase tracking-wider transition-all hover:scale-[1.02]">
+            <span className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-white/90 text-black text-xs sm:text-sm font-bold uppercase tracking-wider transition-all hover:scale-[1.02] shadow-xs cursor-pointer">
               <span>Shop All Bundles</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </span>
@@ -1521,7 +1521,7 @@ function SocialProof() {
           </div>
 
           {/* Subtitle */}
-          <p className="text-xs sm:text-sm text-text-secondary leading-relaxed max-w-lg mx-auto">
+          <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-lg mx-auto">
             1 Juta++ pcs produk terjual setiap bulan di seluruh Indonesia. Terbukti dipercaya ribuan beauty enthusiasts.
           </p>
         </div>
@@ -1531,7 +1531,7 @@ function SocialProof() {
           {CUSTOMER_REVIEWS.map((rev) => (
             <div
               key={rev.id}
-              className="bg-[#FAF9FB] hover:bg-[#F6F4FA] border border-black/[0.04] hover:border-black/[0.08] rounded-3xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 group shadow-2xs hover:shadow-xs"
+              className="bg-[#FAF9FB] hover:bg-[#F6F4FA] border border-black/[0.04] hover:border-black/[0.08] rounded-2xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 group shadow-2xs hover:shadow-xs"
             >
               <div>
                 {/* Top Metadata: 5 Stars + Purchased Product Pill */}
@@ -1551,7 +1551,7 @@ function SocialProof() {
                 </div>
 
                 {/* Editorial Quote */}
-                <blockquote className="text-sm text-text/85 leading-relaxed font-normal mb-6">
+                <blockquote className="text-sm sm:text-base text-text/90 leading-relaxed font-normal mb-6">
                   “{rev.quote}”
                 </blockquote>
               </div>

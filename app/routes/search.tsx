@@ -189,8 +189,8 @@ export default function SearchPage() {
                 <h2 className="font-serif text-2xl text-text">Rekomendasi Produk Terlaris</h2>
               </div>
               <Link
-                to="/collections/frontpage"
-                className="text-xs font-bold text-primary hover:underline flex items-center gap-1"
+                to="/collections/all"
+                className="text-xs sm:text-sm font-bold text-primary hover:underline flex items-center gap-1"
               >
                 <span>Lihat Semua Produk</span>
                 <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />

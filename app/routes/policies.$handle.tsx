@@ -109,17 +109,17 @@ export default function Policy() {
           [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:mt-12 [&_h2]:mb-5 [&_h2]:text-text
           [&_hr]:hidden
           [&_h3]:font-semibold [&_h3]:text-base [&_h3]:md:text-lg [&_h3]:mt-7 [&_h3]:mb-2.5 [&_h3]:text-text
-          [&_p]:leading-relaxed [&_p]:mb-4 [&_p]:text-text
+          [&_p]:leading-relaxed [&_p]:mb-4 [&_p]:text-text [&_p]:text-sm [&_p]:sm:text-base
           [&_a]:text-primary [&_a]:underline hover:[&_a]:text-primary-hover
-          [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6
-          [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6
+          [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:text-sm [&_ul]:sm:text-base
+          [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:text-sm [&_ol]:sm:text-base
           [&_li]:mb-2 [&_li]:leading-relaxed
           [&_strong]:font-semibold
           [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:my-6 [&_blockquote]:bg-[#FAF7FD] [&_blockquote]:py-3 [&_blockquote]:rounded-r-lg
           [&_table]:w-full [&_table]:border-collapse [&_table]:my-8 [&_table]:rounded-xl [&_table]:overflow-hidden [&_table]:border [&_table]:border-black/[0.06]
           [&_thead]:bg-[#FAF7FD]
           [&_th]:text-left [&_th]:p-3.5 [&_th]:border-b [&_th]:border-black/[0.06] [&_th]:font-semibold [&_th]:text-xs [&_th]:uppercase [&_th]:tracking-wider
-          [&_td]:p-3.5 [&_td]:border-b [&_td]:border-black/[0.04] [&_td]:text-sm
+          [&_td]:p-3.5 [&_td]:border-b [&_td]:border-black/[0.04] [&_td]:text-sm sm:[&_td]:text-base
         "
       />
       </div>

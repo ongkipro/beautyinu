@@ -966,7 +966,7 @@ function DistributorView({page}: {page: any}) {
                 }`}
               >
                 {tier.featured && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-mono font-bold uppercase tracking-widest px-3 py-0.5 rounded-full shadow-xs">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-mono font-bold uppercase tracking-widest px-3 py-0.5 rounded-md shadow-xs">
                     Paling Diminati
                   </span>
                 )}
@@ -1000,7 +1000,7 @@ function DistributorView({page}: {page: any}) {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full inline-flex items-center justify-center gap-2 rounded-md py-3 px-4 text-xs font-semibold transition-all shadow-xs cursor-pointer ${
+                  className={`w-full inline-flex items-center justify-center gap-2 rounded-xl py-3 px-4 text-xs font-bold uppercase tracking-wider transition-all shadow-xs cursor-pointer ${
                     tier.featured
                       ? 'bg-primary hover:bg-primary-hover text-white'
                       : 'bg-[#111111] hover:bg-primary text-white'
@@ -1019,7 +1019,7 @@ function DistributorView({page}: {page: any}) {
           <h4 className="font-serif text-2xl sm:text-3xl text-text font-normal mb-2">
             Konsultasi Kemitraan
           </h4>
-          <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-6 max-w-md mx-auto">
+          <p className="text-sm text-text-secondary leading-relaxed mb-6 max-w-md mx-auto">
             Hubungi tim kami untuk ketersediaan wilayah, harga grosir, dan sampel produk.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -1027,14 +1027,14 @@ function DistributorView({page}: {page: any}) {
               href="https://wa.me/6281936574690?text=Halo%20Tim%20Kemitraan%20Beautyinu%2C%20saya%20ingin%20konsultasi%20peluang%20distributor"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-primary hover:bg-primary-hover text-white text-xs sm:text-sm font-semibold px-7 py-3 shadow-xs transition-all whitespace-nowrap cursor-pointer hover:scale-[1.02]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-7 py-3 shadow-xs transition-all whitespace-nowrap cursor-pointer hover:scale-[1.02]"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Chat WhatsApp</span>
             </a>
             <a
               href="mailto:support@beautyinu.co?subject=Permohonan%20Kemitraan%20Beautyinu"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-surface text-text border border-black/[0.08] text-xs sm:text-sm font-semibold px-7 py-3 transition-all shadow-2xs whitespace-nowrap cursor-pointer hover:scale-[1.02]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white hover:bg-surface text-text border border-black/[0.08] text-xs sm:text-sm font-bold uppercase tracking-wider px-7 py-3 transition-all shadow-2xs whitespace-nowrap cursor-pointer hover:scale-[1.02]"
             >
               <Mail className="w-4 h-4 text-black/60" />
               <span>Kirim Proposal</span>
@@ -1419,17 +1419,17 @@ function GenericView({page}: {page: any}) {
             [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:mt-12 [&_h2]:mb-5 [&_h2]:text-text [&_h2]:font-normal
             [&_hr]:hidden
             [&_h3]:font-semibold [&_h3]:text-base [&_h3]:md:text-lg [&_h3]:mt-7 [&_h3]:mb-2.5 [&_h3]:text-text
-            [&_p]:leading-relaxed [&_p]:mb-4 [&_p]:text-text [&_p]:text-xs [&_p]:sm:text-sm [&_p]:md:text-base
+            [&_p]:leading-relaxed [&_p]:mb-4 [&_p]:text-text [&_p]:text-sm [&_p]:sm:text-base
             [&_a]:text-primary [&_a]:underline hover:[&_a]:text-primary-hover
-            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:text-xs [&_ul]:sm:text-sm [&_ul]:md:text-base
-            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:text-xs [&_ol]:sm:text-sm [&_ol]:md:text-base
+            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ul]:text-sm [&_ul]:sm:text-base
+            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6 [&_ol]:text-sm [&_ol]:sm:text-base
             [&_li]:mb-2 [&_li]:leading-relaxed
             [&_strong]:font-semibold
             [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:my-6 [&_blockquote]:bg-[#FAF7FD] [&_blockquote]:py-3 [&_blockquote]:rounded-r-lg
             [&_table]:w-full [&_table]:border-collapse [&_table]:my-8 [&_table]:rounded-xl [&_table]:overflow-hidden [&_table]:border [&_table]:border-black/[0.06]
             [&_thead]:bg-[#FAF7FD]
             [&_th]:text-left [&_th]:p-3.5 [&_th]:border-b [&_th]:border-black/[0.06] [&_th]:font-semibold [&_th]:text-xs [&_th]:uppercase [&_th]:tracking-wider
-            [&_td]:p-3.5 [&_td]:border-b [&_td]:border-black/[0.04] [&_td]:text-xs [&_td]:sm:text-sm
+            [&_td]:p-3.5 [&_td]:border-b [&_td]:border-black/[0.04] [&_td]:text-sm sm:[&_td]:text-base
           "
         />
       </div>

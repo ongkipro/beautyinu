@@ -27,6 +27,11 @@
 ## 2. Completed Milestones & Feature Registry
 
 ### A. Commercial Experience & UI/UX Polish
+- [x] **Mobile Typography Scale**: Upgraded body copy from cramped `text-xs` (11px-12px) to ergonomic `text-sm sm:text-base` (14px-16px) across PDP accordions, product cards, reviews, cart items, collections, search results, and CMS pages.
+- [x] **Zero Rounded-3xl Enforcement**: Strict adherence to `DESIGN-SYSTEM.md` architectural radius scale (`rounded-2xl` frame, `rounded-xl` card/btn, `rounded-lg` media, `rounded-md` badge); 100% eliminated `rounded-3xl` across all components.
+- [x] **Zero Pill-Button Slop Enforcement**: Converted all rectangular text buttons (Hero CTAs, CategorySplit, Ritual, Cart Checkout, ProductForm, Distributor, and Account tabs) to `rounded-xl`, strictly reserving `rounded-full` for 1:1 circular navigation buttons and avatars.
+- [x] **Account Order Detail UI Elevation**: Refactored raw unstyled order view (`account.orders.$id.tsx`) into responsive architectural cards with formatted dates, item thumbnails, pricing breakdown, and fulfillment tracking.
+- [x] **Canonical Catalog Route Unification**: Replaced legacy `/collections/frontpage` references with canonical `/collections/all` across Header, Footer, Search, Cart, and Account views.
 - [x] **Hero Slider**: Responsive high-resolution WebP hero banners for mobile and desktop, zero CLS.
 - [x] **CategorySplit**: Dual master board cards (`rounded-2xl`) with clear visual hierarchy.
 - [x] **Mobile Sticky Add to Cart**: Refined medal floating bar (`sm:hidden`, `bg-white/70 backdrop-blur-2xl`, frameless product thumbnail).

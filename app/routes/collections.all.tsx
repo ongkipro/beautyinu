@@ -171,7 +171,7 @@ export default function Collection() {
               Katalog Lengkap Seluruh Rangkaian
             </p>
 
-            <p className="text-xs sm:text-sm md:text-[15px] text-text-secondary leading-relaxed font-normal mb-4 max-w-lg">
+            <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal mb-4 max-w-lg">
               Jelajahi seluruh rangkaian perawatan tubuh lengkap Beautyinu berizin resmi BPOM RI: body lotion UV filter, serbuk booster pencerah, krim tubuh, toner, dan sabun mandi collagen.
             </p>
 
@@ -197,7 +197,7 @@ export default function Collection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Toolbar: Live Counter & Refined Sort */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 pb-4 border-b border-black/[0.04] gap-3 sm:gap-4">
-          <div className="flex items-center gap-2 text-xs font-mono text-text-secondary">
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-mono text-text-secondary">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>Menampilkan</span>
             <span className="font-semibold text-text">{productCount}</span>
@@ -249,7 +249,7 @@ export default function Collection() {
         ) : (
           <div className="py-16 text-center rounded-2xl bg-[#FAF9FB] border border-black/[0.04] p-8 max-w-lg mx-auto">
             <h3 className="font-serif text-2xl text-text mb-2">Belum ada produk</h3>
-            <p className="text-xs sm:text-sm text-text-secondary mb-6">
+            <p className="text-sm sm:text-base text-text-secondary mb-6">
               Katalog produk sedang diperbarui. Silakan kembali lagi nanti.
             </p>
             <Link
@@ -278,8 +278,8 @@ export default function Collection() {
               <div className="w-9 h-9 rounded-xl bg-white border border-black/[0.06] flex items-center justify-center text-primary mb-3 shadow-2xs">
                 <ShieldCheck className="w-5 h-5 text-primary" />
               </div>
-              <h4 className="text-xs sm:text-sm font-bold text-text mb-1">100% Terdaftar BPOM RI</h4>
-              <p className="text-xs text-text-secondary leading-relaxed">
+              <h4 className="text-sm sm:text-base font-bold text-text mb-1">100% Terdaftar BPOM RI</h4>
+              <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
                 Seluruh formula bebas merkuri &amp; hidrokuinon, teruji klinis dan aman untuk pemakaian harian.
               </p>
             </div>
@@ -288,8 +288,8 @@ export default function Collection() {
               <div className="w-9 h-9 rounded-xl bg-white border border-black/[0.06] flex items-center justify-center text-accent mb-3 shadow-2xs">
                 <Sparkles className="w-5 h-5 text-accent" />
               </div>
-              <h4 className="text-xs sm:text-sm font-bold text-text mb-1">Formula Konsentrasi Tinggi</h4>
-              <p className="text-xs text-text-secondary leading-relaxed">
+              <h4 className="text-sm sm:text-base font-bold text-text mb-1">Formula Konsentrasi Tinggi</h4>
+              <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
                 Niacinamide, Alpha Arbutin &amp; Collagen dipadukan dengan UV Filter untuk hasil cerah optimal.
               </p>
             </div>
@@ -298,8 +298,8 @@ export default function Collection() {
               <div className="w-9 h-9 rounded-xl bg-white border border-black/[0.06] flex items-center justify-center text-[#25D366] mb-3 shadow-2xs">
                 <Truck className="w-5 h-5 text-[#25D366]" />
               </div>
-              <h4 className="text-xs sm:text-sm font-bold text-text mb-1">Pengiriman Cepat &amp; Aman</h4>
-              <p className="text-xs text-text-secondary leading-relaxed">
+              <h4 className="text-sm sm:text-base font-bold text-text mb-1">Pengiriman Cepat &amp; Aman</h4>
+              <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
                 Gratis bubble wrap ekstra tebal. Garansi ganti baru 100% jika botol pecah atau bocor saat ekspedisi.
               </p>
             </div>
@@ -308,8 +308,8 @@ export default function Collection() {
               <div className="w-9 h-9 rounded-xl bg-white border border-black/[0.06] flex items-center justify-center text-text mb-3 shadow-2xs">
                 <Clock className="w-5 h-5 text-text" />
               </div>
-              <h4 className="text-xs sm:text-sm font-bold text-text mb-1">Konsultasi Kulit Gratis</h4>
-              <p className="text-xs text-text-secondary leading-relaxed">
+              <h4 className="text-sm sm:text-base font-bold text-text mb-1">Konsultasi Kulit Gratis</h4>
+              <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
                 Bingung menentukan produk? Konsultasikan kondisi kulitmu langsung dengan Beauty Advisor resmi kami.
               </p>
             </div>

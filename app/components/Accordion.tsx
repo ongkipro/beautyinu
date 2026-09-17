@@ -17,12 +17,12 @@ export function Accordion({
           open={item.defaultOpen}
         >
           <summary className="flex w-full cursor-pointer list-none [&::-webkit-details-marker]:hidden items-center justify-between text-left select-none">
-            <span className="font-sans text-[13px] sm:text-sm font-medium tracking-tight text-text/90 group-hover:text-primary transition-colors">
+            <span className="font-sans text-sm sm:text-base font-medium tracking-tight text-text group-hover:text-primary transition-colors">
               {item.title}
             </span>
             <ChevronDown className="w-4 h-4 text-black/35 group-hover:text-text/70 transition-transform duration-300 ease-out group-open:rotate-180 flex-shrink-0" />
           </summary>
-          <div className="pt-3 pb-1 text-xs sm:text-sm text-text-secondary/85 leading-relaxed">
+          <div className="pt-3 pb-1 text-sm sm:text-base text-text/85 leading-relaxed">
             {item.content}
           </div>
         </details>

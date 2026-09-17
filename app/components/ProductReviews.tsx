@@ -253,13 +253,13 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
                     </div>
                     <div>
                       <div className="flex items-center gap-1.5 flex-wrap">
-                        <span className="font-semibold text-xs text-text">{rev.name}</span>
+                        <span className="font-semibold text-sm text-text">{rev.name}</span>
                         <span
-                          className="inline-flex items-center gap-1 text-[11px] font-medium text-[#1D9BF0] flex-shrink-0"
+                          className="inline-flex items-center gap-1 text-xs font-medium text-[#1D9BF0] flex-shrink-0"
                           title="Pembeli Terverifikasi"
                         >
                           <TwitterVerifiedBadge className="w-3.5 h-3.5 flex-shrink-0" />
-                          <span className="text-[10px] font-medium tracking-tight">Terverifikasi</span>
+                          <span className="text-xs font-medium tracking-tight">Terverifikasi</span>
                         </span>
                       </div>
                       <div className="flex items-center gap-2 mt-0.5">
@@ -272,33 +272,33 @@ export function ProductReviews({productTitle, productHandle}: ProductReviewsProp
                             />
                           ))}
                         </div>
-                        <span className="text-[11px] text-text-secondary/70">&bull;</span>
-                        <span className="text-[11px] text-text-secondary">{rev.date}</span>
+                        <span className="text-xs text-text-secondary/70">&bull;</span>
+                        <span className="text-xs text-text-secondary">{rev.date}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Variant Tag */}
                   <div className="self-start sm:self-auto">
-                    <span className="text-[11px] font-mono text-text-secondary bg-[#FAF9FB] border border-black/[0.04] px-2 py-0.5 rounded">
+                    <span className="text-xs font-mono text-text-secondary bg-[#FAF9FB] border border-black/[0.04] px-2.5 py-0.5 rounded">
                       Varian: {rev.variant}
                     </span>
                   </div>
                 </div>
 
                 {/* Review Body Content */}
-                <p className="text-xs sm:text-sm text-text/85 leading-relaxed my-3 font-normal">
+                <p className="text-sm sm:text-base text-text/90 leading-relaxed my-3.5 font-normal">
                   {rev.content}
                 </p>
 
                 {/* Seller Reply Bubble if available */}
                 {rev.sellerReply && (
-                  <div className="my-3 p-3 rounded-lg bg-[#FAF9FB] border border-black/[0.04] text-xs text-text-secondary leading-relaxed">
-                    <div className="flex items-center gap-1.5 font-semibold text-text mb-1">
-                      <MessageSquare className="w-3 h-3 text-primary" />
+                  <div className="my-3.5 p-3.5 rounded-lg bg-[#FAF9FB] border border-black/[0.04] text-xs sm:text-sm text-text-secondary leading-relaxed">
+                    <div className="flex items-center gap-1.5 font-semibold text-text mb-1 text-xs sm:text-sm">
+                      <MessageSquare className="w-3.5 h-3.5 text-primary" />
                       <span>Respon Beautyinu Official:</span>
                     </div>
-                    <p className="text-[11px] text-text-secondary/90">{rev.sellerReply}</p>
+                    <p className="text-xs sm:text-sm text-text/85">{rev.sellerReply}</p>
                   </div>
                 )}
 

@@ -11,7 +11,11 @@
   - Added Google Merchant listing structured data: `OfferShippingDetails` (ID, free shipping, 0-1d handling, 1-4d transit) and `MerchantReturnPolicy` (7-day finite return window).
   - Added `priceValidUntil` (+1 year) to clear Google Rich Results warnings.
 - **Content Security Policy**: Allowed Google Fonts (`style-src` for `fonts.googleapis.com`, `font-src` for `fonts.gstatic.com`) to prevent production font blocking.
-- **Mobile UI Refinements**:
+- **Mobile UI & Typography Refinements**:
+  - Upgraded body copy across PDP accordions, product cards, reviews, cart items, search results, and CMS pages from cramped `text-xs` (11px-12px) to ergonomic `text-sm sm:text-base` (14px-16px) with enhanced contrast.
+  - Enforced architectural radius hierarchy (`rounded-2xl` frame, `rounded-xl` card/btn, `rounded-lg` media, `rounded-md` badge); eliminated all `rounded-3xl` instances and converted rectangular capsule pill buttons to `rounded-xl`.
+  - Refactored customer account order detail page (`account.orders.$id.tsx`) into responsive architectural cards with formatted date, item thumbnails, pricing breakdown, and fulfillment tracking.
+  - Unified catalog navigation links from legacy `/collections/frontpage` to canonical `/collections/all` across Header, Footer, Search, and Cart.
   - Dynamic breadcrumb truncation to prevent overflowing on mobile viewports.
   - Single-line PDP social proof (`⭐ 4.9 · Terjual 10k+ · BPOM Resmi`).
   - Mobile sticky Add to Cart medal with frosted glass effect (`bg-white/70 backdrop-blur-2xl`) and frameless primary image thumbnail.

@@ -150,7 +150,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
               {/* Item 1: Shop (Luxury Skincare Mega-Menu Dropdown) */}
               <div className="relative group">
                 <Link
-                  to="/collections/frontpage"
+                  to="/collections/all"
                   prefetch="intent"
                   className={`px-3.5 py-1.5 rounded-full text-[13px] xl:text-sm tracking-tight transition-all duration-200 flex items-center gap-1 cursor-pointer ${
                     isShopActive
@@ -177,13 +177,13 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                       </p>
                       <div className="flex flex-col gap-1">
                         <Link
-                          to="/collections/frontpage"
+                          to="/collections/all"
                           className="group/item flex flex-col py-1.5 px-2 rounded-xl hover:bg-accent-light/50 transition-colors"
                         >
-                          <span className="text-xs font-semibold text-text group-hover/item:text-primary transition-colors">
+                          <span className="text-sm font-semibold text-text group-hover/item:text-primary transition-colors">
                             Semua Produk
                           </span>
-                          <span className="text-[11px] text-text-secondary">
+                          <span className="text-xs text-text-secondary">
                             Seluruh katalog bodycare resmi
                           </span>
                         </Link>
@@ -191,10 +191,10 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                           to="/collections/body-care"
                           className="group/item flex flex-col py-1.5 px-2 rounded-xl hover:bg-accent-light/50 transition-colors"
                         >
-                          <span className="text-xs font-semibold text-text group-hover/item:text-primary transition-colors">
+                          <span className="text-sm font-semibold text-text group-hover/item:text-primary transition-colors">
                             Body Care Series
                           </span>
-                          <span className="text-[11px] text-text-secondary">
+                          <span className="text-xs text-text-secondary">
                             Lotion UV, Sabun &amp; Booster
                           </span>
                         </Link>
@@ -203,14 +203,14 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                           className="group/item flex flex-col py-1.5 px-2 rounded-xl hover:bg-accent-light/50 transition-colors"
                         >
                           <div className="flex items-center gap-1.5">
-                            <span className="text-xs font-semibold text-text group-hover/item:text-primary transition-colors">
+                            <span className="text-sm font-semibold text-text group-hover/item:text-primary transition-colors">
                               Best Sellers
                             </span>
                             <span className="text-[9px] font-bold uppercase tracking-wider bg-accent-light text-accent px-1.5 py-0.5 rounded-full">
                               Favorit
                             </span>
                           </div>
-                          <span className="text-[11px] text-text-secondary">
+                          <span className="text-xs text-text-secondary">
                             Formula terlaris pilihan konsumen
                           </span>
                         </Link>
@@ -218,10 +218,10 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                           to="/products/kefir-collagen-soap-60gr"
                           className="group/item flex flex-col py-1.5 px-2 rounded-xl hover:bg-accent-light/50 transition-colors"
                         >
-                          <span className="text-xs font-semibold text-text group-hover/item:text-primary transition-colors">
+                          <span className="text-sm font-semibold text-text group-hover/item:text-primary transition-colors">
                             Sabun Kefir Collagen
                           </span>
-                          <span className="text-[11px] text-text-secondary">
+                          <span className="text-xs text-text-secondary">
                             Deep cleansing &amp; kesegaran alami
                           </span>
                         </Link>
@@ -238,10 +238,10 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                           to="/#routine-system"
                           className="group/item flex flex-col py-1.5 px-2 rounded-xl hover:bg-accent-light/50 transition-colors"
                         >
-                          <span className="text-xs font-semibold text-text group-hover/item:text-primary transition-colors">
+                          <span className="text-sm font-semibold text-text group-hover/item:text-primary transition-colors">
                             3-Step Daily Routine
                           </span>
-                          <span className="text-[11px] text-text-secondary">
+                          <span className="text-xs text-text-secondary">
                             Cleanse, Boost &amp; Protect
                           </span>
                         </Link>
@@ -249,10 +249,10 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                           to="/collections/body-care"
                           className="group/item flex flex-col py-1.5 px-2 rounded-xl hover:bg-accent-light/50 transition-colors"
                         >
-                          <span className="text-xs font-semibold text-text group-hover/item:text-primary transition-colors">
+                          <span className="text-sm font-semibold text-text group-hover/item:text-primary transition-colors">
                             Kulit Kusam &amp; Belang
                           </span>
-                          <span className="text-[11px] text-text-secondary">
+                          <span className="text-xs text-text-secondary">
                             Formula Niacinamide &amp; Arbutin
                           </span>
                         </Link>
@@ -260,10 +260,10 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                           to="/products/bright-glow-body-lotion-uv-filter-750ml"
                           className="group/item flex flex-col py-1.5 px-2 rounded-xl hover:bg-accent-light/50 transition-colors"
                         >
-                          <span className="text-xs font-semibold text-text group-hover/item:text-primary transition-colors">
+                          <span className="text-sm font-semibold text-text group-hover/item:text-primary transition-colors">
                             Perlindungan UV Tropis
                           </span>
-                          <span className="text-[11px] text-text-secondary">
+                          <span className="text-xs text-text-secondary">
                             Proteksi dari sinar UV harian
                           </span>
                         </Link>
@@ -271,10 +271,10 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                           to="/pages/faq"
                           className="group/item flex flex-col py-1.5 px-2 rounded-xl hover:bg-accent-light/50 transition-colors"
                         >
-                          <span className="text-xs font-semibold text-text group-hover/item:text-primary transition-colors">
+                          <span className="text-sm font-semibold text-text group-hover/item:text-primary transition-colors">
                             Panduan Pakai &amp; FAQ
                           </span>
-                          <span className="text-[11px] text-text-secondary">
+                          <span className="text-xs text-text-secondary">
                             Urutan &amp; tips cara pemakaian
                           </span>
                         </Link>
@@ -285,7 +285,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                     <div className="col-span-4 rounded-2xl bg-gradient-to-br from-[#FAF7FD] to-[#F3EEFA] p-4 flex flex-col justify-between border border-black/[0.04]">
                       <div>
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-[10px] font-bold uppercase tracking-wider bg-white/80 text-primary px-2 py-0.5 rounded-full shadow-2xs">
+                          <span className="text-[10px] font-bold uppercase tracking-wider bg-white/80 text-primary px-2 py-0.5 rounded-md shadow-2xs">
                             Best Deal
                           </span>
                           <span className="text-[11px] font-extrabold text-accent">
@@ -301,7 +301,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                       </div>
                       <Link
                         to="/collections/bundles"
-                        className="flex items-center justify-center gap-1.5 w-full py-2 rounded-full bg-primary hover:bg-[#F06B8D] text-white text-xs font-semibold transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-primary/25 active:scale-[0.98]"
+                        className="flex items-center justify-center gap-1.5 w-full py-2 rounded-xl bg-primary hover:bg-[#F06B8D] text-white text-xs font-bold transition-all duration-300 shadow-xs hover:shadow-md hover:shadow-primary/25 active:scale-[0.98]"
                       >
                         <span>Lihat Paket Promo</span>
                         <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />
@@ -334,7 +334,7 @@ export function Header({isLoggedIn, cart}: HeaderProps) {
                 <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-50">
                   <div className="w-64 p-4 rounded-2xl bg-white/98 backdrop-blur-xl shadow-2xl border border-black/[0.06] text-left">
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary px-2 py-0.5 rounded-full">
+                      <span className="text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary px-2 py-0.5 rounded-md">
                         Super Value
                       </span>
                       <span className="text-[11px] font-bold text-accent">
@@ -618,9 +618,9 @@ export function MobileMenu() {
             {isShopExpanded && (
               <div className="pl-3 pr-1 pt-1 pb-2 space-y-1 animate-in fade-in slide-in-from-top-1 duration-200">
                 <Link
-                  to="/collections/frontpage"
+                  to="/collections/all"
                   onClick={close}
-                  className="flex items-center justify-between py-2 text-sm text-text/80 hover:text-primary transition-colors"
+                  className="flex items-center justify-between py-2.5 text-sm sm:text-base text-text/85 hover:text-primary transition-colors"
                 >
                   <span>Semua Produk</span>
                   <ChevronRight className="w-3.5 h-3.5 text-text-secondary/40" />
@@ -628,7 +628,7 @@ export function MobileMenu() {
                 <Link
                   to="/collections/body-care"
                   onClick={close}
-                  className="flex items-center justify-between py-2 text-sm text-text/80 hover:text-primary transition-colors"
+                  className="flex items-center justify-between py-2.5 text-sm sm:text-base text-text/85 hover:text-primary transition-colors"
                 >
                   <span>Body Care Series</span>
                   <ChevronRight className="w-3.5 h-3.5 text-text-secondary/40" />
@@ -636,7 +636,7 @@ export function MobileMenu() {
                 <Link
                   to="/collections/best-sellers"
                   onClick={close}
-                  className="flex items-center justify-between py-2 text-sm text-text/80 hover:text-primary transition-colors"
+                  className="flex items-center justify-between py-2.5 text-sm sm:text-base text-text/85 hover:text-primary transition-colors"
                 >
                   <div className="flex items-center gap-1.5">
                     <span>Best Sellers</span>
@@ -649,7 +649,7 @@ export function MobileMenu() {
                 <Link
                   to="/products/kefir-collagen-soap-60gr"
                   onClick={close}
-                  className="flex items-center justify-between py-2 text-sm text-text/80 hover:text-primary transition-colors"
+                  className="flex items-center justify-between py-2.5 text-sm sm:text-base text-text/85 hover:text-primary transition-colors"
                 >
                   <span>Sabun Kefir Collagen</span>
                   <ChevronRight className="w-3.5 h-3.5 text-text-secondary/40" />
@@ -657,7 +657,7 @@ export function MobileMenu() {
                 <a
                   href="/#routine-system"
                   onClick={close}
-                  className="flex items-center justify-between py-2 text-sm text-text/80 hover:text-primary transition-colors"
+                  className="flex items-center justify-between py-2.5 text-sm sm:text-base text-text/85 hover:text-primary transition-colors"
                 >
                   <span>3-Step Daily Routine</span>
                   <ChevronRight className="w-3.5 h-3.5 text-text-secondary/40" />

@@ -57,7 +57,7 @@ export function ProductPrice({
         )}
 
         {isDiscounted && (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold font-mono bg-[#FFF0F4]/90 backdrop-blur-sm border border-[#FCD0DC] text-[#9E1A40] shadow-2xs">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-xs font-bold font-mono bg-[#FFF0F4]/90 backdrop-blur-sm border border-[#FCD0DC] text-[#9E1A40] shadow-2xs">
             Hemat {savePercentage}%
           </span>
         )}

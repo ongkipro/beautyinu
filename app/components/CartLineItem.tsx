@@ -66,7 +66,7 @@ export function CartLineItem({
                     close();
                   }
                 }}
-                className="hover:text-primary text-text font-semibold text-xs sm:text-sm line-clamp-2 transition-colors leading-snug"
+                className="hover:text-primary text-text font-semibold text-sm line-clamp-2 transition-colors leading-snug"
               >
                 {product.title}
               </Link>
@@ -75,7 +75,7 @@ export function CartLineItem({
                   {nonDefaultOptions.map((option) => (
                     <span
                       key={option.name}
-                      className="text-[11px] text-text-secondary/80 font-normal"
+                      className="text-xs text-text-secondary/80 font-normal"
                     >
                       {option.name}: {option.value}
                     </span>
@@ -84,15 +84,15 @@ export function CartLineItem({
               )}
             </div>
             {line?.cost?.totalAmount ? (
-              <span className="font-bold text-text text-xs sm:text-sm flex-shrink-0">
+              <span className="font-bold text-text text-sm sm:text-base flex-shrink-0">
                 <Money data={line.cost.totalAmount} withoutTrailingZeros />
               </span>
             ) : line?.merchandise?.price ? (
-              <span className="font-bold text-text text-xs sm:text-sm flex-shrink-0">
+              <span className="font-bold text-text text-sm sm:text-base flex-shrink-0">
                 <Money data={line.merchandise.price} withoutTrailingZeros />
               </span>
             ) : (line as any)?.selectedVariant?.price ? (
-              <span className="font-bold text-text text-xs sm:text-sm flex-shrink-0">
+              <span className="font-bold text-text text-sm sm:text-base flex-shrink-0">
                 <Money data={(line as any).selectedVariant.price} withoutTrailingZeros />
               </span>
             ) : null}

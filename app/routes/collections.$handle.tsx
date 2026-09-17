@@ -258,7 +258,7 @@ export default function Collection() {
               {editorial.subtitle}
             </p>
 
-            <div className="text-xs sm:text-sm md:text-[15px] text-text-secondary leading-relaxed font-normal mb-4 max-w-lg">
+            <div className="text-sm sm:text-base text-text-secondary leading-relaxed font-normal mb-4 max-w-lg">
               {collection.descriptionHtml ? (
                 <div dangerouslySetInnerHTML={{__html: collection.descriptionHtml}} />
               ) : (

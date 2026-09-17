@@ -86,11 +86,11 @@ export default function AccountProfile() {
   const customer = action?.customer ?? account?.customer;
 
   return (
-    <div className="max-w-xl rounded-3xl bg-[#FAF9FB] border border-black/[0.05] p-6 sm:p-8">
+    <div className="max-w-xl rounded-2xl bg-[#FAF9FB] border border-black/[0.05] p-6 sm:p-8">
       <h2 className="font-serif text-2xl text-text font-normal tracking-tight mb-1">
         Profil Pengguna
       </h2>
-      <p className="text-xs text-text-secondary mb-6 leading-relaxed">
+      <p className="text-sm text-text-secondary mb-6 leading-relaxed">
         Perbarui nama dan informasi profil akun Beautyinu kamu.
       </p>
 

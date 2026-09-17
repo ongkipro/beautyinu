@@ -84,7 +84,7 @@ export function CartMain({layout, cart: originalCart}: CartMainProps) {
             <div className="flex-1 overflow-y-auto p-4 sm:p-5">
               <div className="flex items-center justify-between pb-3 mb-2 border-b border-black/[0.05] text-[10px] uppercase tracking-widest font-bold text-text-secondary">
                 <span>Daftar Produk ({cart?.totalQuantity || 0})</span>
-                <span className="text-[10px] uppercase tracking-wider font-bold text-accent bg-accent-light px-2 py-0.5 rounded-full">
+                <span className="text-[10px] uppercase tracking-wider font-bold text-accent bg-accent-light px-2 py-0.5 rounded-md">
                   100% BPOM RI
                 </span>
               </div>
@@ -131,8 +131,8 @@ export function CartMain({layout, cart: originalCart}: CartMainProps) {
               <div className="flex items-center justify-between pb-4 border-b border-black/[0.04] text-xs font-semibold text-text-secondary">
                 <span>Item dalam Keranjang ({cart?.totalQuantity || 0})</span>
                 <Link
-                  to="/collections/frontpage"
-                  className="text-primary hover:underline text-xs font-semibold flex items-center gap-1"
+                  to="/collections/all"
+                  className="text-primary hover:underline text-xs sm:text-sm font-semibold flex items-center gap-1"
                 >
                   <span>Lanjut Belanja</span>
                   <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />
@@ -167,7 +167,7 @@ export function CartMain({layout, cart: originalCart}: CartMainProps) {
                   <h2 className="text-xl sm:text-2xl font-serif text-text mb-1">
                     Keranjang Masih Kosong
                   </h2>
-                  <p className="text-xs sm:text-sm text-text-secondary leading-relaxed max-w-md">
+                  <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-md">
                     Kamu belum memilih formula ritual perawatan kulit. Pilih produk favoritmu dan dapatkan kulit glowing sehat terawat.
                   </p>
                   <div className="flex flex-wrap gap-2.5 mt-4">
@@ -194,7 +194,7 @@ export function CartMain({layout, cart: originalCart}: CartMainProps) {
                     <h3 className="text-sm font-bold uppercase tracking-wider text-text">
                       Rekomendasi Formula Terlaris
                     </h3>
-                    <p className="text-xs text-text-secondary">Pilihan favorit ribuan pelanggan Beautyinu</p>
+                    <p className="text-xs sm:text-sm text-text-secondary">Pilihan favorit ribuan pelanggan Beautyinu</p>
                   </div>
                   <span className="text-[10px] text-accent font-bold uppercase tracking-wider px-2 py-0.5 bg-accent-light rounded-md">
                     100% BPOM RI
@@ -216,17 +216,17 @@ export function CartMain({layout, cart: originalCart}: CartMainProps) {
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2 mb-0.5">
-                          <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 bg-primary/10 text-primary rounded-full">
+                          <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 bg-primary/10 text-primary rounded-md">
                             {item.badge}
                           </span>
                           <span className="text-[9px] text-text-secondary/70 font-medium">
                             {item.step}
                           </span>
                         </div>
-                        <p className="text-xs sm:text-sm font-semibold text-text line-clamp-1 group-hover:text-primary transition-colors">
+                        <p className="text-sm font-semibold text-text line-clamp-1 group-hover:text-primary transition-colors">
                           {item.title}
                         </p>
-                        <span className="text-xs sm:text-sm font-bold text-text mt-0.5 block">
+                        <span className="text-sm font-bold text-text mt-0.5 block">
                           {item.price}
                         </span>
                       </div>
@@ -242,8 +242,8 @@ export function CartMain({layout, cart: originalCart}: CartMainProps) {
 
           <div className="flex items-center justify-between text-xs text-text-secondary px-2">
             <Link
-              to="/collections/frontpage"
-              className="inline-flex items-center gap-1.5 font-semibold text-text hover:text-primary transition-all duration-200 active:scale-95 cursor-pointer"
+              to="/collections/all"
+              className="inline-flex items-center gap-1.5 font-semibold text-text hover:text-primary transition-all duration-200 active:scale-95 cursor-pointer text-xs sm:text-sm"
             >
               <ArrowLeft className="w-3.5 h-3.5" strokeWidth={1.5} />
               <span>Tambah Produk Lainnya</span>
@@ -300,7 +300,7 @@ function CartEmpty({
           to="/collections/all" 
           onClick={layout === 'aside' ? close : undefined} 
           prefetch="intent"
-          className="w-full bg-[#111111] hover:bg-primary text-white rounded-full py-3 px-6 text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-primary/25 block text-center cursor-pointer active:scale-98"
+          className="w-full bg-[#111111] hover:bg-primary text-white rounded-xl py-3 px-6 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-primary/25 block text-center cursor-pointer active:scale-98"
         >
           Lihat Produk Best Seller
         </Link>
@@ -308,7 +308,7 @@ function CartEmpty({
           to="/collections/bundles" 
           onClick={layout === 'aside' ? close : undefined} 
           prefetch="intent"
-          className="w-full bg-transparent hover:bg-[#FFF3F6] hover:text-primary hover:border-primary/40 text-text border border-black/10 rounded-full py-2.5 px-6 text-xs font-semibold uppercase tracking-wider transition-all block text-center cursor-pointer"
+          className="w-full bg-transparent hover:bg-[#FFF3F6] hover:text-primary hover:border-primary/40 text-text border border-black/10 rounded-xl py-2.5 px-6 text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all block text-center cursor-pointer"
         >
           Paket Hemat 3-in-1 (Diskon 39%)
         </Link>
@@ -341,7 +341,7 @@ function CartEmpty({
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5 mb-0.5">
-                  <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 bg-primary/10 text-primary rounded-full">
+                  <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 bg-primary/10 text-primary rounded-md">
                     {item.badge}
                   </span>
                   <span className="text-[9px] text-text-secondary/70 font-medium">

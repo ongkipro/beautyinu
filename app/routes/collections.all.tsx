@@ -236,7 +236,7 @@ export default function Collection() {
         {productCount > 0 ? (
           <PaginatedResourceSection<CollectionItemFragment>
             connection={products}
-            resourcesClassName="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
+            resourcesClassName="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 sm:gap-x-6 lg:gap-x-8 gap-y-8 sm:gap-y-10 lg:gap-y-12"
           >
             {({node: product, index}) => (
               <ProductCard

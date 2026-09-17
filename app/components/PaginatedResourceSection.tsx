@@ -29,7 +29,7 @@ export function PaginatedResourceSection<NodesType>({
         return (
           <div className="w-full">
             <div className="flex justify-center mb-8">
-              <PreviousLink className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FAF8FC] hover:bg-[#F3EEFA] text-text hover:text-primary px-6 py-2.5 text-xs sm:text-sm font-semibold transition-all shadow-2xs border border-black/[0.04] cursor-pointer">
+              <PreviousLink className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#FAF8FC] hover:bg-[#F3EEFA] text-text hover:text-primary px-6 py-2.5 text-xs sm:text-sm font-semibold transition-all shadow-2xs border border-black/[0.04] cursor-pointer">
                 {isLoading ? (
                   <span className="inline-flex items-center gap-2">
                     <span className="w-3.5 h-3.5 rounded-full border-2 border-primary border-t-transparent animate-spin" />
@@ -54,7 +54,7 @@ export function PaginatedResourceSection<NodesType>({
             )}
 
             <div className="flex justify-center mt-12 mb-4">
-              <NextLink className="inline-flex items-center justify-center gap-2.5 rounded-full bg-[#FAF8FC] hover:bg-[#F3EEFA] text-text hover:text-primary px-8 py-3.5 text-xs sm:text-sm font-semibold transition-all shadow-2xs border border-black/[0.04] hover:shadow-xs cursor-pointer group">
+              <NextLink className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#FAF8FC] hover:bg-[#F3EEFA] text-text hover:text-primary px-8 py-3.5 text-xs sm:text-sm font-semibold transition-all shadow-2xs border border-black/[0.04] hover:shadow-xs cursor-pointer group">
                 {isLoading ? (
                   <span className="inline-flex items-center gap-2">
                     <span className="w-4 h-4 rounded-full border-2 border-primary border-t-transparent animate-spin" />

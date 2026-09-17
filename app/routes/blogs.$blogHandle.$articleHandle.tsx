@@ -416,7 +416,7 @@ export default function Article() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 gap-3.5 sm:gap-4 md:grid-cols-4 md:gap-6 min-w-0">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 sm:gap-x-6 gap-y-8 sm:gap-y-10 min-w-0">
             {recommendedProducts.slice(0, 4).map((product: any) => (
               <ProductCard key={product.id} product={product} />
             ))}

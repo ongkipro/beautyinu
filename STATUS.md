@@ -27,6 +27,7 @@
 ## 2. Completed Milestones & Feature Registry
 
 ### A. Commercial Experience & UI/UX Polish
+- [x] **Product Card Grid Spacing & Precision**: Differentiated horizontal and vertical grid gaps across all product catalogs (`gap-x-4 sm:gap-x-6 lg:gap-x-8` and `gap-y-8 sm:gap-y-10 lg:gap-y-12`), providing generous breathing room between rows on mobile and desktop. Standardized product title min-heights (`min-h-[2.5rem] sm:min-h-[2.75rem]`) for baseline-level price and rating alignment.
 - [x] **Mobile Typography Scale**: Upgraded body copy from cramped `text-xs` (11px-12px) to ergonomic `text-sm sm:text-base` (14px-16px) across PDP accordions, product cards, reviews, cart items, collections, search results, and CMS pages.
 - [x] **Zero Rounded-3xl Enforcement**: Strict adherence to `DESIGN-SYSTEM.md` architectural radius scale (`rounded-2xl` frame, `rounded-xl` card/btn, `rounded-lg` media, `rounded-md` badge); 100% eliminated `rounded-3xl` across all components.
 - [x] **Zero Pill-Button Slop Enforcement**: Converted all rectangular text buttons (Hero CTAs, CategorySplit, Ritual, Cart Checkout, ProductForm, Distributor, and Account tabs) to `rounded-xl`, strictly reserving `rounded-full` for 1:1 circular navigation buttons and avatars.

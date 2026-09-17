@@ -12,6 +12,9 @@
   - Added `priceValidUntil` (+1 year) to clear Google Rich Results warnings.
 - **Content Security Policy**: Allowed Google Fonts (`style-src` for `fonts.googleapis.com`, `font-src` for `fonts.gstatic.com`) to prevent production font blocking.
 - **Mobile UI & Typography Refinements**:
+  - **Product Card Vertical Row Spacing**: Refactored product grids across collections (`collections.all`, `collections.$handle`), recommendations (`products.$handle`, `blogs`), and search results with differentiated gaps (`gap-x-4 sm:gap-x-6 lg:gap-x-8` and `gap-y-8 sm:gap-y-10 lg:gap-y-12`), resolving crowded vertical stacking on mobile.
+  - **Grid Alignment Precision**: Standardized title block min-height (`min-h-[2.5rem] sm:min-h-[2.75rem]`) on unified `ProductCard` to ensure prices, ratings, and sold counts align on the exact same vertical baseline across columns.
+  - **Pagination Radius Compliance**: Updated pagination buttons in `PaginatedResourceSection.tsx` from `rounded-full` to `rounded-xl`.
   - Upgraded body copy across PDP accordions, product cards, reviews, cart items, search results, and CMS pages from cramped `text-xs` (11px-12px) to ergonomic `text-sm sm:text-base` (14px-16px) with enhanced contrast.
   - Enforced architectural radius hierarchy (`rounded-2xl` frame, `rounded-xl` card/btn, `rounded-lg` media, `rounded-md` badge); eliminated all `rounded-3xl` instances and converted rectangular capsule pill buttons to `rounded-xl`.
   - Refactored customer account order detail page (`account.orders.$id.tsx`) into responsive architectural cards with formatted date, item thumbnails, pricing breakdown, and fulfillment tracking.
